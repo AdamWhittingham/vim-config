@@ -26,9 +26,11 @@ set timeoutlen=500
 set cursorline
 let mapleader = ","
 
-" Display soft column limit
-au WinEnter,FileType * set cc=
-au WinEnter,FileType ruby,eruby,rspec,cucumber set cc=120
+" Display soft column limit in modern versions of vim
+if version >= 730
+  au WinEnter,FileType * set cc=
+  au WinEnter,FileType ruby,eruby,rspec,cucumber set cc=120
+endif
 " Override the colour in .vimrc.local like this:
 "hi ColorColumn ctermbg=lightgrey guibg=lightgrey
 
