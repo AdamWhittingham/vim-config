@@ -8,6 +8,8 @@ colorscheme darkermate
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 set guioptions-=T   " no toolbar
 set guioptions-=m   " no menu
+set guioptions+=LlRrb " Hack which adds all scrollbars so that they can be removed, line below breaks without this
+set guioptions-=LlRrb " Remove all scrollbars
 set statusline=%<%f\ %h%m%r%=%-20.(line=%l\ of\ %L,col=%c%V%)\%h%m%r%=%-40(,%n%Y%)\%P%#warningmsg#%{SyntasticStatuslineFlag()}%*
 set laststatus=2    " Always show status line.
 set number          " line numbers
