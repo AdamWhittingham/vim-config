@@ -43,6 +43,13 @@ just those defined or overridden locally, not the ones provided by default.
 Plugins are installed in their own directories under <tt>bundle</tt>, thanks to
 [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332).
 
+## Ack (0.3.1)
+
+This plugin is a front for the Perl module App::Ack. Ack can be used as a replacement for 99% of the uses of grep.
+(more)[http://www.vim.org/scripts/script.php?script_id=2572]
+
+Requires ack (aka ack-grep) to be installed.
+
 ## Align (35/41)
 
 Help folks to align text, eqns, declarations, tables, etc ([more](http://www.vim.org/scripts/script.php?script_id=294))

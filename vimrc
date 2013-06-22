@@ -110,9 +110,10 @@ nmap <silent> <Leader>s :setlocal spell! spelllang=en_gb<CR>
 " ,sw to strip whitespace off the ends
 nmap <silent> <Leader>sw :call StripTrailingWhitespace()<CR>
 
-" ,t to clear cache and fuzzy search files
-" Rebuilds the cahce first, move to commented out line to just search
+" ,t to clear cache and fuzzy search files; ,T in current file's directory
+" Rebuilds the cache first, move to commented out line to just search
 map <silent> <leader>t :ClearCtrlPCache<cr>\|:CtrlP<cr>
+map <silent> <leader>T :ClearCtrlPCache<cr>\|:CtrlPCurFile<cr>
 "map <silent><Leader>t <esc>:CtrlP<CR>
 
 " ,tt to tabulate visually selected rows based on |
@@ -142,10 +143,6 @@ map <A-v> "+p<CR>
 " Ctrl+s to write the file (Will scroll-lock Vim in the terminal!)
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
-
-" Ctrl+p to fuzzy search files
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
 " Ignores files in any VCS or tmp directory
 set wildignore+=tmp/*,*.so,*.swp,*.zip
@@ -251,10 +248,6 @@ let g:ragtag_global_maps = 1
 
 " A whole bunch of NERDTree configuration stolen from carlhuda's janus
 let NERDTreeIgnore=['\.rbc$', '\~$']
-
-autocmd VimEnter * wincmd p
-autocmd VimEnter * call s:NERDTreeIfDirectory(expand("<amatch>"))
-autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 
 " Make NERDTree close when you open a file from it. Helps recover screen
 " space!
@@ -427,7 +420,6 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " ----------------------------------------------
 "  Setup Ctags support
 " ----------------------------------------------
-set tags=./tags;
 
 " Don't highlight tags by default
 let g:easytags_auto_highlight = 0
