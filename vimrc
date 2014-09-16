@@ -16,6 +16,7 @@ Plugin 'AutoTag'
 Plugin 'ack.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
+Plugin 'kana/vim-fakeclip'
 Plugin 'bogado/file-line'
 Plugin 'bufexplorer.zip'
 Plugin 'colorizer'
@@ -59,7 +60,6 @@ endif
 " ----------------------------------------------
 " No More plugins after here thanks!
 " ----------------------------------------------
-
 call vundle#end()
 filetype plugin indent on
 syntax on
@@ -526,6 +526,12 @@ let g:projectionist_heuristics ={
       \     "spec/*_spec.rb": {"alternate": ["app/{}.rb","lib/{}.rb"], "type": "test"}
       \  }
       \}
+
+" If using a Mac set the paste buffers to use the OS X Clipboard
+let s:uname = system("echo -n \"$(uname)\"")
+if s:uname == "Darwin"
+  set clipboard=unnamed
+endif
 
 " ----------------------------------------------
 "  Source any local config
