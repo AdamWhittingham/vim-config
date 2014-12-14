@@ -6,6 +6,15 @@ Assuming you already have vim, just run:
     git clone https://github.com/AdamWhittingham/vim-config.git ~/.vim && ~/.vim/install
 ```
 
+You may get an issue along the lines of `access denied` you'll need to make the newly cloned file executable with:
+```bash
+    chmod +x ~/.vim/install
+```
+Then run it again with:
+```bash
+    ~/.vim/install
+```
+
 Should this not leave you with a nice working vim (certain vims are a bit iffy about the last line) then launch vim and run `:PluginUpdate`
 
 If you are using zsh there may be an issue running tests with ,t (it can't find the bundle). If you don't already have an /etc/zprofile file it can be fixed by doing the following:
