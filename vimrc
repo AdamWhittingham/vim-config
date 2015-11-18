@@ -105,7 +105,7 @@ let mapleader = ","
 nmap <space> <leader>
 nmap <space><space> <leader><leader>
 
-colorscheme adCode
+colorscheme Tomorrow-Night-Blue
 
 set autoindent
 set autowrite       " Writes on make/shell commands
@@ -401,8 +401,8 @@ au BufRead,BufNewFile *.palette set filetype=ruby
 " ----------------------------------------------
 
 " Setup the projector toggle plugin
-let g:default_colorscheme = 'adCode'
-let g:projector_colorscheme = 'mac-classic'
+let g:default_colorscheme = 'Tomorrow-Night-Blue'
+let g:projector_colorscheme = 'Tomorrow-Night-Blue'
 
 " Setup Font
 if has('win32')
