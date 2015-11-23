@@ -79,6 +79,7 @@ Plug 'tpope/vim-haml'
 Plug 'digitaltoad/vim-jade',           {'for': 'jade'}
 Plug 'groenewege/vim-less',            {'for': 'less'}
 Plug 'othree/html5.vim',               {'for': 'html'}
+Plug 'slim-template/vim-slim'
 
 " Javascript
 Plug 'othree/yajs.vim',                {'for': 'javascript'}
