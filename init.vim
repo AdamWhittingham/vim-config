@@ -19,14 +19,18 @@ Plug 'mhinz/vim-startify'                                         " Start Vim wi
 Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
+Plug 'folke/tokyonight.nvim'
 
 " Search and file exploring
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search files
-Plug 'junegunn/fzf.vim'                                           " Add nice FZF bindings
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Additional contextual information
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
 Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
-Plug 'ludovicchabant/vim-gutentags'                               " Better automated generation and update of ctags files
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 Plug 'editorconfig/editorconfig-vim'                              " Make use of EditorConfig files
 
@@ -42,7 +46,9 @@ Plug 'tpope/vim-surround'                                         " Quick editin
 Plug 'wellle/targets.vim'                                         " Additional text objects and motions
 
 " Autocomplete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " Completion engine and languageserver
+Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'andersevenrud/compe-tmux'
 Plug 'tpope/vim-endwise'                                          " Insert `end` into ruby when
 Plug 'honza/vim-snippets'                                         " Add many popular shared snippets
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
@@ -85,6 +91,7 @@ set backupdir=/var/tmp,~/.tmp,.         " Don't clutter project dirs up with swa
 set breakindent
 set cf                                  " Enable error files & error jumping.
 set complete+=kspell
+set completeopt=menuone,noselect
 set directory=/var/tmp,~/.tmp,.         " Set the directory for working files created by vim
 set tabstop=2 shiftwidth=2 expandtab    " Convert tabs to 2 spaces AS IS RIGHT AND PROPER
 set fillchars+=vert:\                   " Set the window borders to not have | chars in them
@@ -227,38 +234,34 @@ map <silent>[e :m -2<cr>
 map <silent>]e :m +1<cr>
 
 " <leader>. to view all document buffers
-map <silent> <Leader>. :Buffers<cr>
+map <silent> <Leader>. :Telescope buffers theme=get_dropdown<cr>
 
 " Double leader to switch to the previous buffer
 map <silent> <Leader><Leader> :b#<CR>
 
 " <Leader>d to show the directory tree
-nmap <silent> <Leader>d :Explore<CR>
+nmap <silent> <Leader>d :Telescope file_browser<CR>
 
 "  <Leader>f to fuzzy search files
-map <silent> <leader>f :Files<cr>
+map <silent> <leader>f :Telescope find_files theme=get_dropdown<cr>
 
-"  <Leader>F to fuzzy search files
-map <silent> <leader>F :Explore<cr>
+"  <Leader>F to fuzzy search content
+map <silent> <leader>F :Telescope live_grep<cr>
 
 "  <Leader>} to Search for a tag in the current project
-map <silent> <leader>} :Tags<cr>
+map <silent> <leader>} :Telescope tags<cr>
 
 "  <Leader>{ to Search for a tag in the current buffer
-map <silent> <leader>{ :BTags<cr>
+map <silent> <leader>{ :Telescope treesitter<cr>
 
 " Jump to the definitionof this tag
-nmap <silent> <c-]> <Plug>(coc-definition)
+nmap <silent> <c-]> :Telescope lsp_definitions<cr>
 
 " Show all references to the method/variable/etc under the cursor
-nmap <silent> <leader>] <Plug>(coc-references)
+nmap <silent> <leader>] :Telescope lsp_references<cr>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 vmap a <Plug>(LiveEasyAlign)
-
-" Format the current file/section
-nmap <c-f> <Plug>(coc-format)
-vmap <c-f> <Plug>(coc-format-selected)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
@@ -296,7 +299,8 @@ map <silent> <leader>i  m`gg=G``
 noremap <leader>m `
 
 " Rename the tag under the cursor
-nmap <leader>r <Plug>(coc-rename)
+" Setup in the nvim-treesitter-refactor config
+" nmap <leader>r -> rename
 
 "  <Leader>rt to run ctags on the current directory
 map <leader>rt :!ctags -R .<CR><CR>
@@ -322,9 +326,6 @@ nnoremap <Leader>u :UndotreeToggle<CR>
 
 " Add :w!! to save the current file with sudo
 cmap w!! w !sudo tee > /dev/null %
-
-" <leader>y  Show the list of recently yanked snuippets
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 "  <Leader>z to zoom pane when using splits
 map <Leader>z :ZoomWin<CR>
@@ -423,26 +424,67 @@ augroup icalendar_ft
   autocmd BufNewFile,BufRead *.ics   set syntax=icalendar
 augroup END
 
+
+" ----------------------------------------------
+" Language Server Setup
+" ----------------------------------------------
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  refactor = {
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "<leader>r",
+      },
+    },
+  },
+}
+EOF
+
 " ----------------------------------------------
 " Auto-complete
 " ----------------------------------------------
+
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <c-l> pumvisible() ? "\<C-y>" : "\<c-l>"
 
-call coc#add_extension(
-      \ 'coc-css',
-      \ 'coc-dictionary',
-      \ 'coc-json',
-      \ 'coc-lists',
-      \ 'coc-snippets',
-      \ 'coc-solargraph',
-      \ 'coc-tag',
-      \ 'coc-ultisnips',
-      \ 'coc-yaml'
-      \ )
+lua << EOF
+  require'compe'.setup {
+    enabled = true;
+    autocomplete = true;
+    debug = false;
+    min_length = 2;
+    preselect = 'enable';
+    throttle_time = 80;
+    source_timeout = 200;
+    incomplete_delay = 400;
+    max_abbr_width = 100;
+    max_kind_width = 100;
+    max_menu_width = 100;
+    documentation = true;
+
+    source = {
+      path = true;
+      buffer = true;
+      calc = true;
+      nvim_lsp = true;
+      nvim_lua = true;
+      vsnip = true;
+      ultisnips = true;
+      tmux = true;
+    };
+  }
+EOF
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <C-l>     compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " ----------------------------------------------
 " File template settings
@@ -561,46 +603,27 @@ autocmd User Startified setlocal buftype=
 let g:splitjoin_align = 1
 
 " ----------------------------------------------
-" Setup FZF
+" Setup Telescope
 " ----------------------------------------------
 
-let g:fzf_layout = { 'down': '~50%' }
-
-let g:fzf_colors =
-      \ {
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'String'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Boolean'],
-      \ 'info':    ['fg', 'Comment'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment']
-      \ }
-
-command! -nargs=* Ag
-\ call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'))
-
-function! s:list_buffers()
-  redir => list
-  silent ls
-  redir END
-  return split(list, "\n")
-endfunction
-
-function! s:delete_buffers(lines)
-  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
-endfunction
-
-command! BD call fzf#run(fzf#wrap({
-  \ 'source': s:list_buffers(),
-  \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
-\ }))
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    selection_caret = "➜ ",
+    file_ignore_patterns = {
+      'tags',
+      'vendor/.*'
+    },
+    layout_strategy = flex,
+    winblend = 20,
+    width = 0.8,
+    show_line = false,
+    prompt_title = false,
+    results_title = false,
+    preview_title = false,
+  }
+}
+EOF
 
 " ----------------------------------------------
 " Configure dynamic code execution tools
@@ -619,11 +642,35 @@ let g:projectionist_heuristics ={
       \}
 
 " ----------------------------------------------
-" Setup ctags
+" Setup Treesitter
 " ----------------------------------------------
 
-" Tell Gutentags to store tags in .tags by default
-let g:gutentags_ctags_tagfile = '.tags'
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    "ruby",
+    "javascript",
+    "css",
+    "scss",
+    "go",
+    "yaml",
+    "lua",
+    "html",
+    "json",
+    "comment",
+    "regex",
+    "bash",
+    "python",
+    "typescript"
+  },
+  highlight = {
+    enable = true
+  },
+  indent = {
+    enable = true
+  }
+}
+EOF
 
 " ----------------------------------------------
 " Setup File exploring
@@ -647,6 +694,14 @@ let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '~-'
 let g:gitgutter_max_signs = 1000
+
+" ----------------------------------------------
+" Setup TokyoNight
+" ----------------------------------------------
+
+let g:tokyonight_style = "night"
+let g:tokyonight_italic_functions = 'true'
+let g:tokyonight_transparent = 'true'
 
 " ----------------------------------------------
 " Add Misc helpful functions
