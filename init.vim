@@ -19,19 +19,21 @@ Plug 'mhinz/vim-startify'                                         " Start Vim wi
 Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
-Plug 'folke/tokyonight.nvim'
+Plug 'folke/tokyonight.nvim'                                      " Color scheme
 
+" Common dependencies
+Plug 'nvim-lua/plenary.nvim'                                      " Library of common LUA helpers, dependency of many other plugins
+Plug 'nvim-lua/popup.nvim'                                        " LUA bindings for pop-up windows, dependency of Telescope
+"
 " Search and file exploring
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
+Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
+Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
 
 " Additional contextual information
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
-Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
-Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 Plug 'editorconfig/editorconfig-vim'                              " Make use of EditorConfig files
 
 " Extra text manipulation and movement
@@ -54,8 +56,6 @@ Plug 'honza/vim-snippets'                                         " Add many pop
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Language specific tools
-Plug 'sheerun/vim-polyglot'                                       " Currated group of other excellent plugins
-Plug 'hail2u/vim-css3-syntax'                                     " CSS3 syntax parsing
 Plug 'vim-scripts/icalendar.vim'                                  " Syntax for iCal files
 
 " Load any extra plugins specified in the home directory
@@ -77,9 +77,6 @@ filetype plugin on
 
 " Setup the leader key, used for triggering all kinds of awesome things
 let mapleader = " "
-
-" Set our primary colorscheme. Override this in ~/.vim.local if you want.
-colorscheme adCode
 
 set t_Co=256                            " Use 256-bit colour in vim
 set termguicolors                       " Use nicer colours in nvim
@@ -702,6 +699,8 @@ let g:gitgutter_max_signs = 1000
 let g:tokyonight_style = "night"
 let g:tokyonight_italic_functions = 'true'
 let g:tokyonight_transparent = 'true'
+
+colorscheme tokyonight
 
 " ----------------------------------------------
 " Add Misc helpful functions
