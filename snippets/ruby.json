@@ -3,8 +3,8 @@
   "Initializer": {
     "prefix": ["defi"],
     "body": [
-      "def initialize",
-      "  $0",
+      "def initialize${1}",
+      "\t$0",
       "end"
     ],
     "description": "Initializer"
@@ -19,10 +19,57 @@
     "description": "Private method definition"
   },
 
+  "Class method": {
+    "prefix": ["sdef"],
+    "body": [
+      "def self.${1}",
+      "\t$0",
+      "end"
+    ],
+    "description": "Initializer"
+  },
+
   "Debug tap": {
     "prefix": ["tap"],
     "body": [
       "tap { |item| p item }"
+    ],
+    "description": "Inspect enumeration via tap"
+  },
+
+  "Frozen string literal": {
+    "prefix": ["froz"],
+    "body": [
+      "# frozen_string_literal: true"
     ]
+  },
+
+  "Begin/Rescue block": {
+    "prefix": ["rescue"],
+    "body": [
+      "begin",
+      "\t${0}",
+      "rescue ${1:StandardError} => ${2:e}",
+      "end"
+    ],
+    "description": "Being/Rescue block"
+  },
+
+	"Insert do |variable| … end block": {
+		"prefix": ["dov", "dovar"],
+		"body": [
+			"do |${1:item}|",
+			"\t$0",
+			"end"
+		]
+	},
+
+  "Each with object" : {
+		"prefix": ["ewo", "each_with_object"],
+		"body": [
+			"each_with_object(${1:[]}) do |${2:item}, out|",
+			"\t$0",
+			"end"
+		]
   }
 }
