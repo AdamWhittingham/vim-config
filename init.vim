@@ -46,7 +46,8 @@ Plug 'wellle/targets.vim'                                         " Additional t
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'andersevenrud/compe-tmux'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'wellle/tmux-complete.vim'
 Plug 'tpope/vim-endwise'                                          " Insert `end` into ruby when
 Plug 'honza/vim-snippets'                                         " Add many popular shared snippets
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
