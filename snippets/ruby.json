@@ -1,0 +1,28 @@
+
+{
+  "Initializer": {
+    "prefix": ["defi"],
+    "body": [
+      "def initialize",
+      "  $0",
+      "end"
+    ],
+    "description": "Initializer"
+  },
+
+  "Private method": {
+    "prefix": ["pdef"],
+    "body": [
+      "private def $0",
+      "end"
+    ],
+    "description": "Private method definition"
+  },
+
+  "Debug tap": {
+    "prefix": ["tap"],
+    "body": [
+      "tap { |item| p item }"
+    ]
+  }
+}

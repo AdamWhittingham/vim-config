@@ -1,8 +1,4 @@
-if has('nvim')
-  let vimDir = '$HOME/.config/nvim'
-else
-  let vimDir = '$HOME/.vim'
-endif
+let vimDir = '$HOME/.vim'
 
 let plugin_dir = expand(vimDir . '/plugins')
 
@@ -428,6 +424,9 @@ augroup END
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
   refactor = {
     smart_rename = {
       enable = true,
@@ -471,8 +470,8 @@ lua << EOF
       nvim_lsp = true;
       nvim_lua = true;
       vsnip = true;
-      ultisnips = true;
       tmux = true;
+      treesitter = true;
     };
   }
 EOF
@@ -511,6 +510,12 @@ function! g:skeleton_find_template.ruby(path)
   endif
   return ''
 endfunction
+"
+" ----------------------------------------------
+" Code snippets config
+" ----------------------------------------------
+
+let g:vsnip_snippet_dir = expand(vimDir . '/snippets')
 
 " ----------------------------------------------
 " Copy file path details to the system clipboard
