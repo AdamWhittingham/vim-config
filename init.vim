@@ -11,46 +11,46 @@ call plug#begin(plugin_dir)
 " UI
 Plug 'airblade/vim-gitgutter'                                     " Show the column of changes to the file against git
 Plug 'christoomey/vim-tmux-navigator'                             " Move between Vim panes & Tmux panes easily
-Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
-Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
+Plug 'folke/tokyonight.nvim'                                      " Color scheme with great support for plugins
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
-Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
-Plug 'folke/tokyonight.nvim'                                      " Color scheme
+Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
+Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
+Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 
 " Common dependencies
 Plug 'nvim-lua/plenary.nvim'                                      " Library of common LUA helpers, dependency of many other plugins
 Plug 'nvim-lua/popup.nvim'                                        " LUA bindings for pop-up windows, dependency of Telescope
 "
-" Search and file exploring
-Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
+" Navigation & Search tools
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
 
 " Additional contextual information
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
-Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
 Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
-Plug 'editorconfig/editorconfig-vim'                              " Make use of EditorConfig files
+Plug 'kabouzeid/nvim-lspinstall'                                  " Make it easy to install LSP servers
 
+" Autocomplete
+Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
+Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
+Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
+Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
+"
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
 Plug 'AndrewRadev/switch.vim'                                     " Quickly swap between true/false, different hash styles and much more
+Plug 'editorconfig/editorconfig-vim'                              " Make use of EditorConfig files
 Plug 'junegunn/vim-easy-align'                                    " Fast alignment of lines based on preset rules
 Plug 'kshenoy/vim-signature'                                      " Show marks in the gutter to help me use them more
 Plug 'maxbrunsfeld/vim-yankstack'                                 " Paste text, then rotate though things yanked before/after
 Plug 'tpope/vim-abolish'                                          " Allow smartcase substitution and search
 Plug 'tpope/vim-commentary'                                       " Quick toggle for code commenting
+Plug 'tpope/vim-endwise'                                          " Insert `end` into ruby when
+Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
 Plug 'tpope/vim-surround'                                         " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
 Plug 'wellle/targets.vim'                                         " Additional text objects and motions
-
-" Autocomplete
-Plug 'hrsh7th/nvim-compe'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'wellle/tmux-complete.vim'
-Plug 'tpope/vim-endwise'                                          " Insert `end` into ruby when
-Plug 'honza/vim-snippets'                                         " Add many popular shared snippets
-Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Language specific tools
 Plug 'vim-scripts/icalendar.vim'                                  " Syntax for iCal files
@@ -424,9 +424,52 @@ augroup END
 " ----------------------------------------------
 
 lua <<EOF
+-- Setup installed LSP servers
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{}
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
+
+EOF
+
+" ----------------------------------------------
+" Setup Treesitter
+" ----------------------------------------------
+
+lua <<EOF
 require'nvim-treesitter.configs'.setup {
+  ensure_installed = {
+    "ruby",
+    "javascript",
+    "css",
+    "scss",
+    "go",
+    "yaml",
+    "lua",
+    "html",
+    "json",
+    "comment",
+    "regex",
+    "bash",
+    "python",
+    "typescript"
+  },
   highlight = {
-    enable = true,
+    enable = true
+  },
+  indent = {
+    enable = true
   },
   refactor = {
     smart_rename = {
@@ -436,6 +479,29 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
+}
+EOF
+
+" ----------------------------------------------
+" Setup Telescope
+" ----------------------------------------------
+
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    selection_caret = "➜ ",
+    file_ignore_patterns = {
+      'tags',
+      'vendor/.*'
+    },
+    layout_strategy = flex,
+    winblend = 20,
+    width = 0.8,
+    show_line = false,
+    prompt_title = false,
+    results_title = false,
+    preview_title = false,
+  }
 }
 EOF
 
@@ -554,7 +620,7 @@ nnoremap <C-n> :call NumberToggle()<cr>
 let g:startify_change_to_vcs_root = 0
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 8
-let g:startify_custom_indices = ['a', 's', 'd']
+let g:startify_custom_indices = ['a', 's', 'd', 'f', 'j', 'k', 'l', ';']
 
 let g:startify_custom_header = [
       \ '   __      __            ',
@@ -608,29 +674,6 @@ autocmd User Startified setlocal buftype=
 let g:splitjoin_align = 1
 
 " ----------------------------------------------
-" Setup Telescope
-" ----------------------------------------------
-
-lua << EOF
-require('telescope').setup{
-  defaults = {
-    selection_caret = "➜ ",
-    file_ignore_patterns = {
-      'tags',
-      'vendor/.*'
-    },
-    layout_strategy = flex,
-    winblend = 20,
-    width = 0.8,
-    show_line = false,
-    prompt_title = false,
-    results_title = false,
-    preview_title = false,
-  }
-}
-EOF
-
-" ----------------------------------------------
 " Configure dynamic code execution tools
 " ----------------------------------------------
 
@@ -645,37 +688,6 @@ let g:projectionist_heuristics ={
       \     "spec/javascript/*.test.js":  { "alternate": ["app/javascript/src/{}.js", "app/javascript/src/{}.jsx"], "type": "test"},
       \  }
       \}
-
-" ----------------------------------------------
-" Setup Treesitter
-" ----------------------------------------------
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
-    "ruby",
-    "javascript",
-    "css",
-    "scss",
-    "go",
-    "yaml",
-    "lua",
-    "html",
-    "json",
-    "comment",
-    "regex",
-    "bash",
-    "python",
-    "typescript"
-  },
-  highlight = {
-    enable = true
-  },
-  indent = {
-    enable = true
-  }
-}
-EOF
 
 " ----------------------------------------------
 " Setup File exploring
