@@ -443,11 +443,13 @@ EOF
 " Auto-complete
 " ----------------------------------------------
 
-
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <c-l> pumvisible() ? "\<C-y>" : "\<c-l>"
+" Use tab to trigger completion with characters ahead and navigate.
+" I know nested ternaries are a crime but I don't want to spend 30 lines on
+" this.
+imap <expr> <Tab>   pumvisible() ? "\<C-n>" : vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' :  "\<Tab>"
+smap <expr> <Tab>   pumvisible() ? "\<C-n>" : vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' :  "\<Tab>"
+imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' :  "\<S-Tab>"
+smap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' :  "\<S-Tab>"
 
 lua << EOF
   require'compe'.setup {
