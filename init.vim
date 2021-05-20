@@ -12,6 +12,7 @@ call plug#begin(plugin_dir)
 Plug 'airblade/vim-gitgutter'                                     " Show the column of changes to the file against git
 Plug 'christoomey/vim-tmux-navigator'                             " Move between Vim panes & Tmux panes easily
 Plug 'folke/tokyonight.nvim'                                      " Color scheme with great support for plugins
+Plug 'kyazdani42/nvim-web-devicons'                               " Add icons and colours to search results based on filetype
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
 Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
@@ -243,7 +244,7 @@ map <silent> <leader>f :Telescope find_files theme=get_dropdown<cr>
 map <silent> <leader>F :Telescope live_grep<cr>
 
 "  <Leader>} to Search for a tag in the current project
-map <silent> <leader>} :Telescope tags<cr>
+map <silent> <leader>} :Telescope lsp_workspace_symbols<cr>
 
 "  <Leader>{ to Search for a tag in the current buffer
 map <silent> <leader>{ :Telescope treesitter<cr>
