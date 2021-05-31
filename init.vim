@@ -76,6 +76,8 @@ filetype plugin on
 
 " Setup the leader key, used for triggering all kinds of awesome things
 let mapleader = " "
+"
+colorscheme adcode
 
 set t_Co=256                            " Use 256-bit colour in vim
 set termguicolors                       " Use nicer colours in nvim
@@ -722,7 +724,7 @@ let g:tokyonight_style = "night"
 let g:tokyonight_italic_functions = 'true'
 let g:tokyonight_transparent = 'true'
 
-colorscheme tokyonight
+"colorscheme tokyonight
 
 " ----------------------------------------------
 " Add Misc helpful functions
