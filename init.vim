@@ -26,8 +26,9 @@ Plug 'nvim-lua/popup.nvim'                                        " LUA bindings
 " Navigation & Search tools
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " Add FZF for faster searching for items under the cursor
+Plug 'junegunn/fzf.vim'                                           " and bind it up nicely
+Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
 
 " Additional contextual information
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
@@ -351,6 +352,8 @@ map <silent> <F5> <esc>:e %<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+map <F9> :TSHighlightCapturesUnderCursor<CR>
 
 " ----------------------------------------------
 " Window split & size shortcuts
