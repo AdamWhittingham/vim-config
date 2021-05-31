@@ -26,6 +26,8 @@ Plug 'nvim-lua/popup.nvim'                                        " LUA bindings
 " Navigation & Search tools
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Additional contextual information
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
