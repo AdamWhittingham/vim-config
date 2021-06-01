@@ -19,13 +19,13 @@ if has("gui_running")
 endif
 
 hi Normal                     guifg=#FAFAFA ctermfg=231  guibg=#070707 ctermbg=232  gui=NONE cterm=NONE
-hi Visual                     guifg=NONE    ctermfg=NONE guibg=#8C8CAF ctermbg=103  gui=NONE cterm=NONE
+hi Visual                     guifg=NONE    ctermfg=NONE guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
 hi LineNr                     guifg=#8C8CAF ctermfg=103  guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
 hi Cursor                     guifg=#FAFAFA ctermfg=231  guibg=#FFFFFF ctermbg=231  gui=NONE cterm=NONE
 hi CursorLine                 guifg=NONE    ctermfg=NONE guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
-hi CursorLineNr               guifg=#FFFF40 ctermfg=227  guibg=#141414 ctermbg=233  gui=BOLD cterm=BOLD cterm=BOLD
+hi CursorLineNr               guifg=#40CF40 ctermfg=77   guibg=#141414 ctermbg=233  gui=BOLD cterm=BOLD cterm=BOLD
 hi CursorColumn               guifg=NONE    ctermfg=NONE guibg=#303030 ctermbg=236  gui=NONE cterm=NONE
-hi Search                     guifg=#F8D454 ctermfg=221  guibg=#070707 ctermbg=232  gui=UNDERLINE cterm=UNDERLINE
+hi Search                     guifg=#070707 ctermfg=232  guibg=#F8D454 ctermbg=221  gui=BOLD cterm=BOLD cterm=BOLD
 hi MatchParen                 guifg=#F8D454 ctermfg=221  guibg=#070707 ctermbg=232  gui=BOLD cterm=BOLD cterm=BOLD
 hi SignColumn                 guifg=#FAFAFA ctermfg=231  guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
 hi VertSplit                  guifg=#141414 ctermfg=233  guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
