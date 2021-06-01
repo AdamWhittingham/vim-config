@@ -319,8 +319,8 @@ nmap <silent> <Leader>sp :setlocal spell!<CR>
 nmap <silent> <Leader>sw :call StripTrailingWhitespace()<CR>
 
 " Leader t/T to send the current file/line to rspec via tmux windows
-nmap <leader>t :call InvokeRspecViaTmux(expand("%:p"))<CR>
-nmap <leader>T :call InvokeRspecViaTmux(expand("%:p") . ":" . line('.'))<CR>
+nmap <leader>t :call InvokeViaTmux("rspec", expand("%:p"))<CR>
+nmap <leader>T :call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))<CR>
 
 "  <Leader>u to toggle undo history browser
 nnoremap <Leader>u :UndotreeToggle<CR>
@@ -742,18 +742,18 @@ function! StripTrailingWhitespace()
 	normal ``
 endfunction
 
-function! InvokeRspecViaTmux(test)
+function! InvokeViaTmux(cmd, test)
   let l:targetWindow = trim(system('tmux list-windows | grep "test" | cut -f1 -d":" | head -1'))
   if empty(l:targetWindow)
     let l:targetWindow = 3
   endif
   let l:target = "-t " . l:targetWindow . ".1"
-  let l:command = "tmux send-keys" . " " . l:target . ' "rspec '  . a:test . '" Enter'
+  let l:command = "tmux send-keys" . " " . l:target . ' "' . a:cmd . " "  . a:test . '" Enter'
   echom "Running " . a:test . " in window " . l:targetWindow
   let output = system(l:command)
 endfunction
 
-"define :Lorem command to dump in a paragraph of lorem ipsum
+" define :Lorem command to dump in a paragraph of lorem ipsum
 command! -nargs=0 Lorem :normal iLorem ipsum dolor sit amet, consectetur
       \ adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
       \ magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
