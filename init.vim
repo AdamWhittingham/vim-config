@@ -35,6 +35,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic la
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
 Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
 Plug 'kabouzeid/nvim-lspinstall'                                  " Make it easy to install LSP servers
+Plug 'ray-x/lsp_signature.nvim'
 
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
@@ -261,10 +262,8 @@ nmap <silent> <c-]> :Telescope lsp_definitions<cr>
 " Show all references to the method/variable/etc under the cursor
 nmap <silent> <leader>] :Telescope lsp_references<cr>
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-vmap a <Plug>(LiveEasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" Start interactive EasyAlign in visual mode (e.g. vipga) or a motion/text object (e.g. gaip)
+vmap ga <Plug>(LiveEasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " <leader>gc to show commits in this file
