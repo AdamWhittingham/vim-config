@@ -78,7 +78,7 @@ hi TSType                     guifg=#40B0FF ctermfg=75   gui=NONE cterm=NONE
 hi TSWarning                  guifg=#FFB633 ctermfg=215  gui=BOLD cterm=BOLD cterm=BOLD
 hi StatusLine                 guifg=#FAFAFA ctermfg=231  guibg=#8C8CAF ctermbg=103  gui=NONE cterm=NONE
 hi StatusLineNC               guifg=#141414 ctermfg=233  guibg=#8C8CAF ctermbg=103  gui=NONE cterm=NONE
-hi PMenu                      guifg=#FAFAFA ctermfg=231  guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
+hi PMenu                      guifg=#FAFAFA ctermfg=231  guibg=#003050 ctermbg=23   gui=NONE cterm=NONE
 hi PMenuSbar                  guifg=NONE    ctermfg=NONE guibg=#8C8CAF ctermbg=103  gui=NONE cterm=NONE
 hi PMenuSel                   guifg=#FAFAFA ctermfg=231  guibg=#2050BF ctermbg=25   gui=NONE cterm=NONE
 hi PMenuThumb                 guifg=#070707 ctermfg=232  guibg=#40B0FF ctermbg=75   gui=NONE cterm=NONE
