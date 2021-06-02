@@ -19,7 +19,7 @@ if has("gui_running")
 endif
 
 hi Normal                     guifg=#FAFAFA ctermfg=231  guibg=#070707 ctermbg=232  gui=NONE cterm=NONE
-hi Visual                     guifg=NONE    ctermfg=NONE guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
+hi Visual                     guifg=NONE    ctermfg=NONE guibg=#003050 ctermbg=23   gui=NONE cterm=NONE
 hi LineNr                     guifg=#8C8CAF ctermfg=103  guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
 hi Cursor                     guifg=#FAFAFA ctermfg=231  guibg=#FFFFFF ctermbg=231  gui=NONE cterm=NONE
 hi CursorLine                 guifg=NONE    ctermfg=NONE guibg=#141414 ctermbg=233  gui=NONE cterm=NONE
