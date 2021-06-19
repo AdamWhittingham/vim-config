@@ -455,7 +455,7 @@ require "lsp_signature".on_attach({
   bind = true,
   handler_opts = {
     border = "single"
-  }
+  },
 })
 EOF
 
@@ -466,20 +466,21 @@ EOF
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
-    "ruby",
-    "javascript",
-    "css",
-    "scss",
-    "go",
-    "yaml",
-    "lua",
-    "html",
-    "json",
-    "comment",
-    "regex",
     "bash",
+    "comment",
+    "css",
+    "dockerfile",
+    "go",
+    "html",
+    "javascript",
+    "json",
+    "lua",
     "python",
-    "typescript"
+    "regex",
+    "ruby",
+    "scss",
+    "typescript",
+    "yaml",
   },
   highlight = {
     enable = true
