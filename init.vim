@@ -245,7 +245,7 @@ map <silent> <Leader><Leader> :b#<CR>
 nmap <silent> <Leader>d :Telescope file_browser<CR>
 
 "  <Leader>f to fuzzy search files
-map <silent> <leader>f :Telescope find_files theme=get_dropdown<cr>
+map <silent> <leader>f :Files<cr>
 
 "  <Leader>F to fuzzy search content
 map <silent> <leader>F :Telescope live_grep<cr>
