@@ -35,7 +35,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic la
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
 Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
 Plug 'kabouzeid/nvim-lspinstall'                                  " Make it easy to install LSP servers
-Plug 'ray-x/lsp_signature.nvim'
+Plug 'ray-x/lsp_signature.nvim'                                   " Show signatures when typing
 
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
@@ -451,7 +451,12 @@ end
 
 
 -- Setup lsp_signature
-require "lsp_signature".on_attach()
+require "lsp_signature".on_attach({
+  bind = true,
+  handler_opts = {
+    border = "single"
+  }
+})
 EOF
 
 " ----------------------------------------------
