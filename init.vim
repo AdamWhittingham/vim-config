@@ -513,7 +513,6 @@ require('telescope').setup{
     },
     layout_strategy = flex,
     winblend = 20,
-    width = 0.8,
     show_line = false,
     prompt_title = false,
     results_title = false,
