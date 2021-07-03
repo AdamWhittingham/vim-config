@@ -8,10 +8,16 @@ call plug#begin(plugin_dir)
 " Define all the plugins!
 " ----------------------------------------------
 
+" Language awareness and highlighting
+Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
+Plug 'kabouzeid/nvim-lspinstall'                                  " Make it easy to install LSP servers
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
+Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " Define text objects based on Treesitter
+
 " UI
 Plug 'airblade/vim-gitgutter'                                     " Show the column of changes to the file against git
 Plug 'christoomey/vim-tmux-navigator'                             " Move between Vim panes & Tmux panes easily
-Plug 'folke/tokyonight.nvim'                                      " Color scheme with great support for plugins
 Plug 'kyazdani42/nvim-web-devicons'                               " Add icons and colours to search results based on filetype
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
@@ -22,20 +28,13 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color s
 " Common dependencies
 Plug 'nvim-lua/plenary.nvim'                                      " Library of common LUA helpers, dependency of many other plugins
 Plug 'nvim-lua/popup.nvim'                                        " LUA bindings for pop-up windows, dependency of Telescope
-"
+
 " Navigation & Search tools
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " Add FZF for faster searching for items under the cursor
 Plug 'junegunn/fzf.vim'                                           " and bind it up nicely
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
-
-" Additional contextual information
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
-Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
-Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
-Plug 'kabouzeid/nvim-lspinstall'                                  " Make it easy to install LSP servers
-Plug 'ray-x/lsp_signature.nvim'                                   " Show signatures when typing
 
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
@@ -449,14 +448,6 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-
--- Setup lsp_signature
-require "lsp_signature".on_attach({
-  bind = true,
-  handler_opts = {
-    border = "single"
-  },
-})
 EOF
 
 " ----------------------------------------------
@@ -495,6 +486,12 @@ require'nvim-treesitter.configs'.setup {
         smart_rename = "<leader>r",
       },
     },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+    }
   },
 }
 EOF
