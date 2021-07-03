@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " Define text 
 Plug 'airblade/vim-gitgutter'                                     " Show the column of changes to the file against git
 Plug 'christoomey/vim-tmux-navigator'                             " Move between Vim panes & Tmux panes easily
 Plug 'kyazdani42/nvim-web-devicons'                               " Add icons and colours to search results based on filetype
+Plug 'lukas-reineke/indent-blankline.nvim'                        " Show indentation guides
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
 Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
@@ -398,8 +399,6 @@ autocmd BufNewFile,BufRead *.md :setlocal spell
 let g:vim_markdown_folding_disabled=1
 
 " YAML -------------------------------------
-" Ignore blank lines when calculating indentaiton on ansible yml configs
-let g:ansible_options = {'ignore_blank_lines': 0}
 autocmd BufNewFile,BufRead *.yml :setlocal cursorcolumn
 autocmd BufNewFile,BufRead *.yaml :setlocal cursorcolumn
 autocmd BufNewFile,BufRead *.yml :setlocal spell
@@ -563,6 +562,16 @@ inoremap <silent><expr> <C-l>     compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+" ----------------------------------------------
+" Indent guiideline config
+" ----------------------------------------------
+
+let g:indent_blankline_filetype = ['yaml', 'json', 'javascript']
+let g:indent_blankline_char = '│'
+let g:indent_blankline_use_treesitter = v:true
+let g:indent_blankline_show_current_context = v:true
+let g:indent_blankline_show_first_indent_level = v:false
 
 " ----------------------------------------------
 " File template settings
