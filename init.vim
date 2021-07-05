@@ -22,7 +22,7 @@ Plug 'kyazdani42/nvim-web-devicons'                               " Add icons an
 Plug 'lukas-reineke/indent-blankline.nvim'                        " Show indentation guides
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
-Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
+Plug 'camspiers/snap'                                             " Powerful UI for searching and file traversing
 Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color swatches
 
@@ -236,8 +236,8 @@ nnoremap [<space> m`O<Esc>``
 map <silent>[e :m -2<cr>
 map <silent>]e :m +1<cr>
 
-" <leader>. to view all document buffers
-map <silent> <Leader>. :Telescope buffers theme=get_dropdown<cr>
+" <leader>. to view all document buffers (Migrated to Snap)
+map <silent> <Leader>. :Buffers
 
 " Double leader to switch to the previous buffer
 map <silent> <Leader><Leader> :b#<CR>
@@ -249,7 +249,7 @@ nmap <silent> <Leader>d :Telescope file_browser<CR>
 map <silent> <leader>f :Files<cr>
 
 "  <Leader>F to fuzzy search content
-map <silent> <leader>F :Telescope live_grep<cr>
+"map <silent> <leader>F :Telescope live_grep<cr> " Moved to Snap
 
 "  <Leader>} to Search for a tag in the current project
 map <silent> <leader>} :Telescope lsp_workspace_symbols<cr>
@@ -522,25 +522,21 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " ----------------------------------------------
-" Setup Telescope
+" Setup Snap
 " ----------------------------------------------
 
 lua << EOF
-require('telescope').setup{
-  defaults = {
-    selection_caret = "➜ ",
-    file_ignore_patterns = {
-      'tags',
-      'vendor/.*'
-    },
-    layout_strategy = flex,
-    winblend = 20,
-    show_line = false,
-    prompt_title = false,
-    results_title = false,
-    preview_title = false,
+local snap = require'snap'
+
+snap.register.map({"n"}, {"<Leader>F"}, function ()
+  snap.run {
+    producer = snap.get'consumer.limit'(1000, snap.get'producer.ripgrep.vimgrep'),
+    select = snap.get'select.vimgrep'.select,
+    multiselect = snap.get'select.vimgrep'.multiselect,
+    views = {snap.get'preview.vimgrep'}
   }
-}
+end)
+
 EOF
 
 " ----------------------------------------------
