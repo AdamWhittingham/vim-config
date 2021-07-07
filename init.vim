@@ -43,7 +43,7 @@ Plug 'hrsh7th/vim-vsnip'                                          " Snippet engi
 Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
-"
+
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
 Plug 'AndrewRadev/switch.vim'                                     " Quickly swap between true/false, different hash styles and much more
@@ -53,7 +53,6 @@ Plug 'kshenoy/vim-signature'                                      " Show marks i
 Plug 'maxbrunsfeld/vim-yankstack'                                 " Paste text, then rotate though things yanked before/after
 Plug 'tpope/vim-abolish'                                          " Allow smartcase substitution and search
 Plug 'tpope/vim-commentary'                                       " Quick toggle for code commenting
-Plug 'tpope/vim-endwise'                                          " Insert `end` into ruby when
 Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
 Plug 'tpope/vim-surround'                                         " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
 Plug 'wellle/targets.vim'                                         " Additional text objects and motions
