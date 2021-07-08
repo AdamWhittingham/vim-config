@@ -236,7 +236,7 @@ map <silent>[e :m -2<cr>
 map <silent>]e :m +1<cr>
 
 " <leader>. to view all document buffers
-map <silent> <Leader>. :Telescope buffers theme=get_dropdown<cr>
+map <silent> <Leader>. :Buffers<cr>
 
 " Double leader to switch to the previous buffer
 map <silent> <Leader><Leader> :b#<CR>
