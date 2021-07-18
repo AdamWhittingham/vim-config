@@ -44,6 +44,7 @@ Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
@@ -607,6 +608,8 @@ lua << EOF
 
   npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
   npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+
+  require('nvim-ts-autotag').setup()
 EOF
 
 " ----------------------------------------------
