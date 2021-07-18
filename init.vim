@@ -43,6 +43,7 @@ Plug 'hrsh7th/vim-vsnip'                                          " Snippet engi
 Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
+Plug 'windwp/nvim-autopairs'
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
@@ -589,10 +590,30 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " ----------------------------------------------
+" AutoPairs config
+" ----------------------------------------------
+
+lua << EOF
+  local npairs = require('nvim-autopairs')
+
+  npairs.setup({
+    disable_filetype = { "TelescopePrompt" , "vim" },
+  })
+
+  require("nvim-autopairs.completion.compe").setup({
+    map_cr = true,
+    map_complete = true
+  })
+
+  npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+  npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+EOF
+
+" ----------------------------------------------
 " Indent guiideline config
 " ----------------------------------------------
 
-let g:indent_blankline_filetype = ['yaml', 'json', 'javascript']
+let g:indent_blankline_filetype = ['javascript', 'json', 'yaml']
 let g:indent_blankline_char = '│'
 let g:indent_blankline_use_treesitter = v:true
 let g:indent_blankline_show_current_context = v:true
@@ -629,7 +650,7 @@ function! g:skeleton_find_template.ruby(path)
   endif
   return ''
 endfunction
-"
+
 " ----------------------------------------------
 " Code snippets config
 " ----------------------------------------------
