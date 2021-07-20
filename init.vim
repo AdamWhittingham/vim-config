@@ -166,6 +166,7 @@ set wildignore+=*.swp,*.swo,*~,._*                                           " D
 " -----------------------------------
 " GUI Vim Options
 " -----------------------------------
+
 " Setup Font
 if has('win32')
   set guifont=Consolas\ 10
@@ -183,13 +184,16 @@ set guioptions-=m     " no menu
 set guioptions+=LlRrb " Hack which adds all scrollbars so that they can be removed, line below breaks without this
 set guioptions-=LlRrb " Remove all scrollbars
 
+
 " -----------------------------------
 " Search Options
 " -----------------------------------
+
 set hlsearch        " highlight search matches...
 set incsearch       " ...as you type
 set ignorecase      " Generally ignore case
 set smartcase       " Care about case when capital letters show up
+
 
 " ----------------------------------------------
 " Setup highlighting
@@ -238,7 +242,7 @@ map <silent>[e :m -2<cr>
 map <silent>]e :m +1<cr>
 
 " <leader>. to view all document buffers
-map <silent> <Leader>. :Buffers<cr>
+map <silent> <Leader>. :Telescope buffers theme=get_ivy sort_mru=true ignore_current_buffer=true<cr>
 
 " Double leader to switch to the previous buffer
 map <silent> <Leader><Leader> :b#<CR>
