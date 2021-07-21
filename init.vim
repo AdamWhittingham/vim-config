@@ -242,7 +242,7 @@ map <silent>[e :m -2<cr>
 map <silent>]e :m +1<cr>
 
 " <leader>. to view all document buffers
-map <silent> <Leader>. :Telescope buffers theme=get_ivy sort_mru=true ignore_current_buffer=true<cr>
+map <silent> <Leader>. :Telescope buffers theme=get_dropdown sort_mru=true ignore_current_buffer=true<cr>
 
 " Double leader to switch to the previous buffer
 map <silent> <Leader><Leader> :b#<CR>
@@ -578,6 +578,7 @@ lua << EOF
     source = {
       path = true;
       buffer = true;
+      tags = true;
       calc = true;
       nvim_lsp = true;
       nvim_lua = true;
