@@ -248,7 +248,7 @@ map <silent> <Leader>. :Telescope buffers theme=get_dropdown sort_mru=true ignor
 map <silent> <Leader><Leader> :b#<CR>
 
 " <Leader>d to show the directory tree
-nmap <silent> <Leader>d :Telescope file_browser<CR>
+nmap <silent> <Leader>d :Telescope file_browser theme=get_ivy<CR>
 
 "  <Leader>f to fuzzy search files
 map <silent> <leader>f :Files<cr>
