@@ -254,7 +254,7 @@ nmap <silent> <Leader>d :Telescope file_browser<CR>
 map <silent> <leader>f :Files<cr>
 
 "  <Leader>F to fuzzy search content
-map <silent> <leader>F :Telescope live_grep<cr>
+map <silent> <leader>F :RG<cr>
 
 "  <Leader>} to Search for a tag in the current project
 map <silent> <leader>} :Telescope lsp_workspace_symbols<cr>
@@ -345,7 +345,7 @@ if has('gui_running')
 endif
 
 " Map <leader>* to search for the current work under the cursor in all files
-nmap <leader>* :Ag <C-r>=expand('<cword>')<CR><CR>
+nmap <leader>* :RG <C-r>=expand('<cword>')<CR><CR>
 
 " F3 to run rubocop
 map <silent> <F3> <esc>:! rubocop -a %<CR>
@@ -618,7 +618,7 @@ lua << EOF
 EOF
 
 " ----------------------------------------------
-" Indent guiideline config
+" Indent guideline config
 " ----------------------------------------------
 
 let g:indent_blankline_filetype = ['javascript', 'json', 'yaml']
@@ -658,12 +658,6 @@ function! g:skeleton_find_template.ruby(path)
   endif
   return ''
 endfunction
-
-" ----------------------------------------------
-" Code snippets config
-" ----------------------------------------------
-
-let g:vsnip_snippet_dir = expand(vimDir . '/snippets')
 
 " ----------------------------------------------
 " Copy file path details to the system clipboard
@@ -796,14 +790,28 @@ let g:gitgutter_sign_modified_removed = '~-'
 let g:gitgutter_max_signs = 1000
 
 " ----------------------------------------------
+" Configure FZF
+" ----------------------------------------------
+" Allow Rg to seek the root of the project before searching
+let g:rg_derive_root='true'
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = "rg --column --line-number --no-heading --color=always --smart-case -g '!{.git,node_modules,vendor,build}' -- %s || true"
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" ----------------------------------------------
 " Setup TokyoNight
 " ----------------------------------------------
 
 let g:tokyonight_style = "night"
 let g:tokyonight_italic_functions = 'true'
 let g:tokyonight_transparent = 'true'
-
-"colorscheme tokyonight
 
 " ----------------------------------------------
 " Add Misc helpful functions
@@ -837,6 +845,7 @@ command! -nargs=0 Lorem :normal iLorem ipsum dolor sit amet, consectetur
       \ proident, sunt in culpa qui officia deserunt mollit anim id est
       \ laborum
 
+" Use Python 3
 set pyx=3
 
 " ----------------------------------------------
