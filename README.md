@@ -15,6 +15,9 @@ sudo mv /etc/zshenv /etc/zprofile
 ```
 more details here: http://vim.1045645.n5.nabble.com/MacVim-and-PATH-td3388705.html#a3392363
 
+**For best results, use [Neovim]() and switch to the `neovim` branch.**
+Seriously it's so much better and likely to become to the default branch, though I plan on still supporting vanilla Vim.
+
 ## External Dependencies
 There are a couple of things you need to install to get the best out of this config:
 * ctags - enables tags support when working with code
