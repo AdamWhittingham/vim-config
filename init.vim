@@ -621,12 +621,12 @@ EOF
 " Indent guideline config
 " ----------------------------------------------
 
-let g:indent_blankline_filetype = ['javascript', 'json', 'yaml']
+let g:indent_blankline_filetype = ['eruby', 'javascript', 'json', 'ruby', 'yaml']
 let g:indent_blankline_char = '│'
 let g:indent_blankline_use_treesitter = v:true
 let g:indent_blankline_show_current_context = v:true
 let g:indent_blankline_show_first_indent_level = v:false
-let g:indent_blankline_context_patterns = ['method', 'function', 'if']
+let g:indent_blankline_context_patterns = ['block', 'if', 'function', 'method']
 highlight IndentBlanklineChar guifg=#222255 gui=nocombine
 highlight IndentBlanklineContextChar guifg=#444477 gui=nocombine
 
