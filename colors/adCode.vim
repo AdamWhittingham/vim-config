@@ -103,13 +103,13 @@ hi bufExplorerCurFile         guifg=#89DDFF ctermfg=117  gui=NONE cterm=NONE
 hi bufExplorerAltBuf          guifg=#40B0FF ctermfg=75   gui=NONE cterm=NONE
 hi bufExplorerHelp            guifg=#8C8CAF ctermfg=103  gui=NONE cterm=NONE
 hi bufExplorerSortBy          guifg=#40CF40 ctermfg=77   gui=NONE cterm=NONE
-hi GitGutterAdd               guifg=#33FF33 ctermfg=83   guibg=#115511 ctermbg=22   gui=NONE cterm=NONE
+hi GitGutterAdd               guifg=#33FF33 ctermfg=83   gui=NONE cterm=NONE
 hi GitGutterAddLine           guifg=NONE    ctermfg=NONE guibg=#063806 ctermbg=22   gui=NONE cterm=NONE
-hi GitGutterChange            guifg=#FFFF33 ctermfg=227  guibg=#757500 ctermbg=100  gui=NONE cterm=NONE
+hi GitGutterChange            guifg=#FFFF33 ctermfg=227  gui=NONE cterm=NONE
 hi GitGutterChangeLine        guifg=NONE    ctermfg=NONE guibg=#383805 ctermbg=237  gui=NONE cterm=NONE
-hi GitGutterDelete            guifg=#E9475A ctermfg=167  guibg=#331111 ctermbg=233  gui=NONE cterm=NONE
+hi GitGutterDelete            guifg=#E9475A ctermfg=167  gui=NONE cterm=NONE
 hi GitGutterDeleteLine        guifg=NONE    ctermfg=NONE guibg=#380505 ctermbg=52   gui=NONE cterm=NONE
-hi GitGutterChangeDelete      guifg=#FFFF33 ctermfg=227  guibg=#757500 ctermbg=100  gui=NONE cterm=NONE
+hi GitGutterChangeDelete      guifg=#FFB633 ctermfg=215  gui=NONE cterm=NONE
 hi GitGutterChangeDeleteLine  guifg=NONE    ctermfg=NONE guibg=#383805 ctermbg=237  gui=NONE cterm=NONE
 hi qfFileName                 guifg=#89DDFF ctermfg=117  gui=NONE cterm=NONE
 hi qfLineNr                   guifg=#FFFF40 ctermfg=227  gui=NONE cterm=NONE
