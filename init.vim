@@ -254,7 +254,8 @@ nmap <silent> <Leader>d :Telescope file_browser theme=get_ivy<CR>
 map <silent> <leader>f :Files<cr>
 
 "  <Leader>F to fuzzy search content
-map <silent> <leader>F :RG<cr>
+" map <silent> <leader>F :RG<cr>
+map <silent> <leader>F :Telescope live_grep<cr>
 
 "  <Leader>} to Search for a tag in the current project
 map <silent> <leader>} :Telescope lsp_workspace_symbols<cr>
