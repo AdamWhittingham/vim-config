@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " Define text 
 Plug 'airblade/vim-gitgutter'                                     " Show the column of changes to the file against git
 Plug 'christoomey/vim-tmux-navigator'                             " Move between Vim panes & Tmux panes easily
 Plug 'kyazdani42/nvim-web-devicons'                               " Add icons and colours to search results based on filetype
+Plug 'onsails/lspkind-nvim'                                       " Add icons to the LSP menu
 Plug 'lukas-reineke/indent-blankline.nvim'                        " Show indentation guides
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
@@ -59,6 +60,7 @@ Plug 'tpope/vim-repeat'                                           " Make many mo
 Plug 'tpope/vim-surround'                                         " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
 Plug 'wellle/targets.vim'                                         " Additional text objects and motions
 Plug 'lukas-reineke/format.nvim'
+Plug 'ray-x/lsp_signature.nvim'
 
 " Language specific tools
 Plug 'vim-scripts/icalendar.vim'                                  " Syntax for iCal files
@@ -676,6 +678,29 @@ require "format".setup {
         }
     }
 }
+EOF
+
+" ----------------------------------------------
+" Customise icons and UI
+" ----------------------------------------------
+
+lua << EOF
+require('nvim-web-devicons').setup({ default = true })
+require('lspkind').init()
+
+require('lsp_signature').setup({
+  bind = true,
+  doc_lines = 2,
+  floating_window = true,
+  fix_pos = true,
+  hint_enable = true,
+  hint_prefix = " ",
+  hint_scheme = "String",
+  use_lspsaga = false,
+  hi_parameter = "Search",
+  max_height = 22,
+  max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+})
 EOF
 
 " ----------------------------------------------
