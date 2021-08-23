@@ -24,6 +24,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'                        " Show indenta
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
 Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
+Plug 'nvim-telescope/telescope-fzf-native.nvim'
 Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color swatches
 
