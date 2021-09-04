@@ -40,9 +40,8 @@ Plug 'junegunn/fzf.vim'                                           " and bind it 
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
 
 " Autocomplete
-Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
-Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
-Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 Plug 'windwp/nvim-autopairs'
@@ -440,13 +439,16 @@ augroup END
 " Language Server Setup
 " ----------------------------------------------
 
+let g:coq_settings = { 'auto_start': 'shut-up' }
+
 lua <<EOF
 -- Setup installed LSP servers
 local function setup_servers()
   require'lspinstall'.setup()
+  local coq = require "coq"
   local servers = require'lspinstall'.installed_servers()
   for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
+    require'lspconfig'[server].setup{coq.lsp_ensure_capabilities()}
   end
 end
 
@@ -557,48 +559,8 @@ EOF
 " Auto-complete
 " ----------------------------------------------
 
-" Use tab to trigger completion with characters ahead and navigate.
-" I know nested ternaries are a crime but I don't want to spend 30 lines on
-" this.
-imap <expr> <Tab>   pumvisible() ? "\<C-n>" : vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' :  "\<Tab>"
-smap <expr> <Tab>   pumvisible() ? "\<C-n>" : vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' :  "\<Tab>"
-imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' :  "\<S-Tab>"
-smap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' :  "\<S-Tab>"
-
-lua << EOF
-  require'compe'.setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 2;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = true;
-
-    source = {
-      path = true;
-      buffer = true;
-      tags = true;
-      calc = true;
-      nvim_lsp = true;
-      nvim_lua = true;
-      vsnip = true;
-      tmux = true;
-      treesitter = true;
-    };
-  }
-EOF
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <C-l>     compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+" COQ Keybindings
+ino <silent><expr> <C-l>   pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
 
 " ----------------------------------------------
 " AutoPairs config
@@ -609,11 +571,6 @@ lua << EOF
 
   npairs.setup({
     disable_filetype = { "TelescopePrompt" , "vim" },
-  })
-
-  require("nvim-autopairs.completion.compe").setup({
-    map_cr = true,
-    map_complete = true
   })
 
   npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
