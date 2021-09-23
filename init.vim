@@ -255,7 +255,7 @@ map <silent> <Leader><Leader> :b#<CR>
 nmap <silent> <Leader>d :Telescope file_browser theme=get_ivy<CR>
 
 "  <Leader>f to fuzzy search files
-map <silent> <leader>f :Files<cr>
+map <silent> <leader>f :Telescope find_files<cr>
 
 "  <Leader>F to fuzzy search content
 " map <silent> <leader>F :RG<cr>
@@ -541,7 +541,10 @@ require('telescope').setup{
     selection_caret = "➜ ",
     file_ignore_patterns = {
       'tags',
-      'vendor/.*'
+      'vendor/.*',
+      'node_modules/.*',
+      'tags',
+      '.tags',
     },
     layout_strategy = flex,
     winblend = 20,
@@ -883,7 +886,7 @@ let g:gitgutter_max_signs = 1000
 let g:rg_derive_root='true'
 
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = "rg --column --line-number --no-heading --color=always --smart-case -g '!{.git,node_modules,vendor,build}' -- %s || true"
+  let command_fmt = "rg --column --line-number --no-heading --color=always --smart-case -g '!{.git,node_modules,vendor,build,tags}' -- %s || true"
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
