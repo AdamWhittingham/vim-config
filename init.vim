@@ -24,9 +24,10 @@ Plug 'lukas-reineke/indent-blankline.nvim'                        " Show indenta
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
 Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
-Plug 'nvim-telescope/telescope-fzf-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim'                   " Speed up FZF in Telescope
 Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color swatches
+Plug 'weilbith/nvim-code-action-menu'                             " Code actions menu
 
 " Common dependencies
 Plug 'nvim-lua/plenary.nvim'                                      " Library of common LUA helpers, dependency of many other plugins
@@ -251,6 +252,9 @@ map <silent> <Leader>. :Telescope buffers theme=get_dropdown sort_mru=true ignor
 " Double leader to switch to the previous buffer
 map <silent> <Leader><Leader> :b#<CR>
 
+" <leader>a to show the code actions
+nmap <silent> <leader>a :CodeActionMenu<CR>
+
 " <Leader>d to show the directory tree
 nmap <silent> <Leader>d :Telescope file_browser theme=get_ivy<CR>
 
@@ -282,7 +286,7 @@ nmap <Leader>gc :BCommits<cr>
 
 " <Leader>gd to jump to the next change since git commit
 nmap <Leader>gd <Plug>(GitGutterPreviewHunk)
-"
+
 " <Leader>gn/gN/gp to jump to the next/prev change since git commit
 nmap <leader>gn <Plug>(GitGutterNextHunk)
 nmap <leader>gp <Plug>(GitGutterPrevHunk)
