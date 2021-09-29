@@ -262,8 +262,10 @@ nmap <silent> <Leader>d :Telescope file_browser theme=get_ivy<CR>
 map <silent> <leader>f :Telescope find_files<cr>
 
 "  <Leader>F to fuzzy search content
-" map <silent> <leader>F :RG<cr>
 map <silent> <leader>F :Telescope live_grep<cr>
+
+"  <Leader>M to fuzzy search Marks
+map <silent> <leader>M :Telescope marks<cr>
 
 "  <Leader>} to Search for a tag in the current project
 map <silent> <leader>} :Telescope lsp_workspace_symbols<cr>
@@ -354,7 +356,7 @@ if has('gui_running')
 endif
 
 " Map <leader>* to search for the current work under the cursor in all files
-nmap <leader>* :RG <C-r>=expand('<cword>')<CR><CR>
+nmap <leader>* :Ag <C-r>=expand('<cword>')<CR><CR>
 
 " F3 to run rubocop
 map <silent> <F3> <esc>:! rubocop -a %<CR>
