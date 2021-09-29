@@ -647,13 +647,6 @@ require "format".setup {
             end_pattern = "^EOF$"
         }
     },
-    vimwiki = {
-        {
-            cmd = {"prettier -w --parser babel"},
-            start_pattern = "^{{{javascript$",
-            end_pattern = "^}}}$"
-        }
-    },
     lua = {
         {
             cmd = {
