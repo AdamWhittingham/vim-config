@@ -48,6 +48,7 @@ Plug 'noahfrederick/vim-skeleton'                                 " Load a templ
 Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
+Plug 'ruanyl/vim-gh-line'
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
@@ -302,6 +303,12 @@ nmap <Leader>ga <Plug>(GitGutterStageHunk)
 
 " <Leader>gu to undo the current changed hunk
 nmap <Leader>gu <Plug>(GitGutterUndoHunk)
+
+" <Leader>gr to open the current line in the repos website
+let g:gh_line_map = '<leader>gr'
+
+" <Leader>gr to open the blame view in the repos website
+let g:gh_line_blame_map = '<leader>gb'
 
 " <Leader>h to dismiss search result highlighting until next search or press of 'n'
 :noremap <silent> <leader>h :noh<CR>
