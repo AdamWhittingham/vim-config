@@ -46,9 +46,9 @@ Plug 'hrsh7th/vim-vsnip'                                          " Snippet engi
 Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
-Plug 'windwp/nvim-autopairs'
-Plug 'windwp/nvim-ts-autotag'
-Plug 'ruanyl/vim-gh-line'
+Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
+Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
+Plug 'ruanyl/vim-gh-line'                                         " Copy github URLs
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
@@ -303,12 +303,6 @@ nmap <Leader>ga <Plug>(GitGutterStageHunk)
 
 " <Leader>gu to undo the current changed hunk
 nmap <Leader>gu <Plug>(GitGutterUndoHunk)
-
-" <Leader>gr to open the current line in the repos website
-let g:gh_line_map = '<leader>gr'
-
-" <Leader>gr to open the blame view in the repos website
-let g:gh_line_blame_map = '<leader>gb'
 
 " <Leader>h to dismiss search result highlighting until next search or press of 'n'
 :noremap <silent> <leader>h :noh<CR>
@@ -755,15 +749,19 @@ function! g:skeleton_find_template.ruby(path)
   return ''
 endfunction
 
-" ----------------------------------------------
-" Copy file path details to the system clipboard
-" ----------------------------------------------
+" -----------------------------------------------
+" Copy file path and URLs to the system clipboard
+" -----------------------------------------------
 
 nmap <leader>cp :CopyRelativePath<CR>
 nmap <leader>cP :CopyAbsolutePath<CR>
 nmap <leader>cf :CopyFileName<CR>
 nmap <leader>cd :CopyDirectoryPath<CR>
 nmap <leader>cr :CopyRelativePathAndLine<CR>
+
+" <Leader>gr to open the current line in the repos website
+let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
+let g:gh_line_map = '<leader>cg'
 
 " ----------------------------------------------
 " Toggle line numbers between absolute and relative
