@@ -147,17 +147,26 @@ function! StatuslineGit()
 endfunction
 
 set statusline=
-set statusline+=%#Visual#
+set statusline+=%#StatusLeft1#
 set statusline+=\ %{StatuslineGit()}
-set statusline+=%#CursorColumn#
+set statusline+=%#StatusLeft1End#
+set statusline+=
+set statusline+=%#StatusLeft2#
 set statusline+=\ %f:%l:%c " file path, line and column number
 set statusline+=\ %m " Modification flag
+set statusline+=%#StatusLeft2End#
+set statusline+=
+set statusline+=%#StatusLine#
 
 set statusline+=%= " Switch to the right hand side
-set statusline+=%#CursorColumn#
-set statusline+=%#Visual#
+set statusline+=%#StatusRight1Start#
+set statusline+=
+set statusline+=%#StatusRight1#
 set statusline+=\ %y " Filetype
 set statusline+=\ %r " Read-only status
+set statusline+=%#StatusRight2Start#
+set statusline+=
+set statusline+=%#StatusRight2#
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\(%{&fileformat})
 
 " -----------------------------------
