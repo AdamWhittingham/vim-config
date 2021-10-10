@@ -133,29 +133,32 @@ if has('persistent_undo')
   set undofile
 endif
 
-"" Setup statusline
+" -----------------------------------
+" Setup statusline
+" -----------------------------------
+
 function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '[:space:]'")
 endfunction
 
 function! StatuslineGit()
   let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+  return strlen(l:branchname) > 0 ? ' '.l:branchname.' ' : ''
 endfunction
 
 set statusline=
-set statusline+=%#CursorColumn#
-set statusline+=%{StatuslineGit()}
 set statusline+=%#Visual#
-set statusline+=\ %f:%l " file path and line number
+set statusline+=\ %{StatuslineGit()}
+set statusline+=%#CursorColumn#
+set statusline+=\ %f:%l:%c " file path, line and column number
 set statusline+=\ %m " Modification flag
 
 set statusline+=%= " Switch to the right hand side
 set statusline+=%#CursorColumn#
+set statusline+=%#Visual#
 set statusline+=\ %y " Filetype
 set statusline+=\ %r " Read-only status
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\(%{&fileformat}\)
-set statusline+=\ %l:%c
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\(%{&fileformat})
 
 " -----------------------------------
 " Setup file wildcard ignored names
