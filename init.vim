@@ -10,7 +10,7 @@ call plug#begin(plugin_dir)
 
 " Language awareness and highlighting
 Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
-Plug 'kabouzeid/nvim-lspinstall'                                  " Make it easy to install LSP servers
+Plug 'williamboman/nvim-lsp-installer'                            " Make it easy to install LSP servers
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " Define text objects based on Treesitter
@@ -461,21 +461,30 @@ augroup END
 
 lua <<EOF
 -- Setup installed LSP servers
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
-  end
-end
+local lsp_installer = require("nvim-lsp-installer")
 
-setup_servers()
+lsp_installer.settings {
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗",
+    }
+  },
+  keymaps = {
+    toggle_server_expand = "<CR>",
+    install_server = "i",
+    update_server = "u",
+    uninstall_server = "X",
+  },
+}
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+
+    server:setup(opts)
+    vim.cmd [[ do User LspAttachBuffers ]]
+end)
 
 require('go').setup{
     -- auto commands
