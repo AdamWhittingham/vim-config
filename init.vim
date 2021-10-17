@@ -29,7 +29,6 @@ Plug 'mbbill/undotree'                                            " Visualise th
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
 Plug 'nvim-telescope/telescope-fzf-native.nvim'                   " Speed up FZF in Telescope
 Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
-Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color swatches
 Plug 'weilbith/nvim-code-action-menu'                             " Code actions menu
 
@@ -361,7 +360,7 @@ nnoremap <Leader>u :UndotreeToggle<CR>
 cmap w!! w !sudo tee > /dev/null %
 
 "  <Leader>z to zoom pane when using splits
-map <Leader>z :ZoomWin<CR>
+map <Leader>z :ZoomToggle<CR>
 
 "  <Leader>$ to toggle line wrap
 map <silent> <leader>$ :set wrap!<CR>
@@ -931,6 +930,20 @@ command! -nargs=0 Lorem :normal iLorem ipsum dolor sit amet, consectetur
 
 " Use Python 3
 set pyx=3
+
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
 
 " ----------------------------------------------
 "  Source any local config
