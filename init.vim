@@ -90,7 +90,7 @@ filetype plugin on
 
 " Setup the leader key, used for triggering all kinds of awesome things
 let mapleader = " "
-"
+
 colorscheme adcode
 
 set t_Co=256                            " Use 256-bit colour in vim
@@ -353,16 +353,16 @@ nmap <silent> <Leader>sw :call StripTrailingWhitespace()<CR>
 nmap <leader>t :call InvokeViaTmux("rspec", expand("%:p"))<CR>
 nmap <leader>T :call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))<CR>
 
-"  <Leader>u to toggle undo history browser
+" <Leader>u to toggle undo history browser
 nnoremap <Leader>u :UndotreeToggle<CR>
 
 " Add :w!! to save the current file with sudo
 cmap w!! w !sudo tee > /dev/null %
 
-"  <Leader>z to zoom pane when using splits
+" <Leader>z to zoom pane when using splits
 map <Leader>z :ZoomToggle<CR>
 
-"  <Leader>$ to toggle line wrap
+" <Leader>$ to toggle line wrap
 map <silent> <leader>$ :set wrap!<CR>
 
 if has('gui_running')
@@ -379,12 +379,14 @@ map <silent> <F3> <esc>:! rubocop -a %<CR>
 " F5 to reload doc
 map <silent> <F5> <esc>:e %<CR>
 
+" F9 to show the Treesitter Highlight Groups under the cursor
+map <F9> :TSHighlightCapturesUnderCursor<CR>
+
 " F10 to show the syntax group under the cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-map <F9> :TSHighlightCapturesUnderCursor<CR>
 
 " ----------------------------------------------
 " Window split & size shortcuts
@@ -489,30 +491,21 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 require('go').setup{
-    -- auto commands
     auto_format = true,
     auto_lint = true,
-    -- linters: golint, errcheck, staticcheck, golangci-lint
     linter = 'golint',
-    -- lint_prompt_style: qf (quickfix), vt (virtual text)
-    lint_prompt_style = 'qf',
-    -- formatter: goimports, gofmt, gofumpt
-    formatter = 'goimports',
-    -- test flags: -count=1 will disable cache
+    lint_prompt_style = 'vt',
+    formatter = 'gofmt',
     test_flags = {'-v'},
     test_timeout = '30s',
     test_env = {},
-    -- show test result with popup window
     test_popup = true,
-    -- struct tags
     tags_name = 'json',
     tags_options = {'json=omitempty'},
     tags_transform = 'snakecase',
     tags_flags = {'-skip-unexported'},
-    -- quick type
     quick_type_flags = {'--just-types'},
 }
-
 EOF
 
 " ----------------------------------------------
@@ -887,14 +880,6 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-" ----------------------------------------------
-" Setup TokyoNight
-" ----------------------------------------------
-
-let g:tokyonight_style = "night"
-let g:tokyonight_italic_functions = 'true'
-let g:tokyonight_transparent = 'true'
 
 " ----------------------------------------------
 " Add Misc helpful functions
