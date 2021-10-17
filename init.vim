@@ -766,7 +766,7 @@ function! NumberToggle()
   set number
 endfunc
 
-nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <leader>n :call NumberToggle()<cr>
 
 " ----------------------------------------------
 " Setup Startify
