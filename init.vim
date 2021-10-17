@@ -9,7 +9,7 @@ call plug#begin(plugin_dir)
 " ----------------------------------------------
 
 " Language awareness and highlighting
-Plug 'neovim/nvim-lspconfig'                                      " LSP Connectivity
+Plug 'neovim/nvim-lspconfig'                                      " Pre-built configurations for LSP servers
 Plug 'williamboman/nvim-lsp-installer'                            " Make it easy to install LSP servers
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
@@ -28,6 +28,8 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim'                   " Speed up FZF
 Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color swatches
 Plug 'weilbith/nvim-code-action-menu'                             " Code actions menu
+Plug 'kshenoy/vim-signature'                                      " Show marks in the gutter to help me use them more
+Plug 'ray-x/lsp_signature.nvim'                                   " Pop up function definitions when typing a function call
 
 " Common dependencies
 Plug 'nvim-lua/plenary.nvim'                                      " Library of common LUA helpers, dependency of many other plugins
@@ -40,14 +42,16 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " Add FZF for 
 Plug 'junegunn/fzf.vim'                                           " and bind it up nicely
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
 
-" Autocomplete
+" Autocompletion
 Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
 Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
 Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
-Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
-Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
+
+" Snippets and templates
+Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
+Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 Plug 'ruanyl/vim-gh-line'                                         " Copy github URLs
 
 " Extra text manipulation and movement
@@ -55,7 +59,6 @@ Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joinin
 Plug 'AndrewRadev/switch.vim'                                     " Quickly swap between true/false, different hash styles and much more
 Plug 'editorconfig/editorconfig-vim'                              " Make use of EditorConfig files
 Plug 'junegunn/vim-easy-align'                                    " Fast alignment of lines based on preset rules
-Plug 'kshenoy/vim-signature'                                      " Show marks in the gutter to help me use them more
 Plug 'maxbrunsfeld/vim-yankstack'                                 " Paste text, then rotate though things yanked before/after
 Plug 'tpope/vim-abolish'                                          " Allow smartcase substitution and search
 Plug 'numToStr/Comment.nvim'                                      " Quick toggle for code commenting
@@ -63,7 +66,6 @@ Plug 'tpope/vim-repeat'                                           " Make many mo
 Plug 'tpope/vim-surround'                                         " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
 Plug 'wellle/targets.vim'                                         " Additional text objects and motions
 Plug 'lukas-reineke/format.nvim'
-Plug 'ray-x/lsp_signature.nvim'
 
 " Language specific tools
 Plug 'vim-scripts/icalendar.vim'                                  " Syntax for iCal files
