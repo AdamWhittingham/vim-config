@@ -58,7 +58,7 @@ Plug 'junegunn/vim-easy-align'                                    " Fast alignme
 Plug 'kshenoy/vim-signature'                                      " Show marks in the gutter to help me use them more
 Plug 'maxbrunsfeld/vim-yankstack'                                 " Paste text, then rotate though things yanked before/after
 Plug 'tpope/vim-abolish'                                          " Allow smartcase substitution and search
-Plug 'tpope/vim-commentary'                                       " Quick toggle for code commenting
+Plug 'numToStr/Comment.nvim'                                      " Quick toggle for code commenting
 Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
 Plug 'tpope/vim-surround'                                         " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
 Plug 'wellle/targets.vim'                                         " Additional text objects and motions
@@ -651,6 +651,23 @@ lua << EOF
   npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 
   require('nvim-ts-autotag').setup()
+EOF
+
+" ----------------------------------------------
+" Comment config
+" ----------------------------------------------
+
+lua << EOF
+opts = {
+  padding = true,
+  ignore = '^$',
+  mappings = {
+    basic = true,
+    extra = true,
+    extended = true
+  }
+}
+require('Comment').setup(opts)
 EOF
 
 " ----------------------------------------------
