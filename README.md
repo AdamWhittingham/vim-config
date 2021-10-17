@@ -1,12 +1,16 @@
 An awesome Vim config for development, slow roasted with a Ruby twist and a shot of web-dev.
 
 # Installing
-Assuming you already have neovim, run:
+## For Neovim (recommended)
 ```bash
 git clone --branch nvim https://github.com/AdamWhittingham/vim-config.git ~/.vim && ~/.vim/install
 ```
+## For Vim
+```bash
+git clone https://github.com/AdamWhittingham/vim-config.git ~/.vim && ~/.vim/install
+```
 
-Should this not leave you with a nice working vim (certain vims are a bit iffy about the last line) then launch vim and run `:PlugUpdate`
+Should this not leave you with a nice working vim (certain Vims are a bit iffy about the last line) then launch vim and run `:PlugUpdate`
 
 If you are using zsh there may be an issue running tests with ,t (it can't find the bundle). If you don't already have an /etc/zprofile file it can be fixed by doing the following:
 
@@ -14,9 +18,6 @@ If you are using zsh there may be an issue running tests with ,t (it can't find 
 sudo mv /etc/zshenv /etc/zprofile
 ```
 more details here: http://vim.1045645.n5.nabble.com/MacVim-and-PATH-td3388705.html#a3392363
-
-**For best results, use [Neovim]() and switch to the `neovim` branch.**
-Seriously it's so much better and likely to become to the default branch, though I plan on still supporting vanilla Vim.
 
 ## External Dependencies
 There are a couple of things you need to install to get the best out of this config:
