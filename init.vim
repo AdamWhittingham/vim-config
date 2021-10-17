@@ -8,9 +8,13 @@ call plug#begin(plugin_dir)
 " Define all the plugins!
 " ----------------------------------------------
 
-" Language awareness and highlighting
+" Language Server tooling
 Plug 'neovim/nvim-lspconfig'                                      " Pre-built configurations for LSP servers
 Plug 'williamboman/nvim-lsp-installer'                            " Make it easy to install LSP servers
+Plug 'onsails/lspkind-nvim'                                       " Add icons to the LSP menu
+Plug 'ray-x/lsp_signature.nvim'                                   " Pop up function definitions when typing a function call
+
+" Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " Define text objects based on Treesitter
@@ -18,29 +22,27 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " Define text 
 " UI
 Plug 'airblade/vim-gitgutter'                                     " Show the column of changes to the file against git
 Plug 'christoomey/vim-tmux-navigator'                             " Move between Vim panes & Tmux panes easily
+Plug 'kshenoy/vim-signature'                                      " Show marks in the gutter to help me use them more
 Plug 'kyazdani42/nvim-web-devicons'                               " Add icons and colours to search results based on filetype
-Plug 'onsails/lspkind-nvim'                                       " Add icons to the LSP menu
 Plug 'lukas-reineke/indent-blankline.nvim'                        " Show indentation guides
 Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
 Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
-Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
 Plug 'nvim-telescope/telescope-fzf-native.nvim'                   " Speed up FZF in Telescope
+Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
 Plug 'regedarek/ZoomWin'                                          " Enable one pane to be fullscreened temporarily
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color swatches
 Plug 'weilbith/nvim-code-action-menu'                             " Code actions menu
-Plug 'kshenoy/vim-signature'                                      " Show marks in the gutter to help me use them more
-Plug 'ray-x/lsp_signature.nvim'                                   " Pop up function definitions when typing a function call
 
 " Common dependencies
 Plug 'nvim-lua/plenary.nvim'                                      " Library of common LUA helpers, dependency of many other plugins
 Plug 'nvim-lua/popup.nvim'                                        " LUA bindings for pop-up windows, dependency of Telescope
 
 " Navigation & Search tools
-Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " Add FZF for faster searching for items under the cursor
 Plug 'junegunn/fzf.vim'                                           " and bind it up nicely
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
+Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 
 " Autocompletion
 Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
@@ -51,8 +53,8 @@ Plug 'windwp/nvim-ts-autotag'                                     " Auto close H
 
 " Snippets and templates
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
-Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 Plug 'ruanyl/vim-gh-line'                                         " Copy github URLs
+Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
@@ -60,12 +62,11 @@ Plug 'AndrewRadev/switch.vim'                                     " Quickly swap
 Plug 'editorconfig/editorconfig-vim'                              " Make use of EditorConfig files
 Plug 'junegunn/vim-easy-align'                                    " Fast alignment of lines based on preset rules
 Plug 'maxbrunsfeld/vim-yankstack'                                 " Paste text, then rotate though things yanked before/after
-Plug 'tpope/vim-abolish'                                          " Allow smartcase substitution and search
 Plug 'numToStr/Comment.nvim'                                      " Quick toggle for code commenting
+Plug 'tpope/vim-abolish'                                          " Allow smartcase substitution and search
 Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
 Plug 'tpope/vim-surround'                                         " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
 Plug 'wellle/targets.vim'                                         " Additional text objects and motions
-Plug 'lukas-reineke/format.nvim'
 
 " Language specific tools
 Plug 'vim-scripts/icalendar.vim'                                  " Syntax for iCal files
@@ -542,7 +543,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
   indent = {
-    enable = true
+    enable = false
   },
   refactor = {
     smart_rename = {
@@ -558,6 +559,7 @@ require'nvim-treesitter.configs'.setup {
       lookahead = true,
     }
   },
+  additional_vim_regex_highlighting = false,
 }
 EOF
 
