@@ -38,6 +38,7 @@ Plug 'nvim-lua/popup.nvim'                                        " LUA bindings
 
 " Navigation & Search tools
 Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
+Plug 'ruanyl/vim-gh-line'                                         " Copy github URLs
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " Add FZF for faster searching for items under the cursor
 Plug 'junegunn/fzf.vim'                                           " and bind it up nicely
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
@@ -45,15 +46,15 @@ Plug 'tpope/vim-projectionist'                                    " Map tools an
 
 " Autocompletion
 Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
-Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
-Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
+Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 
 " Snippets and templates
+Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
+Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'rafamadriz/friendly-snippets'                                " Collection of snippets
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
-Plug 'ruanyl/vim-gh-line'                                         " Copy github URLs
-Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
