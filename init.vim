@@ -52,7 +52,7 @@ Plug 'octaltree/cmp-look'                                         "
 Plug 'hrsh7th/nvim-cmp'                                           " 
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
-Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
+Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }              " Add tmux as a source for completions
 
 " Snippets and templates
 Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
@@ -589,14 +589,6 @@ EOF
 " Auto-complete
 " ----------------------------------------------
 
-" Use tab to trigger completion with characters ahead and navigate.
-" I know nested ternaries are a crime but I don't want to spend 30 lines on
-" this.
-imap <expr> <Tab>   pumvisible() ? "\<C-n>" : vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' :  "\<Tab>"
-smap <expr> <Tab>   pumvisible() ? "\<C-n>" : vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' :  "\<Tab>"
-imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' :  "\<S-Tab>"
-smap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' :  "\<S-Tab>"
-
 lua << EOF
 local lspkind = require "lspkind"
 lspkind.init()
@@ -604,6 +596,12 @@ lspkind.init()
 local cmp = require "cmp"
 
 cmp.setup {
+ snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    end,
+  },
+
   mapping = {
     ["<c-space>"] = cmp.mapping.complete(),
     ["<Tab>"] = function(fallback)
@@ -623,9 +621,10 @@ cmp.setup {
   },
 
   sources = {
-    { name = "nvim_lsp" },
-    { name = "vnsip" },
-    { name = "look"
+    { name = "nvim_lsp", keyword_length = 3 },
+    { name = "vnsip", keyword_length = 2 },
+    { name = "look", keyword_length = 5},
+    { name = 'tmux', opts = { all_panes = true, trigger_characters = {}}},
     { name = "zsh" },
     { name = "path" },
     { name = "buffer", keyword_length = 3 },
