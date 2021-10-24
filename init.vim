@@ -45,7 +45,11 @@ Plug 'nvim-treesitter/playground'                                 " Show the Tre
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 
 " Autocompletion
-Plug 'hrsh7th/nvim-compe'                                         " Completion engine which can pull from many sources
+Plug 'hrsh7th/cmp-nvim-lsp'                                        " Completion engine which can pull from many sources
+Plug 'hrsh7th/cmp-buffer'                                         " 
+Plug 'hrsh7th/cmp-vsnip'                                          " 
+Plug 'octaltree/cmp-look'                                         "
+Plug 'hrsh7th/nvim-cmp'                                           " 
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
 Plug 'wellle/tmux-complete.vim'                                   " Add tmux as a source for completions
@@ -53,7 +57,7 @@ Plug 'wellle/tmux-complete.vim'                                   " Add tmux as 
 " Snippets and templates
 Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
 Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
-Plug 'rafamadriz/friendly-snippets'                                " Collection of snippets
+Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Extra text manipulation and movement
@@ -594,39 +598,65 @@ imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsni
 smap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' :  "\<S-Tab>"
 
 lua << EOF
-  require'compe'.setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 2;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = true;
+local lspkind = require "lspkind"
+lspkind.init()
 
-    source = {
-      path = true;
-      buffer = true;
-      tags = true;
-      calc = true;
-      nvim_lsp = true;
-      nvim_lua = true;
-      vsnip = true;
-      tmux = true;
-      treesitter = true;
-    };
-  }
+local cmp = require "cmp"
+
+cmp.setup {
+  mapping = {
+    ["<c-space>"] = cmp.mapping.complete(),
+    ["<Tab>"] = function(fallback)
+       if cmp.visible() then
+         cmp.select_next_item()
+       else
+         fallback()
+       end
+     end,
+     ["<S-Tab>"] = function(fallback)
+       if cmp.visible() then
+         cmp.select_prev_item()
+       else
+         fallback()
+       end
+     end,
+  },
+
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "vnsip" },
+    { name = "look"
+    { name = "zsh" },
+    { name = "path" },
+    { name = "buffer", keyword_length = 3 },
+  },
+
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        path = "[path]",
+      },
+    },
+  },
+
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
+  },
+
+}
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+require('lspconfig').bashls.setup { capabilities = capabilities }
+require('lspconfig').cssls.setup { capabilities = capabilities }
+require('lspconfig').jsonls.setup { capabilities = capabilities }
+require('lspconfig').solargraph.setup { capabilities = capabilities }
+
 EOF
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <C-l>     compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " ----------------------------------------------
 " AutoPairs config
@@ -639,9 +669,15 @@ lua << EOF
     disable_filetype = { "TelescopePrompt" , "vim" },
   })
 
-  require("nvim-autopairs.completion.compe").setup({
-    map_cr = true,
-    map_complete = true
+  require("nvim-autopairs.completion.cmp").setup({
+    map_cr = true, --  map <CR> on insert mode
+    map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
+    auto_select = true, -- automatically select the first item
+    insert = false, -- use insert confirm behavior instead of replace
+    map_char = { -- modifies the function or method delimiter by filetypes
+      all = '(',
+      tex = '{'
+    }
   })
 
   npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
