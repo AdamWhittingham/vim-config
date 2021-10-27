@@ -44,6 +44,12 @@ Plug 'junegunn/fzf.vim'                                           " and bind it 
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 
+" Snippets and templates
+Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
+Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
+Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
+
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'                                        " Completion engine which can pull from many sources
 Plug 'hrsh7th/cmp-buffer'                                         " 
@@ -53,12 +59,6 @@ Plug 'hrsh7th/nvim-cmp'                                           "
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
 Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }              " Add tmux as a source for completions
-
-" Snippets and templates
-Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
-Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
-Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
-Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
@@ -622,23 +622,28 @@ cmp.setup {
 
   sources = {
     { name = "nvim_lsp", keyword_length = 3 },
-    { name = "vnsip", keyword_length = 2 },
-    { name = "look", keyword_length = 5},
-    { name = 'tmux', opts = { all_panes = true, trigger_characters = {}}},
-    { name = "zsh" },
-    { name = "path" },
-    { name = "buffer", keyword_length = 3 },
+    { name = "vnsip",    keyword_length = 3 },
+    { name = "buffer",   keyword_length = 3 },
+    { name = "look",     keyword_length = 5 },
+    { name = 'tmux',     keyword_length = 5, opts = { all_panes = true, trigger_characters = {}}},
+    { name = "zsh",      keyword_length = 5 },
+    { name = "path",     keyword_length = 5 },
   },
 
   formatting = {
-    format = lspkind.cmp_format {
-      with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        path = "[path]",
-      },
-    },
+    format = require("lspkind").cmp_format(
+      {
+        with_text = true,
+        menu = ({
+          nvim_lsp = "LSP",
+          buffer = "Buff",
+          vsnip = "snip",
+          look = "look",
+          tmux = "tmux",
+          path = "path",
+          zsh = "zsh",
+       })
+     }),
   },
 
   experimental = {
