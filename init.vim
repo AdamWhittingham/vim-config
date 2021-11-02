@@ -840,7 +840,11 @@ let g:projectionist_heuristics ={
       \ "*_test.go": {
       \    "*.go":       { "alternate": "{}_test.go", "type": "test" },
       \    "*_test.go":  { "alternate": "{}.go",      "type": "source" },
-      \  }
+      \  },
+      \ "*.erb": {
+      \    "*.html.erb": { "alternate": "{}.text.erb", "type": "text" },
+      \    "*.text.erb": { "alternate": "{}.html.erb", "type": "html" },
+      \ }
       \}
 
 " ----------------------------------------------
