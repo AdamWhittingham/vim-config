@@ -623,13 +623,13 @@ cmp.setup {
   },
 
   sources = {
-    { name = "nvim_lsp", keyword_length = 3 },
-    { name = "vnsip",    keyword_length = 3 },
-    { name = "buffer",   keyword_length = 3 },
-    { name = "look",     keyword_length = 5 },
-    { name = 'tmux',     keyword_length = 5, opts = { all_panes = true, trigger_characters = {}}},
-    { name = "zsh",      keyword_length = 5 },
-    { name = "path",     keyword_length = 5 },
+    { name = "nvim_lsp", keyword_length = 3, max_item_count = 5 },
+    { name = "vnsip",    keyword_length = 3, max_item_count = 5 },
+    { name = "buffer",   keyword_length = 3, max_item_count = 3 },
+    { name = "look",     keyword_length = 5, max_item_count = 3 },
+    { name = 'tmux',     keyword_length = 5, max_item_count = 3, opts = { all_panes = true, trigger_characters = {}}},
+    { name = "zsh",      keyword_length = 5, max_item_count = 3 },
+    { name = "path",     keyword_length = 5, max_item_count = 3 },
   },
 
   formatting = {
