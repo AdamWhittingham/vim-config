@@ -45,11 +45,12 @@ Plug 'nvim-treesitter/playground'                                 " Show the Tre
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 
 " Autocompletion
-Plug 'hrsh7th/cmp-nvim-lsp'                                        " Completion engine which can pull from many sources
-Plug 'hrsh7th/cmp-buffer'                                         " 
-Plug 'hrsh7th/cmp-vsnip'                                          " 
-Plug 'octaltree/cmp-look'                                         "
-Plug 'hrsh7th/nvim-cmp'                                           " 
+Plug 'hrsh7th/nvim-cmp'                                           " Completion engine which can pull from many sources
+Plug 'hrsh7th/cmp-nvim-lsp'                                       " cmp source for LSP
+Plug 'hrsh7th/cmp-buffer'                                         " cmp source for the open buffers
+Plug 'hrsh7th/cmp-vsnip'                                          " cmp source for vsnip snippets
+Plug 'hrsh7th/cmp-path'                                           " cmp source for paths
+Plug 'octaltree/cmp-look'                                         " cmp source for a dictionary
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
 Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }              " Add tmux as a source for completions
