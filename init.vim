@@ -44,12 +44,6 @@ Plug 'junegunn/fzf.vim'                                           " and bind it 
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
 
-" Snippets and templates
-Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
-Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
-Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
-Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
-
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'                                        " Completion engine which can pull from many sources
 Plug 'hrsh7th/cmp-buffer'                                         " 
@@ -59,6 +53,12 @@ Plug 'hrsh7th/nvim-cmp'                                           "
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
 Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }              " Add tmux as a source for completions
+
+" Snippets and templates
+Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
+Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
+Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
