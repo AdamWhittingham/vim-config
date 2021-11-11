@@ -51,14 +51,14 @@ Plug 'hrsh7th/cmp-buffer'                                         " cmp source f
 Plug 'hrsh7th/cmp-vsnip'                                          " cmp source for vsnip snippets
 Plug 'hrsh7th/cmp-path'                                           " cmp source for paths
 Plug 'octaltree/cmp-look'                                         " cmp source for a dictionary
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
 Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }              " Add tmux as a source for completions
 
 " Snippets and templates
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
+Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
 Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Extra text manipulation and movement
@@ -590,9 +590,6 @@ EOF
 " Auto-complete
 " ----------------------------------------------
 
-" Stop UltiSnips messing with <tab>
-let g:UltiSnipsRemoveSelectModeMappings=1
-
 lua << EOF
 local lspkind = require "lspkind"
 lspkind.init()
@@ -601,41 +598,55 @@ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
-local press = function(key)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
-end
-
-cmp.setup({
-  snippet = {
+cmp.setup {
+ snippet = {
     expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     end,
   },
 
+  mapping = {
+    ["<c-space>"] = cmp.mapping.complete(),
+    ["<Tab>"] = function(fallback)
+       if cmp.visible() then
+         cmp.select_next_item()
+       else
+         fallback()
+       end
+     end,
+     ["<S-Tab>"] = function(fallback)
+       if cmp.visible() then
+         cmp.select_prev_item()
+       else
+         fallback()
+       end
+     end,
+  },
+
   sources = {
-    { name = "nvim_lsp",  keyword_length = 3, max_item_count = 5 },
-    { name = "ultisnips", keyword_length = 3, max_item_count = 5 },
-    { name = "buffer",    keyword_length = 3, max_item_count = 3 },
-    { name = "look",      keyword_length = 5, max_item_count = 3 },
-    { name = 'tmux',      keyword_length = 5, max_item_count = 3, opts = { all_panes = true, trigger_characters = {}}},
-    { name = "zsh",       keyword_length = 5, max_item_count = 3 },
-    { name = "path",      keyword_length = 5, max_item_count = 3 },
+    { name = "nvim_lsp", keyword_length = 3, max_item_count = 5 },
+    { name = "vnsip",    keyword_length = 3, max_item_count = 5 },
+    { name = "buffer",   keyword_length = 3, max_item_count = 3 },
+    { name = "look",     keyword_length = 5, max_item_count = 3 },
+    { name = 'tmux',     keyword_length = 5, max_item_count = 3, opts = { all_panes = true, trigger_characters = {}}},
+    { name = "zsh",      keyword_length = 5, max_item_count = 3 },
+    { name = "path",     keyword_length = 5, max_item_count = 3 },
   },
 
   formatting = {
-    format = require("lspkind").cmp_format({
-      with_text = true,
-      menu = ({
-        nvim_lsp = "LSP",
-        buffer = "Buff",
-        vsnip = "snip",
-        ultisnips = "snip",
-        look = "look",
-        tmux = "tmux",
-        path = "path",
-        zsh = "zsh",
-      })
-    }),
+    format = require("lspkind").cmp_format(
+      {
+        with_text = true,
+        menu = ({
+          nvim_lsp = "LSP",
+          buffer = "Buff",
+          vsnip = "snip",
+          look = "look",
+          tmux = "tmux",
+          path = "path",
+          zsh = "zsh",
+       })
+     }),
   },
 
   experimental = {
@@ -643,59 +654,7 @@ cmp.setup({
     ghost_text = true,
   },
 
-  -- Configure for <TAB> people
-  -- - <TAB> and <S-TAB>: cycle forward and backward through autocompletion items
-  -- - <TAB> and <S-TAB>: cycle forward and backward through snippets tabstops and placeholders
-  -- - <TAB> to expand snippet when no completion item selected (you don't need to select the snippet from completion item to expand)
-  -- - <C-space> to expand the selected snippet from completion menu
-  mapping = {
-    ["<C-Space>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-          return press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
-        end
-        cmp.select_next_item()
-      elseif has_any_words_before() then
-        press("<Space>")
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.get_selected_entry() == nil and vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-        press("<C-R>=UltiSnips#ExpandSnippet()<CR>")
-      elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-        press("<ESC>:call UltiSnips#JumpForwards()<CR>")
-      elseif cmp.visible() then
-        cmp.select_next_item()
-      elseif has_any_words_before() then
-        press("<Tab>")
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-      -- add this line when using cmp-cmdline:
-      -- "c",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-        press("<ESC>:call UltiSnips#JumpBackwards()<CR>")
-      elseif cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-  },
-})
+}
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
