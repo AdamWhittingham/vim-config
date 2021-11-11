@@ -43,6 +43,12 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " Add FZF for 
 Plug 'junegunn/fzf.vim'                                           " and bind it up nicely
 Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
 Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
+"
+" Snippets and templates
+Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
+Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
+Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp'                                           " Completion engine which can pull from many sources
@@ -54,12 +60,6 @@ Plug 'octaltree/cmp-look'                                         " cmp source f
 Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
 Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
 Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }              " Add tmux as a source for completions
-
-" Snippets and templates
-Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
-Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
-Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
-Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
 
 " Extra text manipulation and movement
 Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
@@ -606,26 +606,30 @@ cmp.setup {
   },
 
   mapping = {
-    ["<c-space>"] = cmp.mapping.complete(),
     ["<Tab>"] = function(fallback)
-       if cmp.visible() then
-         cmp.select_next_item()
-       else
-         fallback()
-       end
-     end,
-     ["<S-Tab>"] = function(fallback)
-       if cmp.visible() then
-         cmp.select_prev_item()
-       else
-         fallback()
-       end
-     end,
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end,
+    ["<S-Tab>"] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end,
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
 
   sources = {
     { name = "nvim_lsp", keyword_length = 3, max_item_count = 5 },
-    { name = "vnsip",    keyword_length = 3, max_item_count = 5 },
+    { name = "vsnip",    keyword_length = 3, max_item_count = 5 },
     { name = "buffer",   keyword_length = 3, max_item_count = 3 },
     { name = "look",     keyword_length = 5, max_item_count = 3 },
     { name = 'tmux',     keyword_length = 5, max_item_count = 3, opts = { all_panes = true, trigger_characters = {}}},
@@ -656,12 +660,12 @@ cmp.setup {
 
 }
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-require('lspconfig').bashls.setup { capabilities = capabilities }
-require('lspconfig').cssls.setup { capabilities = capabilities }
-require('lspconfig').jsonls.setup { capabilities = capabilities }
-require('lspconfig').solargraph.setup { capabilities = capabilities }
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  require('lspconfig').bashls.setup { capabilities = capabilities }
+  require('lspconfig').cssls.setup { capabilities = capabilities }
+  require('lspconfig').jsonls.setup { capabilities = capabilities }
+  require('lspconfig').solargraph.setup { capabilities = capabilities }
 
 EOF
 
