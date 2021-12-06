@@ -33,16 +33,16 @@ hi NonText                    guifg=#8C8CAF ctermfg=103  gui=BOLD cterm=BOLD cte
 hi SpecialKey                 guifg=#8C8CAF ctermfg=103  guibg=#FF9800 ctermbg=208  gui=BOLD cterm=BOLD cterm=BOLD
 hi RedundantSpaces            guifg=NONE    ctermfg=NONE guibg=#E9475A ctermbg=167  gui=NONE cterm=NONE
 hi BadSpaces                  guifg=#8C8CAF ctermfg=103  guibg=#E9475A ctermbg=167  gui=NONE cterm=NONE
-hi StatusLine                 guifg=#FAFAFA ctermfg=231  guibg=#030303 ctermbg=16   gui=NONE cterm=NONE
+hi StatusLine                 guifg=#FAFAFA ctermfg=231  gui=NONE cterm=NONE
 hi StatusLineNC               guifg=#0C0C2E ctermfg=233  guibg=#8C8CAF ctermbg=103  gui=NONE cterm=NONE
-hi StatusLeft1                guifg=#FAFAFA ctermfg=231  guibg=#202848 ctermbg=235  gui=NONE cterm=NONE
-hi StatusLeft1End             guifg=#202848 ctermfg=235  guibg=#203080 ctermbg=24   gui=NONE cterm=NONE
-hi StatusLeft2                guifg=#FAFAFA ctermfg=231  guibg=#203080 ctermbg=24   gui=NONE cterm=NONE
-hi StatusLeft2End             guifg=#203080 ctermfg=24   guibg=#030303 ctermbg=16   gui=NONE cterm=NONE
-hi StatusRight1Start          guifg=#203080 ctermfg=24   guibg=#030303 ctermbg=16   gui=NONE cterm=NONE
-hi StatusRight1               guifg=#FAFAFA ctermfg=231  guibg=#203080 ctermbg=24   gui=NONE cterm=NONE
-hi StatusRight2Start          guifg=#202848 ctermfg=235  guibg=#203080 ctermbg=24   gui=NONE cterm=NONE
-hi StatusRight2               guifg=#FAFAFA ctermfg=231  guibg=#202848 ctermbg=235  gui=NONE cterm=NONE
+hi StatusAEnds                guifg=#2050BF ctermfg=25   gui=NONE cterm=NONE
+hi StatusA                    guifg=#FAFAFA ctermfg=231  guibg=#2050BF ctermbg=25   gui=NONE cterm=NONE
+hi StatusBEnds                guifg=#203080 ctermfg=24   gui=NONE cterm=NONE
+hi StatusB                    guifg=#FAFAFA ctermfg=231  guibg=#203080 ctermbg=24   gui=NONE cterm=NONE
+hi StatusCEnds                guifg=#202848 ctermfg=235  gui=NONE cterm=NONE
+hi StatusC                    guifg=#FAFAFA ctermfg=231  guibg=#202848 ctermbg=235  gui=NONE cterm=NONE
+hi StatusDEnds                guifg=#008387 ctermfg=30   gui=NONE cterm=NONE
+hi StatusD                    guifg=#FAFAFA ctermfg=231  guibg=#008387 ctermbg=30   gui=NONE cterm=NONE
 hi Boolean                    guifg=#FFB633 ctermfg=215  gui=NONE cterm=NONE
 hi Character                  guifg=#50DF40 ctermfg=77   gui=NONE cterm=NONE
 hi Comment                    guifg=#D7D7E3 ctermfg=188  guibg=NONE    ctermbg=NONE gui=ITALIC cterm=ITALIC cterm=NONE

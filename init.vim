@@ -9,73 +9,74 @@ call plug#begin(plugin_dir)
 " ----------------------------------------------
 
 " Language Server tooling
-Plug 'neovim/nvim-lspconfig'                                      " Pre-built configurations for LSP servers
-Plug 'williamboman/nvim-lsp-installer'                            " Make it easy to install LSP servers
-Plug 'onsails/lspkind-nvim'                                       " Add icons to the LSP menu
-Plug 'ray-x/lsp_signature.nvim'                                   " Pop up function definitions when typing a function call
+Plug 'neovim/nvim-lspconfig'                                        " Pre-built configurations for LSP servers
+Plug 'williamboman/nvim-lsp-installer'                              " Make it easy to install LSP servers
+Plug 'onsails/lspkind-nvim'                                         " Add icons to the LSP menu
+Plug 'ray-x/lsp_signature.nvim'                                     " Pop up function definitions when typing a function call
 
 " Syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}       " Fantastic langauge parsing
-Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " Add refactoring module for renaming
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " Define text objects based on Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}         " Fantastic langauge parsing
+Plug 'nvim-treesitter/nvim-treesitter-refactor'                     " Add refactoring module for renaming
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'                  " Define text objects based on Treesitter
 
 " UI
-Plug 'airblade/vim-gitgutter'                                     " Show the column of changes to the file against git
-Plug 'christoomey/vim-tmux-navigator'                             " Move between Vim panes & Tmux panes easily
-Plug 'kshenoy/vim-signature'                                      " Show marks in the gutter to help me use them more
-Plug 'kyazdani42/nvim-web-devicons'                               " Add icons and colours to search results based on filetype
-Plug 'lukas-reineke/indent-blankline.nvim'                        " Show indentation guides
-Plug 'mbbill/undotree'                                            " Visualise the undo tree and make it easy to navigate
-Plug 'mhinz/vim-startify'                                         " Start Vim with a more useful start screen
-Plug 'nvim-telescope/telescope-fzf-native.nvim'                   " Speed up FZF in Telescope
-Plug 'nvim-telescope/telescope.nvim'                              " Powerful UI for searching and file traversing
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }         " Show color swatches
-Plug 'weilbith/nvim-code-action-menu'                             " Code actions menu
+Plug 'airblade/vim-gitgutter'                                       " Show the column of changes to the file against git
+Plug 'christoomey/vim-tmux-navigator'                               " Move between Vim panes & Tmux panes easily
+Plug 'kshenoy/vim-signature'                                        " Show marks in the gutter to help me use them more
+Plug 'kyazdani42/nvim-web-devicons'                                 " Add icons and colours to search results based on filetype
+Plug 'lukas-reineke/indent-blankline.nvim'                          " Show indentation guides
+Plug 'mbbill/undotree'                                              " Visualise the undo tree and make it easy to navigate
+Plug 'mhinz/vim-startify'                                           " Start Vim with a more useful start screen
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }   " Speed up FZF in Telescope
+Plug 'nvim-telescope/telescope.nvim'                                " Powerful UI for searching and file traversing
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }           " Show color swatches
+Plug 'weilbith/nvim-code-action-menu'                               " Code actions menu
 
 " Common dependencies
-Plug 'nvim-lua/plenary.nvim'                                      " Library of common LUA helpers, dependency of many other plugins
-Plug 'nvim-lua/popup.nvim'                                        " LUA bindings for pop-up windows, dependency of Telescope
+Plug 'nvim-lua/plenary.nvim'                                        " Library of common LUA helpers, dependency of many other plugins
+Plug 'nvim-lua/popup.nvim'                                          " LUA bindings for pop-up windows, dependency of Telescope
 
 " Navigation & Search tools
-Plug 'AdamWhittingham/vim-copy-filename'                          " Quick shortcuts for copying the file name, path and/or line number
-Plug 'ruanyl/vim-gh-line'                                         " Copy github URLs
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }               " Add FZF for faster searching for items under the cursor
-Plug 'junegunn/fzf.vim'                                           " and bind it up nicely
-Plug 'nvim-treesitter/playground'                                 " Show the Treesitter results and highlight under cursor
-Plug 'tpope/vim-projectionist'                                    " Map tools and actions based on the project
+Plug 'AdamWhittingham/vim-copy-filename'                            " Quick shortcuts for copying the file name, path and/or line number
+Plug 'ruanyl/vim-gh-line'                                           " Copy github URLs
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                 " Add FZF for faster searching for items under the cursor
+Plug 'junegunn/fzf.vim'                                             " and bind it up nicely
+Plug 'nvim-treesitter/playground'                                   " Show the Treesitter results and highlight under cursor
+Plug 'tpope/vim-projectionist'                                      " Map tools and actions based on the project
 "
 " Snippets and templates
-Plug 'hrsh7th/vim-vsnip'                                          " Snippet engine which follows the LSP/VSCode snippet format
-Plug 'hrsh7th/vim-vsnip-integ'                                    " Integrations which allow vim-snip to integrate with Treesitter
-Plug 'rafamadriz/friendly-snippets'                               " Collection of snippets
-Plug 'noahfrederick/vim-skeleton'                                 " Load a template when creating some files
+Plug 'hrsh7th/vim-vsnip'                                            " Snippet engine which follows the LSP/VSCode snippet format
+Plug 'hrsh7th/vim-vsnip-integ'                                      " Integrations which allow vim-snip to integrate with Treesitter
+Plug 'rafamadriz/friendly-snippets'                                 " Collection of snippets
+Plug 'noahfrederick/vim-skeleton'                                   " Load a template when creating some files
 
 " Autocompletion
-Plug 'hrsh7th/nvim-cmp'                                           " Completion engine which can pull from many sources
-Plug 'hrsh7th/cmp-nvim-lsp'                                       " cmp source for LSP
-Plug 'hrsh7th/cmp-buffer'                                         " cmp source for the open buffers
-Plug 'hrsh7th/cmp-vsnip'                                          " cmp source for vsnip snippets
-Plug 'hrsh7th/cmp-path'                                           " cmp source for paths
-Plug 'octaltree/cmp-look'                                         " cmp source for a dictionary
-Plug 'windwp/nvim-autopairs'                                      " Auto close quotes, brackets in a way that doesn't suck
-Plug 'windwp/nvim-ts-autotag'                                     " Auto close HTML and XML tags too
-Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }              " Add tmux as a source for completions
+Plug 'hrsh7th/nvim-cmp'                                             " Completion engine which can pull from many sources
+Plug 'hrsh7th/cmp-nvim-lsp'                                         " cmp source for LSP
+Plug 'hrsh7th/cmp-buffer'                                           " cmp source for the open buffers
+Plug 'hrsh7th/cmp-vsnip'                                            " cmp source for vsnip snippets
+Plug 'hrsh7th/cmp-path'                                             " cmp source for paths
+Plug 'octaltree/cmp-look'                                           " cmp source for a dictionary
+Plug 'windwp/nvim-autopairs'                                        " Auto close quotes, brackets in a way that doesn't suck
+Plug 'windwp/nvim-ts-autotag'                                       " Auto close HTML and XML tags too
+Plug 'andersevenrud/compe-tmux', { 'branch': 'cmp' }                " Add tmux as a source for completions
 
 " Extra text manipulation and movement
-Plug 'AndrewRadev/splitjoin.vim'                                  " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
-Plug 'AndrewRadev/switch.vim'                                     " Quickly swap between true/false, different hash styles and much more
-Plug 'editorconfig/editorconfig-vim'                              " Make use of EditorConfig files
-Plug 'junegunn/vim-easy-align'                                    " Fast alignment of lines based on preset rules
-Plug 'maxbrunsfeld/vim-yankstack'                                 " Paste text, then rotate though things yanked before/after
-Plug 'numToStr/Comment.nvim'                                      " Quick toggle for code commenting
-Plug 'tpope/vim-abolish'                                          " Allow smartcase substitution and search
-Plug 'tpope/vim-repeat'                                           " Make many more operations repeatable with `.`
-Plug 'tpope/vim-surround'                                         " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
-Plug 'wellle/targets.vim'                                         " Additional text objects and motions
+Plug 'AndrewRadev/splitjoin.vim'                                    " Quick joining or splitting of programming constructs (ie. `if...else...` to `? ... : ...`)
+Plug 'AndrewRadev/switch.vim'                                       " Quickly swap between true/false, different hash styles and much more
+Plug 'editorconfig/editorconfig-vim'                                " Make use of EditorConfig files
+Plug 'junegunn/vim-easy-align'                                      " Fast alignment of lines based on preset rules
+Plug 'maxbrunsfeld/vim-yankstack'                                   " Paste text, then rotate though things yanked before/after
+Plug 'numToStr/Comment.nvim'                                        " Quick toggle for code commenting
+Plug 'tpope/vim-abolish'                                            " Allow smartcase substitution and search
+Plug 'tpope/vim-repeat'                                             " Make many more operations repeatable with `.`
+Plug 'tpope/vim-surround'                                           " Quick editing or insertion for surrounding characters (ie. quickly add quotes around a line)
+Plug 'wellle/targets.vim'                                           " Additional text objects and motions
 
 " Language specific tools
-Plug 'vim-scripts/icalendar.vim'                                  " Syntax for iCal files
-Plug 'crispgm/nvim-go'                                            " Automate LSP formatting & importing when editing Go
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'                  " Better commenting in JS/TS/JSX/TSX files
+Plug 'vim-scripts/icalendar.vim'                                    " Syntax for iCal files
+Plug 'crispgm/nvim-go'                                              " Automate LSP formatting & importing when editing Go
 
 " Load any extra plugins specified in the home directory
 if filereadable(expand("~/.vim.plugins.local"))
@@ -155,27 +156,33 @@ function! StatuslineGit()
 endfunction
 
 set statusline=
-set statusline+=%#StatusLeft1#
+
+set statusline+=%#StatusAEnds#
+set statusline+=
+set statusline+=%#StatusA#
 set statusline+=\ %{StatuslineGit()}
-set statusline+=%#StatusLeft1End#
-set statusline+=
-set statusline+=%#StatusLeft2#
-set statusline+=\ %f:%l:%c " file path, line and column number
+set statusline+=%#StatusAEnds#
+set statusline+=
+
+set statusline+=%#StatusBEnds#
+set statusline+=\ 
+set statusline+=%#StatusB#
+set statusline+=\ %f:%l:%c " file path, line and column number
 set statusline+=\ %m " Modification flag
-set statusline+=%#StatusLeft2End#
-set statusline+=
+set statusline+=%#StatusBEnds#
+set statusline+=
 set statusline+=%#StatusLine#
 
 set statusline+=%= " Switch to the right hand side
-set statusline+=%#StatusRight1Start#
-set statusline+=
-set statusline+=%#StatusRight1#
-set statusline+=\ %y " Filetype
-set statusline+=\ %r " Read-only status
-set statusline+=%#StatusRight2Start#
-set statusline+=
-set statusline+=%#StatusRight2#
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}\(%{&fileformat})
+
+set statusline+=%#StatusCEnds#
+set statusline+=\ 
+set statusline+=%#StatusC#
+set statusline+=%y\ " Filetype
+set statusline+=%r " Read-only status
+set statusline+=%{&fileencoding?&fileencoding:&encoding}\(%{&fileformat})
+set statusline+=%#StatusCEnds#
+set statusline+=
 
 " -----------------------------------
 " Setup file wildcard ignored names
