@@ -9,6 +9,6 @@ then
   exit 1
 else
   ln -s ~/.vim/vimrc ~/.vimrc
-  vim +PlugClean! +PlugUpdate +qall
+  nvim +PlugClean! +PlugUpdate +qall
   ~/.vim/install-plugin-update-hook.sh
 fi
