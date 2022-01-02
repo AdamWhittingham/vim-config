@@ -11,7 +11,7 @@ local normal = function(keys, command)
 end
 
 local insert = function(keys, command)
-	keymap("i", keys, command, default_opts)
+	keymap("i", keys, command.."<CR>", default_opts)
 end
 
 local visual = function(keys, command)
@@ -21,6 +21,8 @@ end
 local leader = function(keys, command)
 	keymap("n", "<leader>"..keys, command.."<CR>", default_opts)
 end
+
+local wk = require("which-key")
 
 ---------------------------------
 -- Leader key = <space>
@@ -93,6 +95,17 @@ leader("cA", '<cmd>Gitsigns stage_buffer')
 leader("cU", '<cmd>Gitsigns reset_buffer_index')
 leader("cR", '<cmd>Gitsigns reset_buffer')
 
+wk.register({
+  c = {
+    name = "Change",
+    a = "Add this change to staging",
+    A = "Add all changes in this file to staging",
+    u = "Undo change",
+    d = "Diff of the change",
+    b = "Toggle git blame",
+  }
+}, { prefix = "<leader>" })
+
 ---------------------------------
 -- File navigation
 ---------------------------------
@@ -107,6 +120,23 @@ leader("*", ":Telescope grep_string")
 leader(".", ":Telescope buffers theme=get_dropdown sort_mru=true layout_config={width=0.75}")
 leader("<leader>", ":b#")
 
+wk.register({
+  f = {
+    name = "Find",
+    d = "Directory navication",
+    f = "Files by name",
+    F = "String in files",
+  },
+}, { prefix = "<leader>" })
+
+wk.register({
+  ["<leader>."] = { "Find open buffer" },
+  ["<leader>*"] = "String under the cursor in files",
+  ["<leader><space>"] = { "Switch to the last open buffer" },
+  ["<leader>i"] = { "Indent all lines" },
+  ["<leader>s"] = { "Switch between common modes" },
+})
+
 ---------------------------------
 -- Language aware navigation
 ---------------------------------
@@ -115,12 +145,11 @@ leader("<leader>", ":b#")
 leader("{", ":Telescope lsp_definitions")
 leader("}", ":Telescope lsp_references")
 
--- Show signature help on C-s
-normal("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()")
-insert("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()")
+-- Show signature help
+leader("ls", "<cmd>lua vim.lsp.buf.signature_help()")
 
--- Show code docs on K
-normal("K", "<cmd>lua vim.lsp.buf.hover()")
+-- Show info or docs
+normal("li", "<cmd>lua vim.lsp.buf.hover()")
 
 -- LSP code manipulations
 leader("lr", "<cmd>lua vim.lsp.buf.rename()")
@@ -135,6 +164,17 @@ normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })')
 normal("]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })')
 leader("q", "<cmd>lua vim.diagnostic.setloclist()")
 
+wk.register({
+  l = {
+    name = "language",
+    r = "rename",
+    a = "actions",
+    d = "diagnostics",
+    s = "signature help",
+    i = "Info or docs",
+  }
+}, { prefix = "<leader>" })
+
 ---------------------------------
 -- Test helpers
 ---------------------------------
@@ -143,15 +183,29 @@ leader("q", "<cmd>lua vim.diagnostic.setloclist()")
 leader("t", [[:call InvokeViaTmux("rspec", expand("%:p"))]])
 leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]])
 
-leader("cp", ":CopyRelativePath")
-leader("cP", ":CopyAbsolutePath")
-leader("cf", ":CopyFileName")
-leader("cd", ":CopyDirectoryPath")
-leader("cr", ":CopyRelativePathAndLine")
+leader("pr", ":CopyRelativePath")
+leader("pa", ":CopyAbsolutePath")
+leader("pf", ":CopyFileName")
+leader("pd", ":CopyDirectoryPath")
+leader("pl", ":CopyRelativePathAndLine")
 
 -- <Leader>gr to open the current line in the repos website
 vim.g.gh_open_command = [[fn() { echo "$@" | pbcopy; }; fn ]]
-vim.g.gh_line_map = '<leader>cg'
+vim.g.gh_line_map = '<leader>pg'
+
+wk.register({
+  t = { "Run tests for this file" },
+  T = { "Run tests for this line" },
+  p = {
+    name = "paths",
+    r = "Copy the relative path",
+    a = "Copy the absolute path",
+    f = "Copy the file name",
+    d = "Copy the directory path",
+    l = "Copy the relative path and line",
+    g = "Copy the URL to github/gitlab",
+  }
+}, { prefix = "<leader>" })
 
 ---------------------------------
 -- Colorscheme Creation helpers
