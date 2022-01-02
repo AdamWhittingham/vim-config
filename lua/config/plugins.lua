@@ -88,22 +88,23 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use 'ray-x/lsp_signature.nvim' -- Pop up function definitions when typing a function call
+  use "ray-x/lsp_signature.nvim" -- Pop up function definitions when typing a function call
+  use "editorconfig/editorconfig-vim"
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
-  use 'nvim-treesitter/nvim-treesitter-refactor'  -- Add refactoring module for renaming
-  use 'nvim-treesitter/nvim-treesitter-textobjects' -- Define text objects based on Treesitter
-  use 'nvim-treesitter/playground' -- Show the parser tree and syntax under cursor
+  use "nvim-treesitter/nvim-treesitter-refactor"  -- Add refactoring module for renaming
+  use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
+  use "nvim-treesitter/playground" -- Show the parser tree and syntax under cursor
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -------------------
   -- Navigation
   -------------------
-  use 'tpope/vim-projectionist' -- Map tools and actions based on the project
-  use 'christoomey/vim-tmux-navigator' -- Seemless movement between panes and tmux
+  use "tpope/vim-projectionist" -- Map tools and actions based on the project
+  use "christoomey/vim-tmux-navigator" -- Seemless movement between panes and tmux
   use "AdamWhittingham/vim-copy-filename" -- Quick shortcuts for copying the file name, path and/or line number
-  use 'ruanyl/vim-gh-line' -- Generate and copy the github/gitlab repo URL for the current line
+  use "ruanyl/vim-gh-line" -- Generate and copy the github/gitlab repo URL for the current line
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
