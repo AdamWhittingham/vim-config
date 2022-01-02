@@ -123,12 +123,12 @@ insert("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()")
 normal("K", "<cmd>lua vim.lsp.buf.hover()")
 
 -- LSP code manipulations
-leader("<leader>r", "<cmd>lua vim.lsp.buf.rename()")
-leader("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()")
+leader("lr", "<cmd>lua vim.lsp.buf.rename()")
+leader("la", "<cmd>lua vim.lsp.buf.code_action()")
 
 -- gi and <leader>gi to show diagnostics
-leader("gi", "<cmd>lua vim.diagnostic.open_float()")
-normal("gi", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })')
+leader("ld", "<cmd>lua vim.diagnostic.open_float()")
+normal("ld", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })')
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the ruickfix list
 normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })')

@@ -36,13 +36,13 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
   --------------------
-	-- TEXT MANIPULATION
+  -- TEXT MANIPULATION
   --------------------
   use "AndrewRadev/switch.vim" -- Quickly toggle between common alternative layouts for strings, arrays, etc.
   use "AndrewRadev/splitjoin.vim" -- Quickly toggle between single and multi-line versions of common constructs
-	use "tpope/vim-surround" -- Crazy good surround operations
-	use "tpope/vim-abolish" -- Smartcase replacement with S
-	use "tpope/vim-repeat" -- Make surround, abolish and more repeatable
+  use "tpope/vim-surround" -- Crazy good surround operations
+  use "tpope/vim-abolish" -- Smartcase replacement with S
+  use "tpope/vim-repeat" -- Make surround, abolish and more repeatable
   use "lukas-reineke/indent-blankline.nvim" -- Show indentation markers
 
   -------------------
@@ -59,7 +59,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp" -- LSP based completions
-	use 'andersevenrud/cmp-tmux' -- tmux completions
+  use 'andersevenrud/cmp-tmux' -- tmux completions
   use 'octaltree/cmp-look' -- dictionary completions
 
   -- snippets
@@ -70,16 +70,16 @@ return packer.startup(function(use)
   -- UI
   -------------------
   use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
-	use "AdamWhittingham/vim-adcode-theme" -- A nice coat of paint for everything
+  use "AdamWhittingham/vim-adcode-theme" -- A nice coat of paint for everything
   use "kyazdani42/nvim-web-devicons" -- Map file types to icons for easier list-scanning
   use "nvim-telescope/telescope.nvim" -- Excellent UI for files, searching, everything
   use "nvim-telescope/telescope-media-files.nvim" -- Allow telescope to show media
   use "nvim-telescope/telescope-file-browser.nvim"
   use 'mbbill/undotree' -- Visualise the undo tree and make it easy to navigate
-	use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
+  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
   use { "RRethy/vim-hexokinase", run = "make hexokinase" } -- Show colour swatches next to colour codes
   use "feline-nvim/feline.nvim" -- Quick and nice statusline
-  use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" } -- Show the class/method hierarchy to the cursor
+  use "folke/which-key.nvim"
 
   -------------------
   -- LANGUAGE SUPPORT
