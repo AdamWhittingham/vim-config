@@ -63,6 +63,11 @@ M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
+
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
+  end
+
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
