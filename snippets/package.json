@@ -1,0 +1,12 @@
+{
+  "name": "ad-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      { "language": "ruby", "path": "./ruby.json" },
+      { "language": "eruby", "path": "./snippets/erb.json" }
+    ]
+  }
+}

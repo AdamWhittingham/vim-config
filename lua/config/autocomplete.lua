@@ -71,7 +71,7 @@ cmp.setup {
     { name = "buffer" },
     { name = "path" },
 		{ name = "tmux", option = { all_panes = true } },
-    { name = "look", keyword_length = 3, max_item_count = 10 },
+    { name = "look", keyword_length = 3, max_item_count = 5 },
   },
 
   mapping = {
@@ -122,7 +122,8 @@ cmp.setup {
   formatting = {
     fields = { "kind", "abbr" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
+      --vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
       return vim_item
     end,
   },
