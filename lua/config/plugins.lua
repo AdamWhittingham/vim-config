@@ -73,11 +73,12 @@ return packer.startup(function(use)
 	use "AdamWhittingham/vim-adcode-theme" -- A nice coat of paint for everything
   use "kyazdani42/nvim-web-devicons" -- Map file types to icons for easier list-scanning
   use "nvim-telescope/telescope.nvim" -- Excellent UI for files, searching, everything
-  use 'nvim-telescope/telescope-media-files.nvim' -- Allow telescope to show media
+  use "nvim-telescope/telescope-media-files.nvim" -- Allow telescope to show media
+  use "nvim-telescope/telescope-file-browser.nvim" 
   use 'mbbill/undotree' -- Visualise the undo tree and make it easy to navigate
-	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use { 'RRethy/vim-hexokinase', run = 'make hexokinase' } -- Show colour swatches next to colour codes
-  use 'feline-nvim/feline.nvim' -- Quick and nice statusline
+	use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
+  use { "RRethy/vim-hexokinase", run = "make hexokinase" } -- Show colour swatches next to colour codes
+  use "feline-nvim/feline.nvim" -- Quick and nice statusline
   use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" } -- Show the class/method hierarchy to the cursor
 
   -------------------

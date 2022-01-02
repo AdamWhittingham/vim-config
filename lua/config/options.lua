@@ -10,6 +10,7 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
+opt.wrap = false
 
 -- UI
 opt.conceallevel = 0
@@ -18,4 +19,6 @@ opt.number = true
 opt.hlsearch = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
+opt.scrolloff = 3
+opt.sidescrolloff = 3
 vim.cmd "colorscheme adCode"
