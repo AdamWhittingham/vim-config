@@ -98,7 +98,7 @@ leader("cR", '<cmd>Gitsigns reset_buffer')
 ---------------------------------
 
 -- Opening and finding files
-leader("d", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser() theme=ivy")
+leader("d", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser() theme=get_ivy")
 leader("f", ":Telescope find_files")
 leader("F", ":Telescope live_grep")
 

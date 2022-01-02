@@ -1,6 +1,8 @@
 Ad's Neovim Config
 ==================
 
+A potent Neovim config, enhanced with rich flavours of software development and notable hints of Ruby, JS and Go.
+
 # Installation
 
 ```bash
@@ -12,15 +14,14 @@ There's a couple of tools that make this config really work well:
 
 1. Running in [Kitty](https://sw.kovidgoyal.net/kitty/) with a [NerdFont](https://www.nerdfonts.com/) because we deserve pretty things in the terminal.
 2. [Ripgrep](https://github.com/BurntSushi/ripgrep) makes a lot of searches so much faster
+3. [fd](https://github.com/sharkdp/fd) Similarly, `fd` is a replacement to find which makes file listing much faster
 
 # Key Mappings
-
 For the canonical list, see [keymaps.lua](./lua/config/keymaps.lua)
 
 The `<leader>` key is **Space**
 
 ## File & buffer navigation
-
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `<leader> .`               | Show the currently open buffers so you can switch between them                          |
@@ -32,7 +33,6 @@ The `<leader>` key is **Space**
 
 
 ## Window navigation
-
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `<Control> h/j/k/l`        | Move cursor to the pane left/up/down/right                                              |
@@ -42,7 +42,6 @@ The `<leader>` key is **Space**
 
 
 ## Version control
-
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `ca`                       | Add a change to the next commit                                                         |
@@ -53,7 +52,6 @@ The `<leader>` key is **Space**
 
 
 ## Development
-
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `<leader>t`                | Run the current tests                                                                   |
@@ -61,3 +59,16 @@ The `<leader>` key is **Space**
 | `<leader>cp`               | Copy the relative path of the current file                                              |
 | `<leader>{`                | Jump to the definition of the function/class/method under the cursor                    |
 | `<leader>}`                | Search for references to the function/class/method under the cursor                     |
+
+
+# Goals and Guides
+
+This project has two goals:
+1. Empower me to get more done in my daily work as an engineer.
+2. Be easy to started with, so when someone I work with wants to learn Vim, they can use this as a starting point until they are ready to build their own config.
+
+It's easy to get carried away with every plugin, keybind and option that you see online, so I use the following guiding principles:
+
+1. Plugins aren't evil. I respect people who go the full vim-minimalism route and only use it as it comes out of the box, but it is a tool for a purpose. Anything that give me more context and lets me focus more on the work at hand is a good thing.
+2. Too many plugins are evil. If installation becomes complex, or performance takes a dive, things need to go. Everything has a cost and needs to earn it's keep.
+3. Additional key mappings should be consistent and ideally use a mnemonic. For example, `c` is used for git hunks using the mnemonic "Change" (e.g. add changes, reset changes).

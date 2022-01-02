@@ -25,8 +25,6 @@ if not status_ok then
 end
 
 local actions = require "telescope.actions"
-telescope.load_extension "media_files"
-telescope.load_extension "file_browser"
 
 telescope.setup {
   defaults = {
@@ -100,7 +98,10 @@ telescope.setup {
     },
   },
   extensions = {
-    media_files = {}
-  },
+    media_files = {},
+    file_browser = { theme = "ivy", },
+  }
 }
 
+telescope.load_extension "media_files"
+telescope.load_extension "file_browser"
