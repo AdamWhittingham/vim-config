@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local layout = require("alpha.themes.startify")
+local startify = require "alpha.themes.startify"
 
 layout.section.header.val = {
   [[__      __            ]],
@@ -17,8 +18,25 @@ layout.section.header.val = {
 
 layout.section.top_buttons.val = { }
 
+local cwd = vim.fn.getcwd()
+
 -- disable MRU
 layout.section.mru.val = { { type = "padding", val = 0 } }
+layout.section.mru_cwd.val = {
+  {
+    type = "text",
+    val = "Recent files in ".. cwd,
+    opts = { hl = "SpecialComment", shrink_margin = false },
+  },
+  { type = "padding", val = 1 },
+  {
+    type = "group",
+    val = function()
+      return { startify.mru(1, cwd, 9) }
+    end,
+    opts = { shrink_margin = false },
+  },
+}
 
 layout.section.bottom_buttons.val = {
   { type = "padding", val = 1 },
