@@ -19,7 +19,7 @@ opt.listchars = {
 }
 
 -- UI
-opt.timeoutlen = 500
+opt.timeoutlen = 50
 opt.conceallevel = 0
 opt.cursorline = true
 opt.number = true
