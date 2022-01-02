@@ -11,6 +11,12 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
 opt.wrap = false
+opt.list = true
+opt.listchars = {
+  trail = "•",
+  nbsp = "␣",
+  tab = "»•"
+}
 
 -- UI
 opt.conceallevel = 0
