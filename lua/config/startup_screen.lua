@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 local dashboard = require("alpha.themes.dashboard")
-local startify = require "alpha.themes.startify"
 local nvim_web_devicons = require "nvim-web-devicons"
 local cwd = vim.fn.getcwd()
 
@@ -81,7 +80,7 @@ local function mru(start, cwd, items_number, opts)
         end
     end
 
-    local special_shortcuts = {'a', 's', 'd', 'f', 'g'}
+    local special_shortcuts = {'a', 's', 'd', 'j', 'k', 'l'}
 
     local tbl = {}
     for i, fn in ipairs(oldfiles) do
@@ -92,11 +91,14 @@ local function mru(start, cwd, items_number, opts)
             short_fn = vim.fn.fnamemodify(fn, ":~")
         end
 
-        if i < table.getn(special_shortcuts) then
-          fn = special_shortcuts[i]
+        local shortcut = ""
+        if i <= #special_shortcuts then
+          shortcut = special_shortcuts[i]
+        else
+          shortcut = tostring(i + start - 1 - #special_shortcuts)
         end
 
-        local file_button_el = file_button(fn, tostring(i + start - 1), short_fn)
+        local file_button_el = file_button(fn, shortcut, short_fn)
         tbl[i] = file_button_el
     end
     return {
@@ -106,35 +108,51 @@ local function mru(start, cwd, items_number, opts)
     }
 end
 
-local header = {
-  type = "text",
-  val = {
-[[███╗   ███╗ █████╗ ██╗  ██╗███████╗       ]],
-[[████╗ ████║██╔══██╗██║ ██╔╝██╔════╝       ]],
-[[██╔████╔██║███████║█████╔╝ █████╗         ]],
-[[██║╚██╔╝██║██╔══██║██╔═██╗ ██╔══╝         ]],
-[[██║ ╚═╝ ██║██║  ██║██║  ██╗███████╗       ]],
-[[╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝       ]],
-[[                                          ]],
-[[ ██████╗ ██████╗  ██████╗ ██╗             ]],
-[[██╔════╝██╔═══██╗██╔═══██╗██║             ]],
-[[██║     ██║   ██║██║   ██║██║             ]],
-[[██║     ██║   ██║██║   ██║██║             ]],
-[[╚██████╗╚██████╔╝╚██████╔╝███████╗        ]],
-[[ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝        ]],
-[[                                          ]],
-[[███████╗████████╗██╗   ██╗███████╗███████╗]],
-[[██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝]],
-[[███████╗   ██║   ██║   ██║█████╗  █████╗  ]],
-[[╚════██║   ██║   ██║   ██║██╔══╝  ██╔══╝  ]],
-[[███████║   ██║   ╚██████╔╝██║     ██║     ]],
-[[╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ]],
-  },
-  opts = {
-    position = "center",
-    hl = "Type",
-  },
+local header_chars = {
+  [[    ███╗   ███╗ █████╗ ██╗  ██╗███████╗   ]],
+  [[    ████╗ ████║██╔══██╗██║ ██╔╝██╔════╝   ]],
+  [[    ██╔████╔██║███████║█████╔╝ █████╗     ]],
+  [[    ██║╚██╔╝██║██╔══██║██╔═██╗ ██╔══╝     ]],
+  [[    ██║ ╚═╝ ██║██║  ██║██║  ██╗███████╗   ]],
+  [[    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝   ]],
+  [[      ██████╗ ██████╗  ██████╗ ██╗        ]],
+  [[     ██╔════╝██╔═══██╗██╔═══██╗██║        ]],
+  [[     ██║     ██║   ██║██║   ██║██║        ]],
+  [[     ██║     ██║   ██║██║   ██║██║        ]],
+  [[     ╚██████╗╚██████╔╝╚██████╔╝███████╗   ]],
+  [[      ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝   ]],
+  [[███████╗████████╗██╗   ██╗███████╗███████╗]],
+  [[██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝]],
+  [[███████╗   ██║   ██║   ██║█████╗  █████╗  ]],
+  [[╚════██║   ██║   ██║   ██║██╔══╝  ██╔══╝  ]],
+  [[███████║   ██║   ╚██████╔╝██║     ██║     ]],
+  [[╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ]],
 }
+
+local function header_color()
+  local lines = {}
+  for i, line_chars in pairs(header_chars) do
+    local hi = "StartLogo" .. i
+    local line = {
+      type = "text",
+      val = line_chars,
+      opts = {
+        hl = hi,
+        shrink_margin = false,
+        position = "center",
+      },
+    }
+    table.insert(lines, line)
+  end
+
+  local output = {
+    type = "group",
+    val = lines,
+    opts = { position = "center", },
+  }
+
+  return output
+end
 
 local section_mru = {
   type = "group",
@@ -166,7 +184,7 @@ local buttons = {
     { type = "padding", val = 1 },
     dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
     dashboard.button("F", "  Find text", ":Telescope live_grep <CR>"),
-    dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+    dashboard.button("n", "  New file", ":ene <BAR> startinsert <CR>"),
     dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
     dashboard.button( "u", "  Update plugins" , ":PackerSync<CR>"),
     dashboard.button( "q", "  Quit" , ":qa<CR>"),
@@ -177,7 +195,7 @@ local buttons = {
 local opts = {
     layout = {
         { type = "padding", val = 2 },
-        header,
+        header_color(),
         { type = "padding", val = 2 },
         section_mru,
         { type = "padding", val = 2 },

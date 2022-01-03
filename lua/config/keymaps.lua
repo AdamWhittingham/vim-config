@@ -10,10 +10,6 @@ local normal = function(keys, command)
   keymap("n", keys, command.."<CR>", default_opts)
 end
 
-local insert = function(keys, command)
-  keymap("i", keys, command.."<CR>", default_opts)
-end
-
 local visual = function(keys, command)
   keymap("v", keys, command, default_opts)
 end
