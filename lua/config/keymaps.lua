@@ -2,27 +2,30 @@
 local default_opts = { noremap = true, silent = true }
 
 local keymap = function(mode, keys, command, opts)
-	opts = opts or default_opts
-	vim.api.nvim_set_keymap(mode, keys, command, opts)
+  opts = opts or default_opts
+  vim.api.nvim_set_keymap(mode, keys, command, opts)
 end
 
 local normal = function(keys, command)
-	keymap("n", keys, command.."<CR>", default_opts)
+  keymap("n", keys, command.."<CR>", default_opts)
 end
 
 local insert = function(keys, command)
-	keymap("i", keys, command.."<CR>", default_opts)
+  keymap("i", keys, command.."<CR>", default_opts)
 end
 
 local visual = function(keys, command)
-	keymap("v", keys, command, default_opts)
+  keymap("v", keys, command, default_opts)
 end
 
 local leader = function(keys, command)
-	keymap("n", "<leader>"..keys, command.."<CR>", default_opts)
+  keymap("n", "<leader>"..keys, command.."<CR>", default_opts)
 end
 
-local wk = require("which-key")
+local which_key_status_ok, wk = pcall(require, "which-key")
+if not which_key_status_ok then
+  return
+end
 
 ---------------------------------
 -- Leader key = <space>

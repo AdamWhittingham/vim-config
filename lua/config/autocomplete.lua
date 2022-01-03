@@ -70,13 +70,13 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-		{ name = "tmux", option = { all_panes = true } },
+    { name = "tmux", option = { all_panes = true } },
     { name = "look", keyword_length = 3, max_item_count = 5 },
   },
 
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
     ['<C-l>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),

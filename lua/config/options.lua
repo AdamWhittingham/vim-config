@@ -28,4 +28,11 @@ opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.scrolloff = 3
 opt.sidescrolloff = 3
-vim.cmd "colorscheme adCode"
+vim.cmd [[
+try
+  colorscheme adCode
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme default
+  set background=dark
+endtry
+]]
