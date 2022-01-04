@@ -3,6 +3,11 @@ if not status_ok then
   return
 end
 
+local path_ok, path = pcall(require, "plenary.path")
+if not path_ok then
+  return
+end
+
 local dashboard = require("alpha.themes.dashboard")
 local nvim_web_devicons = require "nvim-web-devicons"
 local cdir = vim.fn.getcwd()
@@ -90,6 +95,8 @@ local function mru(start, cwd, items_number, opts)
         else
             short_fn = vim.fn.fnamemodify(fn, ":~")
         end
+
+        short_fn = path.new(short_fn):shorten(1, {-3, -2, -1})
 
         local shortcut = ""
         if i <= #special_shortcuts then
