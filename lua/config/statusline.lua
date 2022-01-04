@@ -17,10 +17,9 @@ components.active[1][3] = {
     },
     hl = {
         fg = 'white',
-        bg = 'oceanblue',
-        style = 'bold'
+        bg = '#102070',
     },
-    left_sep = {' ', 'slant_left'},
+    left_sep = 'slant_left',
     right_sep = {'slant_right_2', ' '},
 }
 
