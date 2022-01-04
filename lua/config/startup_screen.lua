@@ -96,7 +96,9 @@ local function mru(start, cwd, items_number, opts)
             short_fn = vim.fn.fnamemodify(fn, ":~")
         end
 
-        short_fn = path.new(short_fn):shorten(1, {-3, -2, -1})
+        if(#short_fn > 35) then
+          short_fn = path.new(short_fn):shorten(1, {-2, -1})
+        end
 
         local shortcut = ""
         if i <= #special_shortcuts then
