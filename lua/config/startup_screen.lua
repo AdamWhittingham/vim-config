@@ -5,7 +5,7 @@ end
 
 local dashboard = require("alpha.themes.dashboard")
 local nvim_web_devicons = require "nvim-web-devicons"
-local cwd = vim.fn.getcwd()
+local cdir = vim.fn.getcwd()
 
 local function get_extension(fn)
     local match = fn:match("^.+(%..+)$")
@@ -80,7 +80,7 @@ local function mru(start, cwd, items_number, opts)
         end
     end
 
-    local special_shortcuts = {'a', 's', 'd', 'j', 'k', 'l'}
+    local special_shortcuts = {'a', 's', 'd' }
 
     local tbl = {}
     for i, fn in ipairs(oldfiles) do
@@ -98,7 +98,7 @@ local function mru(start, cwd, items_number, opts)
           shortcut = tostring(i + start - 1 - #special_shortcuts)
         end
 
-        local file_button_el = file_button(fn, shortcut, short_fn)
+        local file_button_el = file_button(fn, " " .. shortcut, short_fn)
         tbl[i] = file_button_el
     end
     return {
@@ -170,7 +170,7 @@ local section_mru = {
     {
       type = "group",
       val = function()
-        return { mru(1, cwd, 9) }
+        return { mru(1, cdir, 9) }
       end,
       opts = { shrink_margin = false },
     },

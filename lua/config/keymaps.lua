@@ -68,7 +68,7 @@ normal("]e", ":m +1<cr>")
 visual("<", "<gv")
 visual(">", ">gv")
 
--- <Leader>i to reindent the current file
+-- Reindent the current file
 leader("i", "m`gg=G``")
 
 -- Split/Join constructs
