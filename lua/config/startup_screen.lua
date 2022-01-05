@@ -86,6 +86,7 @@ local function mru(start, cwd, items_number, opts)
     end
 
     local special_shortcuts = {'a', 's', 'd' }
+    local target_width = 35
 
     local tbl = {}
     for i, fn in ipairs(oldfiles) do
@@ -96,8 +97,11 @@ local function mru(start, cwd, items_number, opts)
             short_fn = vim.fn.fnamemodify(fn, ":~")
         end
 
-        if(#short_fn > 35) then
+        if(#short_fn > target_width) then
           short_fn = path.new(short_fn):shorten(1, {-2, -1})
+          if(#short_fn > target_width) then
+            short_fn = path.new(short_fn):shorten(1, {-1})
+          end
         end
 
         local shortcut = ""
