@@ -105,6 +105,7 @@ return packer.startup(function(use)
   use "christoomey/vim-tmux-navigator" -- Seemless movement between panes and tmux
   use "AdamWhittingham/vim-copy-filename" -- Quick shortcuts for copying the file name, path and/or line number
   use "ruanyl/vim-gh-line" -- Generate and copy the github/gitlab repo URL for the current line
+  use "ggandor/lightspeed.nvim" -- Fast motion!
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
