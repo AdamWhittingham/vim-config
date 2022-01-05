@@ -4,9 +4,6 @@ au BufEnter * setlocal cursorline
 au BufLeave * setlocal nocursorline
 ]]
 
-require 'colorizer'.setup({'*'}, { names = false, mode = 'virtualtext' })
-vim.cmd [[ au BufReadPost *.palette setlocal ft=palette ]]
-
 -- Setup function for running commands in other tmux tabs
 vim.cmd [[
 function! InvokeViaTmux(cmd, test)
