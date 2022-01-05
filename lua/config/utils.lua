@@ -4,8 +4,8 @@ au BufEnter * setlocal cursorline
 au BufLeave * setlocal nocursorline
 ]]
 
--- Disable Hexokinase showing swatches for any named colours, like "red"
-vim.g.Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
+require 'colorizer'.setup({'*'}, { names = false, mode = 'virtualtext' })
+vim.cmd [[ au BufReadPost *.palette setlocal ft=palette ]]
 
 -- Setup function for running commands in other tmux tabs
 vim.cmd [[

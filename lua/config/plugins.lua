@@ -77,7 +77,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-file-browser.nvim"
   use 'mbbill/undotree' -- Visualise the undo tree and make it easy to navigate
   use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
-  use { "RRethy/vim-hexokinase", run = "make hexokinase" } -- Show colour swatches next to colour codes
+  use 'DarwinSenior/nvim-colorizer.lua'
   use "feline-nvim/feline.nvim" -- Quick and nice statusline
   use "folke/which-key.nvim"
 
