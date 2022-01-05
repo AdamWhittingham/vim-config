@@ -4,14 +4,14 @@ components.active[1][3] = {
     provider = {
       name = "file_info",
       opts = {
-        type = 'full-path',
+        type = 'relative',
         colored_icon = false,
       }
     },
     short_provider = {
         name = 'file_info',
         opts = {
-          type = 'short-path',
+          type = 'relative-short',
           colored_icon = false,
         }
     },
