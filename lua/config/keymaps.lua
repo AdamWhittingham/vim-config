@@ -57,12 +57,12 @@ normal("m", "`")
 ---------------------------------
 
 -- Add add blank line above/below current line
-normal("]<space>", "m`o<Esc>``")
-normal("[<space>", "m`O<Esc>``")
+normal("[<space>", "O<Esc>")
+normal("]<space>", "o<Esc>2k")
 
 -- Move current line up or down
-normal("[e", ":m -2<cr>")
-normal("]e", ":m +1<cr>")
+normal("[e", ":m -2<cr>k")
+normal("]e", ":m +1<cr>k")
 
 -- Stay in indent mode
 visual("<", "<gv")
@@ -74,6 +74,18 @@ leader("i", "m`gg=G``")
 -- Split/Join constructs
 leader("s", ":SplitjoinSplit")
 leader("S", ":SplitjoinJoin")
+
+wk.register({
+  ["[<space>"] = { "Add blank line above" },
+  ["]<space>"] = { "Add blank line below" },
+  ["[e"] = { "Move line up" },
+  ["]e"] = { "Move line down" },
+  ["[c"] = { "Jump to previous change" },
+  ["]c"] = { "Jump to next change" },
+  ["<leader>i"] = { "Reindent the whole file" },
+  ["<leader>s"] = { "Split the current code construct" },
+  ["<leader>S"] = { "Compress the current code construct" },
+})
 
 ---------------------------------
 -- Diffs & Versioning
