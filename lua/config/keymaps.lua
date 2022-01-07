@@ -156,18 +156,15 @@ wk.register({
 leader("{", ":Telescope lsp_definitions")
 leader("}", ":Telescope lsp_references")
 
--- Show signature help, info/docs
+-- Show signature help, info/docs & diagnostics
 leader("ls", "<cmd>lua vim.lsp.buf.signature_help()")
-normal("li", "<cmd>lua vim.lsp.buf.hover()")
+leader("li", "<cmd>lua vim.lsp.buf.hover()")
+leader("ld", "<cmd>lua vim.diagnostic.open_float()")
 
 -- LSP code manipulations
 leader("lr", "<cmd>lua vim.lsp.buf.rename()")
 leader("la", "<cmd>lua vim.lsp.buf.code_action()")
 leader("lf", "<cmd>lua vim.lsp.buf.formatting()")
-
--- gi and <leader>gi to show diagnostics
-leader("ld", "<cmd>lua vim.diagnostic.open_float()")
-normal("ld", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })')
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the ruickfix list
 normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })')

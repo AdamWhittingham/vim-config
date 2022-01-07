@@ -55,11 +55,12 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function lsp_keymaps(bufnr)
+local function lsp_keymaps(_bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 M.on_attach = function(client, bufnr)
+  -- Always disable formatting in TypeScript
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
@@ -76,7 +77,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
-  return
+  return M
 end
 
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
