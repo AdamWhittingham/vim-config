@@ -156,15 +156,14 @@ wk.register({
 leader("{", ":Telescope lsp_definitions")
 leader("}", ":Telescope lsp_references")
 
--- Show signature help
+-- Show signature help, info/docs
 leader("ls", "<cmd>lua vim.lsp.buf.signature_help()")
-
--- Show info or docs
 normal("li", "<cmd>lua vim.lsp.buf.hover()")
 
 -- LSP code manipulations
 leader("lr", "<cmd>lua vim.lsp.buf.rename()")
 leader("la", "<cmd>lua vim.lsp.buf.code_action()")
+leader("lf", "<cmd>lua vim.lsp.buf.formatting()")
 
 -- gi and <leader>gi to show diagnostics
 leader("ld", "<cmd>lua vim.diagnostic.open_float()")
@@ -177,12 +176,13 @@ leader("q", "<cmd>lua vim.diagnostic.setloclist()")
 
 wk.register({
   l = {
-    name = "language",
+    name = "Language Server",
     r = "rename",
     a = "actions",
+    f = "format",
     d = "diagnostics",
     s = "signature help",
-    i = "Info or docs",
+    i = "info or docs",
   }
 }, { prefix = "<leader>" })
 
@@ -208,7 +208,7 @@ wk.register({
   t = { "Run tests for this file" },
   T = { "Run tests for this line" },
   p = {
-    name = "paths",
+    name = "Paths",
     r = "Copy the relative path",
     a = "Copy the absolute path",
     f = "Copy the file name",
