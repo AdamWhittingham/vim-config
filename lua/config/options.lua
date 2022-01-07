@@ -15,7 +15,7 @@ opt.list = true
 opt.listchars = {
   trail = "•",
   nbsp = "␣",
-  tab = "»•"
+  tab = "» "
 }
 
 -- UI
