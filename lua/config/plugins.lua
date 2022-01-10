@@ -73,13 +73,14 @@ return packer.startup(function(use)
   use "AdamWhittingham/vim-adcode-theme" -- A nice coat of paint for everything
   use "kyazdani42/nvim-web-devicons" -- Map file types to icons for easier list-scanning
   use "nvim-telescope/telescope.nvim" -- Excellent UI for files, searching, everything
-  use "nvim-telescope/telescope-media-files.nvim" -- Allow telescope to show media
-  use "nvim-telescope/telescope-file-browser.nvim"
+  use "nvim-telescope/telescope-media-files.nvim" -- Allow telescope to show media files in browsers which render images
+  use "nvim-telescope/telescope-file-browser.nvim" -- Add basic file browsing through Telescope
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- Faster finding using compiled FZF, likely to be baked in to Telescope someday
   use 'mbbill/undotree' -- Visualise the undo tree and make it easy to navigate
   use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
-  use 'DarwinSenior/nvim-colorizer.lua'
+  use 'DarwinSenior/nvim-colorizer.lua' -- Fork of colorizer with VirtualText
   use "feline-nvim/feline.nvim" -- Quick and nice statusline
-  use "folke/which-key.nvim"
+  use "folke/which-key.nvim" -- Help learn/relearn/remember key bindings with a handy pop up
 
   -------------------
   -- LANGUAGE SUPPORT
@@ -89,7 +90,7 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "ray-x/lsp_signature.nvim" -- Pop up function definitions when typing a function call
-  use "editorconfig/editorconfig-vim"
+  use "editorconfig/editorconfig-vim" -- Obey editorconfig files
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
