@@ -68,9 +68,9 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    { name = "buffer" },
     { name = "path" },
-    { name = "tmux", option = { all_panes = true } },
+    { name = "buffer", keyword_length = 2, max_item_count = 8 },
+    { name = "tmux", keyword_length = 5, max_item_count = 5, option = { all_panes = true } },
     { name = "look", keyword_length = 3, max_item_count = 5 },
   },
 
@@ -120,12 +120,20 @@ cmp.setup {
   },
 
   formatting = {
-    fields = { "kind", "abbr" },
+    --fields = { "abbr", "kind", "menu" },
+    fields = { "abbr", "kind" },
     format = function(entry, vim_item)
-      --vim_item.kind = string.format("%s ", kind_icons[vim_item.kind])
-      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      vim_item.menu = ({
+        buffer = "B",
+        nvim_lsp = "L",
+        luasnip = "S",
+        path = "P",
+        tmux = "T",
+        look = "D",
+      })[entry.source.name]
       return vim_item
-    end,
+    end
   },
 
   confirm_opts = {
