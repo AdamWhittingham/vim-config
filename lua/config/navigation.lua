@@ -103,6 +103,13 @@ telescope.setup {
   }
 }
 
-telescope.load_extension "fzf"
-telescope.load_extension "media_files"
-telescope.load_extension "file_browser"
+if pcall(function()
+  telescope.load_extension "fzf"
+  telescope.load_extension "media_files"
+  telescope.load_extension "file_browser"
+end)
+then
+  -- all good!
+else
+  print("Telescope extentions failed to load")
+end
