@@ -17,3 +17,8 @@ function! InvokeViaTmux(cmd, test)
   let output = system(l:command)
 endfunction
 ]]
+
+function _G.set_mark()
+  local mark = string.char(vim.fn.getchar())
+  vim.api.nvim_command(":mark "..mark)
+end

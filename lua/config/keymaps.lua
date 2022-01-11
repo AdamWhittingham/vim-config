@@ -50,7 +50,7 @@ leader("wS", ":split")
 
 leader("h", ":nohlsearch")
 leader("m", ":Telescope marks")
-normal("m", "`")
+normal("m", ":lua set_mark()")
 leader("j", "Telescope jumplist")
 
 ---------------------------------
