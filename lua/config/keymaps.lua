@@ -51,6 +51,7 @@ leader("wS", ":split")
 leader("h", ":nohlsearch")
 leader("m", ":Telescope marks")
 normal("m", "`")
+leader("j", "Telescope jumplist")
 
 ---------------------------------
 -- Text manipulation
