@@ -9,6 +9,9 @@ A potent Neovim config, enhanced with rich flavours of software development and 
 git clone -b neovim-rebuild https://github.com/AdamWhittingham/vim-config.git ~/.config/nvim
 ```
 
+### Vim
+If you are still using this config prior to conversion to Neovim, I've left the `master` branch in-tact with it on.
+
 # Optional external dependencies
 There's a couple of tools that make this config really work well:
 
