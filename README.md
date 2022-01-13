@@ -6,7 +6,7 @@ A potent Neovim config, enhanced with rich flavours of software development and 
 # Installation
 
 ```bash
-git clone -b neovim-rebuild https://github.com/AdamWhittingham/vim-config.git ~/.config/nvim
+git clone -b nvim https://github.com/AdamWhittingham/vim-config.git ~/.config/nvim
 ```
 
 ### Vim
