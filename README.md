@@ -9,18 +9,19 @@ A potent Neovim config, enhanced with rich flavours of software development and 
 git clone -b nvim https://github.com/AdamWhittingham/vim-config.git ~/.config/nvim
 ```
 
-### Vim
-If you are still using this config prior to conversion to Neovim, I've left the `master` branch in-tact with it on.
+### Still using Vim?
+If you haven't moved to Neovim, I've left the `master` branch in-tact with it on.
 
 # Optional external dependencies
 There's a couple of tools that make this config really work well:
 
 1. Running in [Kitty](https://sw.kovidgoyal.net/kitty/) with a [NerdFont](https://www.nerdfonts.com/) because we deserve pretty things in the terminal.
-2. [Ripgrep](https://github.com/BurntSushi/ripgrep) makes a lot of searches so much faster
+2. [Ripgrep](https://github.com/BurntSushi/ripgrep) makes a lot of searches **much** faster
 3. [fd](https://github.com/sharkdp/fd) Similarly, `fd` is a replacement to find which makes file listing much faster
 
 # Key Mappings
 For the canonical list, see [keymaps.lua](./lua/config/keymaps.lua)
+You can also type `:WhichKey` for a helpful list, or pausing in the middle of a sequence will show you the options to complete it.
 
 The `<leader>` key is **Space**
 
