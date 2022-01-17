@@ -124,6 +124,7 @@ wk.register({
 
 -- Opening and finding files
 leader("d", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser() theme=get_ivy")
+leader("D", "<cmd>lua require 'lua/config/telescope/directory_grep'.live_grep_in_folder()")
 leader("f", ":Telescope find_files")
 leader("F", ":Telescope live_grep theme=dropdown layout_config={width=0.75,height=0.7}")
 leader("*", ":Telescope grep_string theme=dropdown layout_config={width=0.75}")
@@ -133,20 +134,15 @@ leader(".", ":Telescope buffers theme=get_dropdown sort_mru=true layout_config={
 leader("<leader>", ":b#")
 
 wk.register({
-  f = {
-    name = "Find",
-    d = "Directory navication",
-    f = "Files by name",
-    F = "String in files",
-  },
-}, { prefix = "<leader>" })
-
-wk.register({
   ["<leader>."] = { "Find open buffer" },
   ["<leader>*"] = "String under the cursor in files",
   ["<leader><space>"] = { "Switch to the last open buffer" },
   ["<leader>i"] = { "Indent all lines" },
   ["<leader>s"] = { "Switch between common modes" },
+  ["<leader>d"] = { "Directory browser" },
+  ["<leader>D"] = { "Directory-filtered search" },
+  ["<leader>f"] = { "Find files by name" },
+  ["<leader>F"] = { "Find text in files" },
 })
 
 ---------------------------------
