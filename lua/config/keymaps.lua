@@ -53,6 +53,10 @@ leader("m", ":Telescope marks")
 normal("m", ":lua set_mark()")
 leader("j", "Telescope jumplist")
 
+-- Nicer movement through the change list (where you have edited)
+keymap("n", "[g", "g;", default_opts)
+keymap("n", "]g", "g,", default_opts)
+
 ---------------------------------
 -- Text manipulation
 ---------------------------------
@@ -81,8 +85,12 @@ wk.register({
   ["]<space>"] = { "Add blank line below" },
   ["[e"] = { "Move line up" },
   ["]e"] = { "Move line down" },
-  ["[c"] = { "Jump to previous change" },
-  ["]c"] = { "Jump to next change" },
+  ["[c"] = { "Jump to previous change in file" },
+  ["]c"] = { "Jump to next change in file" },
+  ["[d"] = { "Previous diagnostic message" },
+  ["]d"] = { "Next diagnostic message" },
+  ["[g"] = { "Previous cursor position" },
+  ["]g"] = { "Next cursor position" },
   ["<leader>i"] = { "Reindent the whole file" },
   ["<leader>s"] = { "Split the current code construct" },
   ["<leader>S"] = { "Compress the current code construct" },
