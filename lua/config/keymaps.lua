@@ -134,7 +134,7 @@ wk.register({
 leader("d", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser() theme=get_ivy")
 leader("D", "<cmd>lua require 'lua/config/telescope/directory_grep'.live_grep_in_folder()")
 leader("f", ":Telescope find_files")
-leader("F", ":Telescope live_grep theme=dropdown layout_config={width=0.75,height=0.7}")
+leader("F", ":Telescope grep_string search=")
 leader("*", ":Telescope grep_string theme=dropdown layout_config={width=0.75}")
 
 -- Switching buffers
