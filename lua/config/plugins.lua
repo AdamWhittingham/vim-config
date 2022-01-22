@@ -72,7 +72,10 @@ return packer.startup(function(use)
   use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
   use "AdamWhittingham/vim-adcode-theme" -- A nice coat of paint for everything
   use "kyazdani42/nvim-web-devicons" -- Map file types to icons for easier list-scanning
-  use "nvim-telescope/telescope.nvim" -- Excellent UI for files, searching, everything
+  use { -- Excellent UI for files, searching, everything
+    'nvim-telescope/telescope.nvim',
+    requires = { { 'nvim-telescope/telescope-live-grep-raw.nvim' } }
+  }
   use "nvim-telescope/telescope-media-files.nvim" -- Allow telescope to show media files in browsers which render images
   use "nvim-telescope/telescope-file-browser.nvim" -- Add basic file browsing through Telescope
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- Faster finding using compiled FZF, likely to be baked in to Telescope someday
