@@ -94,6 +94,13 @@ wk.register({
   ["<leader>i"] = { "Reindent the whole file" },
   ["<leader>s"] = { "Split the current code construct" },
   ["<leader>S"] = { "Compress the current code construct" },
+  ["<"] = { "Move selection left" },
+  [">"] = { "Move selection right" },
+  ["gs"] = { "Switch code construct" },
+  ["gS"] = { "Expand code construct" },
+  ["gJ"] = { "Contract code construct" },
+  ["gb"] = { "Block comment {motion}" },
+  ["gc"] = { "Linewise comment {motion}" },
 })
 
 ---------------------------------
