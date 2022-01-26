@@ -56,7 +56,7 @@ local function lsp_highlight_document(client)
 end
 
 local function lsp_keymaps(_bufnr)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_seq_sync()' ]]
 end
 
 M.on_attach = function(client, bufnr)
