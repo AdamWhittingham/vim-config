@@ -60,15 +60,10 @@ local function lsp_keymaps(_bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  -- Always disable formatting in TypeScript
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+  -- Autoformat on save in Go
+  if client.name == "gopls" then
+    vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
   end
-
-  -- Save on write
-  -- if client.resolved_capabilities.document_formatting then
-  --   vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
-  -- end
 
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
