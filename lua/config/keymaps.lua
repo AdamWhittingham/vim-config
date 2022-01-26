@@ -158,6 +158,7 @@ wk.register({
   ["<leader>D"] = { "Directory-filtered search" },
   ["<leader>f"] = { "Find files by name" },
   ["<leader>F"] = { "Find text in files" },
+  ["<leader>q"] = { "Show LSP quickfix list" },
 })
 
 ---------------------------------
@@ -176,7 +177,7 @@ leader("ld", "<cmd>lua vim.diagnostic.open_float()")
 -- LSP code manipulations
 leader("lr", "<cmd>lua vim.lsp.buf.rename()")
 leader("la", "<cmd>lua vim.lsp.buf.code_action()")
-leader("lf", "<cmd>lua vim.lsp.buf.formatting()")
+leader("lf", "<cmd>lua vim.lsp.buf.formatting_seq_sync()")
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the ruickfix list
 normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })')
