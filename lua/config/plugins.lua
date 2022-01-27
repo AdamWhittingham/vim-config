@@ -27,7 +27,7 @@ if not status_ok then
   return
 end
 
-return packer.startup(function(use)
+return packer.startup({function(use)
   --------------------
   -- PLUGIN MANAGEMENT
   --------------------
@@ -115,5 +115,9 @@ return packer.startup(function(use)
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
-end)
-
+end,
+config = {
+  display = {
+  open_fn = require('packer.util').float,
+}
+}})
