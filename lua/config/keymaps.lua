@@ -168,6 +168,7 @@ wk.register({
 -- Jump to definition or references
 leader("{", ":Telescope lsp_definitions")
 leader("}", ":Telescope lsp_references")
+normal("<C-]>", "<cmd>lua vim.lsp.buf.definition()")
 
 -- Show signature help, info/docs & diagnostics
 leader("ls", "<cmd>lua vim.lsp.buf.signature_help()")
