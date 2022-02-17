@@ -141,7 +141,7 @@ wk.register({
 leader("d", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser() theme=get_ivy")
 leader("D", "<cmd>lua require 'lua/config/telescope/directory_grep'.live_grep_in_folder()")
 leader("f", ":Telescope find_files")
-leader("F", ":lua require('telescope').extensions.live_grep_raw.live_grep_raw()")
+leader("F", ":Telescope live_grep")
 leader("*", ":Telescope grep_string theme=dropdown layout_config={width=0.75}")
 
 -- Switching buffers
@@ -179,7 +179,7 @@ leader("lr", "<cmd>lua vim.lsp.buf.rename()")
 leader("la", "<cmd>lua vim.lsp.buf.code_action()")
 leader("lf", "<cmd>lua vim.lsp.buf.formatting_seq_sync()")
 
--- [d and ]d to traverse diagnostics - <leader>q to add all to the ruickfix list
+-- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
 normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })')
 normal("]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })')
 leader("q", "<cmd>lua vim.diagnostic.setloclist()")

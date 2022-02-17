@@ -74,7 +74,6 @@ return packer.startup({function(use)
   use "kyazdani42/nvim-web-devicons" -- Map file types to icons for easier list-scanning
   use { -- Excellent UI for files, searching, everything
     'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-telescope/telescope-live-grep-raw.nvim' } }
   }
   use "nvim-telescope/telescope-media-files.nvim" -- Allow telescope to show media files in browsers which render images
   use "nvim-telescope/telescope-file-browser.nvim" -- Add basic file browsing through Telescope
