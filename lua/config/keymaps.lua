@@ -142,6 +142,8 @@ leader("d", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser()
 leader("D", "<cmd>lua require 'lua/config/telescope/directory_grep'.live_grep_in_folder()")
 leader("f", ":Telescope find_files")
 leader("F", ":Telescope live_grep")
+leader("g", ":Telescope jumplist")
+leader("G", ":Telescope resume")
 leader("*", ":Telescope grep_string theme=dropdown layout_config={width=0.75}")
 
 -- Switching buffers
@@ -158,6 +160,8 @@ wk.register({
   ["<leader>D"] = { "Directory-filtered search" },
   ["<leader>f"] = { "Find files by name" },
   ["<leader>F"] = { "Find text in files" },
+  ["<leader>g"] = { "Show recent cursor locations" },
+  ["<leader>G"] = { "Resume last telescope select" },
   ["<leader>q"] = { "Show LSP quickfix list" },
 })
 

@@ -10,7 +10,8 @@ git clone -b nvim https://github.com/AdamWhittingham/vim-config.git ~/.config/nv
 ```
 
 ### Still using Vim?
-If you haven't moved to Neovim, I've left the `master` branch in-tact with it on.
+If you haven't moved to Neovim, I've left the `master` branch in-tact with the now unmaintained Vim-centric config on to avoid breaking anything.
+But seriously, consider switching to Neovim and trying the new stuff out, it's fantastic!
 
 # Optional external dependencies
 There's a couple of tools that make this config really work well:
