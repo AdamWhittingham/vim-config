@@ -31,6 +31,13 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 ---------------------------------
+-- Window save and reload
+---------------------------------
+leader("ww", ":w")
+leader("we", ":e")
+leader("wq", ":x")
+
+---------------------------------
 -- Window splitting & movement
 ---------------------------------
 
@@ -43,6 +50,17 @@ normal("<C-k>", "<C-w>k")
 -- Split panes
 leader("ws", ":vsplit")
 leader("wS", ":split")
+
+wk.register({
+  w = {
+    name = "Window",
+    s = "Split (vertically)",
+    S = "Split (horizontally)",
+    w = "Write buffer",
+    e = "Reload buffer",
+    x = "Write buffer and quit",
+  }
+}, { prefix = "<leader>" })
 
 ---------------------------------
 -- Text navigation
