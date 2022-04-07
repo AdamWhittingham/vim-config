@@ -37,6 +37,9 @@ leader("ww", ":w")
 leader("we", ":e")
 leader("wq", ":x")
 
+-- Replace Q (Ex Mode) with replay macro
+keymap("n", "Q", "@", default_opts)
+
 ---------------------------------
 -- Window splitting & movement
 ---------------------------------
@@ -119,6 +122,8 @@ wk.register({
   ["gJ"] = { "Contract code construct" },
   ["gb"] = { "Block comment {motion}" },
   ["gc"] = { "Linewise comment {motion}" },
+  ["q"] = { "Select buffer and record macro" },
+  ["Q"] = { "Select buffer and replay macro" },
 })
 
 ---------------------------------
