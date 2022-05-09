@@ -121,9 +121,9 @@ cmp.setup {
 
   formatting = {
     --fields = { "abbr", "kind", "menu" },
-    fields = { "abbr", "kind" },
+    fields = { "kind", "abbr" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
       vim_item.menu = ({
         buffer = "B",
         nvim_lsp = "L",
