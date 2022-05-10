@@ -15,7 +15,6 @@ null_ls.setup({
       filetypes = { 'text', 'sh', 'zsh', 'toml', 'make', 'conf', 'tmux', 'ruby', 'javascript' },
     }),
     fmt.prettier.with({ extra_args = { "--no-semi" } }),
-    --fmt.prettierd,
     fmt.eslint_d,
     fmt.gofmt,
     diag.eslint_d,

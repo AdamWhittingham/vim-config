@@ -87,9 +87,15 @@ return packer.startup({function(use)
   -------------------
   -- LANGUAGE SUPPORT
   -------------------
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use { "williamboman/nvim-lsp-installer", -- simple to use language server installer
-    run = [[:LspInstall solargraph gopls html cssls]] -- Setup some useful LSPs ready to go!
+  use {
+    "williamboman/nvim-lsp-installer",
+    {
+      "neovim/nvim-lspconfig",
+      config = function()
+        require("nvim-lsp-installer").setup({ automatic_installation = true })
+        require "config.lsp.init"
+      end
+    }
   }
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
