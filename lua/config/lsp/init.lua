@@ -14,3 +14,15 @@ lspconfig.html.setup {}
 lspconfig.solargraph.setup {}
 lspconfig.sumneko_lua.setup {}
 lspconfig.yamlls.setup {}
+
+local lspsig_ok, lspsig = pcall(require, "lsp_signature")
+if not lspsig_ok then
+  return
+end
+
+lspsig.setup({
+  bind = true,
+  doc_lines = 5,
+  hint_prefix = " ",
+  hi_parameter = "LspSignatureActiveParameter",
+})
