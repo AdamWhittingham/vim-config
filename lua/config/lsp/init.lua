@@ -23,6 +23,9 @@ end
 lspsig.setup({
   bind = true,
   doc_lines = 5,
+  max_height = 6,
+  max_width = 60,
   hint_prefix = " ",
   hi_parameter = "LspSignatureActiveParameter",
+  floating_window = false,
 })
