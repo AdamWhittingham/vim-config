@@ -138,9 +138,13 @@ add_right({
     style = 'bold'
   },
   right_sep = {
-    str = ' ',
+    str = '  ',
     hl = { style = 'bold' }
   },
+})
+
+add_right({
+  provider = 'git_branch',
 })
 
 add_right({
