@@ -1,5 +1,6 @@
 -- Automatically install packer
 local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = vim.fn.system {
     "git",
@@ -83,6 +84,7 @@ return packer.startup({function(use)
   use 'DarwinSenior/nvim-colorizer.lua' -- Fork of colorizer with VirtualText
   use "feline-nvim/feline.nvim" -- Quick and nice statusline
   use "folke/which-key.nvim" -- Help learn/relearn/remember key bindings with a handy pop up
+  use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" }
 
   -------------------
   -- LANGUAGE SUPPORT
