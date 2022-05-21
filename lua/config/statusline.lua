@@ -2,6 +2,8 @@ local lsp = require('feline.providers.lsp')
 local vi_mode_utils = require('feline.providers.vi_mode')
 local gps = require("nvim-gps")
 
+gps.setup()
+
 local force_inactive = {
   filetypes = {},
   buftypes = {},
@@ -57,26 +59,26 @@ add_left({
 })
 
 add_left({
-    provider = {
-      name = "file_info",
-      opts = {
-        type = 'relative',
-        colored_icon = false,
-      }
-    },
-    short_provider = {
-        name = 'file_info',
-        opts = {
-          type = 'relative-short',
-          colored_icon = false,
-        }
-    },
-    hl = {
-        fg = 'white',
-        bg = '#102070',
-    },
-    left_sep = 'slant_left',
-    right_sep = {'slant_right_2', ' '},
+  provider = {
+    name = "file_info",
+    opts = {
+      type = 'relative',
+      colored_icon = false,
+    }
+  },
+  short_provider = {
+    name = 'file_info',
+    opts = {
+      type = 'relative-short',
+      colored_icon = false,
+    }
+  },
+  hl = {
+    fg = 'white',
+    bg = '#102070',
+  },
+  left_sep = 'slant_left',
+  right_sep = {'slant_right_2', ' '},
 })
 
 add_left({
@@ -90,18 +92,22 @@ add_left({
   },
 })
 
-
 add_left({
-  provider = function()
-    return gps.get_location()
-  end,
   enabled = function()
     return gps.is_available()
   end,
+  provider = function()
+    return gps.get_location({})
+  end,
+  short_provider = function()
+    return gps.get_location({
+      depth = 3,
+      separator = ''
+    })
+  end,
   hl = {
     fg = 'white',
-    bg = 'bg',
-    style = 'bold'
+    bg = 'bg'
   }
 })
 
@@ -135,11 +141,6 @@ add_right({
 })
 
 add_right({
-  provider = 'git_branch',
-  hl = { style = 'bold' }
-})
-
-add_right({
   provider = 'git_diff_added',
   hl = {
     fg = 'green',
@@ -170,9 +171,8 @@ add_right({
     opts = { padding = true },
   },
   hl = {
-    fg = 'white',
+    fg = 'lightgrey',
     bg = 'bg',
-    style = 'bold'
   },
   left_sep = {
     str = '  ',
