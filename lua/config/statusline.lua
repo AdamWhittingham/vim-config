@@ -29,6 +29,38 @@ force_inactive.buftypes = {
   'terminal'
 }
 
+-- Override Feline colours with AdCode values
+local colors = {
+  fg       = '#FAFAFA',
+  bg       = '#07071A',
+  blue     = '#40B0FF',
+  cyan     = '#06B0B0',
+  darkblue = '#102070',
+  green    = '#50DF40',
+  magenta  = '#F4628D',
+  orange   = '#FFB633',
+  red      = '#E9475A',
+  purple   = '#9C4FFF',
+  yellow   = '#FFFF40',
+}
+
+local vi_mode_colors = {
+    NORMAL = colors.green,
+    INSERT = colors.red,
+    VISUAL = colors.magenta,
+    OP = colors.green,
+    BLOCK = colors.blue,
+    REPLACE = colors.purple,
+    ['V-REPLACE'] = colors.purple,
+    ENTER = colors.cyan,
+    MORE = colors.cyan,
+    SELECT = colors.orange,
+    COMMAND = colors.green,
+    SHELL = colors.green,
+    TERM = colors.green,
+    NONE = colors.yellow
+}
+
 LEFT = 1;
 RIGHT = 2;
 
@@ -48,12 +80,11 @@ end
 add_left({
   provider = '  ',
   hl = function()
-    local val = {}
-
-    val.fg = vi_mode_utils.get_mode_color()
-    val.style = 'bold'
-
-    return val
+    return {
+      name = require('feline.providers.vi_mode').get_mode_highlight_name(),
+      fg = require('feline.providers.vi_mode').get_mode_color(),
+      style = 'bold'
+    }
   end,
   right_sep = ' '
 })
@@ -74,8 +105,8 @@ add_left({
     }
   },
   hl = {
-    fg = 'white',
-    bg = '#102070',
+    fg = colors.fg,
+    bg = colors.darkblue,
   },
   left_sep = 'slant_left',
   right_sep = {'slant_right_2', ' '},
@@ -104,11 +135,7 @@ add_left({
       depth = 3,
       separator = ''
     })
-  end,
-  hl = {
-    fg = 'white',
-    bg = 'bg'
-  }
+  end
 })
 
 
@@ -122,7 +149,7 @@ add_right({
     return lsp.diagnostics_exist(vim.diagnostic.severity.ERROR)
   end,
   hl = {
-    fg = 'red',
+    fg = colors.red,
     style = 'bold'
   },
   right_sep = ' '
@@ -134,7 +161,7 @@ add_right({
     return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
   end,
   hl = {
-    fg = 'orange',
+    fg = colors.orange,
     style = 'bold'
   },
   right_sep = {
@@ -149,26 +176,17 @@ add_right({
 
 add_right({
   provider = 'git_diff_added',
-  hl = {
-    fg = 'green',
-    bg = 'bg'
-  }
+  hl = { fg = colors.green }
 })
 
 add_right({
   provider = 'git_diff_changed',
-  hl = {
-    fg = 'orange',
-    bg = 'bg'
-  }
+  hl = { fg = colors.orange }
 })
 
 add_right({
   provider = 'git_diff_removed',
-  hl = {
-    fg = 'red',
-    bg = 'bg'
-  },
+  hl = { fg = colors.red }
 })
 
 
@@ -177,10 +195,7 @@ add_right({
     name = 'position',
     opts = { padding = true },
   },
-  hl = {
-    fg = 'lightgrey',
-    bg = 'bg',
-  },
+  hl = { fg = 'lightgrey' },
   left_sep = {
     str = '  ',
     hl = { style = 'bold' }
@@ -196,33 +211,26 @@ add_right({
     },
   },
   hl = {
-    fg = '#102070',
-    bg = '#2050BF',
+    fg = colors.darkblue,
+    bg = colors.blue
   },
   left_sep = ' '
 })
 
--- INACTIVE
-
--- fileType
+-------------------------------------------
+-- INACTIVE MODE
+-------------------------------------------
 components.inactive[1][1] = {
   provider = 'file_type',
-  hl = {
-    fg = 'NONE',
-    bg = 'cyan'
-  },
+  hl = { bg = colors.darkblue },
   left_sep = {
     str = ' ',
-    hl = {
-      fg = 'cyan',
-    }
+    hl = { fg = colors.darkblue }
   },
   right_sep = {
     {
       str = '',
-      hl = {
-        fg = 'cyan',
-      }
+      hl = { fg = colors.darkblue }
     },
     ' '
   }
@@ -231,4 +239,5 @@ components.inactive[1][1] = {
 require('feline').setup({
   components = components,
   force_inactive = force_inactive,
+  vi_mode_colors = vi_mode_colors,
 })
