@@ -137,7 +137,10 @@ add_right({
     fg = 'orange',
     style = 'bold'
   },
-  right_sep = ' '
+  right_sep = {
+    str = ' ',
+    hl = { style = 'bold' }
+  },
 })
 
 add_right({
@@ -189,8 +192,8 @@ add_right({
     },
   },
   hl = {
-    bg = 'blue',
-    fg = 'darkblue',
+    fg = '#102070',
+    bg = '#2050BF',
   },
   left_sep = ' '
 })
