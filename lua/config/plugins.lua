@@ -45,6 +45,17 @@ return packer.startup({function(use)
   use "tpope/vim-abolish" -- Smartcase replacement with S
   use "tpope/vim-repeat" -- Make surround, abolish and more repeatable
   use "lukas-reineke/indent-blankline.nvim" -- Show indentation markers
+  use {
+    "gbprod/yanky.nvim",
+    config = function()
+      require("yanky").setup({
+        picker = {
+          select = { action = nil },
+          telescope = { mappings = nil },
+        },
+      })
+    end,
+  }
 
   -------------------
   -- AUTOCOMPLETION

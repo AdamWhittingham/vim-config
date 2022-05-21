@@ -101,6 +101,12 @@ leader("i", "m`gg=G``")
 leader("s", ":SplitjoinSplit")
 leader("S", ":SplitjoinJoin")
 
+-- Yank ring setup
+normal("p", "<Plug>(YankyPutAfter)")
+normal("P", "<Plug>(YankyPutBefore)")
+normal("]p", "<Plug>(YankyCycleForward)")
+normal("[p", "<Plug>(YankyCycleBackward)")
+
 wk.register({
   ["[<space>"] = { "Add blank line above" },
   ["]<space>"] = { "Add blank line below" },
@@ -112,6 +118,8 @@ wk.register({
   ["]d"] = { "Next diagnostic message" },
   ["[g"] = { "Previous cursor position" },
   ["]g"] = { "Next cursor position" },
+  ["[p"] = { "Swap paste to previous yank" },
+  ["]p"] = { "Swap paste to next yank" },
   ["<leader>i"] = { "Reindent the whole file" },
   ["<leader>s"] = { "Split the current code construct" },
   ["<leader>S"] = { "Compress the current code construct" },
