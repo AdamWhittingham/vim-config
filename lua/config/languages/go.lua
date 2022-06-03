@@ -13,8 +13,12 @@ function org_imports(wait_ms)
   end
 end
 
-vim.cmd [[
-augroup GO_LSP
-  autocmd BufWritePre *.go :silent! lua org_imports(1000)
-augroup END
-]]
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.go"},
+  command = "lua vim.lsp.buf.formatting_seq_sync()",
+})
+
+local has_dapgo, dapgo = pcall(require, "dap-go")
+if has_dapgo then
+  dapgo.setup()
+end

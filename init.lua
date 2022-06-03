@@ -1,15 +1,15 @@
 require "config.options"
 require "config.utils"
-require "config.keymaps"
 require "config.plugins"
-
+require "config.keymaps"
 require "config.navigation"
 require "config.language_options"
 require "config.treesitter"
 require "config.autocomplete"
 require "config.snippets"
--- require "config.lsp" -- LSP is loaded by lsp-installer to ensure load order
+-- require "config.lsp" -- LSP is loaded by lsp-installer in plugins.lua to ensure load order
 require "config.languages"
+require "config.debugging"
 require "config.git"
 require "config.startup_screen"
 require "config.indentation_guidelines"

@@ -122,6 +122,14 @@ return packer.startup({function(use)
   use "nvim-treesitter/playground" -- Show the parser tree and syntax under cursor
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
 
+  -- Debugging
+  use "mfussenegger/nvim-dap"
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use "theHamsta/nvim-dap-virtual-text"
+  use "nvim-telescope/telescope-dap.nvim"
+  use "Pocco81/DAPInstall.nvim"
+  use "leoluz/nvim-dap-go"
+
   -------------------
   -- Navigation
   -------------------
