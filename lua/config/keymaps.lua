@@ -72,7 +72,8 @@ wk.register({
 leader("h", ":nohlsearch")
 leader("m", ":Telescope marks")
 normal("m", ":lua set_mark()")
-leader("j", "Telescope jumplist")
+leader("j", ":Telescope jumplist")
+leader("ll", ":Telescope diagnostics")
 
 -- Nicer movement through the change list (where you have edited)
 keymap("n", "[g", "g;", default_opts)
