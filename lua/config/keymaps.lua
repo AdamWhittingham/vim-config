@@ -121,16 +121,15 @@ wk.register({
   ["]g"] = { "Next cursor position" },
   ["[p"] = { "Swap paste to previous yank" },
   ["]p"] = { "Swap paste to next yank" },
-  ["<leader>i"] = { "Reindent the whole file" },
-  ["<leader>s"] = { "Split the current code construct" },
-  ["<leader>S"] = { "Compress the current code construct" },
   ["<"] = { "Move selection left" },
   [">"] = { "Move selection right" },
-  ["gs"] = { "Switch code construct" },
-  ["gS"] = { "Expand code construct" },
-  ["gJ"] = { "Contract code construct" },
-  ["gb"] = { "Block comment {motion}" },
-  ["gc"] = { "Linewise comment {motion}" },
+  g = {
+    s = { "Switch code construct" },
+    S = { "Expand code construct" },
+    J = { "Contract code construct" },
+    b = { "Block comment {motion}" },
+    c = { "Linewise comment {motion}" },
+  },
   ["q"] = { "Select buffer and record macro" },
   ["Q"] = { "Select buffer and replay macro" },
 })
@@ -183,19 +182,20 @@ leader(".", ":Telescope buffers theme=get_dropdown sort_mru=true layout_config={
 leader("<leader>", ":b#")
 
 wk.register({
-  ["<leader>."] = { "Find open buffer" },
-  ["<leader>*"] = "String under the cursor in files",
-  ["<leader><space>"] = { "Switch to the last open buffer" },
-  ["<leader>i"] = { "Indent all lines" },
-  ["<leader>s"] = { "Switch between common modes" },
-  ["<leader>d"] = { "Directory browser" },
-  ["<leader>D"] = { "Directory-filtered search" },
-  ["<leader>f"] = { "Find files by name" },
-  ["<leader>F"] = { "Find text in files" },
-  ["<leader>g"] = { "Show recent cursor locations" },
-  ["<leader>G"] = { "Resume last telescope select" },
-  ["<leader>q"] = { "Show LSP quickfix list" },
-})
+  ["."] = { "Find open buffer" },
+  ["*"] = "String under the cursor in files",
+  ["<space>"] = { "Switch to the last open buffer" },
+  i = { "Indent all lines" },
+  s = { "Switch between common modes" },
+  S = { "Compress the current code construct" },
+  d = { "Directory browser" },
+  D = { "Directory-filtered search" },
+  f = { "Find files by name" },
+  F = { "Find text in files" },
+  g = { "Show recent cursor locations" },
+  G = { "Resume last telescope select" },
+  q = { "Show LSP quickfix list" },
+}, {prefix = "<leader>"})
 
 ---------------------------------
 -- Language aware navigation
@@ -231,7 +231,7 @@ wk.register({
     s = "signature help",
     i = "info or docs",
   }
-}, { prefix = "<leader>" })
+}, {})
 
 ---------------------------------
 -- Test helpers
