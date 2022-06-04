@@ -13,9 +13,11 @@ function org_imports(wait_ms)
   end
 end
 
+local group = vim.api.nvim_create_augroup("lang-go", {})
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.go"},
   command = "lua vim.lsp.buf.formatting_seq_sync()",
+  pattern = {"*.go"},
+  group = group,
 })
 
 local has_dapgo, dapgo = pcall(require, "dap-go")

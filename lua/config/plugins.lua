@@ -123,12 +123,12 @@ return packer.startup({function(use)
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
 
   -- Debugging
-  use "mfussenegger/nvim-dap"
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-  use "theHamsta/nvim-dap-virtual-text"
-  use "nvim-telescope/telescope-dap.nvim"
-  use "Pocco81/DAPInstall.nvim"
-  use "leoluz/nvim-dap-go"
+  use "mfussenegger/nvim-dap"        -- DAP binding
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }   -- Lovely UI for DAP output
+  use "theHamsta/nvim-dap-virtual-text"     -- Show debug values in virtual text
+  use "nvim-telescope/telescope-dap.nvim"    -- Telescope extention for frames, threads, commands etc.
+  use "leoluz/nvim-dap-go"          -- Bindings for Delve, the go debugger
+  use "suketa/nvim-dap-ruby"      -- Bindings for ruby-debug
 
   -------------------
   -- Navigation

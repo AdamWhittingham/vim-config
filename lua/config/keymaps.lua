@@ -272,28 +272,35 @@ wk.register({
 wk.register({
   b = {
     name = "deBug",
+    b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+    B = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
+
+    g = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+    n = { "<cmd>lua require'dap'.continue()<cr>", "Continue to Next" },
+
+    s = { "<cmd>lua require'dap'.step_in()<cr>", "Step Into" },
+    S = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
     ["<Left>"] = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
     ["<Down>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
     ["<Right>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
     ["<Up>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-    R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
-    E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
-    B = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
-    b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-    U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
-    c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+
     d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-    e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
-    g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-    h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
-    S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
-    P = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
     q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
     k = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
+
+    R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
+    E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
+    U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
     r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-    s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+    -- e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+    -- g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+    -- h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
+    -- S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
+    -- P = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
   },
-}, { prefix = "<leader>" })
+}, {})
 
 ---------------------------------
 -- Colorscheme Creation helpers
