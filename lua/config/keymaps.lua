@@ -197,7 +197,7 @@ wk.register({
   D = { "Directory-filtered search" },
   f = { "Find files by name" },
   F = { "Find text in files" },
-  g = { "Show recent cursor locations" },
+  j = { "Show recent cursor locations" },
   G = { "Resume last telescope select" },
   q = { "Show LSP quickfix list" },
 }, {prefix = "<leader>"})
@@ -254,6 +254,9 @@ leader("pl", ":CopyRelativePathAndLine")
 
 -- <Leader>gr to open the current line in the repos website
 vim.g.gh_open_command = [[fn() { echo "$@" | pbcopy; }; fn ]]
+vim.g.gh_line_map_default = 0
+vim.g.gh_line_blame_map_default = 0
+vim.g.gh_repo_map = 0
 vim.g.gh_line_map = '<leader>pg'
 
 wk.register({
