@@ -108,6 +108,10 @@ normal("P", "<Plug>(YankyPutBefore)")
 normal("]p", "<Plug>(YankyCycleForward)")
 normal("[p", "<Plug>(YankyCycleBackward)")
 
+-- OS Clipboard yank
+vim.api.nvim_set_keymap("n", "<leader>y", "\"+y", default_opts)
+vim.api.nvim_set_keymap("v", "<leader>y", "\"+y", default_opts)
+
 wk.register({
   ["[<space>"] = { "Add blank line above" },
   ["]<space>"] = { "Add blank line below" },
@@ -132,6 +136,7 @@ wk.register({
   },
   ["q"] = { "Select buffer and record macro" },
   ["Q"] = { "Select buffer and replay macro" },
+  ["<leader>y"] = { "Yank to system clipboad"},
 })
 
 ---------------------------------
