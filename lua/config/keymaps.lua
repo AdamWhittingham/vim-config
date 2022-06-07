@@ -231,7 +231,7 @@ wk.register({
     s = "signature help",
     i = "info or docs",
   }
-}, {})
+}, { prefix = "<leader>" })
 
 ---------------------------------
 -- Test helpers
@@ -300,7 +300,7 @@ wk.register({
     -- S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
     -- P = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
   },
-}, {})
+}, { prefix = "<leader>" })
 
 ---------------------------------
 -- Colorscheme Creation helpers
