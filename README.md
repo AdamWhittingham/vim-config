@@ -3,6 +3,8 @@ Ad's Neovim Config
 
 A potent Neovim config, enhanced with rich flavours of software development and notable hints of Ruby, JS and Go.
 
+![screenshot](screenshot.png)
+
 # Installation
 
 ```bash
