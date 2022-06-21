@@ -35,7 +35,8 @@ vim.g.maplocalleader = " "
 ---------------------------------
 leader("ww", ":w")
 leader("we", ":e")
-leader("wq", ":x")
+leader("wx", ":x")
+leader("wQ", ":q!")
 
 -- Replace Q (Ex Mode) with replay macro
 keymap("n", "Q", "@", default_opts)
