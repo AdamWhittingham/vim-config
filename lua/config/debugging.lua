@@ -9,20 +9,25 @@ if not has_dapui then
 end
 
 local dapui_config = {
-  sidebar = {
-    elements = {
-      { id = "stacks", size = 0.3 },
-      { id = "watches", size = 0.3 },
-      { id = "breakpoints", size = 0.3 },
+  layouts = {
+    {
+      elements = {
+        'stacks',
+        'watches',
+        'breakpoints'
+      },
+      size = 40,
+      position = 'left',
     },
-    size = 40,
-    position = "left",
-  },
-  tray = {
-    elements = { "scopes" },
-    size = 10,
-    position = "bottom",
-  },
+    {
+      elements = {
+        'repl',
+        'console',
+      },
+      size = 10,
+      position = 'bottom',
+    }
+  }
 }
 
 require("dapui").setup(dapui_config)
