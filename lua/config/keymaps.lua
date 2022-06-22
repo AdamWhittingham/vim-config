@@ -10,12 +10,17 @@ local normal = function(keys, command)
   keymap("n", keys, command.."<CR>", default_opts)
 end
 
-local visual = function(keys, command)
-  keymap("v", keys, command, default_opts)
+local visual = function(keys, command, opts)
+  opts = opts or default_opts
+  keymap("v", keys, command, opts)
 end
 
 local leader = function(keys, command)
   keymap("n", "<leader>"..keys, command.."<CR>", default_opts)
+end
+
+local luacmd = function(command)
+  return "<Esc><Cmd>lua "..command.."<CR>"
 end
 
 local which_key_status_ok, wk = pcall(require, "which-key")
@@ -227,6 +232,14 @@ normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })')
 normal("]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })')
 leader("q", "<cmd>lua vim.diagnostic.setloclist()")
 
+-- Remaps for the refactoring operations currently offered by the plugin
+visual("<leader>rb", luacmd("require('refactoring').refactor('Extract Block')") )
+visual("<leader>re", luacmd("require('refactoring').refactor('Extract Function')") )
+visual("<leader>rf", luacmd("require('refactoring').refactor('Extract Function To File')") )
+visual("<leader>rv", luacmd("require('refactoring').refactor('Extract Variable')") )
+visual("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')") )
+normal("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')") ) -- same but for item under cursor
+
 wk.register({
   l = {
     name = "Language Server",
@@ -238,6 +251,17 @@ wk.register({
     i = "info or docs",
   }
 }, { prefix = "<leader>" })
+
+wk.register({
+  r = {
+    name = "Refactor",
+    b = "Extract block",
+    e = "Extract method",
+    f = "Extract function to file",
+    i = "Extract inline variable",
+    v = "Extract variable",
+  }
+}, { prefix = "<leader>", mode = "v" })
 
 ---------------------------------
 -- Test helpers
@@ -281,28 +305,28 @@ wk.register({
 wk.register({
   b = {
     name = "deBug",
-    b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-    B = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
+    b = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
+    B = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
 
-    g = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-    n = { "<cmd>lua require'dap'.continue()<cr>", "Continue to Next" },
+    g = { luacmd("require'dap'.continue()"), "Start" },
+    n = { luacmd("require'dap'.continue()"), "Continue to Next" },
 
-    s = { "<cmd>lua require'dap'.step_in()<cr>", "Step Into" },
-    S = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-    u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-    ["<Left>"] = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
-    ["<Down>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-    ["<Right>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-    ["<Up>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+    s = { luacmd("require'dap'.step_in()"), "Step Into" },
+    S = { luacmd("require'dap'.step_over()"), "Step Over" },
+    u = { luacmd("require'dap'.step_out()"), "Step Out" },
+    ["<Left>"] = { luacmd("require'dap'.step_back()"), "Step Back" },
+    ["<Down>"] = { luacmd("require'dap'.step_into()"), "Step Into" },
+    ["<Right>"] = { luacmd("require'dap'.step_over()"), "Step Over" },
+    ["<Up>"] = { luacmd("require'dap'.step_out()"), "Step Out" },
 
-    d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-    q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-    k = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
+    d = { luacmd("require'dap'.disconnect()"), "Disconnect" },
+    q = { luacmd("require'dap'.close()"), "Quit" },
+    k = { luacmd("require'dap'.terminate()"), "Terminate" },
 
-    R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
-    E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
-    U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
-    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+    R = { luacmd("require'dap'.run_to_cursor()"), "Run to Cursor" },
+    E = { luacmd("require'dapui'.eval(vim.fn.input '[Expression] > ')"), "Evaluate Input" },
+    U = { luacmd("require'dapui'.toggle()"), "Toggle UI" },
+    r = { luacmd("require'dap'.repl.toggle()"), "Toggle Repl" },
     -- e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
     -- g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
     -- h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },

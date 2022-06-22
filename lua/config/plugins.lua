@@ -112,6 +112,13 @@ return packer.startup({function(use)
   use "jose-elias-alvarez/null-ls.nvim"             -- for formatters and linters
   use "ray-x/lsp_signature.nvim"                    -- Pop up function definitions when typing a function call
   use "editorconfig/editorconfig-vim"               -- Obey editorconfig files
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+    }
+}
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
