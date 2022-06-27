@@ -37,6 +37,14 @@ catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 ]]
 
+vim.cmd [[
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+]]
+
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
