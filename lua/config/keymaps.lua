@@ -76,10 +76,10 @@ wk.register({
 ---------------------------------
 
 leader("h", ":nohlsearch")
-leader("m", ":Telescope marks")
+leader("m", ":FzfLua marks")
 normal("m", ":lua set_mark()")
-leader("j", ":Telescope jumplist")
-leader("ll", ":Telescope diagnostics")
+leader("j", ":FzfLua jumps")
+leader("ll", ":FzfLua lsp_document_diagnostics")
 
 -- Nicer movement through the change list (where you have edited)
 keymap("n", "[g", "g;", default_opts)
@@ -180,16 +180,13 @@ wk.register({
 ---------------------------------
 
 -- Opening and finding files
-leader("d", "<cmd>lua require 'telescope'.extensions.file_browser.file_browser() theme=get_ivy")
-leader("D", "<cmd>lua require 'lua/config/telescope/directory_grep'.live_grep_in_folder()")
-leader("f", ":Telescope find_files")
-leader("F", ":Telescope live_grep")
-leader("g", ":Telescope jumplist")
-leader("G", ":Telescope resume")
-leader("*", ":Telescope grep_string theme=dropdown layout_config={width=0.75}")
+leader("f", ":FzfLua files")
+leader("F", ":FzfLua live_grep_native")
+leader("G", ":FzfLua resume")
+leader("*", ":FzfLua grep_cWORD")
 
 -- Switching buffers
-leader(".", ":Telescope buffers theme=get_dropdown sort_mru=true layout_config={width=0.75}")
+leader(".", ":FzfLua buffers")
 leader("<leader>", ":b#")
 
 wk.register({
@@ -204,7 +201,7 @@ wk.register({
   f = { "Find files by name" },
   F = { "Find text in files" },
   j = { "Show recent cursor locations" },
-  G = { "Resume last telescope select" },
+  G = { "Resume last search" },
   q = { "Show LSP quickfix list" },
 }, {prefix = "<leader>"})
 
@@ -301,6 +298,8 @@ wk.register({
 ---------------------------------
 -- Debugging
 ---------------------------------
+
+leader("d", ":FzfLua dap_breakpoints")
 
 wk.register({
   b = {

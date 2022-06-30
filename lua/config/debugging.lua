@@ -32,7 +32,6 @@ local dapui_config = {
 
 require("dapui").setup(dapui_config)
 require("nvim-dap-virtual-text").setup()
-require('telescope').load_extension('dap')
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()

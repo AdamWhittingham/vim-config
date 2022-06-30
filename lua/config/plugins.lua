@@ -84,10 +84,7 @@ return packer.startup({function(use)
   use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Excellent start screen framework
   use "AdamWhittingham/vim-adcode-theme"            -- A nice coat of paint for everything
   use "kyazdani42/nvim-web-devicons"                -- Map file types to icons for easier list-scanning
-  use 'nvim-telescope/telescope.nvim'               -- The best finder UI out there
-  use "nvim-telescope/telescope-media-files.nvim"   -- Allow telescope to show media files in browsers which render images
-  use "nvim-telescope/telescope-file-browser.nvim"  -- Add basic file browsing through Telescope
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- Faster finding using compiled FZF, likely to be baked in to Telescope someday
+  use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- Even faster FZF
   use 'mbbill/undotree'                             -- Visualise the undo tree and make it easy to navigate
   use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Show git diff in the gutter
   use 'DarwinSenior/nvim-colorizer.lua'             -- Fork of colorizer with VirtualText
