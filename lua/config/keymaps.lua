@@ -183,7 +183,7 @@ wk.register({
 leader("f", ":FzfLua files")
 leader("F", ":FzfLua live_grep_native")
 leader("G", ":FzfLua resume")
-leader("*", ":FzfLua grep_cWORD")
+leader("*", ":FzfLua grep_cword")
 
 -- Switching buffers
 leader(".", ":FzfLua buffers")
