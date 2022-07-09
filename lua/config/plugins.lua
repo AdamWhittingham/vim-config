@@ -128,7 +128,6 @@ return packer.startup({function(use)
   use "mfussenegger/nvim-dap"                 -- Debug Anything Protocol bindings
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }   -- Lovely UI for DAP output
   use "theHamsta/nvim-dap-virtual-text"       -- Show debug values in virtual text
-  use "nvim-telescope/telescope-dap.nvim"     -- Telescope extention for frames, threads, commands etc.
   use "leoluz/nvim-dap-go"                    -- Bindings for Delve, the go debugger
   use "suketa/nvim-dap-ruby"                  -- Bindings for ruby-debug
 

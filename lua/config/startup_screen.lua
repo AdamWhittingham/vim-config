@@ -201,8 +201,8 @@ local buttons = {
   val = {
     { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
     { type = "padding", val = 1 },
-    dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-    dashboard.button("F", "  Find text", ":Telescope live_grep <CR>"),
+    dashboard.button("f", "  Find file", ":FzfLua files <CR>"),
+    dashboard.button("F", "  Find text", ":FzfLua live_grep <CR>"),
     dashboard.button("n", "  New file", ":ene <BAR> startinsert <CR>"),
     dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
     dashboard.button( "u", "  Update plugins" , ":PackerSync<CR>"),
