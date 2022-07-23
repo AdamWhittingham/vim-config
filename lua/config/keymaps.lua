@@ -217,7 +217,7 @@ normal("<C-]>", "<cmd>lua vim.lsp.buf.definition()")
 -- Show signature help, info/docs & diagnostics
 leader("ls", "<cmd>lua vim.lsp.buf.signature_help()")
 leader("li", "<cmd>lua vim.lsp.buf.hover()")
-leader("ld", "<cmd>lua vim.diagnostic.open_float()")
+leader("ld", luacmd("require('lsp_lines').toggle()"))
 
 -- LSP code manipulations
 leader("lr", "<cmd>lua vim.lsp.buf.rename()")
