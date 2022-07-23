@@ -6,17 +6,25 @@ local keymap = function(mode, keys, command, opts)
   vim.api.nvim_set_keymap(mode, keys, command, opts)
 end
 
-local normal = function(keys, command)
-  keymap("n", keys, command.."<CR>", default_opts)
+local normal = function(keys, command, opts)
+  opts = opts or {}
+  local out_opts = default_opts
+  for k,v in pairs(opts) do out_opts[k] = v end
+  keymap("n", keys, command.."<CR>", out_opts)
 end
 
 local visual = function(keys, command, opts)
-  opts = opts or default_opts
-  keymap("v", keys, command, opts)
+  opts = opts or {}
+  local out_opts = default_opts
+  for k,v in pairs(opts) do out_opts[k] = v end
+  keymap("v", keys, command, out_opts)
 end
 
-local leader = function(keys, command)
-  keymap("n", "<leader>"..keys, command.."<CR>", default_opts)
+local leader = function(keys, command, opts)
+  opts = opts or {}
+  local out_opts = default_opts
+  for k,v in pairs(opts) do out_opts[k] = v end
+  keymap("n", "<leader>"..keys, command.."<CR>", out_opts)
 end
 
 local luacmd = function(command)
@@ -38,10 +46,13 @@ vim.g.maplocalleader = " "
 ---------------------------------
 -- Window save and reload
 ---------------------------------
-leader("ww", ":w")
-leader("we", ":e")
-leader("wx", ":x")
-leader("wQ", ":q!")
+wk.register({ w = { name = "Window", } }, { prefix = "<leader>" })
+
+leader("ww", ":w", { desc = "Write" })
+leader("we", ":e", { desc = "Reload" })
+leader("wx", ":x", { desc = "Write & quit" })
+leader("wQ", ":q!", { desc = "Discard & quit" })
+leader("qq", ":q", { desc = "Quit" })
 
 -- Replace Q (Ex Mode) with replay macro
 keymap("n", "Q", "@", default_opts)
@@ -51,228 +62,156 @@ keymap("n", "Q", "@", default_opts)
 ---------------------------------
 
 -- Move between panes
-normal("<C-h>", "<C-w>h")
-normal("<C-l>", "<C-w>l")
-normal("<C-j>", "<C-w>j")
-normal("<C-k>", "<C-w>k")
+normal("<C-h>", "<C-w>h", { desc = "Move to window left" })
+normal("<C-l>", "<C-w>l", { desc = "Move to window right" })
+normal("<C-j>", "<C-w>j", { desc = "Move to window below" })
+normal("<C-k>", "<C-w>k", { desc = "Move to window above" })
 
 -- Split panes
-leader("ws", ":vsplit")
-leader("wS", ":split")
-
-wk.register({
-  w = {
-    name = "Window",
-    s = "Split (vertically)",
-    S = "Split (horizontally)",
-    w = "Write buffer",
-    e = "Reload buffer",
-    x = "Write buffer and quit",
-  }
-}, { prefix = "<leader>" })
+leader("ws", ":vsplit", { desc = "Split window vertically"})
+leader("wS", ":split", { desc = "Split window horizontally"})
 
 ---------------------------------
 -- Text navigation
 ---------------------------------
 
-leader("h", ":nohlsearch")
-leader("m", ":FzfLua marks")
-normal("m", ":lua set_mark()")
-leader("j", ":FzfLua jumps")
-leader("ll", ":FzfLua lsp_document_diagnostics")
+leader("h", ":nohlsearch", { desc = "Toggle search highlight" })
+leader("m", ":FzfLua marks", { desc = "List marks" })
+normal("m", ":lua set_mark()", { desc = "Set mark" })
+leader("j", ":FzfLua jumps", { desc = "Jumplist" })
+leader("ll", ":FzfLua lsp_document_diagnostics", { desc = "List diagnostics" })
 
 -- Nicer movement through the change list (where you have edited)
-keymap("n", "[g", "g;", default_opts)
-keymap("n", "]g", "g,", default_opts)
+normal("[g", "g;", { desc = "Prev edit"})
+normal("]g", "g,", { desc = "Next edit"})
 
 ---------------------------------
 -- Text manipulation
 ---------------------------------
 
 -- Add add blank line above/below current line
-normal("[<space>", "O<Esc>")
-normal("]<space>", "o<Esc>2k")
+normal("[<space>", "O<Esc>", { desc = "Add space before line"})
+normal("]<space>", "o<Esc>2k", { desc = "Add space after line"})
 
 -- Move current line up or down
-normal("[e", ":m -2<cr>k")
-normal("]e", ":m +1<cr>k")
+normal("[e", ":m -2<cr>k", { desc = "Move line up" })
+normal("]e", ":m +1<cr>k", { desc = "Move line down" })
 
 -- Stay in indent mode
-visual("<", "<gv")
-visual(">", ">gv")
+visual("<", "<gv", { desc = "Dedent selection"})
+visual(">", ">gv", { desc = "Indent selection"})
 
 -- Reindent the current file
-leader("i", "m`gg=G``")
+leader("i", "m`gg=G``", { desc = "Reindent file" })
 
 -- Split/Join constructs
-leader("s", ":SplitjoinSplit")
-leader("S", ":SplitjoinJoin")
+leader("s", ":SplitjoinSplit", { desc = "Split construct" })
+leader("S", ":SplitjoinJoin", { desc = "Join construct" })
 
 -- Yank ring setup
-normal("p", "<Plug>(YankyPutAfter)")
-normal("P", "<Plug>(YankyPutBefore)")
-normal("]p", "<Plug>(YankyCycleForward)")
-normal("[p", "<Plug>(YankyCycleBackward)")
+normal("p", "<Plug>(YankyPutAfter)", { desc = "Paste" })
+normal("P", "<Plug>(YankyPutBefore)", {desc = "Paste before"})
+normal("[p", "<Plug>(YankyCycleBackward)", {desc = "Swap to prev paste" })
+normal("]p", "<Plug>(YankyCycleForward)", {desc = "Swap to next paste" })
 
 -- OS Clipboard yank
-vim.api.nvim_set_keymap("n", "<leader>y", "\"+y", default_opts)
-vim.api.nvim_set_keymap("v", "<leader>y", "\"+y", default_opts)
+normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
+visual("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 
 wk.register({
-  ["[<space>"] = { "Add blank line above" },
-  ["]<space>"] = { "Add blank line below" },
-  ["[e"] = { "Move line up" },
-  ["]e"] = { "Move line down" },
-  ["[c"] = { "Jump to previous change in file" },
-  ["]c"] = { "Jump to next change in file" },
-  ["[d"] = { "Previous diagnostic message" },
-  ["]d"] = { "Next diagnostic message" },
-  ["[g"] = { "Previous cursor position" },
-  ["]g"] = { "Next cursor position" },
-  ["[p"] = { "Swap paste to previous yank" },
-  ["]p"] = { "Swap paste to next yank" },
-  ["<"] = { "Move selection left" },
-  [">"] = { "Move selection right" },
   g = {
-    s = { "Switch code construct" },
-    S = { "Expand code construct" },
-    J = { "Contract code construct" },
+    J = { "Join lines" },
     b = { "Block comment {motion}" },
     c = { "Linewise comment {motion}" },
   },
-  ["q"] = { "Select buffer and record macro" },
-  ["Q"] = { "Select buffer and replay macro" },
-  ["<leader>y"] = { "Yank to system clipboad"},
+  ["q"] = { "Record macro" },
+  ["Q"] = { "Replay macro" },
 })
 
 ---------------------------------
 -- Diffs & Versioning
 ---------------------------------
+wk.register({ c = { name = "Change", } }, { prefix = "<leader>" })
 
-leader("u", ":UndotreeToggle")
+leader("u", ":UndotreeToggle", { desc = "Undo tree" })
 
 -- Move to the next/prev change in this file
-normal("]c", '<cmd>Gitsigns next_hunk')
-normal("[c", '<cmd>Gitsigns prev_hunk')
+normal("]c", '<cmd>Gitsigns next_hunk', { desc = "Next change"})
+normal("[c", '<cmd>Gitsigns prev_hunk', { desc = "Prev change"})
 
 -- Control Changes/Hunks
-leader("ca", "<cmd>Gitsigns stage_hunk")
-leader("cu", "<cmd>Gitsigns reset_hunk")
-leader("cd", '<cmd>Gitsigns preview_hunk')
-leader("cb", '<cmd>lua require"gitsigns".toggle_current_line_blame()')
-leader("cA", '<cmd>Gitsigns stage_buffer')
-leader("cU", '<cmd>Gitsigns reset_buffer_index')
-leader("cR", '<cmd>Gitsigns reset_buffer')
-
-wk.register({
-  c = {
-    name = "Change",
-    a = "Add this change to staging",
-    A = "Add all changes in this file to staging",
-    u = "Undo change",
-    d = "Diff of the change",
-    b = "Toggle git blame",
-  }
-}, { prefix = "<leader>" })
+leader("ca", "<cmd>Gitsigns stage_hunk", { desc = "Add change to stage" })
+leader("cA", '<cmd>Gitsigns stage_buffer', { desc = "Add all changes in file" })
+leader("cu", "<cmd>Gitsigns reset_hunk", { desc = "Undo change" })
+leader("cU", '<cmd>Gitsigns reset_buffer_index', { desc = "Undo all changes in file" })
+leader("cd", '<cmd>Gitsigns preview_hunk', { desc = "Diff change" })
+leader("cb", '<cmd>lua require"gitsigns".toggle_current_line_blame()', { desc = "Toggle blame" })
+leader("cR", '<cmd>Gitsigns reset_buffer', { desc = "Reset file" })
 
 ---------------------------------
 -- File navigation
 ---------------------------------
 
 -- Opening and finding files
-leader("f", ":FzfLua files")
-leader("F", ":FzfLua live_grep_native")
-leader("G", ":FzfLua resume")
-leader("*", ":FzfLua grep_cword")
+leader("f", ":FzfLua files", { desc = "Find files" })
+leader("F", ":FzfLua live_grep_native", { desc = "Find in files" })
+leader("G", ":FzfLua resume", { desc = "Show previous search" })
+leader("*", ":FzfLua grep_cword", { desc = "Search for word" })
 
 -- Switching buffers
-leader(".", ":FzfLua buffers")
-leader("<leader>", ":b#")
-
-wk.register({
-  ["."] = { "Find open buffer" },
-  ["*"] = "String under the cursor in files",
-  ["<space>"] = { "Switch to the last open buffer" },
-  i = { "Indent all lines" },
-  s = { "Switch between common modes" },
-  S = { "Compress the current code construct" },
-  d = { "Directory browser" },
-  D = { "Directory-filtered search" },
-  f = { "Find files by name" },
-  F = { "Find text in files" },
-  j = { "Show recent cursor locations" },
-  G = { "Resume last search" },
-  q = { "Show LSP quickfix list" },
-}, {prefix = "<leader>"})
+leader(".", ":FzfLua buffers", { desc = "Show buffers" })
+leader("<leader>", ":b#", { desc = "Previous buffer" })
 
 ---------------------------------
 -- Language aware navigation
 ---------------------------------
+wk.register({ l = { name = "Language Server", } }, { prefix = "<leader>" })
 
 -- Jump to definition or references
-leader("{", "Code definitions")
-leader("}", "Code references")
-normal("<C-]>", "<cmd>lua vim.lsp.buf.definition()")
+leader("{", "<cmd>FzfLua lsp_definitions", { desc = "Show definitions" })
+leader("}", "<cmd>FzfLua lsp_references", { desc = "Show references" })
+normal("<C-]>", "<cmd>lua vim.lsp.buf.definition()", { desc = "Jump to definition" })
 
 -- Show signature help, info/docs & diagnostics
-leader("ls", "<cmd>lua vim.lsp.buf.signature_help()")
-leader("li", "<cmd>lua vim.lsp.buf.hover()")
-leader("ld", luacmd("require('lsp_lines').toggle()"))
+leader("ls", "<cmd>lua vim.lsp.buf.signature_help()", { desc = "Signature help"})
+leader("li", "<cmd>lua vim.lsp.buf.hover()", { desc = "LSP Info" })
+leader("ld", luacmd("require('lsp_lines').toggle()"), { desc = "Toggle diagnostics" })
 
 -- LSP code manipulations
-leader("lr", "<cmd>lua vim.lsp.buf.rename()")
-leader("la", "<cmd>lua vim.lsp.buf.code_action()")
-leader("lf", "<cmd>lua vim.lsp.buf.formatting_seq_sync()")
+leader("lr", "<cmd>lua vim.lsp.buf.rename()", { desc = "Rename" })
+leader("la", "<cmd>lua vim.lsp.buf.code_action()", { desc = "Actions" })
+leader("lf", "<cmd>lua vim.lsp.buf.formatting_seq_sync()", { desc = "Format" })
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
-normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })')
-normal("]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })')
-leader("q", "<cmd>lua vim.diagnostic.setloclist()")
+normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })', { desc = "Prev diagnostic" })
+normal("]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })', { desc = "Next diagnostic" })
+leader("q", "<cmd>lua vim.diagnostic.setloclist()", { desc = "Quickfix list diagnostics" })
 
--- Remaps for the refactoring operations currently offered by the plugin
-visual("<leader>rb", luacmd("require('refactoring').refactor('Extract Block')") )
-visual("<leader>re", luacmd("require('refactoring').refactor('Extract Function')") )
-visual("<leader>rf", luacmd("require('refactoring').refactor('Extract Function To File')") )
-visual("<leader>rv", luacmd("require('refactoring').refactor('Extract Variable')") )
-visual("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')") )
-normal("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')") ) -- same but for item under cursor
+---------------------------------
+-- Refactoring
+---------------------------------
+wk.register({ r = { name = "Refactor", } }, { prefix = "<leader>", mode = "v" })
 
-wk.register({
-  l = {
-    name = "Language Server",
-    r = "rename",
-    a = "actions",
-    f = "format",
-    d = "diagnostics",
-    s = "signature help",
-    i = "info or docs",
-  }
-}, { prefix = "<leader>" })
-
-wk.register({
-  r = {
-    name = "Refactor",
-    b = "Extract block",
-    e = "Extract method",
-    f = "Extract function to file",
-    i = "Extract inline variable",
-    v = "Extract variable",
-  }
-}, { prefix = "<leader>", mode = "v" })
+visual("<leader>rb", luacmd("require('refactoring').refactor('Extract Block')"), { desc = "Extact block" } )
+visual("<leader>re", luacmd("require('refactoring').refactor('Extract Function')"), { desc = "Extact function" } )
+visual("<leader>rf", luacmd("require('refactoring').refactor('Extract Function To File')"), { desc = "Extact to file" } )
+visual("<leader>rv", luacmd("require('refactoring').refactor('Extract Variable')"), { desc = "Extact variable" } )
+visual("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')"), { desc = "Inline variable" } )
+normal("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')"), { desc = "Inline variable" } ) -- same but for item under cursor
 
 ---------------------------------
 -- Test helpers
 ---------------------------------
 
 -- Leader t/T to send the current file/line to rspec via tmux windows
-leader("t", [[:call InvokeViaTmux("rspec", expand("%:p"))]])
-leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]])
+leader("t", [[:call InvokeViaTmux("rspec", expand("%:p"))]], { desc = "Run tests for this file" })
+leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]], { desc = "Run tests for this line"})
 
-leader("pr", ":CopyRelativePath")
-leader("pa", ":CopyAbsolutePath")
-leader("pf", ":CopyFileName")
-leader("pd", ":CopyDirectoryPath")
-leader("pl", ":CopyRelativePathAndLine")
+leader("pr", ":CopyRelativePath", { desc = "Copy relative path" })
+leader("pa", ":CopyAbsolutePath", { desc = "Copy absolute path" })
+leader("pf", ":CopyFileName", { desc = "Copy file name"})
+leader("pd", ":CopyDirectoryPath", { desc = "Copy directory path"})
+leader("pl", ":CopyRelativePathAndLine", { desc = "Copy Relative path and line number"})
 
 -- <Leader>gr to open the current line in the repos website
 vim.g.gh_open_command = [[fn() { echo "$@" | pbcopy; }; fn ]]
@@ -282,15 +221,8 @@ vim.g.gh_repo_map = 0
 vim.g.gh_line_map = '<leader>pg'
 
 wk.register({
-  t = { "Run tests for this file" },
-  T = { "Run tests for this line" },
   p = {
     name = "Paths",
-    r = "Copy the relative path",
-    a = "Copy the absolute path",
-    f = "Copy the file name",
-    d = "Copy the directory path",
-    l = "Copy the relative path and line",
     g = "Copy the URL to github/gitlab",
   }
 }, { prefix = "<leader>" })
