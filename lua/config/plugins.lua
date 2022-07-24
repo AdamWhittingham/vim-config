@@ -41,10 +41,11 @@ return packer.startup({function(use)
   --------------------
   use "AndrewRadev/switch.vim"  -- Quickly toggle between common alternative layouts for strings, arrays, etc.
   use "AndrewRadev/splitjoin.vim" -- Quickly toggle between single and multi-line versions of common constructs
-  use "tpope/vim-surround"      -- Crazy good surround operations
   use "tpope/vim-abolish"       -- Smartcase replacement with S
   use "tpope/vim-repeat"        -- Make surround, abolish and more repeatable
   use "lukas-reineke/indent-blankline.nvim" -- Show indentation markers
+
+  -- Paste previously yanked content
   use {
     "gbprod/yanky.nvim",
     config = function()
@@ -56,6 +57,14 @@ return packer.startup({function(use)
       })
     end,
   }
+
+  -- Provide surrounding bindings
+  use({
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({ })
+    end
+  })
 
   -------------------
   -- AUTOCOMPLETION
