@@ -160,17 +160,23 @@ leader("<leader>", ":b#", { desc = "Previous buffer" })
 wk.register({ l = { name = "Language Server", } }, { prefix = "<leader>" })
 
 -- Jump to definition or references
-leader("{", [[require("lspsaga.finder").lsp_finder]], default_opts)
-normal("<C-]>", "<cmd>lua vim.lsp.buf.definition()", { desc = "Jump to definition" })
+normal("<C-{>", "<cmd>Lspsaga lsp_finder", { desc = "Find references and definitions" })
+leader("{", "<cmd>Lspsaga lsp_finder", { desc = "Find references and definitions" })
+normal("<C-}>", "<cmd>Lspsaga preview_definition", { desc = "Preview definition" })
+leader("}", "<cmd>Lspsaga preview_definition", { desc = "Preview definition" })
+normal("<C-]>", luacmd[[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
 
 -- Show signature help, info/docs & diagnostics
-leader("ls", luacmd[[require("lspsaga.signaturehelp").signature_help]], bind_opts({desc = "Signaure help"}))
-leader("li", luacmd[[vim.lsp.buf.hover()]], bind_opts({desc = "LSP info"}))
-leader("ld", luacmd[[require("lsp_lines").toggle()]], bind_opts({desc = "LSP disagnostics"}))
+normal("K", "<cmd>Lspsaga hover_doc<CR>")
+leader("ll", [[<cmd>LSoutlineToggle]])
+leader("ls", [[<cmd>Lspsaga signature_help]], ({desc = "Signaure help"}))
+leader("li", luacmd[[vim.lsp.buf.hover()]], {desc = "LSP info"})
+leader("ld", luacmd[[require("lsp_lines").toggle()]], {desc = "LSP disagnostics"})
+leader("lr", [[<cmd>Lspsaga rename]], {desc = "LSP Rename"})
 
 -- LSP code manipulations
-leader("lr", "<cmd>lua vim.lsp.buf.rename()", { desc = "Rename" })
-leader("la", "<cmd>lua vim.lsp.buf.code_action()", { desc = "Actions" })
+vim.keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<CR>", bind_opts({desc = "Code action"}))
+vim.keymap.set("v", "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", bind_opts({desc = "Code action"}))
 leader("lf", "<cmd>lua vim.lsp.buf.formatting_seq_sync()", { desc = "Format" })
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
