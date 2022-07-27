@@ -1,30 +1,25 @@
 -- Helper functions
 local default_opts = { noremap = true, silent = true }
 
-local keymap = function(mode, keys, command, opts)
-  opts = opts or default_opts
-  vim.api.nvim_set_keymap(mode, keys, command, opts)
-end
-
-local normal = function(keys, command, opts)
+local bind_opts = function(opts)
   opts = opts or {}
   local out_opts = default_opts
   for k,v in pairs(opts) do out_opts[k] = v end
-  keymap("n", keys, command.."<CR>", out_opts)
+  return out_opts
+end
+
+local keymap = vim.api.nvim_set_keymap
+
+local normal = function(keys, command, opts)
+  keymap("n", keys, command.."<CR>", bind_opts(opts))
 end
 
 local visual = function(keys, command, opts)
-  opts = opts or {}
-  local out_opts = default_opts
-  for k,v in pairs(opts) do out_opts[k] = v end
-  keymap("v", keys, command, out_opts)
+  keymap("v", keys, command, bind_opts(opts))
 end
 
 local leader = function(keys, command, opts)
-  opts = opts or {}
-  local out_opts = default_opts
-  for k,v in pairs(opts) do out_opts[k] = v end
-  keymap("n", "<leader>"..keys, command.."<CR>", out_opts)
+  keymap("n", "<leader>"..keys, command.."<CR>", bind_opts(opts))
 end
 
 local luacmd = function(command)
@@ -53,9 +48,6 @@ leader("we", ":e", { desc = "Reload" })
 leader("wx", ":x", { desc = "Write & quit" })
 leader("wQ", ":q!", { desc = "Discard & quit" })
 leader("qq", ":q", { desc = "Quit" })
-
--- Replace Q (Ex Mode) with replay macro
-keymap("n", "Q", "@", default_opts)
 
 ---------------------------------
 -- Window splitting & movement
@@ -168,14 +160,13 @@ leader("<leader>", ":b#", { desc = "Previous buffer" })
 wk.register({ l = { name = "Language Server", } }, { prefix = "<leader>" })
 
 -- Jump to definition or references
-leader("{", "<cmd>FzfLua lsp_definitions", { desc = "Show definitions" })
-leader("}", "<cmd>FzfLua lsp_references", { desc = "Show references" })
+leader("{", [[require("lspsaga.finder").lsp_finder]], default_opts)
 normal("<C-]>", "<cmd>lua vim.lsp.buf.definition()", { desc = "Jump to definition" })
 
 -- Show signature help, info/docs & diagnostics
-leader("ls", "<cmd>lua vim.lsp.buf.signature_help()", { desc = "Signature help"})
-leader("li", "<cmd>lua vim.lsp.buf.hover()", { desc = "LSP Info" })
-leader("ld", luacmd("require('lsp_lines').toggle()"), { desc = "Toggle diagnostics" })
+leader("ls", luacmd[[require("lspsaga.signaturehelp").signature_help]], bind_opts({desc = "Signaure help"}))
+leader("li", luacmd[[vim.lsp.buf.hover()]], bind_opts({desc = "LSP info"}))
+leader("ld", luacmd[[require("lsp_lines").toggle()]], bind_opts({desc = "LSP disagnostics"}))
 
 -- LSP code manipulations
 leader("lr", "<cmd>lua vim.lsp.buf.rename()", { desc = "Rename" })
