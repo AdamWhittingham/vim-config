@@ -39,34 +39,25 @@ M.setup = function()
   })
 end
 
-local function lsp_highlight_document(client)
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-      false
-    )
-  end
-end
-
-local function lsp_keymaps(_bufnr)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_seq_sync()' ]]
-end
-
 M.on_attach = function(client, bufnr)
   -- Autoformat on save in Go
   if client.name == "gopls" then
     vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
   end
 
-  lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_seq_sync()' ]]
+
+  vim.api.nvim_create_augroup("lsp_document_highlight", {clear = true})
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = "lsp_document_highlight",
+    buffer = bufnr,
+    callback = vim.lsp.buf.document_highlight,
+  })
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    group = "lsp_document_highlight",
+    buffer = bufnr,
+    callback = vim.lsp.buf.clear_references,
+  })
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

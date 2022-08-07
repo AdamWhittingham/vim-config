@@ -28,6 +28,8 @@ opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.scrolloff = 3
 opt.sidescrolloff = 3
+opt.updatetime=500
+
 vim.cmd [[
 try
   colorscheme adCode
