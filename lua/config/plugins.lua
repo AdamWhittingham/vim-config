@@ -135,6 +135,15 @@ return packer.startup({function(use)
       })
     end,
   })
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      require("lspsaga").init_lsp_saga({
+        code_action_lightbulb = { enable = false }
+      })
+    end,
+})
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }

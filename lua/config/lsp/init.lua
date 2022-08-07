@@ -3,17 +3,32 @@ if not status_ok then
   return
 end
 
-require("config.lsp.handlers").setup()
+local lsp_handlers = require("config.lsp.handlers")
 require "config.lsp.null-ls"
 
-lspconfig.bashls.setup {}
-lspconfig.cssls.setup {}
-lspconfig.dockerls.setup {}
-lspconfig.gopls.setup {}
-lspconfig.html.setup {}
-lspconfig.solargraph.setup {}
-lspconfig.sumneko_lua.setup {}
-lspconfig.yamlls.setup {}
+lsp_handlers.setup()
+
+local servers = {
+  'bashls',
+  'jsonls',
+  'cssls',
+  'html',
+  'dockerls',
+  'solargraph',
+  'yamlls',
+  'sumneko_lua',
+  'gopls',
+}
+
+local util = require 'vim.lsp.util'
+
+for _, server in ipairs(servers) do
+  lspconfig[server].setup {
+    on_attach = function(client, bufnr)
+      lsp_handlers.on_attach(client, bufnr)
+    end
+  }
+end
 
 local lspsig_ok, lspsig = pcall(require, "lsp_signature")
 if not lspsig_ok then
@@ -29,3 +44,4 @@ lspsig.setup({
   hi_parameter = "LspSignatureActiveParameter",
   floating_window = false,
 })
+
