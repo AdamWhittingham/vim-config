@@ -44,3 +44,4 @@ lspsig.setup({
   hi_parameter = "LspSignatureActiveParameter",
   floating_window = false,
 })
+
