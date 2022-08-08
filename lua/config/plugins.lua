@@ -141,15 +141,6 @@ return packer.startup({function(use)
     config = function()
       require("lspsaga").init_lsp_saga({
         code_action_lightbulb = { enable = false },
-        finder_action_keys = {
-          open = "o",
-          vsplit = "s",
-          split = "S",
-          tabe = "t",
-          quit = { "q", "<esc>" },
-          scroll_down = "j",
-          scroll_up = "k",
-        },
       })
     end,
 })
