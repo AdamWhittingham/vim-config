@@ -22,6 +22,10 @@ local leader = function(keys, command, opts)
   keymap("n", "<leader>"..keys, command.."<CR>", bind_opts(opts))
 end
 
+local cmd = function(command)
+  return "<Esc><Cmd>"..command.."<CR>"
+end
+
 local luacmd = function(command)
   return "<Esc><Cmd>lua "..command.."<CR>"
 end
@@ -160,29 +164,29 @@ leader("<leader>", ":b#", { desc = "Previous buffer" })
 wk.register({ l = { name = "Language Server", } }, { prefix = "<leader>" })
 
 -- Jump to definition or references
-normal("<C-{>", "<cmd>Lspsaga lsp_finder", { desc = "Find references and definitions" })
-leader("{", "<cmd>Lspsaga lsp_finder", { desc = "Find references and definitions" })
-normal("<C-}>", "<cmd>Lspsaga preview_definition", { desc = "Preview definition" })
-leader("}", "<cmd>Lspsaga preview_definition", { desc = "Preview definition" })
+normal("<C-{>", cmd[[Lspsaga lsp_finder]], { desc = "Find references and definitions" })
+leader("]", cmd[[Lspsaga lsp_finder]], { desc = "Find references and definitions" })
+normal("<C-}>", cmd[[Lspsaga preview_definition]], { desc = "Preview definition" })
+leader("}", cmd[[Lspsaga preview_definition]], { desc = "Preview definition" })
 normal("<C-]>", luacmd[[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
 
 -- Show signature help, info/docs & diagnostics
-normal("K", "<cmd>Lspsaga hover_doc<CR>")
-leader("ll", [[<cmd>LSoutlineToggle]])
-leader("ls", [[<cmd>Lspsaga signature_help]], ({desc = "Signaure help"}))
+leader("K", cmd[[Lspsaga hover_doc]])
+leader("ll", cmd[[LSoutlineToggle]])
+leader("ls", cmd[[Lspsaga signature_help]], ({desc = "Signaure help"}))
 leader("li", luacmd[[vim.lsp.buf.hover()]], {desc = "LSP info"})
 leader("ld", luacmd[[require("lsp_lines").toggle()]], {desc = "LSP disagnostics"})
-leader("lr", [[<cmd>Lspsaga rename]], {desc = "LSP Rename"})
+leader("lr", cmd[[Lspsaga rename]], {desc = "LSP Rename"})
 
 -- LSP code manipulations
-vim.keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<CR>", bind_opts({desc = "Code action"}))
-vim.keymap.set("v", "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", bind_opts({desc = "Code action"}))
-leader("lf", "<cmd>lua vim.lsp.buf.formatting_seq_sync()", { desc = "Format" })
+vim.keymap.set("n", "<leader>la", cmd"Lspsaga code_action", bind_opts({desc = "Code action"}))
+vim.keymap.set("v", "<leader>la", cmd"Lspsaga range_code_action", bind_opts({desc = "Code action"}))
+leader("lf", cmd[[lua vim.lsp.buf.formatting_seq_sync()]], { desc = "Format" })
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
-normal("[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })', { desc = "Prev diagnostic" })
-normal("]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })', { desc = "Next diagnostic" })
-leader("q", "<cmd>lua vim.diagnostic.setloclist()", { desc = "Quickfix list diagnostics" })
+normal("[d", luacmd'vim.diagnostic.goto_prev({ border = "rounded" })', { desc = "Prev diagnostic" })
+normal("]d", luacmd'vim.diagnostic.goto_next({ border = "rounded" })', { desc = "Next diagnostic" })
+leader("q", luacmd"vim.diagnostic.setloclist()", { desc = "Quickfix list diagnostics" })
 
 ---------------------------------
 -- Refactoring
