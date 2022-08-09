@@ -104,16 +104,13 @@ return packer.startup({function(use)
   -------------------
   -- LANGUAGE SUPPORT
   -------------------
+
   use {
-    "williamboman/nvim-lsp-installer",
-    {
-      "neovim/nvim-lspconfig",
-      config = function()
-        require("nvim-lsp-installer").setup({ automatic_installation = true })
-        require "config.lsp.init"
-      end
-    }
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
   }
+
   use "tamago324/nlsp-settings.nvim"                -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim"             -- for formatters and linters
   use "ray-x/lsp_signature.nvim"                    -- Pop up function definitions when typing a function call

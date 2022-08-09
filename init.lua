@@ -7,7 +7,7 @@ require "config.language_options"
 require "config.treesitter"
 require "config.autocomplete"
 require "config.snippets"
--- require "config.lsp" -- LSP is loaded by lsp-installer in plugins.lua to ensure load order
+require "config.lsp"
 require "config.languages"
 require "config.debugging"
 require "config.git"

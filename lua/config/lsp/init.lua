@@ -1,13 +1,3 @@
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
-
-local lsp_handlers = require("config.lsp.handlers")
-require "config.lsp.null-ls"
-
-lsp_handlers.setup()
-
 local servers = {
   'bashls',
   'jsonls',
@@ -20,7 +10,39 @@ local servers = {
   'gopls',
 }
 
-local util = require 'vim.lsp.util'
+local mason_ok, mason = pcall(require, "mason")
+if not mason_ok then
+  return
+end
+
+mason.setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    }
+  }
+})
+
+local mason_lsp_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lsp_ok then
+  return
+end
+
+mason_lspconfig.setup({
+  ensure_installed = servers
+})
+
+local status_ok, lspconfig = pcall(require, "lspconfig")
+if not status_ok then
+  return
+end
+
+local lsp_handlers = require("config.lsp.handlers")
+require "config.lsp.null-ls"
+
+lsp_handlers.setup()
 
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
