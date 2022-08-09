@@ -110,8 +110,6 @@ return packer.startup({function(use)
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-
-  use "tamago324/nlsp-settings.nvim"                -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim"             -- for formatters and linters
   use "ray-x/lsp_signature.nvim"                    -- Pop up function definitions when typing a function call
   use "editorconfig/editorconfig-vim"               -- Obey editorconfig files
