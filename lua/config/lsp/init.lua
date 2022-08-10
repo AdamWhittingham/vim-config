@@ -39,17 +39,21 @@ if not status_ok then
   return
 end
 
-local lsp_handlers = require("config.lsp.handlers")
+require("config.lsp.handlers").setup()
 require "config.lsp.null-ls"
 
-lsp_handlers.setup()
-
 for _, server in ipairs(servers) do
-  lspconfig[server].setup {
-    on_attach = function(client, bufnr)
-      lsp_handlers.on_attach(client, bufnr)
-    end
+  local opts = {
+    on_attach = require("config.lsp.handlers").on_attach,
+    capabilities = require("config.lsp.handlers").capabilities,
   }
+
+  local has_custom_opts, server_custom_opts = pcall(require, "config.lsp.settings." .. server)
+  if has_custom_opts then
+    opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
+  end
+
+  lspconfig[server].setup(opts)
 end
 
 local lspsig_ok, lspsig = pcall(require, "lsp_signature")
