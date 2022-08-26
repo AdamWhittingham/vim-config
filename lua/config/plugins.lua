@@ -114,14 +114,14 @@ return packer.startup({function(use)
   use "ray-x/lsp_signature.nvim"                    -- Pop up function definitions when typing a function call
   use "editorconfig/editorconfig-vim"               -- Obey editorconfig files
   use {
-    "ThePrimeagen/refactoring.nvim",
+    "ThePrimeagen/refactoring.nvim",                -- Refactoring tools
     requires = {
       {"nvim-lua/plenary.nvim"},
       {"nvim-treesitter/nvim-treesitter"}
     }
   }
   use({
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- Show LSP diagnistics on lines for more comprehensive debugging
     config = function()
       require("lsp_lines").setup()
       vim.diagnostic.config({
@@ -130,15 +130,28 @@ return packer.startup({function(use)
       })
     end,
   })
+
   use({
-    "glepnir/lspsaga.nvim",
+    "glepnir/lspsaga.nvim",                         -- Better UI around renames and LSP diagnistics
     branch = "main",
     config = function()
       require("lspsaga").init_lsp_saga({
         code_action_lightbulb = { enable = false },
       })
     end,
-})
+  })
+
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "olimorris/neotest-rspec",
+      'nvim-neotest/neotest-go',
+      'haydenmeade/neotest-jest',
+    },
+  }
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }

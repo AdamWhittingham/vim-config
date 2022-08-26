@@ -205,8 +205,17 @@ normal("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')"
 ---------------------------------
 
 -- Leader t/T to send the current file/line to rspec via tmux windows
-leader("t", [[:call InvokeViaTmux("rspec", expand("%:p"))]], { desc = "Run tests for this file" })
-leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]], { desc = "Run tests for this line"})
+leader("te", [[:call InvokeViaTmux("rspec", expand("%:p"))]], { desc = "Run tests for this file" })
+leader("Te", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]], { desc = "Run tests for this line"})
+leader("tt", luacmd("require('neotest').run.run(vim.fn.expand('%'))"), { desc = "Run tests for this file" })
+leader("TT", luacmd("require('neotest').run.run()"), { desc = "Run tests for this line"})
+leader("td", luacmd("require('neotest').run.run({strategy = 'dap'})"), { desc = "Debug nearest test"})
+leader("tp", luacmd("require('neotest').run.run_last()"), { desc = "Run last test again"})
+leader("tl", luacmd("require('neotest').summary.toggle()"), { desc = "Toggle the test summary"})
+leader("to", luacmd("require('neotest').output.open()"), { desc = "Open last test output"})
+normal("[t", luacmd[[require('neotest').jump.prev()]], { desc = "Prev test" })
+normal("]t", luacmd[[require('neotest').jump.next()]], { desc = "Next test" })
+
 
 leader("pr", ":CopyRelativePath", { desc = "Copy relative path" })
 leader("pa", ":CopyAbsolutePath", { desc = "Copy absolute path" })
