@@ -56,6 +56,15 @@ for _, server in ipairs(servers) do
   lspconfig[server].setup(opts)
 end
 
+local lspsaga_ok, lspsaga = pcall(require, "lspsaga")
+if not lspsaga_ok then
+  return
+end
+
+lspsaga.init_lsp_saga({
+  code_action_lightbulb = { enable = false },
+})
+
 local lspsig_ok, lspsig = pcall(require, "lsp_signature")
 if not lspsig_ok then
   return
@@ -70,4 +79,3 @@ lspsig.setup({
   hi_parameter = "LspSignatureActiveParameter",
   floating_window = false,
 })
-

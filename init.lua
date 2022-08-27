@@ -1,19 +1,27 @@
+-- Core Config
 require "config.options"
 require "config.utils"
-require "config.plugins"
 require "config.keymaps"
-require "config.navigation"
 require "config.language_options"
 require "config.treesitter"
+require "config.plugins"
+require "config.text_manipulation"
+
+-- UI
+require "config.startup_screen"
+require "config.statusline"
+require "config.navigation"
+require "config.indentation_guidelines"
+require "config.colorizer"
+require "config.learning"
+
+-- Autocomplete
 require "config.autocomplete"
 require "config.snippets"
+
+-- Development
 require "config.lsp"
 require "config.languages"
 require "config.debugging"
 require "config.git"
-require "config.startup_screen"
-require "config.indentation_guidelines"
-require "config.statusline"
-require "config.learning"
-require "config.colorizer"
 require "config.testing"

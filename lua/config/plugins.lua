@@ -39,32 +39,13 @@ return packer.startup({function(use)
   --------------------
   -- TEXT MANIPULATION
   --------------------
-  use "AndrewRadev/switch.vim"  -- Quickly toggle between common alternative layouts for strings, arrays, etc.
-  use "AndrewRadev/splitjoin.vim" -- Quickly toggle between single and multi-line versions of common constructs
-  use "tpope/vim-abolish"       -- Smartcase replacement with S
-  use "tpope/vim-repeat"        -- Make surround, abolish and more repeatable
+  use "AndrewRadev/switch.vim"              -- Quickly toggle between common alternative layouts for strings, arrays, etc.
+  use "AndrewRadev/splitjoin.vim"           -- Quickly toggle between single and multi-line versions of common constructs
+  use "tpope/vim-abolish"                   -- Smartcase replacement with S
+  use "tpope/vim-repeat"                    -- Make surround, abolish and more repeatable
   use "lukas-reineke/indent-blankline.nvim" -- Show indentation markers
-
-  -- Paste previously yanked content
-  use {
-    "gbprod/yanky.nvim",
-    config = function()
-      require("yanky").setup({
-        picker = {
-          select = { action = nil },
-          telescope = { mappings = nil },
-        },
-      })
-    end,
-  }
-
-  -- Provide surrounding bindings
-  use({
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({ })
-    end
-  })
+  use "kylechui/nvim-surround"            -- Provide surrounding bindings
+  use "gbprod/yanky.nvim"                   -- Paste previously yanked content
 
   -------------------
   -- AUTOCOMPLETION
@@ -90,9 +71,9 @@ return packer.startup({function(use)
   -------------------
   -- UI
   -------------------
-  use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Excellent start screen framework
   use "AdamWhittingham/vim-adcode-theme"            -- A nice coat of paint for everything
   use "kyazdani42/nvim-web-devicons"                -- Map file types to icons for easier list-scanning
+  use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Excellent start screen framework
   use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- Even faster FZF
   use 'mbbill/undotree'                             -- Visualise the undo tree and make it easy to navigate
   use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Show git diff in the gutter
@@ -112,13 +93,11 @@ return packer.startup({function(use)
   }
   use "jose-elias-alvarez/null-ls.nvim"             -- for formatters and linters
   use "ray-x/lsp_signature.nvim"                    -- Pop up function definitions when typing a function call
-  use "editorconfig/editorconfig-vim"               -- Obey editorconfig files
+  use "gpanders/editorconfig.nvim"                  -- Obey editorconfig files
+  use({ "glepnir/lspsaga.nvim", branch = "main", }) -- Better UI around renames and LSP diagnistics
   use {
     "ThePrimeagen/refactoring.nvim",                -- Refactoring tools
-    requires = {
-      {"nvim-lua/plenary.nvim"},
-      {"nvim-treesitter/nvim-treesitter"}
-    }
+    requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" }
   }
   use({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- Show LSP diagnistics on lines for more comprehensive debugging
@@ -131,18 +110,8 @@ return packer.startup({function(use)
     end,
   })
 
-  use({
-    "glepnir/lspsaga.nvim",                         -- Better UI around renames and LSP diagnistics
-    branch = "main",
-    config = function()
-      require("lspsaga").init_lsp_saga({
-        code_action_lightbulb = { enable = false },
-      })
-    end,
-  })
-
   use {
-    "nvim-neotest/neotest",
+    "nvim-neotest/neotest",                         -- Add test running and result display UI
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -159,6 +128,10 @@ return packer.startup({function(use)
   use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
   use "nvim-treesitter/playground"                  -- Show the parser tree and syntax under cursor
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
+  use {
+    'AckslD/nvim-FeMaco.lua',                       -- Treat Markdown code blocks as the native code type
+    config = 'require("femaco").setup()',
+  }
 
   -- Debugging
   use "mfussenegger/nvim-dap"                 -- Debug Anything Protocol bindings
