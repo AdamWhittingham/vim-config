@@ -128,10 +128,6 @@ return packer.startup({function(use)
   use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
   use "nvim-treesitter/playground"                  -- Show the parser tree and syntax under cursor
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
-  use {
-    'AckslD/nvim-FeMaco.lua',                       -- Treat Markdown code blocks as the native code type
-    config = 'require("femaco").setup()',
-  }
 
   -- Debugging
   use "mfussenegger/nvim-dap"                 -- Debug Anything Protocol bindings
