@@ -85,7 +85,7 @@ local function mru(start, cwd, items_number, opts)
         end
     end
 
-    local special_shortcuts = {'a', 's', 'd', 'f' }
+    local special_shortcuts = {'a', 's', 'd'}
     local target_width = 35
 
     local tbl = {}
@@ -111,7 +111,7 @@ local function mru(start, cwd, items_number, opts)
           shortcut = tostring(i + start - 1 - #special_shortcuts)
         end
 
-        local file_button_el = file_button(fn, " " .. shortcut, short_fn)
+        local file_button_el = file_button(fn, shortcut, short_fn)
         tbl[i] = file_button_el
     end
     return {
