@@ -52,6 +52,9 @@ local function header_chars()
   return headers[math.random(#headers)]
 end
 
+-- Map over the headers, setting a different color for each line.
+-- This is done by setting the Highligh to StartLogoN, where N is the row index.
+-- Define StartLogo1..StartLogoN to get a nice gradient.
 local function header_color()
   local lines = {}
   for i, line_chars in pairs(header_chars()) do
