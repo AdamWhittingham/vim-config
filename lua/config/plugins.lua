@@ -105,9 +105,7 @@ return packer.startup({function(use)
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
-  use "nvim-treesitter/nvim-treesitter-refactor"    -- Add refactoring module for renaming
   use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
-  use "nvim-treesitter/playground"                  -- Show the parser tree and syntax under cursor
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
 
   -- Debugging
