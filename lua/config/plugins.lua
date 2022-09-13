@@ -44,7 +44,7 @@ return packer.startup({function(use)
   use "tpope/vim-abolish"                   -- Smartcase replacement with S
   use "tpope/vim-repeat"                    -- Make surround, abolish and more repeatable
   use "lukas-reineke/indent-blankline.nvim" -- Show indentation markers
-  use "kylechui/nvim-surround"            -- Provide surrounding bindings
+  use "kylechui/nvim-surround"              -- Provide surrounding bindings
   use "gbprod/yanky.nvim"                   -- Paste previously yanked content
 
   -------------------
@@ -72,7 +72,6 @@ return packer.startup({function(use)
   -- UI
   -------------------
   use "AdamWhittingham/vim-adcode-theme"            -- A nice coat of paint for everything
-  use "kyazdani42/nvim-web-devicons"                -- Map file types to icons for easier list-scanning
   use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Excellent start screen framework
   use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- Even faster FZF
   use 'mbbill/undotree'                             -- Visualise the undo tree and make it easy to navigate
@@ -81,6 +80,7 @@ return packer.startup({function(use)
   use "feline-nvim/feline.nvim"                     -- Quick and nice statusline
   use "folke/which-key.nvim"                        -- Help learn/relearn/remember key bindings with a handy pop up
   use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" } -- Show code hierarchy to item under cursor
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' } -- Better diff view
 
   -------------------
   -- LANGUAGE SUPPORT
@@ -109,18 +109,6 @@ return packer.startup({function(use)
       })
     end,
   })
-
-  use {
-    "nvim-neotest/neotest",                         -- Add test running and result display UI
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "olimorris/neotest-rspec",
-      'nvim-neotest/neotest-go',
-      'haydenmeade/neotest-jest',
-    },
-  }
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
