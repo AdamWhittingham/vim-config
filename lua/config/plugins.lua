@@ -42,7 +42,6 @@ return packer.startup({function(use)
   use "AndrewRadev/switch.vim"              -- Quickly toggle between common alternative layouts for strings, arrays, etc.
   use "AndrewRadev/splitjoin.vim"           -- Quickly toggle between single and multi-line versions of common constructs
   use "tpope/vim-abolish"                   -- Smartcase replacement with S
-  use "tpope/vim-repeat"                    -- Make surround, abolish and more repeatable
   use "lukas-reineke/indent-blankline.nvim" -- Show indentation markers
   use "kylechui/nvim-surround"              -- Provide surrounding bindings
   use "gbprod/yanky.nvim"                   -- Paste previously yanked content
@@ -109,19 +108,19 @@ return packer.startup({function(use)
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
 
   -- Debugging
-  use "mfussenegger/nvim-dap"                 -- Debug Anything Protocol bindings
+  use "mfussenegger/nvim-dap"                       -- Debug Anything Protocol bindings
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }   -- Lovely UI for DAP output
-  use "theHamsta/nvim-dap-virtual-text"       -- Show debug values in virtual text
-  use "leoluz/nvim-dap-go"                    -- Bindings for Delve, the go debugger
-  use "suketa/nvim-dap-ruby"                  -- Bindings for ruby-debug
+  use "theHamsta/nvim-dap-virtual-text"             -- Show debug values in virtual text
+  use "leoluz/nvim-dap-go"                          -- Bindings for Delve, the go debugger
+  use "suketa/nvim-dap-ruby"                        -- Bindings for ruby-debug
 
   -------------------
   -- Navigation
   -------------------
-  use "tpope/vim-projectionist"               -- Map tools and actions based on the project
-  use "christoomey/vim-tmux-navigator"        -- Seemless movement between panes and tmux
-  use "AdamWhittingham/vim-copy-filename"     -- Quick shortcuts for copying the file name, path and/or line number
-  use "ruanyl/vim-gh-line"                    -- Generate and copy the github/gitlab repo URL for the current line
+  use "tpope/vim-projectionist"                     -- Map tools and actions based on the project
+  use "christoomey/vim-tmux-navigator"              -- Seemless movement between panes and tmux
+  use "AdamWhittingham/vim-copy-filename"           -- Quick shortcuts for copying the file name, path and/or line number
+  use "ruanyl/vim-gh-line"                          -- Generate and copy the github/gitlab repo URL for the current line
 
   -- Automatically set up configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then
