@@ -49,7 +49,8 @@ wk.register({ w = { name = "Window", } }, { prefix = "<leader>" })
 
 leader("ww", ":w", { desc = "Write" })
 leader("we", ":e", { desc = "Reload" })
-leader("wx", ":x", { desc = "Write & quit" })
+leader("wq", ":x", { desc = "Write & quit" })
+leader("wa", ":wa", { desc = "Write all" })
 leader("wQ", ":q!", { desc = "Discard & quit" })
 leader("qq", ":q", { desc = "Quit" })
 
