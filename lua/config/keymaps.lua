@@ -188,17 +188,6 @@ normal("[d", luacmd'vim.diagnostic.goto_prev({ border = "rounded" })', { desc = 
 normal("]d", luacmd'vim.diagnostic.goto_next({ border = "rounded" })', { desc = "Next diagnostic" })
 leader("q", luacmd"vim.diagnostic.setloclist()", { desc = "Quickfix list diagnostics" })
 
----------------------------------
--- Refactoring
----------------------------------
-wk.register({ r = { name = "Refactor", } }, { prefix = "<leader>", mode = "v" })
-
-visual("<leader>rb", luacmd("require('refactoring').refactor('Extract Block')"), { desc = "Extact block" } )
-visual("<leader>re", luacmd("require('refactoring').refactor('Extract Function')"), { desc = "Extact function" } )
-visual("<leader>rf", luacmd("require('refactoring').refactor('Extract Function To File')"), { desc = "Extact to file" } )
-visual("<leader>rv", luacmd("require('refactoring').refactor('Extract Variable')"), { desc = "Extact variable" } )
-visual("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')"), { desc = "Inline variable" } )
-normal("<leader>ri", luacmd("require('refactoring').refactor('Inline Variable')"), { desc = "Inline variable" } ) -- same but for item under cursor
 
 ---------------------------------
 -- Test helpers

@@ -95,18 +95,11 @@ return packer.startup({function(use)
   use "ray-x/lsp_signature.nvim"                    -- Pop up function definitions when typing a function call
   use "gpanders/editorconfig.nvim"                  -- Obey editorconfig files
   use({ "glepnir/lspsaga.nvim", branch = "main", }) -- Better UI around renames and LSP diagnistics
-  use {
-    "ThePrimeagen/refactoring.nvim",                -- Refactoring tools
-    requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" }
-  }
   use({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- Show LSP diagnistics on lines for more comprehensive debugging
     config = function()
       require("lsp_lines").setup()
-      vim.diagnostic.config({
-        virtual_text = false,
-        virtual_lines = false,
-      })
+      vim.diagnostic.config({ virtual_text = false, virtual_lines = false, })
     end,
   })
 
