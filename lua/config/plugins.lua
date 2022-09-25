@@ -81,6 +81,16 @@ return packer.startup({function(use)
   use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" } -- Show code hierarchy to item under cursor
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' } -- Better diff view
 
+  use {
+  'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'BurntSushi/ripgrep',
+      "sharkdp/fd",
+      'nvim-telescope/telescope-fzf-native.nvim',
+    }
+}
+
   -------------------
   -- LANGUAGE SUPPORT
   -------------------
