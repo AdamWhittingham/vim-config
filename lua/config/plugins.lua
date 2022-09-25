@@ -89,7 +89,8 @@ return packer.startup({function(use)
       "sharkdp/fd",
       'nvim-telescope/telescope-fzf-native.nvim',
     }
-}
+  }
+  use { "otavioschwanck/telescope-alternate" }
 
   -------------------
   -- LANGUAGE SUPPORT
