@@ -7,3 +7,5 @@ require("yanky").setup({
     telescope = { mappings = nil },
   },
 })
+
+require('textcase').setup {}
