@@ -82,7 +82,7 @@ return packer.startup({function(use)
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' } -- Better diff view
 
   use {
-  'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope.nvim',                  -- Telescope plus the plugins that make it faster
     requires = {
       'nvim-lua/plenary.nvim',
       'BurntSushi/ripgrep',
@@ -90,7 +90,6 @@ return packer.startup({function(use)
       'nvim-telescope/telescope-fzf-native.nvim',
     }
   }
-  use { "otavioschwanck/telescope-alternate" }
 
   -------------------
   -- LANGUAGE SUPPORT
