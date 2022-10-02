@@ -52,13 +52,3 @@ require('gitsigns').setup {
     enable = false
   },
 }
-
-require("diffview").setup({
-  enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'
-  view = {
-    merge_tool = {
-      layout = "diff3_horizontal",
-      disable_diagnostics = true,   -- Temporarily disable diagnostics for conflict buffers while in the view.
-    },
-  },
-})

@@ -170,6 +170,9 @@ leader("cd", '<cmd>Gitsigns preview_hunk', { desc = "Diff change" })
 leader("cb", '<cmd>lua require"gitsigns".toggle_current_line_blame()', { desc = "Toggle blame" })
 leader("cR", '<cmd>Gitsigns reset_buffer', { desc = "Reset file" })
 
+-- Diff viewing
+leader("cv", cmd[[:DiffviewOpen -uno]])
+
 ---------------------------------
 -- File navigation
 ---------------------------------
