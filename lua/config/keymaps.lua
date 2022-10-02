@@ -171,7 +171,7 @@ leader("cb", '<cmd>lua require"gitsigns".toggle_current_line_blame()', { desc = 
 leader("cR", '<cmd>Gitsigns reset_buffer', { desc = "Reset file" })
 
 -- Diff viewing
-leader("cv", cmd[[:DiffviewOpen -uno]])
+leader("cv", cmd[[:DiffviewToggle]], { desc = "Show merge view"})
 
 ---------------------------------
 -- File navigation
