@@ -45,6 +45,8 @@ M.on_attach = function(client, bufnr)
     vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
   end
 
+  vim.buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_seq_sync()' ]]
 
   local cap = client.resolved_capabilities
