@@ -73,11 +73,11 @@ leader("wS", ":split", { desc = "Split window horizontally"})
 ---------------------------------
 
 leader("h", ":nohlsearch", { desc = "Toggle search highlight" })
-leader("m", ":FzfLua marks", { desc = "List marks" })
-normal("m", ":lua set_mark()", { desc = "Set mark" })
-leader("j", ":FzfLua jumps", { desc = "Jumplist" })
-leader("ll", ":FzfLua lsp_document_diagnostics", { desc = "List diagnostics" })
-
+leader("m", ":Telescope marks", { desc = "List marks" })
+normal("m", luacmd[[set_mark()]], { desc = "Set mark" })
+leader("j", ":Telescope jumps", { desc = "Jumplist" })
+leader("ll", ":Telescope diagnostics", { desc = "List diagnostics" })
+--
 -- Nicer movement through the change list (where you have edited)
 normal("[g", "g;", { desc = "Prev edit"})
 normal("]g", "g,", { desc = "Next edit"})
@@ -166,13 +166,13 @@ leader("cv", cmd[[:DiffviewToggle]], { desc = "Show merge view"})
 ---------------------------------
 
 -- Opening and finding files
-leader("f", ":FzfLua files", { desc = "Find files" })
-leader("F", ":FzfLua live_grep_native", { desc = "Find in files" })
-leader("G", ":FzfLua resume", { desc = "Show previous search" })
-leader("*", ":FzfLua grep_cword", { desc = "Search for word" })
+leader("f", ":Telescope find_files", { desc = "Find files" })
+leader("F", ":Telescope live_grep", { desc = "Find in files" })
+leader("G", ":Telescope resume", { desc = "Show previous search" })
+leader("*", ":Telescope grep_cword", { desc = "Search for word" })
 
 -- Switching buffers
-leader(".", ":FzfLua buffers", { desc = "Show buffers" })
+leader(".", ":Telescope buffers", { desc = "Show buffers" })
 leader("<leader>", ":b#", { desc = "Previous buffer" })
 
 ---------------------------------
@@ -238,7 +238,7 @@ wk.register({
 -- Debugging
 ---------------------------------
 
-leader("d", ":FzfLua dap_breakpoints")
+leader("d", ":Telescope dap_breakpoints")
 
 wk.register({
   b = {
