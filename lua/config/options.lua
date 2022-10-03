@@ -29,6 +29,7 @@ opt.signcolumn = "yes"
 opt.scrolloff = 3
 opt.sidescrolloff = 3
 opt.updatetime=500
+opt.winbar = ''
 
 vim.cmd [[
 try

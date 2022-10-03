@@ -47,7 +47,7 @@ M.on_attach = function(client, bufnr)
 
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_seq_sync()' ]]
 
-  local cap = client.resolved_capabilities
+  local cap = client.server_capabilities
   if cap.document_highlight then
     vim.api.nvim_create_augroup("lsp_document_highlight", {clear = true})
     vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
