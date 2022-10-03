@@ -1,9 +1,11 @@
 local lsp = require('feline.providers.lsp')
-local gps = require("nvim-gps")
+local gps = require("nvim-navic")
 
 vim.opt.laststatus = 3
 
-gps.setup()
+gps.setup({
+  separator = " » ",
+})
 
 local force_inactive = {
   filetypes = {},
@@ -134,7 +136,7 @@ add_left({
   short_provider = function()
     return gps.get_location({
       depth = 3,
-      separator = ''
+      separator = '.'
     })
   end
 })

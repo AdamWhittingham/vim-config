@@ -78,7 +78,7 @@ return packer.startup({function(use)
   use 'DarwinSenior/nvim-colorizer.lua'             -- Fork of colorizer with VirtualText
   use "feline-nvim/feline.nvim"                     -- Quick and nice statusline
   use "folke/which-key.nvim"                        -- Help learn/relearn/remember key bindings with a handy pop up
-  use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" } -- Show code hierarchy to item under cursor
+  use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" } -- show code hierarchy of item under cursor
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' } -- Better diff view
 
   use {
