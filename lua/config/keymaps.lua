@@ -181,7 +181,7 @@ leader("cv", cmd[[:DiffviewToggle]], { desc = "Show merge view"})
 leader("f", ":Telescope find_files", { desc = "Find files" })
 leader("F", ":Telescope live_grep", { desc = "Find in files" })
 leader("G", ":Telescope resume", { desc = "Show previous search" })
-leader("*", ":Telescope grep_cword", { desc = "Search for word" })
+leader("*", ":Telescope grep_string", { desc = "Search for word" })
 
 -- Switching buffers
 leader(".", ":Telescope buffers", { desc = "Show buffers" })
