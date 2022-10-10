@@ -122,23 +122,11 @@ normal("ga_", luacmd[[require('textcase').current_word('to_snake_case')]] , { de
 normal("ga-", luacmd[[require('textcase').current_word('to_dash_case')]] , { desc = "Convert to dash-case" } )
 normal("gaC", luacmd[[require('textcase').current_word('to_constant_case')]] , { desc = "Convert to CONSTANT_CASE" } )
 normal("ga.", luacmd[[require('textcase').current_word('to_dot_case')]] , { desc = "Convert to dot.case" } )
-normal("gas", luacmd[[require('textcase').current_word('to_phrase_case')]] , { desc = "Convert to sentence case" } )
 normal("gac", luacmd[[require('textcase').current_word('to_camel_case')]] , { desc = "Convert to CamelCase" } )
 normal("gaP", luacmd[[require('textcase').current_word('to_pascal_case')]] , { desc = "Convert to PascalCase" } )
 normal("gat", luacmd[[require('textcase').current_word('to_title_case')]] , { desc = "Convert to Title Case" } )
 normal("gap", luacmd[[require('textcase').current_word('to_path_case')]] , { desc = "Convert to path/case" } )
-
-leader("gaU", luacmd[[require('textcase').lsp_rename('to_upper_case')]] , { desc = "Convert to UPPER CASE" } )
-leader("gau", luacmd[[require('textcase').lsp_rename('to_lower_case')]] , { desc = "Convert to lower case" } )
-leader("ga_", luacmd[[require('textcase').lsp_rename('to_snake_case')]] , { desc = "Convert to snake_case" } )
-leader("ga-", luacmd[[require('textcase').lsp_rename('to_dash_case')]] , { desc = "Convert to dash-case" } )
-leader("gaC", luacmd[[require('textcase').lsp_rename('to_constant_case')]] , { desc = "Convert to CONSTANT_CASE" } )
-leader("ga.", luacmd[[require('textcase').lsp_rename('to_dot_case')]] , { desc = "Convert to dot.case" } )
-leader("gas", luacmd[[require('textcase').lsp_rename('to_phrase_case')]] , { desc = "Convert to sentence case" } )
-leader("gac", luacmd[[require('textcase').lsp_rename('to_camel_case')]] , { desc = "Convert to CamelCase" } )
-leader("gaP", luacmd[[require('textcase').lsp_rename('to_pascal_case')]] , { desc = "Convert to PascalCase" } )
-leader("gat", luacmd[[require('textcase').lsp_rename('to_title_case')]] , { desc = "Convert to Title Case" } )
-leader("gap", luacmd[[require('textcase').lsp_rename('to_path_case')]] , { desc = "Convert to path/case" } )
+normal("gas", luacmd[[require('textcase').current_word('to_phrase_case')]] , { desc = "Convert to sentence case" } )
 
 wk.register({
   g = {
