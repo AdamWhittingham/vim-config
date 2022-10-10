@@ -72,7 +72,6 @@ return packer.startup({function(use)
   -------------------
   use "AdamWhittingham/vim-adcode-theme"            -- A nice coat of paint for everything
   use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Excellent start screen framework
-  use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- Even faster FZF
   use 'mbbill/undotree'                             -- Visualise the undo tree and make it easy to navigate
   use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Show git diff in the gutter
   use 'DarwinSenior/nvim-colorizer.lua'             -- Fork of colorizer with VirtualText
