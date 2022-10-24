@@ -10,23 +10,29 @@ configs.setup {
     "css",
     "dockerfile",
     "elm",
+    "gitignore",
     "go",
+    "gomod",
     "html",
     "javascript",
     "json",
     "lua",
     "make",
     "markdown",
+    "proto",
+    "php",
     "python",
     "regex",
     "ruby",
     "scss",
+    "sql",
+    "toml",
     "tsx",
     "typescript",
     "yaml",
   },
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { "" }, -- List of parsers to ignore installing
+  ignore_install = { }, -- List of parsers to ignore installing
   autopairs = { enable = true },
   highlight = {
     enable = true, -- false will disable the whole extension
