@@ -184,8 +184,8 @@ wk.register({ l = { name = "Language Server", } }, { prefix = "<leader>" })
 -- Jump to definition or references
 normal("<C-{>", cmd[[Lspsaga lsp_finder]], { desc = "Find references and definitions" })
 leader("]", cmd[[Lspsaga lsp_finder]], { desc = "Find references and definitions" })
-normal("<C-}>", cmd[[Lspsaga preview_definition]], { desc = "Preview definition" })
-leader("}", cmd[[Lspsaga preview_definition]], { desc = "Preview definition" })
+normal("<C-}>", cmd[[Lspsaga peek_definition]], { desc = "Preview definition" })
+leader("}", cmd[[Lspsaga peek_definition]], { desc = "Preview definition" })
 normal("<C-]>", luacmd[[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
 
 -- Show signature help, info/docs & diagnostics
