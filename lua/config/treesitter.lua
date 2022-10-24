@@ -30,7 +30,7 @@ configs.setup {
   autopairs = { enable = true },
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "" }, -- list of language that will be disabled
+    disable = {}, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
   indent = { enable = true, disable = { "yaml" } },
@@ -38,5 +38,7 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
   },
+  playground = {
+    enable = true,
+  },
 }
-

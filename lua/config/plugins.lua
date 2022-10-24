@@ -116,6 +116,7 @@ return packer.startup({function(use)
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
   use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
+  use "nvim-treesitter/playground"                  -- Show details of treesitter and highlighting
 
   -- Debugging
   use "mfussenegger/nvim-dap"                       -- Debug Anything Protocol bindings
