@@ -239,7 +239,7 @@ wk.register({
 -- Debugging
 ---------------------------------
 
-leader("d", ":Telescope dap_breakpoints")
+leader("d", ":Telescope dap list_breakpoints")
 
 wk.register({
   b = {
