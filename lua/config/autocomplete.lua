@@ -169,18 +169,4 @@ npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 -----------------------------------------------
 -- Configure Commenting
 -----------------------------------------------
-
-local comment_status_ok, comment = pcall(require, "Comment")
-if not comment_status_ok then
-  return
-end
-
-comment.setup( {
-  padding = true,
-  ignore = '^$',
-  mappings = {
-    basic = true,
-    extra = true,
-    extended = false
-  }
-})
+require('mini.comment').setup()
