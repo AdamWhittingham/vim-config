@@ -52,7 +52,6 @@ return packer.startup({function(use)
   -------------------
   use "windwp/nvim-autopairs"     -- Autopairs, integrates with both cmp and treesitter
   use 'windwp/nvim-ts-autotag'    -- Auto close HTML and XML tags too
-  use "numToStr/Comment.nvim"     -- Easily comment stuff
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"          -- Completion engine
@@ -116,7 +115,6 @@ return packer.startup({function(use)
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
   use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
-  use "JoosepAlviste/nvim-ts-context-commentstring" -- Make commenting context aware, so it works better in compound filetypes like JSX
   use "nvim-treesitter/playground"                  -- Show details of treesitter and highlighting
 
   -- Debugging
