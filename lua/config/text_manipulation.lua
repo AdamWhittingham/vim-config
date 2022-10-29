@@ -13,3 +13,7 @@ require("yanky").setup({
     cancel_event = "update",
   },
 })
+
+-- Setup better text objects and motions
+require('mini.ai').setup()
+require('mini.align').setup()
