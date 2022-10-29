@@ -22,3 +22,6 @@ function _G.set_mark()
   local mark = string.char(vim.fn.getchar())
   vim.api.nvim_command(":mark "..mark)
 end
+
+-- highlight the word under the cursor
+require('mini.cursorword').setup()
