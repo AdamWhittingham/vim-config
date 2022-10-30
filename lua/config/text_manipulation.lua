@@ -1,6 +1,4 @@
 -- Setup surround
-require("nvim-surround").setup({})
-
 require("yanky").setup({
   picker = {
     select = { action = nil },
@@ -17,3 +15,4 @@ require("yanky").setup({
 -- Setup better text objects and motions
 require('mini.ai').setup()
 require('mini.align').setup()
+require('mini.surround').setup()

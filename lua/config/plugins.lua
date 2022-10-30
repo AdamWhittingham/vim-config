@@ -43,7 +43,6 @@ return packer.startup({function(use)
   use "AndrewRadev/switch.vim"              -- Quickly toggle between common alternative layouts for strings, arrays, etc.
   use "AndrewRadev/splitjoin.vim"           -- Quickly toggle between single and multi-line versions of common constructs
   use "johmsalas/text-case.nvim"            -- Smartcase replacement with S
-  use "kylechui/nvim-surround"              -- Provide surrounding bindings
   use "gbprod/yanky.nvim"                   -- Paste previously yanked content
 
   -------------------
