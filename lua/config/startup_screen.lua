@@ -83,3 +83,11 @@ end
 local config = require("alpha.themes.theta").config
 config.layout[2] = header_color()
 alpha.setup(config)
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "Alpha",
+  callback = function()
+    vim.b.minicursorword_disable = true
+    vim.b.miniindentscope_disable = true
+  end,
+})
