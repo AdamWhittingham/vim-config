@@ -48,9 +48,6 @@ return packer.startup({function(use)
   -------------------
   -- AUTOCOMPLETION
   -------------------
-  use "windwp/nvim-autopairs"     -- Autopairs, integrates with both cmp and treesitter
-  use 'windwp/nvim-ts-autotag'    -- Auto close HTML and XML tags too
-
   -- cmp plugins
   use "hrsh7th/nvim-cmp"          -- Completion engine
   use "hrsh7th/cmp-buffer"        -- buffer completions
