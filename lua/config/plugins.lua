@@ -70,15 +70,15 @@ return packer.startup({function(use)
   -------------------
   -- UI
   -------------------
-  use "AdamWhittingham/vim-adcode-theme"            -- A nice coat of paint for everything
+  use { "AdamWhittingham/vim-adcode-theme", branch = 'depalette' }             -- A nice coat of paint for everything
   use {'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Excellent start screen framework
-  use 'mbbill/undotree'                             -- Visualise the undo tree and make it easy to navigate
-  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Show git diff in the gutter
-  use 'DarwinSenior/nvim-colorizer.lua'             -- Fork of colorizer with VirtualText
-  use "feline-nvim/feline.nvim"                     -- Quick and nice statusline
-  use "folke/which-key.nvim"                        -- Help learn/relearn/remember key bindings with a handy pop up
-  use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" } -- show code hierarchy of item under cursor
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' } -- Better diff view
+  use 'mbbill/undotree'                                                      -- Visualise the undo tree and make it easy to navigate
+  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }  -- Show git diff in the gutter
+  use 'DarwinSenior/nvim-colorizer.lua'                                      -- Fork of colorizer with VirtualText
+  use "feline-nvim/feline.nvim"                                              -- Quick and nice statusline
+  use "folke/which-key.nvim"                                                 -- Help learn/relearn/remember key bindings with a handy pop up
+  use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" }          -- show code hierarchy of item under cursor
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }       -- Better diff view
 
   use {
   'nvim-telescope/telescope.nvim',                  -- Telescope plus the plugins that make it faster
