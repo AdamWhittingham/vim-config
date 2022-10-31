@@ -7,6 +7,7 @@
       "end"
     ]
   },
+
   "Lazy Load": {
     "prefix": "ll",
     "body": [ "lazy_load(:$1) { $2 }" ]
@@ -18,5 +19,26 @@
   "Lazy Entities": {
     "prefix": "les",
     "body": [ "lazy_entities(:$1) { $2 }" ]
-  }
+  },
+
+  "Log - debug": {
+    "prefix": "logd",
+    "body": [ "log.debug { $1 }" ]
+  },
+  "Log - info": {
+    "prefix": "logi",
+    "body": [ "log.info { $1 }" ]
+  },
+  "Log - warn": {
+    "prefix": "logw",
+    "body": [ "log.warn { $1 }" ]
+  },
+  "Log - error": {
+    "prefix": "loge",
+    "body": [ "log.error { $1 }" ]
+  },
+  "Log - fatal": {
+    "prefix": "logf",
+    "body": [ "log.fatal { $1 }" ]
+  },
 }
