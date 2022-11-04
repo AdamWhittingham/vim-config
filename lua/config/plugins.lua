@@ -99,7 +99,6 @@ return packer.startup({function(use)
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  use "jose-elias-alvarez/null-ls.nvim"             -- for formatters and linters
   use "ray-x/lsp_signature.nvim"                    -- Pop up function definitions when typing a function call
   use "gpanders/editorconfig.nvim"                  -- Obey editorconfig files
   use({ "glepnir/lspsaga.nvim", branch = "main", }) -- Better UI around renames and LSP diagnistics

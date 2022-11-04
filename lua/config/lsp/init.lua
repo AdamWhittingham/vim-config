@@ -40,7 +40,6 @@ if not status_ok then
 end
 
 require("config.lsp.handlers").setup()
-require "config.lsp.null-ls"
 
 for _, server in ipairs(servers) do
   local opts = {
