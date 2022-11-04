@@ -4,14 +4,14 @@ local default_opts = { noremap = true, silent = true }
 local bind_opts = function(opts)
   opts = opts or {}
   local out_opts = default_opts
-  for k,v in pairs(opts) do out_opts[k] = v end
+  for k, v in pairs(opts) do out_opts[k] = v end
   return out_opts
 end
 
 local keymap = vim.api.nvim_set_keymap
 
 local normal = function(keys, command, opts)
-  keymap("n", keys, command.."<CR>", bind_opts(opts))
+  keymap("n", keys, command .. "<CR>", bind_opts(opts))
 end
 
 local visual = function(keys, command, opts)
@@ -19,7 +19,7 @@ local visual = function(keys, command, opts)
 end
 
 local leader = function(keys, command, opts)
-  keymap("n", "<leader>"..keys, command.."<CR>", bind_opts(opts))
+  keymap("n", "<leader>" .. keys, command .. "<CR>", bind_opts(opts))
 end
 
 local cmd = function(command)
@@ -27,7 +27,7 @@ local cmd = function(command)
 end
 
 local luacmd = function(command)
-  return "<Esc><Cmd>lua "..command
+  return "<Esc><Cmd>lua " .. command .. "<CR>"
 end
 
 local which_key_status_ok, wk = pcall(require, "which-key")
@@ -65,8 +65,8 @@ normal("<C-j>", "<C-w>j", { desc = "Move to window below" })
 normal("<C-k>", "<C-w>k", { desc = "Move to window above" })
 
 -- Split panes
-leader("ws", ":vsplit", { desc = "Split window vertically"})
-leader("wS", ":split", { desc = "Split window horizontally"})
+leader("ws", ":vsplit", { desc = "Split window vertically" })
+leader("wS", ":split", { desc = "Split window horizontally" })
 
 ---------------------------------
 -- Text navigation
@@ -74,29 +74,29 @@ leader("wS", ":split", { desc = "Split window horizontally"})
 
 leader("h", ":nohlsearch", { desc = "Toggle search highlight" })
 leader("m", ":Telescope marks", { desc = "List marks" })
-normal("m", luacmd[[set_mark()]], { desc = "Set mark" })
+normal("m", luacmd [[set_mark()]], { desc = "Set mark" })
 leader("j", ":Telescope jumps", { desc = "Jumplist" })
-leader("ll", ":Telescope diagnostics", { desc = "List diagnostics" })
+leader("lD", ":Telescope diagnostics", { desc = "List diagnostics" })
 --
 -- Nicer movement through the change list (where you have edited)
-normal("[g", "g;", { desc = "Prev edit"})
-normal("]g", "g,", { desc = "Next edit"})
+normal("[g", "g;", { desc = "Prev edit" })
+normal("]g", "g,", { desc = "Next edit" })
 
 ---------------------------------
 -- Text manipulation
 ---------------------------------
 
 -- Add add blank line above/below current line
-normal("[<space>", "O<Esc>", { desc = "Add space before line"})
-normal("]<space>", "o<Esc>2k", { desc = "Add space after line"})
+normal("[<space>", "O<Esc>", { desc = "Add space before line" })
+normal("]<space>", "o<Esc>2k", { desc = "Add space after line" })
 
 -- Move current line up or down
 normal("[e", ":m -2<cr>k", { desc = "Move line up" })
 normal("]e", ":m +1<cr>k", { desc = "Move line down" })
 
 -- Stay in indent mode
-visual("<", "<gv", { desc = "Dedent selection"})
-visual(">", ">gv", { desc = "Indent selection"})
+visual("<", "<gv", { desc = "Dedent selection" })
+visual(">", ">gv", { desc = "Indent selection" })
 
 -- Reindent the current file
 leader("i", "m`gg=G``", { desc = "Reindent file" })
@@ -107,27 +107,27 @@ leader("S", ":SplitjoinJoin", { desc = "Join construct" })
 
 -- Yank ring setup
 normal("p", "<Plug>(YankyPutAfter)", { desc = "Paste" })
-normal("P", "<Plug>(YankyPutBefore)", {desc = "Paste before"})
-normal("[p", "<Plug>(YankyCycleForward)", {desc = "Swap to next paste" })
-normal("]p", "<Plug>(YankyCycleBackward)", {desc = "Swap to prev paste" })
-leader("P", cmd[[Telescope yank_history]], { desc = "Show yank ring" })
+normal("P", "<Plug>(YankyPutBefore)", { desc = "Paste before" })
+normal("[p", "<Plug>(YankyCycleForward)", { desc = "Swap to next paste" })
+normal("]p", "<Plug>(YankyCycleBackward)", { desc = "Swap to prev paste" })
+leader("P", cmd [[Telescope yank_history]], { desc = "Show yank ring" })
 
 -- OS Clipboard yank
 normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 visual("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 
 -- Case conversions
-normal("gaU", luacmd[[require('textcase').current_word('to_upper_case')]] , { desc = "Convert to UPPER CASE" } )
-normal("gau", luacmd[[require('textcase').current_word('to_lower_case')]] , { desc = "Convert to lower case" } )
-normal("ga_", luacmd[[require('textcase').current_word('to_snake_case')]] , { desc = "Convert to snake_case" } )
-normal("ga-", luacmd[[require('textcase').current_word('to_dash_case')]] , { desc = "Convert to dash-case" } )
-normal("gaC", luacmd[[require('textcase').current_word('to_constant_case')]] , { desc = "Convert to CONSTANT_CASE" } )
-normal("ga.", luacmd[[require('textcase').current_word('to_dot_case')]] , { desc = "Convert to dot.case" } )
-normal("gac", luacmd[[require('textcase').current_word('to_camel_case')]] , { desc = "Convert to CamelCase" } )
-normal("gaP", luacmd[[require('textcase').current_word('to_pascal_case')]] , { desc = "Convert to PascalCase" } )
-normal("gat", luacmd[[require('textcase').current_word('to_title_case')]] , { desc = "Convert to Title Case" } )
-normal("gap", luacmd[[require('textcase').current_word('to_path_case')]] , { desc = "Convert to path/case" } )
-normal("gas", luacmd[[require('textcase').current_word('to_phrase_case')]] , { desc = "Convert to sentence case" } )
+normal("gaU", luacmd [[require('textcase').current_word('to_upper_case')]], { desc = "Convert to UPPER CASE" })
+normal("gau", luacmd [[require('textcase').current_word('to_lower_case')]], { desc = "Convert to lower case" })
+normal("ga_", luacmd [[require('textcase').current_word('to_snake_case')]], { desc = "Convert to snake_case" })
+normal("ga-", luacmd [[require('textcase').current_word('to_dash_case')]], { desc = "Convert to dash-case" })
+normal("gaC", luacmd [[require('textcase').current_word('to_constant_case')]], { desc = "Convert to CONSTANT_CASE" })
+normal("ga.", luacmd [[require('textcase').current_word('to_dot_case')]], { desc = "Convert to dot.case" })
+normal("gac", luacmd [[require('textcase').current_word('to_camel_case')]], { desc = "Convert to CamelCase" })
+normal("gaP", luacmd [[require('textcase').current_word('to_pascal_case')]], { desc = "Convert to PascalCase" })
+normal("gat", luacmd [[require('textcase').current_word('to_title_case')]], { desc = "Convert to Title Case" })
+normal("gap", luacmd [[require('textcase').current_word('to_path_case')]], { desc = "Convert to path/case" })
+normal("gas", luacmd [[require('textcase').current_word('to_phrase_case')]], { desc = "Convert to sentence case" })
 
 wk.register({
   g = {
@@ -147,8 +147,8 @@ wk.register({ c = { name = "Change", } }, { prefix = "<leader>" })
 leader("u", ":UndotreeToggle", { desc = "Undo tree" })
 
 -- Move to the next/prev change in this file
-normal("]c", '<cmd>Gitsigns next_hunk', { desc = "Next change"})
-normal("[c", '<cmd>Gitsigns prev_hunk', { desc = "Prev change"})
+normal("]c", '<cmd>Gitsigns next_hunk', { desc = "Next change" })
+normal("[c", '<cmd>Gitsigns prev_hunk', { desc = "Prev change" })
 
 -- Control Changes/Hunks
 leader("ca", "<cmd>Gitsigns stage_hunk", { desc = "Add change to stage" })
@@ -160,7 +160,7 @@ leader("cb", '<cmd>lua require"gitsigns".toggle_current_line_blame()', { desc = 
 leader("cR", '<cmd>Gitsigns reset_buffer', { desc = "Reset file" })
 
 -- Diff viewing
-leader("cv", cmd[[:DiffviewToggle]], { desc = "Show merge view"})
+leader("cv", cmd [[:DiffviewToggle]], { desc = "Show merge view" })
 
 ---------------------------------
 -- File navigation
@@ -182,30 +182,33 @@ leader("<leader>", ":b#", { desc = "Previous buffer" })
 wk.register({ l = { name = "Language Server", } }, { prefix = "<leader>" })
 
 -- Jump to definition or references
-normal("<C-{>", cmd[[Lspsaga lsp_finder]], { desc = "Find references and definitions" })
-leader("]", cmd[[Lspsaga lsp_finder]], { desc = "Find references and definitions" })
-normal("<C-}>", cmd[[Lspsaga peek_definition]], { desc = "Preview definition" })
-leader("}", cmd[[Lspsaga peek_definition]], { desc = "Preview definition" })
-normal("<C-]>", luacmd[[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
+normal("<C-{>", cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
+leader("]",     cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
+normal("<C-}>", cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
+leader("}",     cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
+normal("<C-]>", luacmd [[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
 
--- Show signature help, info/docs & diagnostics
-leader("K", cmd[[Lspsaga hover_doc]])
-leader("ll", cmd[[LSoutlineToggle]])
-leader("ls", cmd[[Lspsaga signature_help]], ({desc = "Signaure help"}))
-leader("li", luacmd[[vim.lsp.buf.hover()]], {desc = "LSP info"})
-leader("ld", luacmd[[_G.toggle_diagnostics()]], {desc = "Toggle disagnostics"})
-leader("lo", luacmd[[vim.diagnostic.open_float()]], {desc = "Show disagnostic float"})
-leader("lr", cmd[[Lspsaga rename]], {desc = "LSP Rename"})
+wk.register({
+  l = {
+    name = "Language tools",
+    d = { luacmd [[_G.toggle_diagnostics()]],    "Toggle disagnostics" },
+    l = { cmd [[LSoutlineToggle]],               "Show LSP outline for file" },
+    p = { cmd [[Lspsaga peek_definition]],       "Peek definition" },
+    o = { cmd [[Lspsaga show_line_diagnostics]], "Show disagnostic float" },
+    r = { cmd [[Lspsaga rename]],                "LSP Rename" },
+    a = { cmd [[Lspsaga code_action]],           "Show code actions" },
+    k = { cmd [[Lspsaga hover_doc]],             "Show docs" }, -- or call vim.lsp.bug.hover()
+    f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
+  }
+}, { prefix = "<leader>" })
 
 -- LSP code manipulations
-vim.keymap.set("n", "<leader>la", cmd"Lspsaga code_action", bind_opts({desc = "Code action"}))
-vim.keymap.set("v", "<leader>la", cmd"Lspsaga range_code_action", bind_opts({desc = "Code action"}))
-leader("lf", cmd[[lua vim.lsp.buf.formatting_seq_sync()]], { desc = "Format" })
+leader("lf", cmd [[lua vim.lsp.buf.formatting_seq_sync()]], { desc = "Format" })
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
-normal("[d", luacmd'vim.diagnostic.goto_prev({ border = "rounded" })', { desc = "Prev diagnostic" })
-normal("]d", luacmd'vim.diagnostic.goto_next({ border = "rounded" })', { desc = "Next diagnostic" })
-leader("q", luacmd"vim.diagnostic.setloclist()", { desc = "Quickfix list diagnostics" })
+normal("[d", luacmd 'vim.diagnostic.goto_prev()', { desc = "Prev diagnostic" })
+normal("]d", luacmd 'vim.diagnostic.goto_next()', { desc = "Next diagnostic" })
+leader("q", luacmd "vim.diagnostic.setloclist()", { desc = "Quickfix list diagnostics" })
 
 
 ---------------------------------
@@ -214,13 +217,13 @@ leader("q", luacmd"vim.diagnostic.setloclist()", { desc = "Quickfix list diagnos
 
 -- Leader t/T to send the current file/line to rspec via tmux windows
 leader("t", [[:call InvokeViaTmux("rspec", expand("%:p"))]], { desc = "Run tests for this file" })
-leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]], { desc = "Run tests for this line"})
+leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]], { desc = "Run tests for this line" })
 
 leader("pr", ":CopyRelativePath", { desc = "Copy relative path" })
 leader("pa", ":CopyAbsolutePath", { desc = "Copy absolute path" })
-leader("pf", ":CopyFileName", { desc = "Copy file name"})
-leader("pd", ":CopyDirectoryPath", { desc = "Copy directory path"})
-leader("pl", ":CopyRelativePathAndLine", { desc = "Copy Relative path and line number"})
+leader("pf", ":CopyFileName", { desc = "Copy file name" })
+leader("pd", ":CopyDirectoryPath", { desc = "Copy directory path" })
+leader("pl", ":CopyRelativePathAndLine", { desc = "Copy Relative path and line number" })
 
 -- <Leader>gr to open the current line in the repos website
 vim.g.gh_open_command = [[fn() { echo "$@" | pbcopy; }; fn ]]
