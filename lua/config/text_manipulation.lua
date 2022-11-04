@@ -19,7 +19,7 @@ require('mini.surround').setup({
   highlight_duration = 1000,
   mappings = {
     add = 'ca', -- Add surrounding in Normal and Visual modes
-    delete = 'da', -- Delete surrounding
+    delete = 'ds', -- Delete surrounding
     find = '', -- Find surrounding (to the right)
     find_left = '', -- Find surrounding (to the left)
     highlight = 'hs', -- Highlight surrounding
