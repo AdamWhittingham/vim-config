@@ -40,5 +40,5 @@
   "Log - fatal": {
     "prefix": "logf",
     "body": [ "log.fatal { $1 }" ]
-  },
+  }
 }
