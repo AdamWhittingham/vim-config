@@ -74,8 +74,8 @@ leader("wS", ":split", { desc = "Split window horizontally" })
 
 leader("h", ":nohlsearch", { desc = "Toggle search highlight" })
 leader("m", ":Telescope marks", { desc = "List marks" })
+leader("j", ":Telescope jumplist", { desc = "Jumplist" })
 normal("m", luacmd [[set_mark()]], { desc = "Set mark" })
-leader("j", ":Telescope jumps", { desc = "Jumplist" })
 leader("lD", ":Telescope diagnostics", { desc = "List diagnostics" })
 --
 -- Nicer movement through the change list (where you have edited)
@@ -101,10 +101,6 @@ visual(">", ">gv", { desc = "Indent selection" })
 -- Reindent the current file
 leader("i", "m`gg=G``", { desc = "Reindent file" })
 
--- Split/Join constructs
-leader("s", ":SplitjoinSplit", { desc = "Split construct" })
-leader("S", ":SplitjoinJoin", { desc = "Join construct" })
-
 -- Yank ring setup
 normal("p", "<Plug>(YankyPutAfter)", { desc = "Paste" })
 normal("P", "<Plug>(YankyPutBefore)", { desc = "Paste before" })
@@ -116,51 +112,54 @@ leader("P", cmd [[Telescope yank_history]], { desc = "Show yank ring" })
 normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 visual("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 
--- Case conversions
-normal("gaU", luacmd [[require('textcase').current_word('to_upper_case')]], { desc = "Convert to UPPER CASE" })
-normal("gau", luacmd [[require('textcase').current_word('to_lower_case')]], { desc = "Convert to lower case" })
-normal("ga_", luacmd [[require('textcase').current_word('to_snake_case')]], { desc = "Convert to snake_case" })
-normal("ga-", luacmd [[require('textcase').current_word('to_dash_case')]], { desc = "Convert to dash-case" })
-normal("gaC", luacmd [[require('textcase').current_word('to_constant_case')]], { desc = "Convert to CONSTANT_CASE" })
-normal("ga.", luacmd [[require('textcase').current_word('to_dot_case')]], { desc = "Convert to dot.case" })
-normal("gac", luacmd [[require('textcase').current_word('to_camel_case')]], { desc = "Convert to CamelCase" })
-normal("gaP", luacmd [[require('textcase').current_word('to_pascal_case')]], { desc = "Convert to PascalCase" })
-normal("gat", luacmd [[require('textcase').current_word('to_title_case')]], { desc = "Convert to Title Case" })
-normal("gap", luacmd [[require('textcase').current_word('to_path_case')]], { desc = "Convert to path/case" })
-normal("gas", luacmd [[require('textcase').current_word('to_phrase_case')]], { desc = "Convert to sentence case" })
-
 wk.register({
   g = {
     J = { "Join lines" },
     b = { "Block comment {motion}" },
     c = { "Linewise comment {motion}" },
+    C = {
+      name = "Case conversions",
+      U = { luacmd[[require('textcase').current_word('to_upper_case')]], "Convert to UPPER CASE" },
+      u = { luacmd[[require('textcase').current_word('to_lower_case')]], "Convert to lower case" },
+      C = { luacmd[[require('textcase').current_word('to_constant_case')]], "Convert to CONSTANT_CASE" },
+      c = { luacmd[[require('textcase').current_word('to_camel_case')]], "Convert to CamelCase" },
+      P = { luacmd[[require('textcase').current_word('to_pascal_case')]], "Convert to PascalCase" },
+      t = { luacmd[[require('textcase').current_word('to_title_case')]], "Convert to Title Case" },
+      p = { luacmd[[require('textcase').current_word('to_path_case')]], "Convert to path/case" },
+      s = { luacmd[[require('textcase').current_word('to_phrase_case')]], "Convert to sentence case" },
+      ['.']= { luacmd[[require('textcase').current_word('to_dot_case')]], "Convert to dot.case" },
+      ['_']= { luacmd[[require('textcase').current_word('to_snake_case')]], "Convert to snake_case" },
+      ['-']= { luacmd[[require('textcase').current_word('to_dash_case')]], "Convert to dash-case" },
+    }
   },
-  ["q"] = { "Record macro" },
-  ["Q"] = { "Replay macro" },
+  s = { cmd[[:SplitjoinSplit]], "Split construct" },
+  S = { cmd[[:SplitjoinJoin]], "Join construct" },
+  q = { "Record macro" },
+  Q = { "Replay macro" },
 })
 
 ---------------------------------
 -- Diffs & Versioning
 ---------------------------------
-wk.register({ c = { name = "Change", } }, { prefix = "<leader>" })
-
-leader("u", ":UndotreeToggle", { desc = "Undo tree" })
 
 -- Move to the next/prev change in this file
 normal("]c", '<cmd>Gitsigns next_hunk', { desc = "Next change" })
 normal("[c", '<cmd>Gitsigns prev_hunk', { desc = "Prev change" })
 
--- Control Changes/Hunks
-leader("ca", "<cmd>Gitsigns stage_hunk", { desc = "Add change to stage" })
-leader("cA", '<cmd>Gitsigns stage_buffer', { desc = "Add all changes in file" })
-leader("cu", "<cmd>Gitsigns reset_hunk", { desc = "Undo change" })
-leader("cU", '<cmd>Gitsigns reset_buffer_index', { desc = "Undo all changes in file" })
-leader("cd", '<cmd>Gitsigns preview_hunk', { desc = "Diff change" })
-leader("cb", '<cmd>lua require"gitsigns".toggle_current_line_blame()', { desc = "Toggle blame" })
-leader("cR", '<cmd>Gitsigns reset_buffer', { desc = "Reset file" })
-
--- Diff viewing
-leader("cv", cmd [[:DiffviewToggle]], { desc = "Show merge view" })
+wk.register({
+  c = {
+    name = "Change",
+    a = { cmd[[Gitsigns stage_hunk]],                               "Add change to stage" },
+    A = { cmd[[Gitsigns stage_buffer]],                             "Add all changes in file" },
+    u = { cmd[[Gitsigns reset_hunk]],                               "Undo change" },
+    U = { cmd[[Gitsigns reset_buffer_index]],                       "Undo all changes in file" },
+    d = { cmd[[Gitsigns preview_hunk]],                             "Diff change" },
+    b = { cmd[[lua require"gitsigns".toggle_current_line_blame()]], "Toggle blame" },
+    R = { cmd[[Gitsigns reset_buffer]],                             "Reset file" },
+    v = { cmd [[:DiffviewToggle]],                                  "Show merge view" },
+  },
+  u = { cmd[[:UndotreeToggle]], "Show the undo tree" }
+}, { prefix = "<leader>" })
 
 ---------------------------------
 -- File navigation
@@ -179,7 +178,6 @@ leader("<leader>", ":b#", { desc = "Previous buffer" })
 ---------------------------------
 -- Language aware navigation
 ---------------------------------
-wk.register({ l = { name = "Language Server", } }, { prefix = "<leader>" })
 
 -- Jump to definition or references
 normal("<C-{>", cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
@@ -188,6 +186,7 @@ normal("<C-}>", cmd [[Lspsaga peek_definition]],     { desc = "Preview definitio
 leader("}",     cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
 normal("<C-]>", luacmd [[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
 
+-- LSP Tools
 wk.register({
   l = {
     name = "Language tools",
@@ -201,9 +200,6 @@ wk.register({
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
   }
 }, { prefix = "<leader>" })
-
--- LSP code manipulations
-leader("lf", cmd [[lua vim.lsp.buf.formatting_seq_sync()]], { desc = "Format" })
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
 normal("[d", luacmd 'vim.diagnostic.goto_prev()', { desc = "Prev diagnostic" })
@@ -219,12 +215,6 @@ leader("q", luacmd "vim.diagnostic.setloclist()", { desc = "Quickfix list diagno
 leader("t", [[:call InvokeViaTmux("rspec", expand("%:p"))]], { desc = "Run tests for this file" })
 leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]], { desc = "Run tests for this line" })
 
-leader("pr", ":CopyRelativePath", { desc = "Copy relative path" })
-leader("pa", ":CopyAbsolutePath", { desc = "Copy absolute path" })
-leader("pf", ":CopyFileName", { desc = "Copy file name" })
-leader("pd", ":CopyDirectoryPath", { desc = "Copy directory path" })
-leader("pl", ":CopyRelativePathAndLine", { desc = "Copy Relative path and line number" })
-
 -- <Leader>gr to open the current line in the repos website
 vim.g.gh_open_command = [[fn() { echo "$@" | pbcopy; }; fn ]]
 vim.g.gh_line_map_default = 0
@@ -236,6 +226,12 @@ wk.register({
   p = {
     name = "Paths",
     g = "Copy the URL to github/gitlab",
+    r = { cmd[[:CopyRelativePath]], "Copy relative path" },
+    a = { cmd[[:CopyAbsolutePath]], "Copy absolute path" },
+    f = { cmd[[:CopyFileName]], "Copy file name" },
+    d = { cmd[[:CopyDirectoryPath]], "Copy directory path" },
+    l = { cmd[[:CopyRelativePathAndLine]], "Copy Relative path and line number" },
+
   }
 }, { prefix = "<leader>" })
 
