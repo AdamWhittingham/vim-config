@@ -27,7 +27,7 @@ local cmd = function(command)
 end
 
 local luacmd = function(command)
-  return "<Esc><Cmd>lua "..command.."<CR>"
+  return "<Esc><Cmd>lua "..command
 end
 
 local which_key_status_ok, wk = pcall(require, "which-key")
@@ -193,7 +193,8 @@ leader("K", cmd[[Lspsaga hover_doc]])
 leader("ll", cmd[[LSoutlineToggle]])
 leader("ls", cmd[[Lspsaga signature_help]], ({desc = "Signaure help"}))
 leader("li", luacmd[[vim.lsp.buf.hover()]], {desc = "LSP info"})
-leader("ld", luacmd[[require("lsp_lines").toggle()]], {desc = "LSP disagnostics"})
+leader("ld", luacmd[[_G.toggle_diagnostics()]], {desc = "Toggle disagnostics"})
+leader("lo", luacmd[[vim.diagnostic.open_float()]], {desc = "Show disagnostic float"})
 leader("lr", cmd[[Lspsaga rename]], {desc = "LSP Rename"})
 
 -- LSP code manipulations

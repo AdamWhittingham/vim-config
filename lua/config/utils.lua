@@ -22,3 +22,15 @@ function _G.set_mark()
   local mark = string.char(vim.fn.getchar())
   vim.api.nvim_command(":mark "..mark)
 end
+
+local diagnostics_active = true
+
+function _G.toggle_diagnostics()
+  if diagnostics_active then
+    vim.diagnostic.hide()
+    diagnostics_active = false
+  else
+    vim.diagnostic.show()
+    diagnostics_active = true
+  end
+end
