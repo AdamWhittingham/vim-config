@@ -41,10 +41,11 @@ end
 
 require("config.lsp.handlers").setup()
 
+local handlers = require("config.lsp.handlers")
 for _, server in ipairs(servers) do
   local opts = {
-    on_attach = require("config.lsp.handlers").on_attach,
-    capabilities = require("config.lsp.handlers").capabilities,
+    on_attach = handlers.on_attach,
+    capabilities = handlers.capabilities,
   }
 
   local has_custom_opts, server_custom_opts = pcall(require, "config.lsp.settings." .. server)

@@ -42,13 +42,10 @@ M.setup = function()
 end
 
 M.on_attach = function(client, bufnr)
-  -- Autoformat on save in Go
-  if client.name == "gopls" then
-    vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()')
-  end
-
+  -- :Format => LSP formatting
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_seq_sync()' ]]
 
+  -- Setup highlight usages when LSP supports it
   local cap = client.server_capabilities
   if cap.document_highlight then
     vim.api.nvim_create_augroup("lsp_document_highlight", {clear = true})
