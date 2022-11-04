@@ -23,14 +23,14 @@ function _G.set_mark()
   vim.api.nvim_command(":mark "..mark)
 end
 
-local diagnostics_active = true
+local show_diagnotic_virtual_text = false
 
 function _G.toggle_diagnostics()
-  if diagnostics_active then
-    vim.diagnostic.hide()
-    diagnostics_active = false
+  if show_diagnotic_virtual_text then
+    vim.diagnostic.config({virtual_text = false})
+    show_diagnotic_virtual_text = false
   else
-    vim.diagnostic.show()
-    diagnostics_active = true
+    vim.diagnostic.config({virtual_text = true})
+    show_diagnotic_virtual_text = true
   end
 end
