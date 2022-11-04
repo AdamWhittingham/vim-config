@@ -108,8 +108,8 @@ leader("S", ":SplitjoinJoin", { desc = "Join construct" })
 -- Yank ring setup
 normal("p", "<Plug>(YankyPutAfter)", { desc = "Paste" })
 normal("P", "<Plug>(YankyPutBefore)", {desc = "Paste before"})
-normal("[p", "<Plug>(YankyCycleBackward)", {desc = "Swap to prev paste" })
-normal("]p", "<Plug>(YankyCycleForward)", {desc = "Swap to next paste" })
+normal("[p", "<Plug>(YankyCycleForward)", {desc = "Swap to next paste" })
+normal("]p", "<Plug>(YankyCycleBackward)", {desc = "Swap to prev paste" })
 leader("P", cmd[[Telescope yank_history]], { desc = "Show yank ring" })
 
 -- OS Clipboard yank
