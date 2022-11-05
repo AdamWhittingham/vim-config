@@ -43,16 +43,21 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 ---------------------------------
--- Window save and reload
+-- Window/Tab/Buffer commands
 ---------------------------------
-wk.register({ w = { name = "Window", } }, { prefix = "<leader>" })
-
-leader("ww", ":w", { desc = "Write" })
-leader("we", ":e", { desc = "Reload" })
-leader("wq", ":x", { desc = "Write & quit" })
-leader("wa", ":wa", { desc = "Write all" })
-leader("wQ", ":q!", { desc = "Discard & quit" })
-leader("qq", ":q", { desc = "Quit" })
+wk.register({
+  w = {
+    name = "Window/Writes",
+    w = { cmd [[:w]], "Write" },
+    e = { cmd [[:e]], "Reload" },
+    q = { cmd [[:x]], "Write & Quit" },
+    Q = { cmd [[:q!]], "Discard & Quit" },
+    b = { cmd [[:bd]], "Close buffer"},
+    t = { cmd [[:tabclose]], "Close tab"},
+    s = { cmd [[:vsplit]], "Split vertically"},
+    S = { cmd [[:split]], "Split horizontally"},
+  },
+}, { prefix = "<leader>" })
 
 ---------------------------------
 -- Window splitting & movement
@@ -64,19 +69,21 @@ normal("<C-l>", "<C-w>l", { desc = "Move to window right" })
 normal("<C-j>", "<C-w>j", { desc = "Move to window below" })
 normal("<C-k>", "<C-w>k", { desc = "Move to window above" })
 
--- Split panes
-leader("ws", ":vsplit", { desc = "Split window vertically" })
-leader("wS", ":split", { desc = "Split window horizontally" })
-
 ---------------------------------
 -- Text navigation
 ---------------------------------
 
-leader("h", ":nohlsearch", { desc = "Toggle search highlight" })
-leader("m", ":Telescope marks", { desc = "List marks" })
-leader("j", ":Telescope jumplist", { desc = "Jumplist" })
+wk.register({
+  w = {
+    name = "Window/Writes",
+    m = { cmd [[:Telescope marks]], "Show marks" },
+    j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
+  },
+  h = { cmd[[:nohlsearch]], "Toggle search highlight" },
+}, { prefix = "<leader>" })
+
 normal("m", luacmd [[set_mark()]], { desc = "Set mark" })
-leader("lD", ":Telescope diagnostics", { desc = "List diagnostics" })
+
 --
 -- Nicer movement through the change list (where you have edited)
 normal("[g", "g;", { desc = "Prev edit" })
@@ -165,15 +172,14 @@ wk.register({
 -- File navigation
 ---------------------------------
 
--- Opening and finding files
-leader("f", ":Telescope find_files", { desc = "Find files" })
-leader("F", ":Telescope live_grep", { desc = "Find in files" })
-leader("G", ":Telescope resume", { desc = "Show previous search" })
-leader("*", ":Telescope grep_string", { desc = "Search for word" })
-
--- Switching buffers
-leader(".", ":Telescope buffers", { desc = "Show buffers" })
-leader("<leader>", ":b#", { desc = "Previous buffer" })
+wk.register({
+  f = {cmd [[:Telescope find_files]], "Find files" },
+  F = {cmd [[:Telescope live_grep]],  "Find in files" },
+  G = {cmd [[:Telescope resume]],  "Show previous search" },
+  ["*"] = {cmd [[:Telescope grep_string]], "Search for word" },
+  ["."] = {cmd [[:Telescope buffers]], "Show buffers" },
+  [" "] = { cmd [[:b#]], "Previous buffer" },
+}, { prefix = "<leader>" })
 
 ---------------------------------
 -- Language aware navigation
@@ -198,6 +204,7 @@ wk.register({
     a = { cmd [[Lspsaga code_action]],           "Show code actions" },
     k = { cmd [[Lspsaga hover_doc]],             "Show docs" }, -- or call vim.lsp.bug.hover()
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
+    D = { cmd [[:Telescope diagnostics]], "List diagnostics"}
   }
 }, { prefix = "<leader>" })
 
