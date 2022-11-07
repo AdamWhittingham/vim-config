@@ -137,12 +137,11 @@ wk.register({
       ['.']= { luacmd[[require('textcase').current_word('to_dot_case')]], "Convert to dot.case" },
       ['_']= { luacmd[[require('textcase').current_word('to_snake_case')]], "Convert to snake_case" },
       ['-']= { luacmd[[require('textcase').current_word('to_dash_case')]], "Convert to dash-case" },
-    }
+    },
+    s = { cmd[[:SplitjoinSplit]], "Split construct" },
+    S = { cmd[[:SplitjoinJoin]], "Join construct" },
   },
-  s = { cmd[[:SplitjoinSplit]], "Split construct" },
-  S = { cmd[[:SplitjoinJoin]], "Join construct" },
   q = { "Record macro" },
-  Q = { "Replay macro" },
 })
 
 ---------------------------------
@@ -196,23 +195,22 @@ normal("<C-]>", luacmd [[vim.lsp.buf.definition()]], { desc = "Jump to definitio
 wk.register({
   l = {
     name = "Language tools",
-    d = { luacmd [[_G.toggle_diagnostics()]],    "Toggle disagnostics" },
-    l = { cmd [[LSoutlineToggle]],               "Show LSP outline for file" },
-    p = { cmd [[Lspsaga peek_definition]],       "Peek definition" },
-    o = { cmd [[Lspsaga show_line_diagnostics]], "Show disagnostic float" },
-    r = { cmd [[Lspsaga rename]],                "LSP Rename" },
-    a = { cmd [[Lspsaga code_action]],           "Show code actions" },
-    k = { cmd [[Lspsaga hover_doc]],             "Show docs" }, -- or call vim.lsp.bug.hover()
+    d = { luacmd [[_G.toggle_diagnostics()]],            "Toggle disagnostics" },
+    l = { cmd [[LSoutlineToggle]],                       "Show LSP outline for file" },
+    p = { cmd [[Lspsaga peek_definition]],               "Peek definition" },
+    o = { cmd [[Lspsaga show_line_diagnostics]],         "Show disagnostic float" },
+    r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
+    a = { cmd [[Lspsaga code_action]],                   "Show code actions" },
+    k = { cmd [[Lspsaga hover_doc]],                     "Show docs" }, -- or call vim.lsp.bug.hover()
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
-    D = { cmd [[:Telescope diagnostics]], "List diagnostics"}
+    D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
+    q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
   }
 }, { prefix = "<leader>" })
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
 normal("[d", luacmd 'vim.diagnostic.goto_prev()', { desc = "Prev diagnostic" })
 normal("]d", luacmd 'vim.diagnostic.goto_next()', { desc = "Next diagnostic" })
-leader("q", luacmd "vim.diagnostic.setloclist()", { desc = "Quickfix list diagnostics" })
-
 
 ---------------------------------
 -- Test helpers
