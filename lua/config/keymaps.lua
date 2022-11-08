@@ -138,8 +138,6 @@ wk.register({
       ['_']= { luacmd[[require('textcase').current_word('to_snake_case')]], "Convert to snake_case" },
       ['-']= { luacmd[[require('textcase').current_word('to_dash_case')]], "Convert to dash-case" },
     },
-    s = { cmd[[:SplitjoinSplit]], "Split construct" },
-    S = { cmd[[:SplitjoinJoin]], "Join construct" },
   },
   q = { "Record macro" },
 })
@@ -164,7 +162,9 @@ wk.register({
     R = { cmd[[Gitsigns reset_buffer]],                             "Reset file" },
     v = { cmd [[:DiffviewToggle]],                                  "Show merge view" },
   },
-  u = { cmd[[:UndotreeToggle]], "Show the undo tree" }
+  s = { cmd[[:SplitjoinSplit]], "Split construct" },
+  S = { cmd[[:SplitjoinJoin]], "Join construct" },
+  u = { cmd[[:UndotreeToggle]], "Show the undo tree" },
 }, { prefix = "<leader>" })
 
 ---------------------------------
