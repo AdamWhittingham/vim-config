@@ -22,12 +22,20 @@ local leader = function(keys, command, opts)
   keymap("n", "<leader>" .. keys, command .. "<CR>", bind_opts(opts))
 end
 
+local raw_cmd = function(command)
+  return "<Esc><Cmd>"..command
+end
+
 local cmd = function(command)
-  return "<Esc><Cmd>"..command.."<CR>"
+  return raw_cmd(command).."<CR>"
+end
+
+local raw_luacmd = function(command)
+  return "<Esc><Cmd>lua " .. command
 end
 
 local luacmd = function(command)
-  return "<Esc><Cmd>lua " .. command .. "<CR>"
+  return raw_luacmd(command) .. "<CR>"
 end
 
 local which_key_status_ok, wk = pcall(require, "which-key")
@@ -113,7 +121,7 @@ normal("p", "<Plug>(YankyPutAfter)", { desc = "Paste" })
 normal("P", "<Plug>(YankyPutBefore)", { desc = "Paste before" })
 normal("[p", "<Plug>(YankyCycleForward)", { desc = "Swap to next paste" })
 normal("]p", "<Plug>(YankyCycleBackward)", { desc = "Swap to prev paste" })
-leader("P", cmd [[Telescope yank_history]], { desc = "Show yank ring" })
+leader("P", raw_cmd [[Telescope yank_history]], { desc = "Show yank ring" })
 
 -- OS Clipboard yank
 normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
@@ -185,11 +193,11 @@ wk.register({
 ---------------------------------
 
 -- Jump to definition or references
-normal("<C-{>", cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
-leader("]",     cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
-normal("<C-}>", cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
-leader("}",     cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
-normal("<C-]>", luacmd [[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
+normal("<C-{>", raw_cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
+leader("]",     raw_cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
+normal("<C-}>", raw_cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
+leader("}",     raw_cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
+normal("<C-]>", raw_luacmd [[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
 
 -- LSP Tools
 wk.register({
@@ -209,8 +217,8 @@ wk.register({
 }, { prefix = "<leader>" })
 
 -- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
-normal("[d", luacmd 'vim.diagnostic.goto_prev()', { desc = "Prev diagnostic" })
-normal("]d", luacmd 'vim.diagnostic.goto_next()', { desc = "Next diagnostic" })
+normal("[d", raw_luacmd 'vim.diagnostic.goto_prev()', { desc = "Prev diagnostic" })
+normal("]d", raw_luacmd 'vim.diagnostic.goto_next()', { desc = "Next diagnostic" })
 
 ---------------------------------
 -- Test helpers
