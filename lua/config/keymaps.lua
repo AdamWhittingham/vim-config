@@ -225,8 +225,7 @@ normal("]d", raw_luacmd 'vim.diagnostic.goto_next()', { desc = "Next diagnostic"
 ---------------------------------
 
 -- Leader t/T to send the current file/line to rspec via tmux windows
-leader("t", [[:call InvokeViaTmux("rspec", expand("%:p"))]], { desc = "Run tests for this file" })
-leader("T", [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))]], { desc = "Run tests for this line" })
+-- Mapped per language in language_options
 
 -- <Leader>gr to open the current line in the repos website
 vim.g.gh_open_command = [[fn() { echo "$@" | pbcopy; }; fn ]]
