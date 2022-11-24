@@ -47,7 +47,7 @@ M.on_attach = function(client, bufnr)
 
   -- Setup highlight usages when LSP supports it
   local cap = client.server_capabilities
-  if cap.document_highlight then
+  if cap.documentHighlightProvider then
     vim.api.nvim_create_augroup("lsp_document_highlight", {clear = true})
     vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
