@@ -40,13 +40,15 @@ catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 ]]
 
-vim.cmd [[
-augroup CursorLineOnlyInActiveWindow
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
-]]
+local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+vim.api.nvim_create_autocmd(
+  { "InsertLeave", "WinEnter" },
+  { pattern = "*", command = "set cursorline", group = cursorGrp }
+)
+vim.api.nvim_create_autocmd(
+  { "InsertEnter", "WinLeave" },
+  { pattern = "*", command = "set nocursorline", group = cursorGrp }
+)
 
 -- Search
 opt.ignorecase = true
