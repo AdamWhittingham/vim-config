@@ -17,6 +17,7 @@ function TestRunner()
 
   -- local fName = vim.fn.expand "%:p:t"
   -- local fAbsPath = vim.fn.expand "%:p"
+  local pAbsPath = vim.fn.expand "%:p:h"
   -- local fRelPath = vim.fn.expand "%:."
   -- local fRelPathLine = fRelPath .. ':' .. vim.fn.line('.')
 
@@ -26,9 +27,10 @@ function TestRunner()
       T = { [[:call InvokeViaTmux("rspec", expand("%:p") . ":" . line('.'))<CR>]], "Test line" },
     }
   elseif ft == "go" then
+    local go_test = [[ go test -v ]] .. pAbsPath --..[[ | sed '/PASS/s//$(printf "\033[32mPASS\033[0m")/' | sed '/FAIL/s//$(printf "\033[31mFAIL\033[0m")/' ]]
     test_keymaps = {
-      t = { [[:call InvokeViaTmux("go test", expand("%:p"))<CR>]], "Test file" },
-      T = { [[:call InvokeViaTmux("go test", expand("%:p") . ":" . line('.'))<CR>]], "Test line" },
+      t = { [[:call InvokeInTestTab("go test -v ]]..pAbsPath..[[")<CR>]], "Test file" },
+      T = { [[:call InvokeInTestTab("go test -v ]]..pAbsPath..[[")<CR>]], "Test file" },
     }
   end
 
