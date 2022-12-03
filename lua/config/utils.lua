@@ -47,3 +47,14 @@ function _G.toggle_diagnostics()
     show_diagnotic_virtual_text = true
   end
 end
+
+function _G.translate()
+  local mode = vim.api.nvim_get_mode().mode;
+  vim.ui.input({prompt = "Translate into (2 letter ISO code): "}, function(input)
+    if mode == "v" or mode == "V" then
+      vim.cmd("'<,'>Translate -output=replace " .. input)
+    else
+      vim.cmd("Translate -output=replace " .. input)
+    end
+  end)
+end

@@ -123,6 +123,12 @@ return packer.startup({function(use)
   use "AdamWhittingham/vim-copy-filename"           -- Quick shortcuts for copying the file name, path and/or line number
   use "ruanyl/vim-gh-line"                          -- Generate and copy the github/gitlab repo URL for the current line
 
+  -------------------
+  -- Miscellaneous
+  -------------------
+  use "uga-rosa/translate.nvim"
+
+
   -- Automatically set up configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then
     require("packer").sync()

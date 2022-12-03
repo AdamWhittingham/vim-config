@@ -85,8 +85,8 @@ wk.register({
   w = {
     name = "Window/Writes",
     m = { cmd [[:Telescope marks]], "Show marks" },
-    j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
   },
+  j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
   h = { cmd[[:nohlsearch]], "Toggle search highlight" },
 }, { prefix = "<leader>" })
 
@@ -146,6 +146,7 @@ wk.register({
       ['_']= { luacmd[[require('textcase').current_word('to_snake_case')]], "Convert to snake_case" },
       ['-']= { luacmd[[require('textcase').current_word('to_dash_case')]], "Convert to dash-case" },
     },
+    t = { translate, "Translate and replace"},
   },
   q = { "Record macro" },
 })
