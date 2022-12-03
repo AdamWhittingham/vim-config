@@ -172,6 +172,7 @@ wk.register({
   },
   s = { cmd[[:SplitjoinSplit]], "Split construct" },
   S = { cmd[[:SplitjoinJoin]], "Join construct" },
+  sp = { cmd[[:Telescope spell_suggest]], "Suggest spelling fixes" },
   u = { cmd[[:UndotreeToggle]], "Show the undo tree" },
 }, { prefix = "<leader>" })
 
