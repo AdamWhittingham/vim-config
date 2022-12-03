@@ -252,11 +252,10 @@ wk.register({
 -- Debugging
 ---------------------------------
 
-leader("d", ":Telescope dap list_breakpoints")
-
 wk.register({
-  b = {
-    name = "deBug",
+  d = {
+    name = "Debug",
+    d = { raw_cmd [[:Telescope dap list_breakpoints]], "Show breakpoints"},
     b = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
     B = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
 
@@ -271,14 +270,13 @@ wk.register({
     ["<Right>"] = { luacmd("require'dap'.step_over()"), "Step Over" },
     ["<Up>"] = { luacmd("require'dap'.step_out()"), "Step Out" },
 
-    d = { luacmd("require'dap'.disconnect()"), "Disconnect" },
-    q = { luacmd("require'dap'.close()"), "Quit" },
-    k = { luacmd("require'dap'.terminate()"), "Terminate" },
+    q = { luacmd("require'dap'.disconnect()"), "Disconnect" },
+    Q = { luacmd("require'dap'.close()"), "Quit" },
+    K = { luacmd("require'dap'.terminate()"), "Terminate" },
 
     R = { luacmd("require'dap'.run_to_cursor()"), "Run to Cursor" },
     E = { luacmd("require'dapui'.eval(vim.fn.input '[Expression] > ')"), "Evaluate Input" },
     U = { luacmd("require'dapui'.toggle()"), "Toggle UI" },
-    r = { luacmd("require'dap'.repl.toggle()"), "Toggle Repl" },
     -- e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
     -- g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
     -- h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
