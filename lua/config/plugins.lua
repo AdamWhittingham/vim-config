@@ -106,6 +106,7 @@ return packer.startup({function(use)
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
   use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
   use "nvim-treesitter/playground"                  -- Show details of treesitter and highlighting
+  use  'andymass/vim-matchup'                       -- Extend % for more languages
 
   -- Debugging
   use "mfussenegger/nvim-dap"                       -- Debug Anything Protocol bindings
