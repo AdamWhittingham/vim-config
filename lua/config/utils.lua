@@ -32,8 +32,10 @@ endfunction
 ]]
 
 function _G.set_mark()
-  local mark = string.char(vim.fn.getchar())
+  print("Set mark: ")
+  local mark = vim.fn.getcharstr()
   vim.api.nvim_command(":mark "..mark)
+  print("Set mark: " .. mark)
 end
 
 local show_diagnotic_virtual_text = false

@@ -82,15 +82,14 @@ normal("<C-k>", "<C-w>k", { desc = "Move to window above" })
 ---------------------------------
 
 wk.register({
-  w = {
-    name = "Window/Writes",
-    m = { cmd [[:Telescope marks]], "Show marks" },
-  },
   j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
   h = { cmd[[:nohlsearch]], "Toggle search highlight" },
+  m = { cmd [[:Telescope marks]], "Show marks" },
 }, { prefix = "<leader>" })
 
-normal("m", luacmd [[set_mark()]], { desc = "Set mark" })
+wk.register({
+  m = { set_mark, "Set mark"}
+})
 
 --
 -- Nicer movement through the change list (where you have edited)
