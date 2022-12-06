@@ -28,6 +28,9 @@ if not status_ok then
   return
 end
 
+-- Performance
+pcall(require, "impatient")
+
 return packer.startup({function(use)
   --------------------
   -- PLUGIN MANAGEMENT
@@ -127,6 +130,7 @@ return packer.startup({function(use)
   -- Miscellaneous
   -------------------
   use "uga-rosa/translate.nvim"
+  use  "lewis6991/impatient.nvim"
 
 
   -- Automatically set up configuration after cloning packer.nvim
