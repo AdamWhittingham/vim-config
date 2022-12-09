@@ -30,6 +30,7 @@ opt.scrolloff = 3
 opt.sidescrolloff = 3
 opt.updatetime=500
 opt.winbar = ''
+opt.mouse = ''
 
 vim.cmd [[
 try
