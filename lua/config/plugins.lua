@@ -129,8 +129,8 @@ return packer.startup({function(use)
   -------------------
   -- Miscellaneous
   -------------------
-  use "uga-rosa/translate.nvim"
-  use  "lewis6991/impatient.nvim"
+  use "uga-rosa/translate.nvim"                     -- Easily call Google Translate and replace in-editor
+  use "lewis6991/impatient.nvim"                    -- Cache startup Lua for faster opening
 
 
   -- Automatically set up configuration after cloning packer.nvim
