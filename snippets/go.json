@@ -3,5 +3,14 @@
     "prefix": "ap",
     "description": "Append to a slice",
     "body": [ "append(${1:slice}, ${2:value})" ]
+  },
+  "if error": {
+    "prefix": "iferr",
+    "description": "Return if err",
+    "body": [
+      "if err != nil {",
+      "  return $1",
+      "}"
+    ]
   }
 }

@@ -1,0 +1,17 @@
+{
+  "Eval": {
+    "prefix": "<%",
+    "description": "Evaluate code",
+    "body": [ "<% $1 %>" ]
+  },
+  "Inject": {
+    "prefix": "<%=",
+    "description": "Inject return value of code",
+    "body": [ "<%= $1 %>" ]
+  },
+  "Inject Debug": {
+    "prefix": "<%d",
+    "description": "Inject inspect",
+    "body": [ "<pre><%= $1 %></pre>" ]
+  }
+}

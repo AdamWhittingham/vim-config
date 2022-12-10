@@ -6,6 +6,7 @@
   "contributes": {
     "snippets": [
       { "language": "ruby", "path": "./ruby.json" },
+      { "language": "eruby", "path": "./erb.json" },
       { "language": "go", "path": "./go.json" }
     ]
   }
