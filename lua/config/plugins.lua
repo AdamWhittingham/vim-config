@@ -88,7 +88,7 @@ return packer.startup({function(use)
       'nvim-lua/plenary.nvim',
       'BurntSushi/ripgrep',
       "sharkdp/fd",
-      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 },
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
       'nvim-telescope/telescope-dap.nvim',
     }
   }
