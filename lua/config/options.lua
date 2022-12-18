@@ -31,6 +31,9 @@ opt.sidescrolloff = 3
 opt.updatetime=500
 opt.winbar = ''
 opt.mouse = ''
+opt.breakindent = true
+opt.updatetime = 250
+opt.completeopt = 'menuone,noselect'
 
 vim.cmd [[
 try
