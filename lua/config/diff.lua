@@ -1,3 +1,18 @@
+local gitconflict_ok, gitconflict = pcall(require, "git-conflict")
+if not gitconflict_ok then
+  return
+end
+
+require('git-conflict').setup({
+  default_mappings = false,
+  default_commands = true,
+  disable_diagnostics = true,
+  highlights = {
+    incoming = 'DiffText',
+    current = 'DiffAdd',
+  }
+})
+
 local diffview_ok, diffview = pcall(require, "diffview")
 if not diffview_ok then
   return

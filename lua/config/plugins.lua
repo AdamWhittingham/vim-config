@@ -80,7 +80,7 @@ return packer.startup({function(use)
   use "feline-nvim/feline.nvim"                                              -- Quick and nice statusline
   use "folke/which-key.nvim"                                                 -- Help learn/relearn/remember key bindings with a handy pop up
   use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" }          -- show code hierarchy of item under cursor
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }       -- Better diff view
+  use {'akinsho/git-conflict.nvim', tag = "*" }                              -- Bindings to speed up choosing ours/theres when resolving diffs
 
   use {
   'nvim-telescope/telescope.nvim',                  -- Telescope plus the plugins that make it faster

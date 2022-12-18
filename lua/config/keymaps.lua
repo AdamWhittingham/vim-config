@@ -158,6 +158,9 @@ wk.register({
 normal("]c", '<cmd>Gitsigns next_hunk', { desc = "Next change" })
 normal("[c", '<cmd>Gitsigns prev_hunk', { desc = "Prev change" })
 
+normal("]x", '<Plug>(git-conflict-prev-conflict)', { desc = "Prev conflict" })
+normal("[x", '<Plug>(git-conflict-next-conflict)', { desc = "Next conflict" })
+
 wk.register({
   c = {
     name = "Change",
@@ -169,6 +172,11 @@ wk.register({
     b = { cmd[[lua require"gitsigns".toggle_current_line_blame()]], "Toggle blame" },
     R = { cmd[[Gitsigns reset_buffer]],                             "Reset file" },
     v = { cmd [[:DiffviewToggle]],                                  "Show merge view" },
+    -- Diff conflicts
+    o = { cmd[[<Plug>(git-conflict-ours]],                          "Choose ours" },
+    t = { cmd[[<Plug>(git-conflict-theirs]],                        "Choose theirs" },
+    B = { cmd[[<Plug>(git-conflict-both]],                          "Choose both" },
+    n = { cmd[[<Plug>(git-conflict-none]],                          "Choose none" },
   },
   s = { cmd[[:SplitjoinSplit]], "Split construct" },
   S = { cmd[[:SplitjoinJoin]], "Join construct" },
