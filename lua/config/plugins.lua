@@ -47,6 +47,7 @@ return packer.startup({function(use)
   use "johmsalas/text-case.nvim"            -- Smartcase replacement with S
   use "lukas-reineke/indent-blankline.nvim" -- Show indentation markers
   use "gbprod/yanky.nvim"                   -- Paste previously yanked content
+  use "tpope/vim-sleuth"                    -- Detect tab and space settings from existing content
 
   -------------------
   -- AUTOCOMPLETION
@@ -87,7 +88,7 @@ return packer.startup({function(use)
       'nvim-lua/plenary.nvim',
       'BurntSushi/ripgrep',
       "sharkdp/fd",
-      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 },
       'nvim-telescope/telescope-dap.nvim',
     }
   }
@@ -106,8 +107,8 @@ return packer.startup({function(use)
   use({ "glepnir/lspsaga.nvim", branch = "main", }) -- Better UI around renames and LSP diagnistics
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
-  use "nvim-treesitter/nvim-treesitter-textobjects" -- Define text objects based on Treesitter
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }                    -- Syntax parsing and highlighting
+  use { "nvim-treesitter/nvim-treesitter-textobjects", after = 'nvim-treesitter' } -- Define text objects based on Treesitter
   use "nvim-treesitter/playground"                  -- Show details of treesitter and highlighting
   use  'andymass/vim-matchup'                       -- Extend % for more languages
 
