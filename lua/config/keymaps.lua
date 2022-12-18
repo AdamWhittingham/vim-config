@@ -99,28 +99,29 @@ normal("]g", "g,", { desc = "Next edit" })
 ---------------------------------
 -- Text manipulation
 ---------------------------------
-
--- Add add blank line above/below current line
-normal("[<space>", "O<Esc>", { desc = "Add space before line" })
-normal("]<space>", "o<Esc>2k", { desc = "Add space after line" })
-
--- Move current line up or down
-normal("[e", ":m -2<cr>k", { desc = "Move line up" })
-normal("]e", ":m +1<cr>k", { desc = "Move line down" })
+wk.register({
+  ['['] = {
+    name = "Prev",
+    ["<space>"] = { "O<Esc>j", "Add line above"},
+    e = { ":m -2<cr>", "Move line up" },
+    p = { "<Plug>(YankyCycleForward)", "Swap to next paste" },
+  },
+  [']'] = {
+    name = "Next",
+    ["<space>"] = { "o<Esc>k", "Add line below" },
+    e = { ":m +1<cr>", "Move line down" },
+    p = { "<Plug>(YankyCycleBackward)", "Swap to prev paste" },
+  },
+  p = {"<Plug>(YankyPutAfter)", "Paste" },
+  P = {"<Plug>(YankyPutBefore)", "Paste before" },
+})
 
 -- Stay in indent mode
 visual("<", "<gv", { desc = "Dedent selection" })
 visual(">", ">gv", { desc = "Indent selection" })
 
--- Reindent the current file
-leader("i", "m`gg=G``", { desc = "Reindent file" })
-
--- Yank ring setup
-normal("p", "<Plug>(YankyPutAfter)", { desc = "Paste" })
-normal("P", "<Plug>(YankyPutBefore)", { desc = "Paste before" })
-normal("[p", "<Plug>(YankyCycleForward)", { desc = "Swap to next paste" })
-normal("]p", "<Plug>(YankyCycleBackward)", { desc = "Swap to prev paste" })
-leader("P", raw_cmd [[Telescope yank_history]], { desc = "Show yank ring" })
+leader("i", "m`gg=G``", { desc = "Reindent file" }) -- Reindent the current file
+leader("P", raw_cmd [[Telescope yank_history]], { desc = "Show yank ring" }) -- Yank ring setup
 
 -- OS Clipboard yank
 normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
@@ -153,13 +154,18 @@ wk.register({
 ---------------------------------
 -- Diffs & Versioning
 ---------------------------------
-
--- Move to the next/prev change in this file
-normal("]c", '<cmd>Gitsigns next_hunk', { desc = "Next change" })
-normal("[c", '<cmd>Gitsigns prev_hunk', { desc = "Prev change" })
-
-normal("]x", '<Plug>(git-conflict-prev-conflict)', { desc = "Prev conflict" })
-normal("[x", '<Plug>(git-conflict-next-conflict)', { desc = "Next conflict" })
+wk.register({
+  ['['] = {
+    name = "Prev",
+    c = { cmd[[Gitsigns prev_hunk]], "Change"},
+    x = { cmd[[GitConflictPrevConflict]], "Conflict" }
+  },
+  [']'] = {
+    name = "Next",
+    c = { cmd[[Gitsigns next_hunk]], "Change"},
+    x = { cmd[[GitConflictNextConflict]], "Conflict" }
+  }
+})
 
 wk.register({
   c = {
@@ -201,11 +207,7 @@ wk.register({
 -- Language aware navigation
 ---------------------------------
 
--- Jump to definition or references
-normal("<C-{>", raw_cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
-leader("]",     raw_cmd [[Lspsaga lsp_finder]],          { desc = "Find references and definitions" })
-normal("<C-}>", raw_cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
-leader("}",     raw_cmd [[Lspsaga peek_definition]],     { desc = "Preview definition" })
+-- Jump to definition
 normal("<C-]>", raw_luacmd [[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
 
 -- LSP Tools
@@ -222,12 +224,21 @@ wk.register({
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
+    ["]"] = { cmd[[Lspsaga lsp_finder]],                 "Find references and definitions" },
+    ["}"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
   }
 }, { prefix = "<leader>" })
 
--- [d and ]d to traverse diagnostics - <leader>q to add all to the quickfix list
-normal("[d", raw_luacmd 'vim.diagnostic.goto_prev()', { desc = "Prev diagnostic" })
-normal("]d", raw_luacmd 'vim.diagnostic.goto_next()', { desc = "Next diagnostic" })
+wk.register({
+  ['['] = {
+    name = "Prev",
+    d = { luacmd[[vim.diagnostic.goto_prev()]], "Diagnostic"},
+  },
+  [']'] = {
+    name = "Next",
+    d = { luacmd[[vim.diagnostic.goto_next()]], "Diagnostic"},
+  }
+})
 
 ---------------------------------
 -- Test helpers
