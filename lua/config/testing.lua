@@ -32,6 +32,10 @@ function TestRunner()
       t = { [[:call InvokeInTestTab("go test -v ]]..pAbsPath..[[")<CR>]], "Test file" },
       T = { [[:call InvokeInTestTab("go test -v ]]..pAbsPath..[[")<CR>]], "Test file" },
     }
+  elseif ft == "markdown" then
+    test_keymaps = {
+      t = { [[:Vale<cr>]], "Test file" },
+    }
   end
 
   if next(test_keymaps) ~= nil then
