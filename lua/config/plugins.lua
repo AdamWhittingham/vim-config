@@ -81,7 +81,7 @@ return packer.startup({function(use)
   use "folke/which-key.nvim"                                                 -- Help learn/relearn/remember key bindings with a handy pop up
   use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" }          -- show code hierarchy of item under cursor
   use {'akinsho/git-conflict.nvim', tag = "*" }                              -- Bindings to speed up choosing ours/theres when resolving diffs
-  use {'kevinhwang91/nvim-bqf'}                                              -- Better Quickfix formatting
+  use {'kevinhwang91/nvim-bqf', ft = 'qf'}                                   -- Better Quickfix formatting
 
   use {
   'nvim-telescope/telescope.nvim',                  -- Telescope plus the plugins that make it faster
