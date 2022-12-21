@@ -274,20 +274,16 @@ wk.register({
 wk.register({
   d = {
     name = "Debug",
-    d = { raw_cmd [[:Telescope dap list_breakpoints]], "Show breakpoints"},
+    d = { cmd [[:Telescope dap list_breakpoints]], "Show breakpoints"},
     b = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
     B = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
 
     g = { luacmd("require'dap'.continue()"), "Start" },
     n = { luacmd("require'dap'.continue()"), "Continue to Next" },
 
-    s = { luacmd("require'dap'.step_in()"), "Step Into" },
-    S = { luacmd("require'dap'.step_over()"), "Step Over" },
-    u = { luacmd("require'dap'.step_out()"), "Step Out" },
-    ["<Left>"] = { luacmd("require'dap'.step_back()"), "Step Back" },
-    ["<Down>"] = { luacmd("require'dap'.step_into()"), "Step Into" },
-    ["<Right>"] = { luacmd("require'dap'.step_over()"), "Step Over" },
-    ["<Up>"] = { luacmd("require'dap'.step_out()"), "Step Out" },
+    s = { luacmd("require'dap'.step_over()"), "Step Over" },
+    i = { luacmd("require'dap'.step_in()"), "Step Into" },
+    o = { luacmd("require'dap'.step_out()"), "Step Out" },
 
     q = { luacmd("require'dap'.disconnect()"), "Disconnect" },
     Q = { luacmd("require'dap'.close()"), "Quit" },
@@ -296,13 +292,21 @@ wk.register({
     R = { luacmd("require'dap'.run_to_cursor()"), "Run to Cursor" },
     E = { luacmd("require'dapui'.eval(vim.fn.input '[Expression] > ')"), "Evaluate Input" },
     U = { luacmd("require'dapui'.toggle()"), "Toggle UI" },
+    h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
     -- e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
     -- g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-    -- h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
     -- S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
     -- P = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
   },
 }, { prefix = "<leader>" })
+
+wk.register({
+  ["<F5>"] = { luacmd("require'dap'.continue()"), "Start" },
+  ["<F6>"] = { luacmd("require'dap'.run_to_cursor()"), "Run to cursor" },
+  ["<F10>"] = { luacmd("require'dap'.step_over()"), "Step Over" },
+  ["<F11>"] = { luacmd("require'dap'.step_into()"), "Step Into" },
+  ["<S-F11>"] = { luacmd("require'dap'.step_out()"), "Step Out" },
+})
 
 ---------------------------------
 -- Colorscheme Creation helpers

@@ -12,21 +12,24 @@ local dapui_config = {
   layouts = {
     {
       elements = {
+        'repl',
         'stacks',
-        'watches',
-        'breakpoints'
+        'breakpoints',
+        'console',
       },
-      size = 40,
+      size = 50,
       position = 'left',
     },
     {
       elements = {
-        'repl',
-        'console',
+        'scopes',
       },
-      size = 10,
+      size = 12,
       position = 'bottom',
     }
+  },
+  controls = {
+    element = "scopes"
   }
 }
 
