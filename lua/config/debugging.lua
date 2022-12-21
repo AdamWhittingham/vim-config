@@ -13,20 +13,20 @@ local dapui_config = {
     {
       elements = {
         'repl',
-        'stacks',
-        'breakpoints',
-        'console',
+        'scopes',
       },
-      size = 50,
-      position = 'left',
+      size = 10,
+      position = 'bottom',
     },
     {
       elements = {
-        'scopes',
+        'stacks',
+        'breakpoints',
+        'watches',
       },
-      size = 12,
-      position = 'bottom',
-    }
+      size = 40,
+      position = 'left',
+    },
   },
   controls = {
     element = "scopes"

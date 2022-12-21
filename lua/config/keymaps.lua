@@ -274,9 +274,10 @@ wk.register({
 wk.register({
   d = {
     name = "Debug",
-    d = { cmd [[:Telescope dap list_breakpoints]], "Show breakpoints"},
+    d = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
     b = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
     B = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
+    l = { cmd [[:Telescope dap list_breakpoints]], "Search breakpoints"},
 
     g = { luacmd("require'dap'.continue()"), "Start" },
     n = { luacmd("require'dap'.continue()"), "Continue to Next" },
