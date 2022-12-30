@@ -1,10 +1,10 @@
 -- Core Config
 require "config.options"
-require "config.utils"
 require "config.keymaps"
+require "config.plugins"
+require "config.utils"
 require "config.language_options"
 require "config.treesitter"
-require "config.plugins"
 require "config.text_manipulation"
 
 -- Development
