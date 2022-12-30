@@ -18,24 +18,12 @@ local visual = function(keys, command, opts)
   keymap("v", keys, command, bind_opts(opts))
 end
 
-local leader = function(keys, command, opts)
-  keymap("n", "<leader>" .. keys, command .. "<CR>", bind_opts(opts))
-end
-
-local raw_cmd = function(command)
-  return "<Esc><Cmd>"..command
-end
-
 local cmd = function(command)
-  return raw_cmd(command).."<CR>"
-end
-
-local raw_luacmd = function(command)
-  return "<Esc><Cmd>lua " .. command
+  return "<Esc><Cmd>"..command.."<CR>"
 end
 
 local luacmd = function(command)
-  return raw_luacmd(command) .. "<CR>"
+  return "<Esc><Cmd>lua " .. command .. "<CR>"
 end
 
 local which_key_status_ok, wk = pcall(require, "which-key")
@@ -91,11 +79,6 @@ wk.register({
   m = { set_mark, "Set mark"}
 })
 
---
--- Nicer movement through the change list (where you have edited)
-normal("[g", "g;", { desc = "Prev edit" })
-normal("]g", "g,", { desc = "Next edit" })
-
 ---------------------------------
 -- Text manipulation
 ---------------------------------
@@ -104,12 +87,14 @@ wk.register({
     name = "Prev",
     ["<space>"] = { "O<Esc>j", "Add line above"},
     e = { ":m -2<cr>", "Move line up" },
+    g = { "g;", "Edit" },
     p = { "<Plug>(YankyCycleForward)", "Swap to next paste" },
   },
   [']'] = {
     name = "Next",
     ["<space>"] = { "o<Esc>k", "Add line below" },
     e = { ":m +1<cr>", "Move line down" },
+    g = { "g,", "Edit" },
     p = { "<Plug>(YankyCycleBackward)", "Swap to prev paste" },
   },
   p = {"<Plug>(YankyPutAfter)", "Paste" },
@@ -120,12 +105,14 @@ wk.register({
 visual("<", "<gv", { desc = "Dedent selection" })
 visual(">", ">gv", { desc = "Indent selection" })
 
-leader("i", "m`gg=G``", { desc = "Reindent file" }) -- Reindent the current file
-leader("P", raw_cmd [[Telescope yank_history]], { desc = "Show yank ring" }) -- Yank ring setup
-
 -- OS Clipboard yank
 normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 visual("<leader>y", "\"+y", { desc = "Yank to clipboard" })
+
+wk.register({
+  i = { "m`gg=G``", "Reindent file" }, -- Reindent the current file
+  P = { cmd [[Telescope yank_history]], "Show yank ring" } -- Yank ring setup
+}, { prefix = "<leader>" })
 
 wk.register({
   g = {
@@ -207,9 +194,6 @@ wk.register({
 -- Language aware navigation
 ---------------------------------
 
--- Jump to definition
-normal("<C-]>", raw_luacmd [[vim.lsp.buf.definition()]], { desc = "Jump to definition" })
-
 -- LSP Tools
 wk.register({
   l = {
@@ -226,7 +210,7 @@ wk.register({
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
   },
   ["]"] = { cmd[[Lspsaga lsp_finder]],                 "Find references and definitions" },
-  ["}"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
+  ["{"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
 }, { prefix = "<leader>" })
 
 wk.register({
@@ -237,7 +221,8 @@ wk.register({
   [']'] = {
     name = "Next",
     d = { luacmd[[vim.diagnostic.goto_next()]], "Diagnostic"},
-  }
+  },
+  ["C-]"] = { luacmd [[vim.lsp.buf.definition()]], "Jump to definition" }
 })
 
 ---------------------------------
@@ -310,7 +295,9 @@ wk.register({
 })
 
 ---------------------------------
--- Colorscheme Creation helpers
+-- Misc bindings
 ---------------------------------
 
-normal("<F10>", ":TSHighlightCapturesUnderCursor")
+wk.register({
+  ["<F2>"] = { cmd[[:TSHighlightCapturesUnderCursor]], "Show Vim highlight groups under cursor"},
+})
