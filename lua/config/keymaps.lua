@@ -224,9 +224,9 @@ wk.register({
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
-    ["]"] = { cmd[[Lspsaga lsp_finder]],                 "Find references and definitions" },
-    ["}"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
-  }
+  },
+  ["]"] = { cmd[[Lspsaga lsp_finder]],                 "Find references and definitions" },
+  ["}"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
 }, { prefix = "<leader>" })
 
 wk.register({
