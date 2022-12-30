@@ -59,12 +59,16 @@ local plugins = {
   -- UI
   -------------------
   {
-    "AdamWhittingham/vim-adcode-theme",
+    "AdamWhittingham/vim-adcode-theme",                                       -- A bright colorscheme
     lazy = false,
     priority = 1000,
     config = function() vim.cmd([[colorscheme adCode]]) end,
   },
-  { "goolord/alpha-nvim", dependencies = { 'kyazdani42/nvim-web-devicons' } }, -- Excellent start screen framework
+  {
+    "goolord/alpha-nvim",                                                     -- Excellent start screen framework
+    lazy = true,
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
+  },
   'mbbill/undotree',                                                          -- Visualise the undo tree and make it easy to navigate
   { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },  -- Show git diff in the gutter
   "DarwinSenior/nvim-colorizer.lua",                                          -- Fork of colorizer with VirtualText
