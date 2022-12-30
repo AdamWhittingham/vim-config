@@ -1,35 +1,15 @@
 -- Only show the cursor in the active buffer
-vim.cmd [[
-au BufEnter * setlocal cursorline
-au BufLeave * setlocal nocursorline
-]]
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = "*",
+  command = "setlocal cursorline",
+  desc = "Show cursor in active pane",
+})
 
--- Setup function for running commands in other tmux tabs
-vim.cmd [[
-function! InvokeInTestTab(cmd)
-  let l:targetWindow = trim(system('tmux list-windows | grep "test" | cut -f1 -d":" | head -1'))
-  if empty(l:targetWindow)
-    let l:targetWindow = 3
-  endif
-  let l:target = "-t " . l:targetWindow . ".1"
-  let l:command = "tmux send-keys" . " " . l:target . ' "' . a:cmd . '" Enter'
-  echom "Running in window " . l:targetWindow
-  let output = system(l:command)
-endfunction
-]]
-
-vim.cmd [[
-function! InvokeViaTmux(cmd, test)
-  let l:targetWindow = trim(system('tmux list-windows | grep "test" | cut -f1 -d":" | head -1'))
-  if empty(l:targetWindow)
-    let l:targetWindow = 3
-  endif
-  let l:target = "-t " . l:targetWindow . ".1"
-  let l:command = "tmux send-keys" . " " . l:target . ' "' . a:cmd . " "  . a:test . '" Enter'
-  echom "Running " . a:test . " in window " . l:targetWindow
-  let output = system(l:command)
-endfunction
-]]
+vim.api.nvim_create_autocmd({ "BufLeave" }, {
+  pattern = "*",
+  command = "setlocal nocursorline",
+  desc = "Hide cursor in inactive pane",
+})
 
 function _G.set_mark()
   print("Set mark: ")
@@ -60,3 +40,31 @@ function _G.translate()
     end
   end)
 end
+
+-- Setup function for running commands in other tmux tabs
+vim.cmd [[
+function! InvokeInTestTab(cmd)
+  let l:targetWindow = trim(system('tmux list-windows | grep "test" | cut -f1 -d":" | head -1'))
+  if empty(l:targetWindow)
+    let l:targetWindow = 3
+  endif
+  let l:target = "-t " . l:targetWindow . ".1"
+  let l:command = "tmux send-keys" . " " . l:target . ' "' . a:cmd . '" Enter'
+  echom "Running in window " . l:targetWindow
+  let output = system(l:command)
+endfunction
+]]
+
+vim.cmd [[
+function! InvokeViaTmux(cmd, test)
+  let l:targetWindow = trim(system('tmux list-windows | grep "test" | cut -f1 -d":" | head -1'))
+  if empty(l:targetWindow)
+    let l:targetWindow = 3
+  endif
+  let l:target = "-t " . l:targetWindow . ".1"
+  let l:command = "tmux send-keys" . " " . l:target . ' "' . a:cmd . " "  . a:test . '" Enter'
+  echom "Running " . a:test . " in window " . l:targetWindow
+  let output = system(l:command)
+endfunction
+]]
+
