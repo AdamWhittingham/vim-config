@@ -35,8 +35,6 @@ end
 -- Leader key = <space>
 ---------------------------------
 keymap("", "<space>", "<Nop>", default_opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 ---------------------------------
 -- Window/Tab/Buffer commands
@@ -60,10 +58,10 @@ wk.register({
 ---------------------------------
 
 -- Move between panes
-normal("<C-h>", "<C-w>h", { desc = "Move to window left" })
-normal("<C-l>", "<C-w>l", { desc = "Move to window right" })
-normal("<C-j>", "<C-w>j", { desc = "Move to window below" })
-normal("<C-k>", "<C-w>k", { desc = "Move to window above" })
+normal("<C-h>", cmd[[TmuxNavigateLeft]], { desc = "Move to window left" })
+normal("<C-l>", cmd[[TmuxNavigateRight]], { desc = "Move to window right" })
+normal("<C-j>", cmd[[TmuxNavigateDown]], { desc = "Move to window below" })
+normal("<C-k>", cmd[[TmuxNavigateUp]], { desc = "Move to window above" })
 
 ---------------------------------
 -- Text navigation

@@ -1,3 +1,10 @@
+-- NOTE: This file is loaded BEFORE any plugins
+-- and should only be used to configure core neovim options
+
+-- Set leader outside of keymaps to ensure that plugins know what to bind to
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 local opt = vim.opt
 
 -- File management
@@ -34,15 +41,6 @@ opt.mouse = ''
 opt.breakindent = true
 opt.updatetime = 250
 opt.completeopt = 'menuone,noselect'
-
-vim.cmd [[
-try
-  colorscheme adCode
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
-]]
 
 local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
 vim.api.nvim_create_autocmd(

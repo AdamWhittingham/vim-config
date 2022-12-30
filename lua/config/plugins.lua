@@ -58,7 +58,12 @@ local plugins = {
   -------------------
   -- UI
   -------------------
-   "AdamWhittingham/vim-adcode-theme",                                        -- A nice coat of paint for everything
+  {
+    "AdamWhittingham/vim-adcode-theme",
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd([[colorscheme adCode]]) end,
+  },
   { "goolord/alpha-nvim", dependencies = { 'kyazdani42/nvim-web-devicons' } }, -- Excellent start screen framework
   'mbbill/undotree',                                                          -- Visualise the undo tree and make it easy to navigate
   { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },  -- Show git diff in the gutter
@@ -75,7 +80,7 @@ local plugins = {
       "sharkdp/fd",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-dap.nvim",
-    }
+    },
   },
 
   -------------------
@@ -118,4 +123,26 @@ local plugins = {
   "marcelofern/vale.nvim",                       -- Use Vale for prose linting
 }
 
-require("lazy").setup(plugins, {})
+local options = {
+  defaults = { lazy = false },
+  install = { colorscheme = { "adCode", "habamax" } },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+}
+
+require("lazy").setup(plugins, options)

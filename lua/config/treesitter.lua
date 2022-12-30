@@ -29,6 +29,7 @@ configs.setup {
     "toml",
     "tsx",
     "typescript",
+    "vim",
     "yaml",
   },
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
