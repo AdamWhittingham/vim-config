@@ -222,7 +222,7 @@ wk.register({
     name = "Next",
     d = { luacmd[[vim.diagnostic.goto_next()]], "Diagnostic"},
   },
-  ["C-]"] = { luacmd [[vim.lsp.buf.definition()]], "Jump to definition" }
+  ["<C-]>"] = { luacmd [[vim.lsp.buf.definition()]], "Jump to definition" }
 })
 
 ---------------------------------
