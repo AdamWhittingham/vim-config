@@ -1,8 +1,8 @@
 -- Core Config
 require "config.options"
+require "config.keymaps" -- Load before plugins so lazy loading doesn't got nuts
 require "config.plugins" -- Lazy loaded, so require plugins early
 require "config.utils"
-require "config.keymaps"
 require "config.language_options"
 require "config.treesitter"
 require "config.text_manipulation"
