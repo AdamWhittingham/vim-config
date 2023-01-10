@@ -73,6 +73,7 @@ wk.register({
   j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
   h = { cmd[[:nohlsearch]], "Toggle search highlight" },
   m = { cmd [[:Telescope marks]], "Show marks" },
+  ["sw"] = { cmd[[:call TrimWhitespace()]], "Strip whitespace"},
 }, { prefix = "<leader>" })
 
 wk.register({
@@ -156,7 +157,7 @@ wk.register({
 
 wk.register({
   c = {
-    name = "Change",
+    name = "Changes",
     a = { cmd[[Gitsigns stage_hunk]],                               "Add change to stage" },
     A = { cmd[[Gitsigns stage_buffer]],                             "Add all changes in file" },
     u = { cmd[[Gitsigns reset_hunk]],                               "Undo change" },
