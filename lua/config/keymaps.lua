@@ -182,7 +182,8 @@ wk.register({
 
 wk.register({
   f = {cmd [[:Telescope find_files]], "Find files" },
-  F = {cmd [[:Telescope live_grep]],  "Find in files" },
+  -- F = {cmd [[:Telescope live_grep]],  "Find in files" },
+  F = { luacmd [[ require("telescope").extensions.live_grep_args.live_grep_args() ]], "Find in files" },
   G = {cmd [[:Telescope resume]],  "Show previous search" },
   ["*"] = {cmd [[:Telescope grep_string]], "Search for word" },
   ["."] = {cmd [[:Telescope buffers]], "Show buffers" },

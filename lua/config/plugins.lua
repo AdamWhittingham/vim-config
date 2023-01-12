@@ -84,6 +84,7 @@ local plugins = {
       "sharkdp/fd",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-dap.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim" ,
     },
   },
 
