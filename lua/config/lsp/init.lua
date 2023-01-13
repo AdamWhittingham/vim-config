@@ -61,8 +61,9 @@ if not lspsaga_ok then
   return
 end
 
-lspsaga.init_lsp_saga({
-  code_action_lightbulb = { enable = false },
+lspsaga.setup({
+  lightbulb = { enable = false },
+  symbol_in_winbar = { enable = false }
 })
 
 local lspsig_ok, lspsig = pcall(require, "lsp_signature")
