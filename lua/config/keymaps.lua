@@ -201,10 +201,10 @@ wk.register({
     d = { luacmd [[_G.toggle_diagnostics()]],            "Toggle disagnostics" },
     l = { cmd [[LSoutlineToggle]],                       "Show LSP outline for file" },
     p = { cmd [[Lspsaga peek_definition]],               "Peek definition" },
-    o = { cmd [[Lspsaga show_line_diagnostics]],         "Show disagnostic float" },
-    r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
+    o = { luacmd [[vim.diagnostic.open_float()]],        "Show disagnostic float" },
+    r = { luacmd [[vim.lsp.buf.rename()]],               "LSP Rename" },
     a = { cmd [[Lspsaga code_action]],                   "Show code actions" },
-    k = { cmd [[Lspsaga hover_doc]],                     "Show docs" }, -- or call vim.lsp.bug.hover()
+    k = { luacmd [[vim.lsp.buf.hover()]],                "Show docs" }, -- or call vim.lsp.buf.hover()
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
