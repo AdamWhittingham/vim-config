@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local cool = {
+local coolLines = {
   [[    ███╗   ███╗ █████╗ ██╗  ██╗███████╗   ]],
   [[    ████╗ ████║██╔══██╗██║ ██╔╝██╔════╝   ]],
   [[    ██╔████╔██║███████║█████╔╝ █████╗     ]],
@@ -24,7 +24,7 @@ local cool = {
   [[╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ]],
 }
 
-local robust = {
+local robustLines  = {
   [[        ██████╗ ██╗   ██╗██╗██╗     ██████╗         ]],
   [[        ██╔══██╗██║   ██║██║██║     ██╔══██╗        ]],
   [[        ██████╔╝██║   ██║██║██║     ██║  ██║        ]],
@@ -45,7 +45,69 @@ local robust = {
   [[     ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝          ]],
 }
 
-local headers = {cool, robust}
+
+local efficienLines  = {
+  [[         ██████╗ ██╗   ██╗██╗██╗     ██████╗         ]],
+  [[         ██╔══██╗██║   ██║██║██║     ██╔══██╗        ]],
+  [[         ██████╔╝██║   ██║██║██║     ██║  ██║        ]],
+  [[         ██╔══██╗██║   ██║██║██║     ██║  ██║        ]],
+  [[         ██████╔╝╚██████╔╝██║███████╗██████╔╝        ]],
+  [[         ╚═════╝  ╚═════╝ ╚═╝╚══════╝╚═════╝         ]],
+  [[███████╗███████╗███████╗██╗ ██████╗██╗███████╗███╗   ██╗████████╗]],
+  [[██╔════╝██╔════╝██╔════╝██║██╔════╝██║██╔════╝████╗  ██║╚══██╔══╝]],
+  [[█████╗  █████╗  █████╗  ██║██║     ██║█████╗  ██╔██╗ ██║   ██║   ]],
+  [[██╔══╝  ██╔══╝  ██╔══╝  ██║██║     ██║██╔══╝  ██║╚██╗██║   ██║   ]],
+  [[███████╗██║     ██║     ██║╚██████╗██║███████╗██║ ╚████║   ██║   ]],
+  [[╚══════╝╚═╝     ╚═╝     ╚═╝ ╚═════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ]],
+  [[      ███████╗████████╗██╗   ██╗███████╗███████╗     ]],
+  [[      ██╔════╝╚══██╔══╝██║   ██║██╔════╝██╔════╝     ]],
+  [[      ███████╗   ██║   ██║   ██║█████╗  █████╗       ]],
+  [[      ╚════██║   ██║   ██║   ██║██╔══╝  ██╔══╝       ]],
+  [[      ███████║   ██║   ╚██████╔╝██║     ██║          ]],
+  [[      ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝          ]],
+}
+
+local function lineToStartGradient(lines)
+  local out = {}
+  for i, line in ipairs(lines) do
+    table.insert(out, { hi = "StartLogo"..i, line = line})
+  end
+  return out
+end
+
+local function lineToStartPopGradient(lines)
+  local out = {}
+  for i, line in ipairs(lines) do
+    local hi = "StartLogo" .. i
+    if i <= 6 then
+      hi = "StartLogo" .. i + 6
+    elseif i > 6 and i <= 12 then
+      hi = "StartLogoPop" .. i - 6
+    end
+    table.insert(out, { hi = hi, line = line})
+  end
+  return out
+end
+
+local function lineToStartShiftGradient(lines)
+  local out = {}
+  for i, line in ipairs(lines) do
+    local n = i
+    if i > 6 and i <= 12 then
+      n = i + 6
+    elseif i > 12 then
+      n = i - 6
+    end
+    table.insert(out, { hi = "StartLogo"..n, line = line})
+  end
+  return out
+end
+
+local cool = lineToStartPopGradient(coolLines)
+local robust = lineToStartShiftGradient(robustLines)
+local efficient = lineToStartGradient(efficienLines)
+
+local headers = {cool, robust, efficient}
 
 local function header_chars()
   math.randomseed(os.time())
@@ -57,8 +119,9 @@ end
 -- Define StartLogo1..StartLogoN to get a nice gradient.
 local function header_color()
   local lines = {}
-  for i, line_chars in pairs(header_chars()) do
-    local hi = "StartLogo" .. i
+  for i, lineConfig in pairs(header_chars()) do
+    local hi = lineConfig.hi
+    local line_chars = lineConfig.line
     local line = {
       type = "text",
       val = line_chars,
