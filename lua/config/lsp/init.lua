@@ -1,14 +1,20 @@
 local servers = {
   'bashls',
-  'jsonls',
   'cssls',
-  'html',
   'dockerls',
-  'solargraph',
-  'yamlls',
+  'html',
+  'jsonls',
   'sumneko_lua',
-  'gopls',
+  'yamlls',
 }
+
+if vim.fn.executable('go') == 1 then
+  table.insert(servers, "gopls")
+end
+
+if vim.fn.executable('ruby') == 1 then
+  table.insert(servers, "solargraph")
+end
 
 local mason_ok, mason = pcall(require, "mason")
 if not mason_ok then
