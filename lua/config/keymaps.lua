@@ -110,7 +110,7 @@ visual("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 
 wk.register({
   i = { "m`gg=G``", "Reindent file" }, -- Reindent the current file
-  P = { cmd [[Telescope yank_history]], "Show yank ring" } -- Yank ring setup
+  P = { cmd [[Telescope yank_history theme=dropdown]], "Show yank ring" } -- Yank ring setup
 }, { prefix = "<leader>" })
 
 wk.register({

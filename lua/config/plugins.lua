@@ -32,7 +32,7 @@ local plugins = {
   "AndrewRadev/splitjoin.vim",           -- Quickly toggle between single and multi-line versions of common constructs
   "johmsalas/text-case.nvim",            -- Smartcase replacement with S
   "lukas-reineke/indent-blankline.nvim", -- Show indentation markers
-  "gbprod/yanky.nvim",                   -- Paste previously yanked content
+  { "gbprod/yanky.nvim", lazy = true},   -- Paste previously yanked content
   "tpope/vim-sleuth",                    -- Detect tab and space settings from existing content
 
   -------------------
