@@ -12,6 +12,6 @@ vim.api.nvim_create_autocmd(
 
 -- Set custom syntax for .env files to conceal values
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  pattern = {".env"},
+  pattern = {".env", ".powenv"},
   command = "set ft=env conceallevel=2",
 })
