@@ -87,6 +87,14 @@ local plugins = {
       "nvim-telescope/telescope-live-grep-args.nvim" ,
     },
   },
+  { 'akinsho/git-conflict.nvim',
+    opts = {
+      highlights = {
+        incoming = 'DiffConflictTheirs',
+        current = 'DiffConflictMine',
+      },
+    }
+  },
 
   -------------------
   -- LANGUAGE SUPPORT
