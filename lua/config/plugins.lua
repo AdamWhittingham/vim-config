@@ -73,7 +73,7 @@ local plugins = {
   { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },  -- Show git diff in the gutter
   "DarwinSenior/nvim-colorizer.lua",                                          -- Fork of colorizer with VirtualText
   "feline-nvim/feline.nvim",                                                  -- Quick and nice statusline
-  { "folke/which-key.nvim", lazy = true, config = true },                                    -- Help learn/relearn/remember key bindings with a handy pop up
+  { "folke/which-key.nvim", lazy = true, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },          -- show code hierarchy of item under cursor
   { "akinsho/git-conflict.nvim" },                                            -- Bindings to speed up choosing ours/theres when resolving diffs
   { "kevinhwang91/nvim-bqf", ft = "qf" },                                     -- Better Quickfix formatting
@@ -98,7 +98,7 @@ local plugins = {
   },
   "ray-x/lsp_signature.nvim",                    -- Pop up function definitions when typing a function call
   "gpanders/editorconfig.nvim",                  -- Obey editorconfig files
-  { "glepnir/lspsaga.nvim", branch = "main", },  -- Better UI around renames and LSP diagnistics
+  {"glepnir/lspsaga.nvim", event = "BufRead" } , -- Better UI around renames and LSP diagnistics
 
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", }, -- Syntax parsing and highlighting

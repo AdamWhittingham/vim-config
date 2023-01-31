@@ -164,11 +164,6 @@ wk.register({
     b = { cmd[[lua require"gitsigns".toggle_current_line_blame()]], "Toggle blame" },
     R = { cmd[[Gitsigns reset_buffer]],                             "Reset file" },
     v = { cmd [[:DiffviewToggle]],                                  "Show merge view" },
-    -- Diff conflicts
-    o = { cmd[[<Plug>(git-conflict-ours]],                          "Choose ours" },
-    t = { cmd[[<Plug>(git-conflict-theirs]],                        "Choose theirs" },
-    B = { cmd[[<Plug>(git-conflict-both]],                          "Choose both" },
-    n = { cmd[[<Plug>(git-conflict-none]],                          "Choose none" },
   },
   s = { cmd[[:SplitjoinSplit]], "Split construct" },
   S = { cmd[[:SplitjoinJoin]], "Join construct" },
@@ -201,10 +196,10 @@ wk.register({
     d = { luacmd [[_G.toggle_diagnostics()]],            "Toggle disagnostics" },
     l = { cmd [[LSoutlineToggle]],                       "Show LSP outline for file" },
     p = { cmd [[Lspsaga peek_definition]],               "Peek definition" },
-    o = { luacmd [[vim.diagnostic.open_float()]],        "Show disagnostic float" },
-    r = { luacmd [[vim.lsp.buf.rename()]],               "LSP Rename" },
+    o = { cmd [[Lspsaga show_line_diagnostics]],         "Show line disagnostics" },
+    r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
     a = { cmd [[Lspsaga code_action]],                   "Show code actions" },
-    k = { luacmd [[vim.lsp.buf.hover()]],                "Show docs" }, -- or call vim.lsp.buf.hover()
+    k = { luacmd [[Lspsaga hover_doc]],                  "Show docs" }, -- or call vim.lsp.buf.hover()
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
@@ -213,14 +208,18 @@ wk.register({
   ["{"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
 }, { prefix = "<leader>" })
 
+vim.keymap.set("n", "K", cmd[[Lspsaga hover_doc]], {desc = "Hover doc"})
+
 wk.register({
   ['['] = {
     name = "Prev",
-    d = { luacmd[[vim.diagnostic.goto_prev()]], "Diagnostic"},
+    d = { cmd[[Lspsaga diagnostic_jump_prev]], "Diagnostic"},
+    D = { luacmd[[vim.diagnostic.goto_prev()]], "Diagnostic"},
   },
   [']'] = {
     name = "Next",
-    d = { luacmd[[vim.diagnostic.goto_next()]], "Diagnostic"},
+    d = { cmd[[Lspsaga diagnostic_jump_next]], "Diagnostic"},
+    D = { luacmd[[vim.diagnostic.goto_next()]], "Diagnostic"},
   },
   ["<C-]>"] = { luacmd [[vim.lsp.buf.definition()]], "Jump to definition" }
 })
