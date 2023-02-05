@@ -3,7 +3,15 @@ return {
   -- PLUGIN MANAGEMENT
   --------------------
   "nvim-lua/plenary.nvim",   -- Useful lua functions used ny lots of plugins
-  'echasnovski/mini.nvim',   -- Collection of small, focussed plugins
+  -- Collection of small, focussed plugins
+  {
+    'echasnovski/mini.nvim',
+    version = '*',
+    config = function ()
+      require('mini.ai').setup()
+      require('mini.comment').setup()
+    end
+  },
 
   --------------------
   -- TEXT MANIPULATION
@@ -14,12 +22,6 @@ return {
   "lukas-reineke/indent-blankline.nvim", -- Show indentation markers
   { "gbprod/yanky.nvim", lazy = true},   -- Paste previously yanked content
   "tpope/vim-sleuth",                    -- Detect tab and space settings from existing content
-
-  -------------------
-  -- AUTOCOMPLETION
-  -------------------
-  "windwp/nvim-autopairs",     -- Autopairs, integrates with both cmp and treesitter
-  'windwp/nvim-ts-autotag',    -- Auto close HTML and XML tags too
 
   -------------------
   -- UI

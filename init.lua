@@ -14,9 +14,6 @@ require "config.debugging"
 require "config.git"
 require "config.testing"
 
--- Autocomplete
-require "config.autocomplete"
-
 -- UI
 require "config.startup_screen"
 require "config.statusline"
