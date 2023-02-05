@@ -1,7 +1,5 @@
 local M = {}
 
-local navic = require("nvim-navic")
-
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -65,17 +63,8 @@ M.on_attach = function(client, bufnr)
   end
 
   if cap.documentSymbolProvider then
-    navic.attach(client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
   end
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return M
-end
-
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M

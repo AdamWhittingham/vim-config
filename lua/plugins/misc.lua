@@ -3,6 +3,7 @@ return {
   -- PLUGIN MANAGEMENT
   --------------------
   "nvim-lua/plenary.nvim",   -- Useful lua functions used ny lots of plugins
+  "kyazdani42/nvim-web-devicons", -- Instantly make everything nicer with NerdFont icons
   -- Collection of small, focussed plugins
   {
     'echasnovski/mini.nvim',
@@ -58,7 +59,6 @@ return {
   "DarwinSenior/nvim-colorizer.lua",                                          -- Fork of colorizer with VirtualText
   "feline-nvim/feline.nvim",                                                  -- Quick and nice statusline
   { "folke/which-key.nvim", lazy = true, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
-  { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },          -- show code hierarchy of item under cursor
   { "akinsho/git-conflict.nvim" },                                            -- Bindings to speed up choosing ours/theres when resolving diffs
   { "kevinhwang91/nvim-bqf", ft = "qf" },                                     -- Better Quickfix formatting
   { 'nvim-telescope/telescope.nvim',                                          -- Telescope plus the plugins that make it faster

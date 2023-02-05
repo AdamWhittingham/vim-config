@@ -14,6 +14,7 @@ require "config.git"
 require "config.testing"
 
 -- UI
+require "config.lsp.ui"
 require "config.startup_screen"
 require "config.statusline"
 require "config.navigation"

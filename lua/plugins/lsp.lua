@@ -48,10 +48,13 @@ return {
 
     config = function(_, opts)
       local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local on_attach = require("config.lsp.handlers").on_attach
 
       local function setup(server)
         local server_opts = opts.servers[server] or {}
         server_opts.capabilities = capabilities
+        server_opts.on_attach = on_attach
+
         if opts.setup[server] then
           if opts.setup[server](server, server_opts) then
             return
@@ -67,7 +70,7 @@ return {
       local mlsp = require("mason-lspconfig")
       local available = mlsp.get_available_servers()
 
-      local ensure_installed = {} ---@type string[]
+      local ensure_installed = {}
       for server, server_opts in pairs(opts.servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
