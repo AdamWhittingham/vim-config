@@ -97,9 +97,9 @@ normal("<C-k>", cmd[[TmuxNavigateUp]], { desc = "Move to window above" })
 ---------------------------------
 
 wk.register({
-  j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
+  j = { cmd [[Telescope jumplist]], "Show Jumplist" },
   h = { cmd[[:nohlsearch]], "Toggle search highlight" },
-  m = { cmd [[:Telescope marks]], "Show marks" },
+  m = { cmd [[Telescope marks]], "Show marks" },
   ["sw"] = { cmd[[:call TrimWhitespace()]], "Strip whitespace"},
 }, { prefix = "<leader>" })
 
@@ -192,12 +192,12 @@ wk.register({
     d = { cmd[[Gitsigns preview_hunk]],                             "Diff change" },
     b = { luacmd[[require"gitsigns".toggle_current_line_blame()]], "Toggle blame" },
     R = { cmd[[Gitsigns reset_buffer]],                             "Reset file" },
-    v = { cmd [[:DiffviewToggle]],                                  "Show merge view" },
+    v = { cmd [[DiffviewToggle]],                                  "Show merge view" },
   },
   s = { cmd[[:SplitjoinSplit]], "Split construct" },
   S = { cmd[[:SplitjoinJoin]], "Join construct" },
-  sp = { cmd[[:Telescope spell_suggest]], "Suggest spelling fixes" },
-  u = { cmd[[:UndotreeToggle]], "Show the undo tree" },
+  sp = { cmd[[Telescope spell_suggest]], "Suggest spelling fixes" },
+  u = { cmd[[UndotreeToggle]], "Show the undo tree" },
 }, { prefix = "<leader>" })
 
 ---------------------------------
@@ -205,13 +205,13 @@ wk.register({
 ---------------------------------
 
 wk.register({
-  f = {cmd [[:Telescope find_files]], "Find files" },
+  f = {cmd [[Telescope find_files]], "Find files" },
   -- F = {cmd [[:Telescope live_grep]],  "Find in files" },
   F = { luacmd [[ require("telescope").extensions.live_grep_args.live_grep_args() ]], "Find in files" },
-  G = {cmd [[:Telescope resume]],  "Show previous search" },
-  ["*"] = {cmd [[:Telescope grep_string]], "Search for word" },
-  ["."] = {cmd [[:Telescope buffers]], "Show buffers" },
-  [" "] = { cmd [[:b#]], "Previous buffer" },
+  G = {cmd [[Telescope resume]],  "Show previous search" },
+  ["*"] = {cmd [[Telescope grep_string]], "Search for word" },
+  ["."] = {cmd [[Telescope buffers]], "Show buffers" },
+  [" "] = { cmd [[b#]], "Previous buffer" },
 }, { prefix = "<leader>" })
 
 ---------------------------------
@@ -233,8 +233,8 @@ wk.register({
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
-    s = { cmd [[:Telescope lsp_document_symbols]],       "LSP symbols (document)"},
-    S = { cmd [[:Telescope lsp_workspace_symbols]],      "LSP symbols (workspace)"},
+    s = { cmd [[Telescope lsp_document_symbols]],       "LSP symbols (document)"},
+    S = { cmd [[Telescope lsp_workspace_symbols]],      "LSP symbols (workspace)"},
   },
   ["]"] = { cmd[[Lspsaga lsp_finder]],                 "Find references and definitions" },
   ["{"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
@@ -293,7 +293,7 @@ wk.register({
     d = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
     b = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
     B = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
-    l = { cmd [[:Telescope dap list_breakpoints]], "Search breakpoints"},
+    l = { cmd [[Telescope dap list_breakpoints]], "Search breakpoints"},
 
     g = { luacmd("require'dap'.continue()"), "Start" },
     n = { luacmd("require'dap'.continue()"), "Continue to Next" },
