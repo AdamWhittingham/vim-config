@@ -14,12 +14,12 @@ return {
       require('mini.surround').setup({
         highlight_duration = 1000,
         mappings = {
-          add = 'ca',          -- Add surrounding in Normal and Visual modes
+          add = 'as',          -- Add surrounding in Normal and Visual modes
+          replace = 'cs',      -- Replace surrounding
           delete = 'ds',       -- Delete surrounding
           find = '',           -- Find surrounding (to the right)
           find_left = '',      -- Find surrounding (to the left)
           highlight = 'hs',    -- Highlight surrounding
-          replace = 'cs',      -- Replace surrounding
           update_n_lines = '', -- Update `n_lines`
 
           suffix_last = 'l',   -- Suffix to search with "prev" method
