@@ -1,24 +1,4 @@
--- Install Lazy.nvim if not present
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
-end
-vim.opt.runtimepath:prepend(lazypath)
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = "plugins.lua",
-  command = "Lazy sync",
-  desc = "Update plugins",
-})
-
-local plugins = {
+return {
   --------------------
   -- PLUGIN MANAGEMENT
   --------------------
@@ -130,26 +110,3 @@ local plugins = {
   { "marcelofern/vale.nvim", lazy = true, ft = "markdown" }, -- Use Vale for prose linting
 }
 
-local options = {
-  defaults = { lazy = false },
-  install = { colorscheme = { "adCode", "habamax" } },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
-}
-
-require("lazy").setup(plugins, options)
