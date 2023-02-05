@@ -204,6 +204,8 @@ wk.register({
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
+    s = { cmd [[:Telescope lsp_document_symbols]],       "LSP symbols (document)"},
+    S = { cmd [[:Telescope lsp_workspace_symbols]],      "LSP symbols (workspace)"},
   },
   ["]"] = { cmd[[Lspsaga lsp_finder]],                 "Find references and definitions" },
   ["{"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
