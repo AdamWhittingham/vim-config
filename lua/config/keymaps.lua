@@ -37,6 +37,35 @@ end
 keymap("", "<space>", "<Nop>", default_opts)
 
 ---------------------------------
+-- Tab - select completion and jump through completion vars
+---------------------------------
+vim.keymap.set("i", "<tab>", function()
+  local cmp = require("cmp")
+  local snip = require("luasnip")
+  if cmp.visible() then
+    cmp.select_next_item()
+  elseif snip.expandable() then
+    snip.expand()
+  elseif snip.expand_or_jumpable() then
+    snip.expand_or_jump()
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+  end
+end)
+
+vim.keymap.set("i", "<s-tab>", function()
+  local cmp = require("cmp")
+  local snip = require("luasnip")
+  if cmp.visible() then
+    cmp.select_prev_item()
+  elseif snip.jumpable(-1) then
+    snip.jump(-1)
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<s-Tab>", true, false, true), "n", false)
+  end
+end)
+
+---------------------------------
 -- Window/Tab/Buffer commands
 ---------------------------------
 wk.register({
@@ -161,7 +190,7 @@ wk.register({
     u = { cmd[[Gitsigns reset_hunk]],                               "Undo change" },
     U = { cmd[[Gitsigns reset_buffer_index]],                       "Undo all changes in file" },
     d = { cmd[[Gitsigns preview_hunk]],                             "Diff change" },
-    b = { cmd[[lua require"gitsigns".toggle_current_line_blame()]], "Toggle blame" },
+    b = { luacmd[[require"gitsigns".toggle_current_line_blame()]], "Toggle blame" },
     R = { cmd[[Gitsigns reset_buffer]],                             "Reset file" },
     v = { cmd [[:DiffviewToggle]],                                  "Show merge view" },
   },

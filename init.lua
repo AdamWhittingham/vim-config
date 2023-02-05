@@ -16,7 +16,6 @@ require "config.testing"
 
 -- Autocomplete
 require "config.autocomplete"
-require "config.snippets"
 
 -- UI
 require "config.startup_screen"
@@ -24,5 +23,4 @@ require "config.statusline"
 require "config.navigation"
 require "config.indentation_guidelines"
 require "config.colorizer"
-require "config.telescope"
 require "config.diff"
