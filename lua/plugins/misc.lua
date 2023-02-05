@@ -59,23 +59,6 @@ return {
   -------------------
   -- LANGUAGE SUPPORT
   -------------------
-  {
-    "williamboman/mason.nvim",                   -- Install and configure Language Servers
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-  },
-  "ray-x/lsp_signature.nvim",                    -- Pop up function definitions when typing a function call
-  "gpanders/editorconfig.nvim",                  -- Obey editorconfig files
-  {"glepnir/lspsaga.nvim", event = "BufRead" } , -- Better UI around renames and LSP diagnistics
-
-  -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", }, -- Syntax parsing and highlighting
-  { "nvim-treesitter/nvim-treesitter-textobjects", -- Define text objects based on Treesitter
-    dependencies = { "nvim-treesitter"},
-  },
-  "nvim-treesitter/playground",                  -- Show details of treesitter and highlighting
-  "andymass/vim-matchup",                       -- Extend % for more languages
-
   -- Debugging
   "mfussenegger/nvim-dap",                       -- Debug Anything Protocol bindings
   { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },   -- Lovely UI for DAP output

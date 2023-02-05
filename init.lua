@@ -8,7 +8,6 @@ require "config.treesitter"
 require "config.text_manipulation"
 
 -- Development
-require "config.lsp"
 require "config.languages"
 require "config.debugging"
 require "config.git"
