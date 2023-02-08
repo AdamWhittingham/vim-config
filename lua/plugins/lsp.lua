@@ -136,6 +136,8 @@ return {
     }
   },
 
+  "SmiteshP/nvim-navic",
+
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", }, -- Syntax parsing and highlighting
   { "nvim-treesitter/nvim-treesitter-textobjects", -- Define text objects based on Treesitter
