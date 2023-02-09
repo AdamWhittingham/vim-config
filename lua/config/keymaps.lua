@@ -199,7 +199,8 @@ wk.register({
     o = { cmd [[Lspsaga show_line_diagnostics]],         "Show line disagnostics" },
     r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
     a = { cmd [[Lspsaga code_action]],                   "Show code actions" },
-    k = { luacmd [[Lspsaga hover_doc]],                  "Show docs" }, -- or call vim.lsp.buf.hover()
+    k = { luacmd [[vim.lsp.buf.hover()]],                "Show hover" },
+    K = { luacmd [[Lspsaga hover_doc]],                  "Show lspsaga hover" },
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
