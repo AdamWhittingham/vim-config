@@ -20,5 +20,4 @@ return {
   },
 
   'windwp/nvim-ts-autotag',    -- Auto close HTML and XML tags too
-
 }

@@ -17,7 +17,10 @@ if vim.fn.executable('ruby') == 1 then
 end
 
 return {
-  "gpanders/editorconfig.nvim",                  -- Obey editorconfig files -- can be retired after nvim 0.9
+  { -- Obey editorconfig files -- can be retired after nvim 0.9
+    "gpanders/editorconfig.nvim",
+    lazy = false,
+},
 
   -- lspconfig
   {
@@ -122,6 +125,7 @@ return {
   -- Better UI around renames and LSP diagnistics
   {
     "glepnir/lspsaga.nvim",
+    event = "BufRead",
     opts = {
       lightbulb = {
         enable = true,
@@ -136,13 +140,21 @@ return {
     }
   },
 
-  "SmiteshP/nvim-navic",
+  { "SmiteshP/nvim-navic", lazy = false },
 
   -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", }, -- Syntax parsing and highlighting
+  { -- Syntax parsing and highlighting
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = require("config.treesitter"),
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
   { "nvim-treesitter/nvim-treesitter-textobjects", -- Define text objects based on Treesitter
     dependencies = { "nvim-treesitter"},
   },
-  "nvim-treesitter/playground",                  -- Show details of treesitter and highlighting
-  "andymass/vim-matchup",                       -- Extend % for more languages
+  "nvim-treesitter/playground", -- Show details of treesitter and highlighting
+  "andymass/vim-matchup", -- Extend % for more languages
 }

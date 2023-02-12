@@ -13,7 +13,7 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 local options = {
-  defaults = { lazy = false },
+  defaults = { lazy = true },
   install = { colorscheme = { "adCode", "habamax" } },
   performance = {
     cache = {
