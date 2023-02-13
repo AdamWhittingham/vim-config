@@ -4,7 +4,7 @@ local servers = {
   'dockerls',
   'html',
   'jsonls',
-  'sumneko_lua',
+  'lua_ls',
   'yamlls',
 }
 
