@@ -104,7 +104,14 @@ local plugins = {
   {"glepnir/lspsaga.nvim", event = "BufRead" } , -- Better UI around renames and LSP diagnistics
 
   -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", }, -- Syntax parsing and highlighting
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    opts = require "config.treesitter",
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  }, -- Syntax parsing and highlighting
   { "nvim-treesitter/nvim-treesitter-textobjects", -- Define text objects based on Treesitter
     dependencies = { "nvim-treesitter"},
   },
