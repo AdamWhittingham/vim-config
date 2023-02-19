@@ -3,11 +3,6 @@ if not cmp_status_ok then
   return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  return
-end
-
 local status_ok, npairs = pcall(require, "nvim-autopairs")
 if not status_ok then
   return
@@ -18,11 +13,20 @@ if not autopairs_status_ok then
   return
 end
 
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+  return
+end
+
+luasnip.filetype_extend("ruby", {"rails"})
+
+require("luasnip.loaders.from_vscode").lazy_load({
+  paths = { './snippets' }
+})
+
 -----------------------------------------------
 -- Configure Snippet and source autopcompletions
 -----------------------------------------------
-
-require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

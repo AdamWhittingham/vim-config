@@ -41,6 +41,10 @@ local plugins = {
   "windwp/nvim-autopairs",     -- Autopairs, integrates with both cmp and treesitter
   'windwp/nvim-ts-autotag',    -- Auto close HTML and XML tags too
 
+  -- snippets
+  "L3MON4D3/LuaSnip", --snippet engine
+  "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+
   -- cmp plugins
   "hrsh7th/nvim-cmp",          -- Completion engine
   "hrsh7th/cmp-buffer",        -- buffer completions
@@ -50,10 +54,6 @@ local plugins = {
   "hrsh7th/cmp-nvim-lsp",      -- LSP based completions
   'andersevenrud/cmp-tmux',    -- tmux completions
   'octaltree/cmp-look',        -- dictionary completions
-
-  -- snippets
-  "L3MON4D3/LuaSnip", --snippet engine
-  "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
   -------------------
   -- UI
