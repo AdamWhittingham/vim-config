@@ -108,7 +108,11 @@ local plugins = {
   { "nvim-treesitter/nvim-treesitter-textobjects", -- Define text objects based on Treesitter
     dependencies = { "nvim-treesitter"},
   },
-  "nvim-treesitter/playground",                  -- Show details of treesitter and highlighting
+  {-- Show details of treesitter and highlighting
+    "nvim-treesitter/playground",
+    lazy = true,
+    command = ":TSPlaygroundToggle"
+  },
   "andymass/vim-matchup",                       -- Extend % for more languages
 
   -- Debugging
