@@ -72,7 +72,10 @@ local plugins = {
   'mbbill/undotree',                                                          -- Visualise the undo tree and make it easy to navigate
   { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },  -- Show git diff in the gutter
   "DarwinSenior/nvim-colorizer.lua",                                          -- Fork of colorizer with VirtualText
-  "feline-nvim/feline.nvim",                                                  -- Quick and nice statusline
+  {-- Quick and nice statusline
+    "feline-nvim/feline.nvim",
+    config = function () require('config.statusline') end,
+  },
   { "folke/which-key.nvim", lazy = true, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },          -- show code hierarchy of item under cursor
   { "akinsho/git-conflict.nvim" },                                            -- Bindings to speed up choosing ours/theres when resolving diffs
