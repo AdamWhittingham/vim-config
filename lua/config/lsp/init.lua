@@ -16,10 +16,9 @@ if vim.fn.executable('ruby') == 1 then
   table.insert(servers, "solargraph")
 end
 
-local mason_ok, mason = pcall(require, "mason")
-if not mason_ok then
-  return
-end
+local mason = require("mason")
+local mason_lsp = require("mason")
+local lspconfig = require("lspconfig")
 
 mason.setup({
   ui = {
@@ -31,19 +30,10 @@ mason.setup({
   }
 })
 
-local mason_lsp_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not mason_lsp_ok then
-  return
-end
 
-mason_lspconfig.setup({
+mason_lsp.setup({
   ensure_installed = servers
 })
-
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
 
 require("config.lsp.handlers").setup()
 
