@@ -76,11 +76,12 @@ local plugins = {
     "feline-nvim/feline.nvim",
     config = function () require('config.statusline') end,
   },
-  { "folke/which-key.nvim", lazy = true, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
+  { "folke/which-key.nvim", lazy = false, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },          -- show code hierarchy of item under cursor
   { "akinsho/git-conflict.nvim" },                                            -- Bindings to speed up choosing ours/theres when resolving diffs
   { "kevinhwang91/nvim-bqf", ft = "qf" },                                     -- Better Quickfix formatting
   { 'nvim-telescope/telescope.nvim',                                          -- Telescope plus the plugins that make it faster
+    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "BurntSushi/ripgrep",
@@ -104,21 +105,23 @@ local plugins = {
   {"glepnir/lspsaga.nvim", event = "BufRead" } , -- Better UI around renames and LSP diagnistics
 
   -- Treesitter
-  {
+  { -- Syntax parsing and highlighting
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
     opts = require "config.treesitter",
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
-  }, -- Syntax parsing and highlighting
-  { "nvim-treesitter/nvim-treesitter-textobjects", -- Define text objects based on Treesitter
-    dependencies = { "nvim-treesitter"},
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    }
   },
+
   {-- Show details of treesitter and highlighting
     "nvim-treesitter/playground",
     lazy = true,
-    command = ":TSPlaygroundToggle"
+    cmd = "TSPlaygroundToggle",
   },
   "andymass/vim-matchup",                       -- Extend % for more languages
 

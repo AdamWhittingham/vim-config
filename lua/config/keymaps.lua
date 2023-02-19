@@ -26,10 +26,7 @@ local luacmd = function(command)
   return "<Esc><Cmd>lua " .. command .. "<CR>"
 end
 
-local which_key_status_ok, wk = pcall(require, "which-key")
-if not which_key_status_ok then
-  return
-end
+local wk = require("which-key")
 
 ---------------------------------
 -- Leader key = <space>
