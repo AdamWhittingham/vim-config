@@ -229,23 +229,15 @@ wk.register({
 -- Leader t/T to send the current file/line to rspec via tmux windows
 -- Mapped per language in language_options
 
--- <Leader>gr to open the current line in the repos website
-vim.g.gh_open_command = [[fn() { echo "$@" | pbcopy; }; fn ]]
-vim.g.gh_line_map_default = 0
-vim.g.gh_line_blame_map_default = 0
-vim.g.gh_repo_map = 0
-vim.g.gh_line_map = '<leader>pg'
-
 wk.register({
   p = {
     name = "Paths",
-    g = "Copy the URL to github/gitlab",
+    g = { luacmd[[require"gitlinker".get_buf_range_url("n", {})]], "Copy the URL to github/gitlab"},
     r = { cmd[[:CopyRelativePath]], "Copy relative path" },
     a = { cmd[[:CopyAbsolutePath]], "Copy absolute path" },
     f = { cmd[[:CopyFileName]], "Copy file name" },
     d = { cmd[[:CopyDirectoryPath]], "Copy directory path" },
     l = { cmd[[:CopyRelativePathAndLine]], "Copy Relative path and line number" },
-
   }
 }, { prefix = "<leader>" })
 

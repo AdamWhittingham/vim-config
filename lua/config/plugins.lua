@@ -148,7 +148,11 @@ local plugins = {
   "tpope/vim-projectionist",                     -- Map tools and actions based on the project
   "christoomey/vim-tmux-navigator",              -- Seemless movement between panes and tmux
   "AdamWhittingham/vim-copy-filename",           -- Quick shortcuts for copying the file name, path and/or line number
-  "ruanyl/vim-gh-line",                          -- Generate and copy the github/gitlab repo URL for the current line
+  { -- Generate and copy the github/gitlab repo URL for the current line
+    'ruifm/gitlinker.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
+    opts = { mapping = nil }
+  },
 
   -------------------
   -- Miscellaneous
