@@ -50,7 +50,7 @@
   "translate.nvim": { "branch": "main", "commit": "7b2fd50c21ecfe536d572d62dcd3fa83acad3743" },
   "undotree": { "branch": "master", "commit": "b6fdb95db53b7ceb23ddfe8a8211a3135d98eef0" },
   "vale.nvim": { "branch": "master", "commit": "63a18633aa4286bc70d4d1fb3488d3823a35d1ee" },
-  "vim-adcode-theme": { "branch": "master", "commit": "a4a8f24a865dd34fd806ccb0fd937d70dead3318" },
+  "vim-adcode-theme": { "branch": "master", "commit": "5de0b947475e9e43ec80551eb03b71b59bb579eb" },
   "vim-copy-filename": { "branch": "master", "commit": "86f39b8bbef3fe768c4cb96143e580197e50eda4" },
   "vim-matchup": { "branch": "master", "commit": "3a48818a8113a502f245c29d894201421727577a" },
   "vim-projectionist": { "branch": "master", "commit": "3a088946adb24a2fac7b47f3dea97a3b99f52ddd" },
