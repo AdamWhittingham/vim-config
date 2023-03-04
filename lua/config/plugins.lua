@@ -74,12 +74,7 @@ local plugins = {
 
   { -- Show colour swatches in virtualtext
     "NvChad/nvim-colorizer.lua",
-    config = function ()
-      require("colorizer").setup(
-        {'*'},
-        {mode = "virtualtext", names = false}
-      )
-    end
+    opts = { mode = "virtualtext"}
   },
 
   { -- Quick and nice statusline
