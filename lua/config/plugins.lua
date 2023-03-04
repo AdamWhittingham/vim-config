@@ -158,7 +158,17 @@ local plugins = {
   -- Miscellaneous
   -------------------
   { "uga-rosa/translate.nvim", lazy = true },                -- Easily call Google Translate and replace in-editor
-  { "marcelofern/vale.nvim", lazy = true, ft = "markdown" }, -- Use Vale for prose linting
+  { -- Use Vale for prose linting
+    "marcelofern/vale.nvim",
+    lazy = true,
+    ft = "markdown",
+    config = function(_, opts)
+      require("vale").setup({
+        bin="/usr/local/bin/vale",
+        vale_config_path="$HOME/.adshell/vale.ini",
+      })
+    end
+  },
 }
 
 local options = {
