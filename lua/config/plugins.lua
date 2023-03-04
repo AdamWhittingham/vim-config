@@ -160,7 +160,7 @@ local plugins = {
     config = function(_, opts)
       require("vale").setup({
         bin="/usr/local/bin/vale",
-        vale_config_path="$HOME/.adshell/vale.ini",
+        vale_config_path="$HOME/.adshell/vale/vale.ini",
       })
     end
   },
