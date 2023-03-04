@@ -72,8 +72,8 @@ local plugins = {
   'mbbill/undotree',                                                          -- Visualise the undo tree and make it easy to navigate
   { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },  -- Show git diff in the gutter
 
-  { -- Fork of colorizer with VirtualText
-    "DarwinSenior/nvim-colorizer.lua",
+  { -- Show colour swatches in virtualtext
+    "NvChad/nvim-colorizer.lua",
     config = function ()
       require("colorizer").setup(
         {'*'},
