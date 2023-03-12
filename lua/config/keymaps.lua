@@ -68,7 +68,8 @@ wk.register({
   j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
   h = { cmd[[:nohlsearch]], "Toggle search highlight" },
   m = { cmd [[:Telescope marks]], "Show marks" },
-  ["sw"] = { luacmd[[MiniTrailspace.trim()]], "Strip trailing whitespace"}
+  ["sw"] = { luacmd[[MiniTrailspace.trim()]], "Strip trailing whitespace"},
+  ["sG"] = { luacmd[[MiniTrailspace.trim_last_lines()]], "Strip trailing empty lines"},
 }, { prefix = "<leader>" })
 
 wk.register({

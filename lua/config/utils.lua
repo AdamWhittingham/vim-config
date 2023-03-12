@@ -72,11 +72,3 @@ function! InvokeViaTmux(cmd, test)
   let output = system(l:command)
 endfunction
 ]]
-
-vim.cmd [[
-function! g:TrimWhitespace()
-  let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
-  call winrestview(l:save)
-endfunction
-]]
