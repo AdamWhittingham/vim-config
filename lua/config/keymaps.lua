@@ -172,8 +172,7 @@ wk.register({
     B = { cmd[[GitConflictChooseBoth]],                             "Conflict: Choose Both"},
     N = { cmd[[GitConflictChooseNone]],                             "Conflict: Choose None"},
   },
-  s = { cmd[[:SplitjoinSplit]], "Split construct" },
-  S = { cmd[[:SplitjoinJoin]], "Join construct" },
+  s = { "Split/join construct" },
   sp = { cmd[[:Telescope spell_suggest]], "Suggest spelling fixes" },
   u = { cmd[[:UndotreeToggle]], "Show the undo tree" },
 }, { prefix = "<leader>" })

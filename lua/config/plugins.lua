@@ -29,7 +29,6 @@ local plugins = {
   -- TEXT MANIPULATION
   --------------------
   "AndrewRadev/switch.vim",              -- Quickly toggle between common alternative layouts for strings, arrays, etc.
-  "AndrewRadev/splitjoin.vim",           -- Quickly toggle between single and multi-line versions of common constructs
   "johmsalas/text-case.nvim",            -- Smartcase replacement with S
   "lukas-reineke/indent-blankline.nvim", -- Show indentation markers
   { "gbprod/yanky.nvim", lazy = true},   -- Paste previously yanked content
