@@ -74,13 +74,17 @@ local plugins = {
 
   { -- Show colour swatches in virtualtext
     "NvChad/nvim-colorizer.lua",
-    opts = { mode = "virtualtext"}
+    opts = {
+      user_default_options = {
+        names = false,
+        mode = "virtualtext",
+      }
+    }
   },
 
   { -- Quick and nice statusline
     "feline-nvim/feline.nvim",
     config = function () require('config.statusline') end,
-    branch = "main"
   },
   { "folke/which-key.nvim", lazy = false, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },          -- show code hierarchy of item under cursor
