@@ -80,6 +80,7 @@ local plugins = {
   { -- Quick and nice statusline
     "feline-nvim/feline.nvim",
     config = function () require('config.statusline') end,
+    branch = "main"
   },
   { "folke/which-key.nvim", lazy = false, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },          -- show code hierarchy of item under cursor
@@ -157,7 +158,7 @@ local plugins = {
     "marcelofern/vale.nvim",
     lazy = true,
     ft = "markdown",
-    config = function(_, opts)
+    config = function(_, _)
       require("vale").setup({
         bin="/usr/local/bin/vale",
         vale_config_path="$HOME/.adshell/vale/vale.ini",
