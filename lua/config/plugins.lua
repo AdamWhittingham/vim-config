@@ -31,7 +31,7 @@ local plugins = {
   "AndrewRadev/switch.vim",              -- Quickly toggle between common alternative layouts for strings, arrays, etc.
   "johmsalas/text-case.nvim",            -- Smartcase replacement with S
   "lukas-reineke/indent-blankline.nvim", -- Show indentation markers
-  { "gbprod/yanky.nvim", lazy = true},   -- Paste previously yanked content
+  "gbprod/yanky.nvim",                   -- Paste previously yanked content
   "tpope/vim-sleuth",                    -- Detect tab and space settings from existing content
 
   -------------------
@@ -112,6 +112,7 @@ local plugins = {
   "ray-x/lsp_signature.nvim",                    -- Pop up function definitions when typing a function call
   "gpanders/editorconfig.nvim",                  -- Obey editorconfig files
   {"glepnir/lspsaga.nvim", event = "BufRead" } , -- Better UI around renames and LSP diagnistics
+  { 'j-hui/fidget.nvim', config = true },        -- Show LSP progress feedback
 
   -- Treesitter
   { -- Syntax parsing and highlighting
