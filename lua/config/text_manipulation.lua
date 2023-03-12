@@ -30,3 +30,4 @@ require('mini.surround').setup({
     suffix_next = 'n', -- Suffix to search with "next" method
   },
 })
+require('mini.trailspace').setup()
