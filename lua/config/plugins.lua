@@ -152,7 +152,7 @@ local plugins = {
   -------------------
   -- Miscellaneous
   -------------------
-  { "uga-rosa/translate.nvim", lazy = true },                -- Easily call Google Translate and replace in-editor
+  { "uga-rosa/translate.nvim" },                -- Easily call Google Translate and replace in-editor
   { -- Use Vale for prose linting
     "marcelofern/vale.nvim",
     lazy = true,

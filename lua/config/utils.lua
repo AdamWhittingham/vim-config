@@ -11,6 +11,11 @@ vim.api.nvim_create_autocmd({ "BufLeave" }, {
   desc = "Hide cursor in inactive pane",
 })
 
+function _G.highlight_under_cursor()
+  local result = vim.treesitter.get_captures_at_cursor(0)
+  print(vim.inspect(result))
+end
+
 function _G.set_mark()
   print("Set mark: ")
   local mark = vim.fn.getcharstr()

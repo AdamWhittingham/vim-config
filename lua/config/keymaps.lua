@@ -129,10 +129,16 @@ wk.register({
       ['_']= { luacmd[[require('textcase').current_word('to_snake_case')]], "Convert to snake_case" },
       ['-']= { luacmd[[require('textcase').current_word('to_dash_case')]], "Convert to dash-case" },
     },
-    t = { translate, "Translate and replace"},
+    t = { luacmd[[_G.translate()]], "Translate and replace"},
   },
   q = { "Record macro" },
 })
+
+wk.register({
+  g = {
+    t = { luacmd[[_G.translate()]], "Translate and replace"},
+  },
+}, { mode = "v"})
 
 ---------------------------------
 -- Diffs & Versioning
@@ -291,5 +297,5 @@ wk.register({
 ---------------------------------
 
 wk.register({
-  ["<F2>"] = { cmd[[:TSHighlightCapturesUnderCursor]], "Show Vim highlight groups under cursor"},
+  ["<F2>"] = { luacmd([[_G.highlight_under_cursor()]]), "Highlight under cursor" },
 })
