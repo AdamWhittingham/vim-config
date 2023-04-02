@@ -82,7 +82,7 @@ local plugins = {
   },
 
   { -- Quick and nice statusline
-    "feline-nvim/feline.nvim",
+    'freddiehaddad/feline.nvim',
     config = function () require('config.statusline') end,
   },
   { "folke/which-key.nvim", lazy = false, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
