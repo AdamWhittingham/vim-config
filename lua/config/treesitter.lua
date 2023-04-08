@@ -15,6 +15,7 @@ return {
     "lua",
     "make",
     "markdown",
+    "markdown_inline",
     "proto",
     "php",
     "python",
