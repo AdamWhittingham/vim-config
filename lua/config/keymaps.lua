@@ -297,5 +297,5 @@ wk.register({
 ---------------------------------
 
 wk.register({
-  ["<F2>"] = { luacmd([[_G.highlight_under_cursor()]]), "Highlight under cursor" },
+  ["<F2>"] = { cmd[[Inspect]], "Highlight under cursor" },
 })
