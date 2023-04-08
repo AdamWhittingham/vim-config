@@ -59,7 +59,12 @@ end
 
 lspsaga.setup({
   lightbulb = { enable = false },
-  symbol_in_winbar = { enable = false }
+  symbol_in_winbar = { enable = false },
+  finder = {
+    keys = {
+      expand_or_jump = "<cr>"
+    },
+  },
 })
 
 local lspsig_ok, lspsig = pcall(require, "lsp_signature")
