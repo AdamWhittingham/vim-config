@@ -55,3 +55,6 @@ vim.api.nvim_create_autocmd(
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
+
+-- Diff
+opt.diffopt = opt.diffopt + "linematch:60"
