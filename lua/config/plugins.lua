@@ -33,6 +33,21 @@ local plugins = {
   "lukas-reineke/indent-blankline.nvim", -- Show indentation markers
   "gbprod/yanky.nvim",                   -- Paste previously yanked content
   "tpope/vim-sleuth",                    -- Detect tab and space settings from existing content
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        aliases = { ["<"] = "t", },
+        keymaps = {
+          normal = "sa",
+          delete = "sd",
+          change = "sc",
+        },
+        })
+    end
+  },
 
   -------------------
   -- AUTOCOMPLETION

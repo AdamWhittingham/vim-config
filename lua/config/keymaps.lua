@@ -96,6 +96,12 @@ wk.register({
   },
   p = {"<Plug>(YankyPutAfter)", "Paste" },
   P = {"<Plug>(YankyPutBefore)", "Paste before" },
+  s = {
+    name = "Surrounding",
+    a = "Add<motion><character>",
+    c = "Change<current><replacement>",
+    d = "Delete<current>",
+  }
 })
 
 -- Stay in indent mode
