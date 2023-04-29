@@ -11,9 +11,9 @@ A potent Neovim config, enhanced with rich flavours of software development and 
 git clone -b nvim https://github.com/AdamWhittingham/vim-config.git ~/.config/nvim
 ```
 
-### Still using Vim?
+### Still using Vim? (rather than Neovim)
 If you haven't moved to Neovim, I've left the `master` branch in-tact with the now unmaintained Vim-centric config on to avoid breaking anything.
-But seriously, consider switching to Neovim and trying the new stuff out, it's fantastic!
+I'd urge you to consider switching to Neovim and trying the new stuff out, it's fantastic!
 
 # Optional external dependencies
 There's a couple of tools that make this config really work well:
