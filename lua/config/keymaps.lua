@@ -61,13 +61,13 @@ normal("<C-j>", cmd[[TmuxNavigateDown]], { desc = "Move to window below" })
 normal("<C-k>", cmd[[TmuxNavigateUp]], { desc = "Move to window above" })
 
 ---------------------------------
--- Text navigation
+-- Navigation
 ---------------------------------
 
 wk.register({
-  j = { cmd [[:Telescope jumplist]], "Show Jumplist" },
-  h = { cmd[[:nohlsearch]], "Toggle search highlight" },
-  m = { cmd [[:Telescope marks]], "Show marks" },
+  j      = { cmd[[:Telescope jumplist]], "Show Jumplist" },
+  h      = { cmd[[:nohlsearch]], "Toggle search highlight" },
+  m      = { cmd[[:Telescope marks]], "Show marks" },
   ["sw"] = { luacmd[[MiniTrailspace.trim()]], "Strip trailing whitespace"},
   ["sG"] = { luacmd[[MiniTrailspace.trim_last_lines()]], "Strip trailing empty lines"},
 }, { prefix = "<leader>" })
