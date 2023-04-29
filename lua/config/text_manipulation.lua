@@ -15,13 +15,4 @@ require("yanky").setup({
 -- Setup better text objects and motions
 require('mini.ai').setup()
 require('mini.align').setup()
-require('mini.splitjoin').setup({
-   mappings = {
-    toggle = '<leader>s',
-    join = '<leader>S',
-  },
-
-})
 require('mini.trailspace').setup()
-
--- Setup change-surrounding bindings

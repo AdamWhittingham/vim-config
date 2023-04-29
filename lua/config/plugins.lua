@@ -35,12 +35,17 @@ local plugins = {
   "tpope/vim-sleuth",                    -- Detect tab and space settings from existing content
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*",
     event = "VeryLazy",
     opts = {
       aliases = { ["<"] = "t", },
       keymaps = { normal = "sa", delete = "sd", change = "sc", },
     }
+  },
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = { use_default_keymaps = false }
   },
 
   -------------------

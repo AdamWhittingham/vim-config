@@ -113,8 +113,13 @@ normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 visual("<leader>y", "\"+y", { desc = "Yank to clipboard" })
 
 wk.register({
-  i = { "m`gg=G``", "Reindent file" }, -- Reindent the current file
-  P = { cmd [[Telescope yank_history theme=dropdown]], "Show yank ring" } -- Yank ring setup
+  i = { "m`gg=G``", "Reindent file" },
+  P = { cmd [[Telescope yank_history theme=dropdown]], "Show yank ring" },
+  S = { luacmd[[require('treesj').join()]], "Join structure" },
+  s = { luacmd[[require('treesj').split()]], "Split structure" },
+  sk = { luacmd[[require('treesj').split({ split = { recursive = true } })]], "Split structure recursively"},
+  sj = { luacmd[[require('treesj').join({ join = { recursive = true } })]], "Join structure recursively"},
+  sp = { cmd[[:Telescope spell_suggest]], "Suggest spelling fixes" },
 }, { prefix = "<leader>" })
 
 wk.register({
@@ -178,8 +183,6 @@ wk.register({
     B = { cmd[[GitConflictChooseBoth]],                             "Conflict: Choose Both"},
     N = { cmd[[GitConflictChooseNone]],                             "Conflict: Choose None"},
   },
-  s = { "Split/join construct" },
-  sp = { cmd[[:Telescope spell_suggest]], "Suggest spelling fixes" },
   u = { cmd[[:UndotreeToggle]], "Show the undo tree" },
 }, { prefix = "<leader>" })
 
