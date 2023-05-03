@@ -206,7 +206,7 @@ wk.register({
   l = {
     name = "Language tools",
     d = { luacmd [[_G.toggle_diagnostics()]],            "Toggle disagnostics" },
-    l = { cmd [[LSoutlineToggle]],                       "Show LSP outline for file" },
+    l = { cmd [[Lspsaga outline]],                       "Show LSP outline for file" },
     p = { cmd [[Lspsaga peek_definition]],               "Peek definition" },
     o = { cmd [[Lspsaga show_line_diagnostics]],         "Show line disagnostics" },
     r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
