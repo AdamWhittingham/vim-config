@@ -48,6 +48,7 @@ local plugins = {
     opts = { use_default_keymaps = false }
   },
 
+
   -------------------
   -- AUTOCOMPLETION
   -------------------
@@ -96,7 +97,7 @@ local plugins = {
   },
 
   { -- Quick and nice statusline
-    'freddiehaddad/feline.nvim',
+    'nvim-lualine/lualine.nvim',
     config = function () require('config.statusline') end,
   },
   { "folke/which-key.nvim", lazy = false, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
@@ -182,6 +183,7 @@ local plugins = {
       })
     end
   },
+  'folke/tokyonight.nvim'
 }
 
 local options = {
