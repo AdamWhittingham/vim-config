@@ -126,7 +126,7 @@ local plugins = {
   },
   "ray-x/lsp_signature.nvim",                    -- Pop up function definitions when typing a function call
   {"glepnir/lspsaga.nvim", event = "BufRead" } , -- Better UI around renames and LSP diagnistics
-  { 'j-hui/fidget.nvim', config = true },        -- Show LSP progress feedback
+  { 'j-hui/fidget.nvim', config = true,  tag = 'legacy' },        -- Show LSP progress feedback
 
   -- Treesitter
   { -- Syntax parsing and highlighting
