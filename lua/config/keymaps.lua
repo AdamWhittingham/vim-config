@@ -194,6 +194,7 @@ wk.register({
   G = {cmd [[:Telescope resume]],  "Show previous search" },
   ["*"] = {cmd [[:Telescope grep_string]], "Search for word" },
   ["."] = {cmd [[:Telescope buffers]], "Show buffers" },
+  [","] = {cmd [[:Oil]], "Show directory" },
   [" "] = { cmd [[:b#]], "Previous buffer" },
 }, { prefix = "<leader>" })
 

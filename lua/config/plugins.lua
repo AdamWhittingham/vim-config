@@ -95,9 +95,15 @@ local plugins = {
       }
     }
   },
+  { -- File operatons using a Vim buffer
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 
   { -- Quick and nice statusline
     'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function () require('config.statusline') end,
   },
   { "folke/which-key.nvim", lazy = false, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
