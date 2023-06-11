@@ -24,3 +24,5 @@ require('mini.bracketed').setup({
   oldfile    = { suffix = '', options = {} }, -- disable oldfiles to keep o free for future use
   yank       = { suffix = '', options = {} }, -- disable yank as Yanky does a more complete job
 })
+require('mini.cursorword').setup()
+require('mini.jump').setup()
