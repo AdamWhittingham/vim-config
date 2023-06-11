@@ -19,31 +19,8 @@ let g:projectionist_heuristics ={
       \}
 ]]
 
-local status_ok, fzf = pcall(require, "fzf-lua")
-if not status_ok then
-  return
-end
-
-fzf.setup({
-  winopts = {
-    height = 0.9,
-    width  = 0.9,
-    row    = 0.4,
-    col    = 0.5,
-  },
-  fzf_colors = {
-      ["fg"]          = { "fg", "CursorLine" },
-      ["bg"]          = { "bg", "Normal" },
-      ["hl"]          = { "fg", "Comment" },
-      ["fg+"]         = { "fg", "Normal" },
-      ["bg+"]         = { "bg", "CursorLine" },
-      ["hl+"]         = { "fg", "Statement" },
-      ["info"]        = { "fg", "Number" },
-      ["prompt"]      = { "fg", "Keyword" },
-      ["pointer"]     = { "fg", "Special" },
-      ["marker"]      = { "fg", "Keyword" },
-      ["spinner"]     = { "fg", "Number" },
-      ["header"]      = { "fg", "Comment" },
-      ["gutter"]      = { "bg", "Normal" },
-  },
+require('mini.bracketed').setup({
+  comment    = { suffix = '#', options = {} },-- default 'c' clashes with next/prex change
+  oldfile    = { suffix = '', options = {} }, -- disable oldfiles to keep o free for future use
+  yank       = { suffix = '', options = {} }, -- disable yank as Yanky does a more complete job
 })

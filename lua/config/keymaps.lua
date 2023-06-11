@@ -156,12 +156,12 @@ wk.register({
   ['['] = {
     name = "Prev",
     c = { cmd[[Gitsigns prev_hunk]], "Change"},
-    x = { cmd[[GitConflictPrevConflict]], "Conflict" }
+    -- x = { cmd[[GitConflictPrevConflict]], "Conflict" }
   },
   [']'] = {
     name = "Next",
     c = { cmd[[Gitsigns next_hunk]], "Change"},
-    x = { cmd[[GitConflictNextConflict]], "Conflict" }
+    -- x = { cmd[[GitConflictNextConflict]], "Conflict" }
   }
 })
 
@@ -225,16 +225,6 @@ wk.register({
 vim.keymap.set("n", "K", cmd[[Lspsaga hover_doc]], {desc = "Hover doc"})
 
 wk.register({
-  ['['] = {
-    name = "Prev",
-    d = { cmd[[Lspsaga diagnostic_jump_prev]], "Diagnostic"},
-    D = { luacmd[[vim.diagnostic.goto_prev()]], "Diagnostic"},
-  },
-  [']'] = {
-    name = "Next",
-    d = { cmd[[Lspsaga diagnostic_jump_next]], "Diagnostic"},
-    D = { luacmd[[vim.diagnostic.goto_next()]], "Diagnostic"},
-  },
   ["<C-]>"] = { luacmd [[vim.lsp.buf.definition()]], "Jump to definition" }
 })
 
