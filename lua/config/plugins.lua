@@ -81,7 +81,7 @@ local plugins = {
   {
     "goolord/alpha-nvim",                                                     -- Excellent start screen framework
     lazy = true,
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
   'mbbill/undotree',                                                          -- Visualise the undo tree and make it easy to navigate
   { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },  -- Show git diff in the gutter
