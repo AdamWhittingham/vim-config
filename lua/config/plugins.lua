@@ -126,8 +126,11 @@ local plugins = {
   -- LANGUAGE SUPPORT
   -------------------
   {
-    "williamboman/mason.nvim",                   -- Install and configure Language Servers
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim", -- Install Language servers
+    build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+  },
+  {
+    "williamboman/mason-lspconfig.nvim", -- Configure language servers
     "neovim/nvim-lspconfig",
   },
   "ray-x/lsp_signature.nvim",                    -- Pop up function definitions when typing a function call

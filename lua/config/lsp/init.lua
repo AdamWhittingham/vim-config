@@ -1,7 +1,6 @@
 local servers = {
   'bashls',
   'cssls',
-  'dockerls',
   'html',
   'jsonls',
   'lua_ls',
@@ -13,23 +12,20 @@ if vim.fn.executable('go') == 1 then
 end
 
 if vim.fn.executable('ruby') == 1 then
+  table.insert(servers, "ruby_ls")
   table.insert(servers, "solargraph")
+end
+
+if vim.fn.executable('docker') == 1 then
+  table.insert(servers, "dockerls")
+  table.insert(servers, "docker_compose_language_service")
 end
 
 local mason = require("mason")
 local mason_lsp = require("mason")
 local lspconfig = require("lspconfig")
 
-mason.setup({
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗"
-    }
-  }
-})
-
+mason.setup()
 
 mason_lsp.setup({
   ensure_installed = servers
