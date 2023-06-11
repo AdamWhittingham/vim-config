@@ -23,7 +23,6 @@ end
 
 local mason = require("mason")
 local mason_lsp = require("mason")
-local lspconfig = require("lspconfig")
 
 mason.setup()
 
@@ -31,22 +30,7 @@ mason_lsp.setup({
   ensure_installed = servers
 })
 
-require("config.lsp.handlers").setup()
-
-local handlers = require("config.lsp.handlers")
-for _, server in ipairs(servers) do
-  local opts = {
-    on_attach = handlers.on_attach,
-    capabilities = handlers.capabilities,
-  }
-
-  local has_custom_opts, server_custom_opts = pcall(require, "config.lsp.settings." .. server)
-  if has_custom_opts then
-    opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
-  end
-
-  lspconfig[server].setup(opts)
-end
+require("config.lsp.handlers").setup(servers)
 
 local lspsaga_ok, lspsaga = pcall(require, "lspsaga")
 if not lspsaga_ok then

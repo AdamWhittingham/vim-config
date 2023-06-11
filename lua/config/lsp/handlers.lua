@@ -2,7 +2,7 @@ local M = {}
 
 local navic = require("nvim-navic")
 
-M.setup = function()
+M.init = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn", text = "" },
@@ -77,5 +77,25 @@ if not status_ok then
 end
 
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+
+M.setup = function(servers)
+  local lspconfig = require("lspconfig")
+  M.init()
+
+  for _, server in ipairs(servers) do
+    local opts = {
+      on_attach = M.on_attach,
+      capabilities = M.capabilities,
+    }
+
+    local has_custom_opts, server_custom_opts = pcall(require, "config.lsp.settings." .. server)
+    if has_custom_opts then
+      opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
+    end
+
+    lspconfig[server].setup(opts)
+  end
+
+end
 
 return M
