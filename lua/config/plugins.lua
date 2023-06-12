@@ -32,7 +32,6 @@ local plugins = {
   "johmsalas/text-case.nvim",            -- Smartcase replacement with S
   "lukas-reineke/indent-blankline.nvim", -- Show indentation markers
   "gbprod/yanky.nvim",                   -- Paste previously yanked content
-  "tpope/vim-sleuth",                    -- Detect tab and space settings from existing content
   {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -97,9 +96,9 @@ local plugins = {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function () require('config.statusline') end,
   },
-  { "folke/which-key.nvim", lazy = false, config = true },                     -- Help learn/relearn/remember key bindings with a handy pop up
+  { "folke/which-key.nvim", lazy = false, config = true },                    -- Help learn/relearn/remember key bindings with a handy pop up
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },          -- show code hierarchy of item under cursor
-  { "akinsho/git-conflict.nvim", config = true },                                            -- Bindings to speed up choosing ours/theres when resolving diffs
+  { "akinsho/git-conflict.nvim", config = true },                             -- Bindings to speed up choosing ours/theres when resolving diffs
   { "kevinhwang91/nvim-bqf", ft = "qf" },                                     -- Better Quickfix formatting
   { 'nvim-telescope/telescope.nvim',                                          -- Telescope plus the plugins that make it faster
     lazy = false,
