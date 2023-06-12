@@ -34,15 +34,6 @@ local plugins = {
   "gbprod/yanky.nvim",                   -- Paste previously yanked content
   "tpope/vim-sleuth",                    -- Detect tab and space settings from existing content
   {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    opts = {
-      aliases = { ["<"] = "t", },
-      keymaps = { normal = "sa", delete = "sd", change = "sc", },
-    }
-  },
-  {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = { use_default_keymaps = false }
