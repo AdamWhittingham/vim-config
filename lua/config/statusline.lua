@@ -37,13 +37,8 @@ require('lualine').setup {
   sections = {
     lualine_a = {
       {
-        'filetype',
-        icon_only = true,
-        colored = false,
-        separator = { left = '' },
-      },
-      {
         'filename',
+        separator = { right = '', left = '' },
         path = 4,
         symbols = {
           modified = '•',      -- Text to show when the file is modified.
