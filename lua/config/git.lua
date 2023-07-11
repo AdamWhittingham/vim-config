@@ -13,14 +13,6 @@ require('gitsigns').setup {
   linehl     = false,  -- Toggle with `:Gitsigns toggle_linehl`
   word_diff  = false,   -- Toggle with `:Gitsigns toggle_word_diff`
 
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-
-    -- Text objects
-    ['o ic'] = ':<C-U>Gitsigns select_hunk<CR>',
-    ['x ic'] = ':<C-U>Gitsigns select_hunk<CR>'
-  },
   watch_gitdir = {
     interval = 500,
     follow_files = true
