@@ -218,8 +218,8 @@ wk.register({
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
   },
-  ["]"] = { cmd[[Lspsaga lsp_finder]],                 "Find references and definitions" },
-  ["{"] = { cmd[[Lspsaga peek_definition]],            "Peek definition" },
+  ["]"] = { cmd[[Lspsaga finder]],                       "Find references and definitions" },
+  ["{"] = { cmd[[Lspsaga peek_definition]],              "Peek definition" },
 }, { prefix = "<leader>" })
 
 vim.keymap.set("n", "K", cmd[[Lspsaga hover_doc]], {desc = "Hover doc"})
