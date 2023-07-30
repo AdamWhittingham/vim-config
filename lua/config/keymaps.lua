@@ -213,7 +213,7 @@ wk.register({
     r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
     a = { cmd [[Lspsaga code_action]],                   "Show code actions" },
     k = { luacmd [[vim.lsp.buf.hover()]],                "Show hover" },
-    K = { luacmd [[Lspsaga hover_doc]],                  "Show lspsaga hover" },
+    K = { cmd [[Lspsaga hover_doc]],                  "Show lspsaga hover" },
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
