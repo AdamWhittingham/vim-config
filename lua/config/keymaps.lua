@@ -244,6 +244,12 @@ wk.register({
     f = { cmd[[:CopyFileName]], "Copy file name" },
     d = { cmd[[:CopyDirectoryPath]], "Copy directory path" },
     l = { cmd[[:CopyRelativePathAndLine]], "Copy Relative path and line number" },
+  },
+  T = {
+    name = "Test",
+    t = { luacmd[[require("neotest").run.run()]], "Run the nearest test"},
+    T = { luacmd[[require("neotest").run.run(vim.fn.expand("%"))]], "Run the tests for this file"},
+    d = { luacmd[[require("neotest").run.run({strategy = "dap"})]], "Debug the nearest test"},
   }
 }, { prefix = "<leader>" })
 

@@ -155,6 +155,20 @@ local plugins = {
   "leoluz/nvim-dap-go",                          -- Bindings for Delve, the go debugger
   "suketa/nvim-dap-ruby",                        -- Bindings for ruby-debug
 
+  -- Testing
+  {
+    "nvim-neotest/neotest",
+    lazy = true,
+    dependencies = {
+      "olimorris/neotest-rspec",
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = { require("neotest-rspec") },
+      })
+    end
+  },
+
   -------------------
   -- Navigation
   -------------------
