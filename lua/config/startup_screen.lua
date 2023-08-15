@@ -152,10 +152,10 @@ local buttons = {
         { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
         { type = "padding", val = 1 },
         dashboard.button("e", "  New file", "<cmd>ene<CR>"),
-        dashboard.button("SPC f", "  Find file"),
-        dashboard.button("SPC F", "  Find text"),
+        dashboard.button("SPC f", "󰍉  Find file"),
+        dashboard.button("SPC F", "󰈞  Find text"),
         dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
-        dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
+        dashboard.button("q", "󰩈  Quit", "<cmd>qa<CR>"),
     },
     position = "center",
 }
