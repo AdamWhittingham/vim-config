@@ -182,7 +182,39 @@ local plugins = {
       })
     end
   },
-  'folke/tokyonight.nvim'
+  'folke/tokyonight.nvim',
+
+  {
+    "luckasRanarison/nvim-devdocs",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+        previewer_cmd = "glow",
+        ensure_installed = {
+          "ansible",
+          "bash",
+          "css",
+          "docker",
+          "go",
+          "html",
+          "http",
+          "jest",
+          "lua-5.4",
+          "python-3.11",
+          "rails-5.2",
+          "rails-6.1",
+          "rails-7.0",
+          "react",
+          "ruby-2.7",
+          "ruby-3.1",
+          "ruby-3.2",
+        },
+    },
+    build = ":Devdocs Fetch"
+  },
 }
 
 local options = {

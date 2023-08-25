@@ -213,16 +213,15 @@ wk.register({
     r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
     a = { cmd [[Lspsaga code_action]],                   "Show code actions" },
     k = { luacmd [[vim.lsp.buf.hover()]],                "Show hover" },
-    K = { cmd [[Lspsaga hover_doc]],                  "Show lspsaga hover" },
+    K = { cmd [[:DevdocsOpenCurrentFloat]],              "Show docs" },
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
     D = { cmd [[:Telescope diagnostics]],                "List diagnostics"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
   },
+  k = { cmd[[Lspsaga hover_doc]], "Hover doc" },
   ["]"] = { cmd[[Lspsaga finder]],                       "Find references and definitions" },
   ["{"] = { cmd[[Lspsaga peek_definition]],              "Peek definition" },
 }, { prefix = "<leader>" })
-
-vim.keymap.set("n", "K", cmd[[Lspsaga hover_doc]], {desc = "Hover doc"})
 
 wk.register({
   ["<C-]>"] = { luacmd [[vim.lsp.buf.definition()]], "Jump to definition" }
