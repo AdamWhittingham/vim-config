@@ -169,6 +169,8 @@ npairs.setup {
 npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
 npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 
+require('nvim-ts-autotag').setup()
+
 require('mini.surround').setup({
   mappings = {
     add = 'ys',
