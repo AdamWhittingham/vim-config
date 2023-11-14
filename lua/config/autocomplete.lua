@@ -3,11 +3,6 @@ if not cmp_status_ok then
   return
 end
 
-local status_ok, npairs = pcall(require, "nvim-autopairs")
-if not status_ok then
-  return
-end
-
 local autopairs_status_ok, autopair_completion = pcall(require, "nvim-autopairs.completion.cmp")
 if not autopairs_status_ok then
   return
