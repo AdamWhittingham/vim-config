@@ -81,4 +81,7 @@ return {
       },
     },
   },
+  endwise = {
+    enable = true,
+  },
 }

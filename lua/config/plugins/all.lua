@@ -1,24 +1,4 @@
--- Install Lazy.nvim if not present
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
-end
-vim.opt.runtimepath:prepend(lazypath)
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = "plugins.lua",
-  command = "Lazy sync",
-  desc = "Update plugins",
-})
-
-local plugins = {
+return {
   --------------------
   -- PLUGIN MANAGEMENT
   --------------------
@@ -37,27 +17,6 @@ local plugins = {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = { use_default_keymaps = false }
   },
-
-
-  -------------------
-  -- AUTOCOMPLETION
-  -------------------
-  "windwp/nvim-autopairs",     -- Autopairs, integrates with both cmp and treesitter
-  'windwp/nvim-ts-autotag',    -- Auto close HTML and XML tags too
-
-  -- snippets
-  "L3MON4D3/LuaSnip", --snippet engine
-  "rafamadriz/friendly-snippets", -- a bunch of snippets to use
-
-  -- cmp plugins
-  "hrsh7th/nvim-cmp",          -- Completion engine
-  "hrsh7th/cmp-buffer",        -- buffer completions
-  "hrsh7th/cmp-path",          -- path completions
-  "hrsh7th/cmp-cmdline",       -- cmdline completions
-  "saadparwaiz1/cmp_luasnip",  -- snippet completions
-  "hrsh7th/cmp-nvim-lsp",      -- LSP based completions
-  'andersevenrud/cmp-tmux',    -- tmux completions
-  'octaltree/cmp-look',        -- dictionary completions
 
   -------------------
   -- UI
@@ -184,27 +143,3 @@ local plugins = {
   },
   'folke/tokyonight.nvim'
 }
-
-local options = {
-  defaults = { lazy = false },
-  install = { colorscheme = { "adCode", "habamax" } },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
-}
-
-require("lazy").setup(plugins, options)

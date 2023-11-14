@@ -156,21 +156,6 @@ cmp.event:on('confirm_done', autopair_completion.on_confirm_done({  map_char = {
 -- Configure bracket and block autocompletions
 -----------------------------------------------
 
-npairs.setup {
-  check_ts = true,
-  ts_config = {
-    lua = { "string", "source" },
-    javascript = { "string", "template_string" },
-    java = false,
-  },
-  disable_filetype = { "TelescopePrompt" },
-}
-
-npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
-npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-
-require('nvim-ts-autotag').setup()
-
 require('mini.surround').setup({
   mappings = {
     add = 'ys',
