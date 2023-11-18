@@ -195,15 +195,16 @@ wk.register({
 ---------------------------------
 
 wk.register({
-  f = {cmd [[:Telescope find_files]], "Find files" },
+  f = {cmd [[Telescope find_files]], "Find files" },
   -- F = {cmd [[:Telescope live_grep]],  "Find in files" },
-  F = { luacmd [[ require("telescope").extensions.live_grep_args.live_grep_args() ]], "Find in files" },
-  G = {cmd [[:Telescope resume]],  "Show previous search" },
-  ["*"] = {cmd [[:Telescope grep_string]], "Search for word" },
-  ["."] = {cmd [[:Telescope buffers]], "Show buffers" },
+  F = { luacmd [[require("telescope").extensions.live_grep_args.live_grep_args() ]], "Find in files" },
+  G = {cmd [[Telescope resume]],  "Show previous search" },
+  ["*"] = {cmd [[Telescope grep_string]], "Search for word" },
+  ["."] = { luacmd [[require("telescope.builtin").buffers( require('telescope.themes').get_dropdown({}) ) ]], "Switch buffers" },
   [","] = {cmd [[:Oil]], "Show directory" },
   [" "] = { cmd [[:b#]], "Previous buffer" },
 }, { prefix = "<leader>" })
+
 
 ---------------------------------
 -- Language aware navigation
