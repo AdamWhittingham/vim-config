@@ -1,6 +1,5 @@
 return {
   "nvim-lua/plenary.nvim",   -- Useful lua functions used ny lots of plugins
-  'echasnovski/mini.nvim',   -- Collection of small, focussed plugins
 
   -------------------
   -- LANGUAGE SUPPORT

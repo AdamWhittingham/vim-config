@@ -5,7 +5,6 @@ require "config.keymaps"
 require "config.utils"
 require "config.language_options"
 require "config.treesitter"
-require "config.text_manipulation"
 
 -- Development
 require "config.lsp"
