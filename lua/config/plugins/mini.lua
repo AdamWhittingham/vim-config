@@ -1,3 +1,20 @@
+local surround_config = {
+  mappings = {
+    add = 'ys',
+    delete = 'ds',
+    find = '',
+    find_left = '',
+    highlight = '',
+    replace = 'cs',
+    update_n_lines = '',
+
+    -- Add this only if you don't want to use extended mappings
+    suffix_last = '',
+    suffix_next = '',
+  },
+  search_method = 'cover_or_next',
+}
+
 return {
   'echasnovski/mini.nvim',
   config = function()
@@ -11,6 +28,7 @@ return {
     require('mini.comment').setup()
     require('mini.cursorword').setup()
     require('mini.jump').setup()
+    require('mini.surround').setup(surround_config)
     require('mini.trailspace').setup()
   end
 }
