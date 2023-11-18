@@ -26,6 +26,7 @@ opt.listchars = {
 }
 
 -- UI
+opt.laststatus = 3
 opt.timeoutlen = 250
 opt.conceallevel = 0
 opt.cursorline = true

@@ -1,12 +1,6 @@
 return {
   "nvim-lua/plenary.nvim",   -- Useful lua functions used ny lots of plugins
   'echasnovski/mini.nvim',   -- Collection of small, focussed plugins
-  {
-    "AdamWhittingham/vim-adcode-theme",                                       -- A bright colorscheme
-    lazy = false,
-    priority = 1000,
-    config = function() vim.cmd([[colorscheme adCode]]) end,
-  },
 
   -------------------
   -- LANGUAGE SUPPORT
