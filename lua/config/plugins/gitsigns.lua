@@ -1,6 +1,6 @@
 local bar = '▐'
 
-require('gitsigns').setup {
+local opts = {
   signs = {
     add          = {hl = 'GitSignsAdd'   , text = bar, numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
     change       = {hl = 'GitSignsChange', text = bar, numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
@@ -43,4 +43,11 @@ require('gitsigns').setup {
   yadm = {
     enable = false
   },
+}
+
+-- Show git diff in the gutter
+return {
+  "lewis6991/gitsigns.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  opts = opts,
 }

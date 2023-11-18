@@ -6,12 +6,6 @@ return {
     config = function() vim.cmd([[colorscheme adCode]]) end,
   },
 
-  -- Show git diff in the gutter
-  {
-    "lewis6991/gitsigns.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-
   -- show code hierarchy of item under cursor
   {
     "SmiteshP/nvim-navic",

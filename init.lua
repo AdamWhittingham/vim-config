@@ -11,7 +11,6 @@ require "config.text_manipulation"
 require "config.lsp"
 require "config.languages"
 require "config.debugging"
-require "config.git"
 require "config.testing"
 
 require "config.autocomplete"
