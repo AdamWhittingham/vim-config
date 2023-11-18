@@ -6,20 +6,6 @@ return {
     config = function() vim.cmd([[colorscheme adCode]]) end,
   },
 
-  -- Telescope plus the plugins that make it faster
-  { 'nvim-telescope/telescope.nvim',
-    lazy = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "BurntSushi/ripgrep",
-      "sharkdp/fd",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-telescope/telescope-dap.nvim",
-      "nvim-telescope/telescope-live-grep-args.nvim" ,
-    },
-  },
-
-
   -- Show git diff in the gutter
   {
     "lewis6991/gitsigns.nvim",

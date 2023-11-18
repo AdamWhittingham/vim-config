@@ -19,5 +19,4 @@ require "config.autocomplete"
 -- UI
 require "config.navigation"
 require "config.indentation_guidelines"
-require "config.telescope"
 require "config.diff"
