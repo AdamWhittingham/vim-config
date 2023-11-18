@@ -1,8 +1,3 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
-  return
-end
-
 local coolLines = {
   [[    ███╗   ███╗ █████╗ ██╗  ██╗███████╗   ]],
   [[    ████╗ ████║██╔══██╗██║ ██╔╝██╔════╝   ]],
@@ -119,7 +114,7 @@ end
 -- Define StartLogo1..StartLogoN to get a nice gradient.
 local function header_color()
   local lines = {}
-  for i, lineConfig in pairs(header_chars()) do
+  for _, lineConfig in pairs(header_chars()) do
     local hi = lineConfig.hi
     local line_chars = lineConfig.line
     local line = {
@@ -143,23 +138,34 @@ local function header_color()
   return output
 end
 
-local theme = require("alpha.themes.theta")
-local config = theme.config
-local dashboard = require("alpha.themes.dashboard")
-local buttons = {
+local function configure()
+  local theme = require("alpha.themes.theta")
+  local themeconfig = theme.config
+  local dashboard = require("alpha.themes.dashboard")
+  local buttons = {
     type = "group",
     val = {
-        { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
-        { type = "padding", val = 1 },
-        dashboard.button("e", "  New file", "<cmd>ene<CR>"),
-        dashboard.button("SPC f", "󰍉  Find file"),
-        dashboard.button("SPC F", "󰈞  Find text"),
-        dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
-        dashboard.button("q", "󰩈  Quit", "<cmd>qa<CR>"),
+      { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
+      { type = "padding", val = 1 },
+      dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+      dashboard.button("SPC f", "󰍉  Find file"),
+      dashboard.button("SPC F", "󰈞  Find text"),
+      dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
+      dashboard.button("q", "󰩈  Quit", "<cmd>qa<CR>"),
     },
     position = "center",
-}
+  }
 
-config.layout[2] = header_color()
-config.layout[6] = buttons
-alpha.setup(config)
+  themeconfig.layout[2] = header_color()
+  themeconfig.layout[6] = buttons
+
+  return themeconfig
+end
+
+return {
+  'goolord/alpha-nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  config = function ()
+    require'alpha'.setup(configure())
+  end
+};

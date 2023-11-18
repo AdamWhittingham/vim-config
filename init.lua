@@ -17,7 +17,6 @@ require "config.testing"
 require "config.autocomplete"
 
 -- UI
-require "config.startup_screen"
 require "config.navigation"
 require "config.indentation_guidelines"
 require "config.telescope"
