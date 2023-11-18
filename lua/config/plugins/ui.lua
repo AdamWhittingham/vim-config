@@ -29,8 +29,8 @@ return {
   -- File operatons using a Vim buffer
   {
     'stevearc/oil.nvim',
-    opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = true
   },
 
   { 'mbbill/undotree' },                                                      -- Visualise the undo tree and make it easy to navigate
