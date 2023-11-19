@@ -2,14 +2,14 @@ local M = {}
 
 local navic = require("nvim-navic")
 
-M.init = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
+local signs = {
+  { name = "DiagnosticSignError", text = "" },
+  { name = "DiagnosticSignWarn", text = "" },
+  { name = "DiagnosticSignHint", text = "" },
+  { name = "DiagnosticSignInfo", text = "" },
+}
 
+M.init = function()
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
@@ -72,11 +72,9 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return M
+if status_ok then
+  M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 end
-
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 M.setup = function(servers)
   local lspconfig = require("lspconfig")
