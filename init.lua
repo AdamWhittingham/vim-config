@@ -12,8 +12,6 @@ require "config.languages"
 require "config.debugging"
 require "config.testing"
 
-require "config.autocomplete"
-
 -- UI
 require "config.navigation"
 require "config.indentation_guidelines"
