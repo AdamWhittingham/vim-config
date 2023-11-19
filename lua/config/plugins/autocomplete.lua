@@ -42,6 +42,7 @@ return {
       history = true,
       delete_check_events = "TextChanged",
     },
+    event = "BufEnter",
     keys = {
       {
         "<tab>",
@@ -59,7 +60,6 @@ return {
   {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
-    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -67,6 +67,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "andersevenrud/cmp-tmux",
     },
+    event = "BufEnter",
     opts = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")

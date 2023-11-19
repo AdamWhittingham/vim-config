@@ -1,10 +1,24 @@
 return {
-  "AndrewRadev/switch.vim",              -- Quickly toggle between common alternative layouts for strings, arrays, etc.
-  "johmsalas/text-case.nvim",            -- Smartcase replacement with S
-  "lukas-reineke/indent-blankline.nvim", -- Show indentation markers
+  -- Quickly toggle between common alternative layouts for strings, arrays, etc.
+  {
+    "AndrewRadev/switch.vim",
+    event = "BufEnter"
+  },
+  --
+  -- Smartcase replacement with S
+  {"johmsalas/text-case.nvim",
+    event = "BufEnter"
+  },
+
+  -- Show indentation markers
+  {"lukas-reineke/indent-blankline.nvim",
+    event = "BufEnter"
+  },
+
   {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    opts = { use_default_keymaps = false }
+    opts = { use_default_keymaps = false },
+    event = "BufEnter"
   },
 }
