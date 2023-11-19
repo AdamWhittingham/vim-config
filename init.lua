@@ -13,6 +13,5 @@ require "config.debugging"
 require "config.testing"
 
 -- UI
-require "config.navigation"
 require "config.indentation_guidelines"
 require "config.diff"
