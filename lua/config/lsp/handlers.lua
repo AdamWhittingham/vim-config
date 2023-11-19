@@ -93,7 +93,6 @@ M.setup = function(servers)
 
     lspconfig[server].setup(opts)
   end
-
 end
 
 return M

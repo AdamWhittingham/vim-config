@@ -30,7 +30,7 @@ return {
     "williamboman/mason-lspconfig.nvim", -- Configure language servers
     event = "VeryLazy",
     opts = function()
-      ensure_installed = require('config.language_servers')
+      ensure_installed = require('config.lsp').servers
     end
   },
 
@@ -43,7 +43,7 @@ return {
       'cmp-nvim-lsp',
     },
     config = function()
-      require("config.lsp")
+      require("config.lsp").setup()
     end
   },
 

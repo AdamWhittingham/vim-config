@@ -7,7 +7,6 @@ require "config.language_options"
 require "config.treesitter"
 
 -- Development
-require "config.lsp"
 require "config.languages"
 require "config.debugging"
 require "config.testing"
