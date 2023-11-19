@@ -1,9 +1,4 @@
 return {
-  "nvim-lua/plenary.nvim",   -- Useful lua functions used ny lots of plugins
-
-  -------------------
-  -- LANGUAGE SUPPORT
-  -------------------
   {
     "williamboman/mason.nvim", -- Install Language servers
     build = ":MasonUpdate" -- :MasonUpdate updates registry contents
@@ -43,28 +38,4 @@ return {
   "theHamsta/nvim-dap-virtual-text",             -- Show debug values in virtual text
   "leoluz/nvim-dap-go",                          -- Bindings for Delve, the go debugger
   "suketa/nvim-dap-ruby",                        -- Bindings for ruby-debug
-
-  -------------------
-  -- Miscellaneous
-  -------------------
-
-  -- Easily call Google Translate and replace in-editor
-  {
-    "uga-rosa/translate.nvim",
-    event = "VeryLazy",
-  },
-
-  -- Use Vale for prose linting
-  {
-    "marcelofern/vale.nvim",
-    lazy = true,
-    ft = "markdown",
-    config = function(_, _)
-      require("vale").setup({
-        bin="/usr/local/bin/vale",
-        vale_config_path="$HOME/.adshell/vale/vale.ini",
-      })
-    end
-  },
-
 }
