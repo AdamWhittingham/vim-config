@@ -10,11 +10,6 @@ return {
     event = "BufEnter"
   },
 
-  -- Show indentation markers
-  {"lukas-reineke/indent-blankline.nvim",
-    event = "BufEnter"
-  },
-
   {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },

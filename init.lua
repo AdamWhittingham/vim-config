@@ -5,12 +5,7 @@ require "config.keymaps"
 require "config.utils"
 require "config.language_options"
 require "config.treesitter"
-
--- Development
 require "config.languages"
 require "config.debugging"
 require "config.testing"
-
--- UI
 require "config.indentation_guidelines"
-require "config.diff"

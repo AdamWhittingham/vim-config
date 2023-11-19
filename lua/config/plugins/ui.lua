@@ -61,6 +61,15 @@ return {
     "akinsho/git-conflict.nvim",
     config = true,
     event = "VeryLazy",
+    opts = {
+      default_mappings = false,
+      default_commands = true,
+      disable_diagnostics = true,
+      highlights = {
+        incoming = 'DiffText',
+        current = 'DiffAdd',
+      }
+    }
   },
 
   -- Better Quickfix formatting
@@ -68,4 +77,25 @@ return {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
   },
-}
+
+
+  -- Show indentation markers
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufEnter",
+    opts = {
+      exclude = {
+        filetypes = {
+          "alpha",
+          "help",
+          "startify",
+          "dashboard",
+          "packer",
+          "neogitstatus",
+          "NvimTree",
+          "Trouble",
+        },
+        buftypes = { "terminal", "nofile" }
+      }
+    }
+  }
