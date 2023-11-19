@@ -82,20 +82,31 @@ return {
   -- Show indentation markers
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufEnter",
+    main = "ibl",
+    event = "VeryLazy",
     opts = {
+      indent = {
+        char = "▏",
+        tab_char = " ",
+      },
+      scope = {
+        enabled = true,
+        exclude = {
+           node_type = { ruby = { "module", "class" } },
+        }
+      },
       exclude = {
         filetypes = {
-          "alpha",
           "help",
-          "startify",
-          "dashboard",
-          "packer",
-          "neogitstatus",
-          "NvimTree",
+          "alpha",
           "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
         },
-        buftypes = { "terminal", "nofile" }
-      }
-    }
-  }
+      },
+    },
+  },
+}
