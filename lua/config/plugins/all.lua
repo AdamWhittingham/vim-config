@@ -47,8 +47,15 @@ return {
   -------------------
   -- Miscellaneous
   -------------------
-  { "uga-rosa/translate.nvim" },                -- Easily call Google Translate and replace in-editor
-  { -- Use Vale for prose linting
+
+  -- Easily call Google Translate and replace in-editor
+  {
+    "uga-rosa/translate.nvim",
+    event = "VeryLazy",
+  },
+
+  -- Use Vale for prose linting
+  {
     "marcelofern/vale.nvim",
     lazy = true,
     ft = "markdown",
@@ -59,5 +66,5 @@ return {
       })
     end
   },
-  'folke/tokyonight.nvim'
+
 }
