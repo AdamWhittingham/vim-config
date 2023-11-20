@@ -50,7 +50,7 @@ local line_config = {
       { 'navic' },
     },
     lualine_x = {
-      { 'diff', symbols = {added = '', modified = '', removed = ''} },
+      { 'diff', symbols = {added = ' ', modified = ' ', removed = ' '} },
     },
     lualine_y = {
       'filesize',
