@@ -1,4 +1,4 @@
-return {
+local treesitter_opts = {
   auto_install = true,
   ensure_installed = {
     "bash",
@@ -84,4 +84,30 @@ return {
   endwise = {
     enable = true,
   },
+}
+
+return {
+  -- Treesitter
+  -- Syntax parsing and highlighting
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = treesitter_opts,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    }
+  },
+
+  -- Show details of treesitter and highlighting
+  {
+    "nvim-treesitter/playground",
+    lazy = true,
+    cmd = "TSPlaygroundToggle",
+  },
+
+  "andymass/vim-matchup",                       -- Extend % for more languages
 }
