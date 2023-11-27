@@ -40,5 +40,15 @@
   "Log - fatal": {
     "prefix": "logf",
     "body": [ "log.fatal { $1 }" ]
-  }
+  },
+
+  "Entity Store - save": {
+    "prefix": "es",
+    "body": [ "entity_store.save($1)" ]
+  },
+  "Entity Store - tap save": {
+    "prefix": "ets",
+    "body": [ ".tap { |$1| entity_store.save($1) }" ]
+  },
+
 }
