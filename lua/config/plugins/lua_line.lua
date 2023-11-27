@@ -46,7 +46,7 @@ local line_config = {
       },
     },
     lualine_c = {
-      { 'diagnostics', symbols = {error = '', warn = '', info = '', hint = ''}, update_in_insert = true },
+      { 'diagnostics', symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '}, update_in_insert = true },
       { 'navic' },
     },
     lualine_x = {
