@@ -1,10 +1,9 @@
 local colors = {
   fg_a  = '#ffffff',
-  fg_b  = '#dddddd',
+  fg_b  = '#ccccff',
   fg_c  = '#cccccc',
-  black = '#080808',
-  bg_a  = '#10408F',
-  bg_b  = '#002080',
+  bg_a  = '#002080',
+  bg_b  = '#10408F',
   bg_c  = '#081028',
 }
 
@@ -30,9 +29,6 @@ local line_config = {
   },
   sections = {
     lualine_a = {
-      'branch',
-    },
-    lualine_b = {
       {
         'filename',
         separator = { right = '', left = '' },
@@ -44,6 +40,9 @@ local line_config = {
           newfile = '',     -- Text to show for newly created file before first write
         },
       },
+    },
+    lualine_b = {
+      'branch',
     },
     lualine_c = {
       { 'diagnostics', symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '}, update_in_insert = true },
