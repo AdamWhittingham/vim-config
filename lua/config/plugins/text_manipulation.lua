@@ -2,7 +2,6 @@ return {
   -- Quickly toggle between common alternative layouts for strings, arrays, etc.
   {
     "AndrewRadev/switch.vim",
-    event = "VeryLazy"
   },
   --
   -- Smartcase replacement with S
