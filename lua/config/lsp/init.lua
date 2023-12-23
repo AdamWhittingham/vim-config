@@ -28,6 +28,7 @@ end
 
 M.servers = servers
 M.handlers = require("config.lsp.handlers")
+
 M.setup = function()
   M.handlers.setup(servers)
 end
