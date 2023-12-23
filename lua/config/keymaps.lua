@@ -219,7 +219,7 @@ wk.register({
     p = { cmd [[Lspsaga peek_definition]],               "Peek definition" },
     o = { cmd [[Lspsaga show_line_diagnostics]],         "Show line disagnostics" },
     r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
-    a = { cmd [[Lspsaga code_action]],                   "Show code actions" },
+    a = { luacmd [[vim.lsp.buf.code_action()]],          "Show code actions" },
     k = { luacmd [[vim.lsp.buf.hover()]],                "Show hover" },
     K = { cmd [[Lspsaga hover_doc]],                     "Show lspsaga hover" },
     f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },

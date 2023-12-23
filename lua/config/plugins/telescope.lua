@@ -33,7 +33,6 @@ local options = function()
       },
       ["ui-select"] = {
         require("telescope.themes").get_dropdown {
-          -- even more opts
         },
       },
     },
