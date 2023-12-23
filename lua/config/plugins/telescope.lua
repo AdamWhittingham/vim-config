@@ -2,6 +2,7 @@ local options = function()
   require('telescope').load_extension('textcase')
   require('telescope').load_extension('fzf')
   require("telescope").load_extension("yank_history")
+  require("telescope").load_extension("ui-select")
 
   local lga_actions = require("telescope-live-grep-args.actions")
 
@@ -29,8 +30,13 @@ local options = function()
             ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
           },
         },
-      }
-    }
+      },
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown {
+          -- even more opts
+        },
+      },
+    },
   }
 end
 
@@ -45,6 +51,7 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-dap.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim" ,
+    'nvim-telescope/telescope-ui-select.nvim',
   },
   opts = options,
 }
