@@ -17,6 +17,10 @@ if vim.fn.executable('ruby') == 1 then
   table.insert(servers, "solargraph")
 end
 
+if vim.fn.executable('node') == 1 then
+  table.insert(servers, "tsserver")
+end
+
 if vim.fn.executable('python3') == 1 then
   table.insert(servers, "pylsp")
 end

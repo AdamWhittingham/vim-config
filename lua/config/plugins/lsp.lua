@@ -43,7 +43,6 @@ return {
       'cmp-nvim-lsp',
     },
     config = function()
-      require("lspconfig")
       require("config.lsp").setup()
     end
   },
