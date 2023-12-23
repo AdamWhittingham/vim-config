@@ -124,20 +124,7 @@ wk.register({
     J = { "Join lines" },
     b = { "Block comment {motion}" },
     c = { "Linewise comment {motion}" },
-    C = {
-      name = "Case conversions",
-      U = { luacmd[[require('textcase').current_word('to_upper_case')]], "Convert to UPPER CASE" },
-      u = { luacmd[[require('textcase').current_word('to_lower_case')]], "Convert to lower case" },
-      C = { luacmd[[require('textcase').current_word('to_constant_case')]], "Convert to CONSTANT_CASE" },
-      c = { luacmd[[require('textcase').current_word('to_camel_case')]], "Convert to CamelCase" },
-      P = { luacmd[[require('textcase').current_word('to_pascal_case')]], "Convert to PascalCase" },
-      t = { luacmd[[require('textcase').current_word('to_title_case')]], "Convert to Title Case" },
-      p = { luacmd[[require('textcase').current_word('to_path_case')]], "Convert to path/case" },
-      s = { luacmd[[require('textcase').current_word('to_phrase_case')]], "Convert to sentence case" },
-      ['.']= { luacmd[[require('textcase').current_word('to_dot_case')]], "Convert to dot.case" },
-      ['_']= { luacmd[[require('textcase').current_word('to_snake_case')]], "Convert to snake_case" },
-      ['-']= { luacmd[[require('textcase').current_word('to_dash_case')]], "Convert to dash-case" },
-    },
+    C = { cmd [[TextCaseOpenTelescope]], "Case changes" },
     t = { luacmd[[_G.translate()]], "Translate and replace"},
   },
   q = { "Record macro" },
@@ -145,6 +132,7 @@ wk.register({
 
 wk.register({
   g = {
+    C = { cmd [[TextCaseOpenTelescope]], "Case changes" },
     t = { luacmd[[_G.translate()]], "Translate and replace"},
   },
 }, { mode = "v"})
