@@ -6,7 +6,6 @@ return {
   --
   -- Smartcase replacement with S
   {"johmsalas/text-case.nvim",
-    event = "VeryLazy",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("textcase").setup({})
