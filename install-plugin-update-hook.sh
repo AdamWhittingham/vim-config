@@ -2,10 +2,11 @@
 
 pushd $(dirname $0)>/dev/null
 
-cat > ~/.config/nvim/.git/hooks/post-merge <<-EOF
-  nvim --headless "+Lazy! sync" +qa
+hook=.git/hooks/post-merge
+cat > $hook <<EOF
+nvim --headless "+Lazy! sync" +qa
 EOF
 
-chmod u+x ~/.vim/.git/hooks/post-merge
+chmod u+x $hook
 
 popd > /dev/null
