@@ -26,8 +26,7 @@ There's a couple of tools that make this config really work well:
 Neovim is incredibly powerful but can do even more when it has some awareness of the languages you are editing.
 To provide Neovim with this context, we need to install some Language Servers. Thankfully this can all be done for us:
 
-- Install a language servers the language of the file you have open with `:LspInstall`
-- View and choose from a list by running `:LspInstallInfo`, and pressing `i` on Language Servers you want
+- Install a language servers the language of the file you have open with `:Mason` and pressing `i` on Language Servers you want
 
 # Key Mappings
 For the canonical list, see [keymaps.lua](./lua/config/keymaps.lua)
