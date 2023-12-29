@@ -61,14 +61,6 @@ local bugLines = {
 [[ - Ellen Ullman]]
 }
 
-local function lineToStartGradient(lines)
-  local out = {}
-  for i, line in ipairs(lines) do
-    table.insert(out, { hi = "StartLogo"..i, line = line})
-  end
-  return out
-end
-
 local function lineToReverseGradient(lines)
   local out = {}
   for i, line in ipairs(lines) do
