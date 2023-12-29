@@ -8,7 +8,11 @@ A potent Neovim config, enhanced with rich flavours of software development and 
 # Installation
 
 ```bash
+# Clone the repo
 git clone -b nvim https://github.com/AdamWhittingham/vim-config.git ~/.config/nvim
+
+# Install everything
+cd ~/.config/nvim; ./install
 ```
 
 ### Still using Vim? (rather than Neovim)
