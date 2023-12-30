@@ -14,6 +14,8 @@ M.init = function()
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
+  local borderStyle = "rounded"
+
   local config = {
     virtual_text = false,
     signs = { active = signs },
@@ -23,7 +25,7 @@ M.init = function()
     float = {
       focusable = false,
       style = "minimal",
-      border = "rounded",
+      border = borderStyle,
       source = "always",
       header = "",
       prefix = "",
@@ -33,11 +35,11 @@ M.init = function()
   vim.diagnostic.config(config)
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
+    border = borderStyle,
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
+    border = borderStyle,
   })
 end
 
