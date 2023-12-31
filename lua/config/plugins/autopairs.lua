@@ -10,6 +10,7 @@ return {
         java = false,
       },
       disable_filetype = { "TelescopePrompt" },
+      disable_in_visualblock = true,
     }
   },
   {
