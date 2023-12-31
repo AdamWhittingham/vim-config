@@ -1,29 +1,29 @@
 local kind_icons = {
-  Text = "󰉿",
-  Method = "󰆧",
-  Function = "󰊕",
-  Constructor = "",
-  Field = "󰜢",
-  Variable = "󰀫",
   Class = "󰠱",
+  Color = "󰏘",
+  Constant = "󰏿",
+  Constructor = "",
+  Enum = "",
+  EnumMember = "",
+  Event = "",
+  Field = "󰜢",
+  File = "󰈙",
+  Folder = "󰉋",
+  Function = "󰊕",
   Interface = "",
+  Keyword = "󰌋",
+  Method = "󰆧",
   Module = "",
+  Operator = "󰆕",
   Property = "󰜢",
+  Reference = "󰈇",
+  Snippet = "",
+  Struct = "󰙅",
+  Text = "󰉿",
+  TypeParameter = "",
   Unit = "󰑭",
   Value = "󰎠",
-  Enum = "",
-  Keyword = "󰌋",
-  Snippet = "",
-  Color = "󰏘",
-  File = "󰈙",
-  Reference = "󰈇",
-  Folder = "󰉋",
-  EnumMember = "",
-  Constant = "󰏿",
-  Struct = "󰙅",
-  Event = "",
-  Operator = "󰆕",
-  TypeParameter = "",
+  Variable = "󰀫",
 }
 
 return {
@@ -102,14 +102,14 @@ return {
           {
             { name = "nvim_lsp" },
             { name = "luasnip" },
-          }, {
             { name = "buffer" },
+          }, {
             { name = "path" },
             { name = "tmux" },
           }
         ),
         formatting = {
-          format = function(entry, vim_item)
+          format = function(_, vim_item)
             vim_item.kind = string.format(kind_icons[vim_item.kind], '%s')
             return vim_item
           end
