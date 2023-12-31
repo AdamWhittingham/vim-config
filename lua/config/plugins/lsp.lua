@@ -22,6 +22,7 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'nvim-navic',
       'cmp-nvim-lsp',
+      "b0o/schemastore.nvim",
     },
     config = function()
       require("config.lsp").setup()
