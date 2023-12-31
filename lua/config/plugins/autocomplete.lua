@@ -66,18 +66,20 @@ return {
       "andersevenrud/cmp-tmux",
     },
     event = "BufEnter",
-    opts = function()
+    config = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+
       local cmp = require("cmp")
       local defaults = require("cmp.config.default")()
-      return {
-        completion = {
-          completeopt = "menu,menuone,noinsert",
-        },
+
+      cmp.setup({
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
           end,
+        },
+        window = {
+          documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -100,8 +102,8 @@ return {
           {
             { name = "nvim_lsp" },
             { name = "luasnip" },
-            { name = "buffer" },
           }, {
+            { name = "buffer" },
             { name = "path" },
             { name = "tmux" },
           }
@@ -118,13 +120,7 @@ return {
           },
         },
         sorting = defaults.sorting,
-      }
-    end,
-    config = function(_, opts)
-      for _, source in ipairs(opts.sources) do
-        source.group_index = source.group_index or 1
-      end
-      require("cmp").setup(opts)
+      })
     end,
   }
 }
