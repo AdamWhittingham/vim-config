@@ -210,7 +210,7 @@ wk.register({
     a = { luacmd [[vim.lsp.buf.code_action()]],          "Show code actions" },
     k = { luacmd [[vim.lsp.buf.hover()]],                "Show hover" },
     K = { cmd [[Lspsaga hover_doc]],                     "Show lspsaga hover" },
-    f = { cmd [[lua vim.lsp.buf.formatting_seq_sync()]], "Format" },
+    f = { cmd [[lua vim.lsp.buf.format()]],              "Format" },
     D = { cmd [[Telescope diagnostics]],                 "List diagnostics"},
     s = { cmd [[Telescope lsp_document_symbols]],        "Doc symbols"},
     q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
