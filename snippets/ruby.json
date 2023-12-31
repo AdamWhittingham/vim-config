@@ -49,6 +49,5 @@
   "Entity Store - tap save": {
     "prefix": "ets",
     "body": [ ".tap { |$1| entity_store.save($1) }" ]
-  },
-
+  }
 }

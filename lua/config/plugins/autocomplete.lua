@@ -31,17 +31,16 @@ return {
     "L3MON4D3/LuaSnip",
     dependencies = {
       "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-        require("luasnip.loaders.from_vscode").lazy_load({
-          paths = { './snippets' }
-        })
-      end,
+      "saadparwaiz1/cmp_luasnip",
     },
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-    },
+    build = "make install_jsregexp",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load({
+        paths = { './snippets' }
+      })
+      require("luasnip")
+    end,
     event = "BufEnter",
     keys = {
       {
@@ -64,7 +63,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
       "andersevenrud/cmp-tmux",
     },
     event = "BufEnter",
