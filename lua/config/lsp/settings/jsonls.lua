@@ -81,6 +81,7 @@ return {
   settings = {
     json = {
       schemas = schemas,
+      validate = { enable = true },
     },
   },
 }
