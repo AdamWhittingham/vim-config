@@ -79,7 +79,7 @@ return {
       },
     },
 
-    "leoluz/nvim-dap-go",                          -- Bindings for Delve, the go debugger
-    "suketa/nvim-dap-ruby",                        -- Bindings for ruby-debug
+    {"leoluz/nvim-dap-go", config = true },
+    {"suketa/nvim-dap-ruby", config = true},
   },
 }
