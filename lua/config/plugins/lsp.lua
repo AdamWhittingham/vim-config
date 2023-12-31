@@ -1,23 +1,3 @@
-local lsp_signature_opts = {
-  bind = true,
-  doc_lines = 5,
-  max_height = 6,
-  max_width = 60,
-  hint_prefix = " ",
-  hi_parameter = "lspsignatureactiveparameter",
-  floating_window = false,
-}
-
-local lsp_saga_opts = {
-  lightbulb = { enable = false },
-  symbol_in_winbar = { enable = false },
-  finder = {
-    keys = {
-      expand_or_jump = "<cr>"
-    },
-  },
-}
-
 return {
   {
     "williamboman/mason.nvim", -- Install Language servers
@@ -31,6 +11,7 @@ return {
     event = "VeryLazy",
     opts = function()
       ensure_installed = require('config.lsp').servers
+      automatic_installation = true
     end
   },
 
@@ -50,7 +31,15 @@ return {
   -- Pop up function definitions when typing a function call
   {
     "ray-x/lsp_signature.nvim",
-    opts = lsp_signature_opts,
+    opts = {
+      bind = true,
+      doc_lines = 5,
+      max_height = 6,
+      max_width = 60,
+      hint_prefix = " ",
+      hi_parameter = "lspsignatureactiveparameter",
+      floating_window = false,
+    },
     event = "VeryLazy",
   },
 
@@ -58,7 +47,16 @@ return {
   {
     "nvimdev/lspsaga.nvim",
     event = "BufRead",
-    opts = lsp_saga_opts,
+    opts = {
+      lightbulb = { enable = false },
+      symbol_in_winbar = { enable = false },
+      finder = {
+        keys = {
+          expand_or_jump = "<cr>"
+        },
+      },
+    }
+
   },
 
   { 'j-hui/fidget.nvim', config = true,  tag = 'legacy' },        -- Show LSP progress feedback
