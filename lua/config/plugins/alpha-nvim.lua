@@ -48,36 +48,37 @@ local bugLines = {
 [[ | || | ||  || ||    || \\ ||       || (( \    // \\ ||    ||    || // \\ \\// (( \]],
 [[   ||   ||==|| ||==  ||_// ||==     ||  \\     ||=|| ||    \\ /\ // ||=||  )/   \\ ]],
 [[   ||   ||  || ||___ || \\ ||___    || \_))    || || ||__|  \V/\V/  || || //   \_))]],
-[[                                                                                   ]],
 [[   ___   __  __  ____    ___  ___   ___   ____   ____    ____  __ __   ___         ]],
 [[  // \\  ||\ || ||       ||\\//||  // \\  || \\ ||       || )) || ||  // \\        ]],
 [[ ((   )) ||\\|| ||==     || \/ || ((   )) ||_// ||==     ||=)  || || (( ___        ]],
 [[  \\_//  || \|| ||___    ||    ||  \\_//  || \\ ||___    ||_)) \\_//  \\_||        ]],
-[[                                                                                   ]],
 [[ ______   ___       ____ __ _   _                                                  ]],
 [[ | || |  // \\     ||    || \\ //                                                  ]],
 [[   ||   ((   ))    ||==  ||  )X(                                                   ]],
-[[   ||    \\_//     ||    || // \\ ||                                               ]],
-[[ - Ellen Ullman]]
+[[   ||    \\_//     ||    || // \\ ||                                 - Ellen Ullman]],
 }
 
-local function lineToReverseGradient(lines)
-  local out = {}
-  for i, line in ipairs(lines) do
-    local index = 18 - i
-    table.insert(out, { hi = "StartLogo"..index, line = line})
-  end
-  return out
-end
+local processLines = {
+  [[The Creative Process]],
+  [[ ]],
+  [[This is Amazing!]],
+  [[This is difficult]],
+  [[This is shit]],
+  [[I am shit]],
+  [[This might be OK]],
+  [[This is Amazing!]],
+}
 
-local function linePopGradient(lines, popStart, popEnd)
+local function lineColor(lines, popStart, popEnd)
   local out = {}
   for i, line in ipairs(lines) do
     local hi = "StartLogo" .. i
-    if i <= popStart then
-      hi = "StartLogo" .. i + popStart
-    elseif i > popStart and i <= popEnd then
+    if i > popStart and i <= popEnd then
       hi = "StartLogoPop" .. i - popStart
+    elseif i > popStart then
+      hi = "StartLogo" .. i - popStart
+    else
+      hi = "StartLogo" .. i
     end
     table.insert(out, { hi = hi, line = line})
   end
@@ -85,10 +86,11 @@ local function linePopGradient(lines, popStart, popEnd)
 end
 
 local headers = {
-  linePopGradient(coolLines, 6, 12),
-  lineToReverseGradient(solveLines),
-  linePopGradient(humourLines, 6, 9),
-  linePopGradient(bugLines, 5, 10),
+  lineColor(coolLines, 6, 12),
+  lineColor(solveLines, 0, 0),
+  lineColor(humourLines, 6, 9),
+  lineColor(bugLines, 4, 8),
+  lineColor(processLines, 0, 0),
 }
 
 local function header_chars()
