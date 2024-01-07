@@ -102,6 +102,14 @@ return {
     }
   },
 
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {
+      max_lines = 3,
+      min_window_height = 32,
+    }
+  },
+
   -- Show details of treesitter and highlighting
   {
     "nvim-treesitter/playground",
