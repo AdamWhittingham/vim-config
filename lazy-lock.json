@@ -55,7 +55,7 @@
   "treesj": { "branch": "main", "commit": "1d6e89f4790aa04eaae38fa9460a3ee191961c96" },
   "undotree": { "branch": "master", "commit": "36ff7abb6b60980338344982ad4cdf03f7961ecd" },
   "vale.nvim": { "branch": "master", "commit": "63a18633aa4286bc70d4d1fb3488d3823a35d1ee" },
-  "vim-adcode-theme": { "branch": "master", "commit": "818fb898ed5e6f30f7544101649cafea7f3dc3b0" },
+  "vim-adcode-theme": { "branch": "master", "commit": "06854bacd483a6488937cb6a0c018df402ab7a78" },
   "vim-copy-filename": { "branch": "master", "commit": "86f39b8bbef3fe768c4cb96143e580197e50eda4" },
   "vim-matchup": { "branch": "master", "commit": "e2cca1747ab175b8d839a5d28679427564643a57" },
   "vim-projectionist": { "branch": "master", "commit": "a57b9bf11ecfef16f767034550472830b48ad3e2" },
