@@ -188,7 +188,7 @@ wk.register({
   F = { luacmd [[require("telescope").extensions.live_grep_args.live_grep_args() ]], "Find in files" },
   G = {cmd [[Telescope resume]],  "Show previous search" },
   ["*"] = {cmd [[Telescope grep_string]], "Search for word" },
-  ["."] = { luacmd [[require("telescope.builtin").buffers( require('telescope.themes').get_dropdown({}) ) ]], "Switch buffers" },
+  ["."] = { luacmd [[require("telescope.builtin").buffers() ]], "Switch buffers" },
   [","] = {cmd [[:Oil]], "Show directory" },
   [" "] = { cmd [[:b#]], "Previous buffer" },
 }, { prefix = "<leader>" })

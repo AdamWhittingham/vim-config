@@ -16,7 +16,30 @@ local options = function()
         }
       }
     },
-    pickers = {},
+    pickers = {
+      find_files = {
+        theme = "dropdown",
+        layout_strategy='vertical',
+        layout_config={
+          width={0.75, min=80, max=120},
+          height=0.80,
+          mirror=true,
+          prompt_position="top",
+        }
+      },
+      grep_files = {
+        theme = "dropdown",
+        layout_strategy='flex',
+        layout_config={
+          width={0.75, min=80, max=120},
+          height=0.80,
+          mirror=true,
+          prompt_position="top",
+        }
+      },
+      buffers = { theme = "ivy" },
+      jumplist = {theme = "dropdown" },
+    },
     extensions = {
       fzf = {
         fuzzy = true,                    -- false will only do exact matching
