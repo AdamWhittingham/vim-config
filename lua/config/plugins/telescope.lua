@@ -12,7 +12,8 @@ local options = function()
     defaults = {
       mappings = {
         i = {
-          ["<C-h>"] = "which_key"
+          ["<C-h>"] = "which_key",
+          ["<C-p>"] = require('telescope.actions.layout').toggle_preview,
         }
       }
     },
@@ -25,6 +26,9 @@ local options = function()
           height=0.80,
           mirror=true,
           prompt_position="top",
+        },
+        preview = {
+          hide_on_startup = true
         }
       },
       grep_files = {
