@@ -251,30 +251,28 @@ wk.register({
 wk.register({
   d = {
     name = "Debug",
-    d = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
-    b = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
-    B = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
-    l = { cmd [[:Telescope dap list_breakpoints]], "Search breakpoints"},
 
+    d = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
+    D = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
+    l = { cmd [[:Telescope dap list_breakpoints]], "List breakpoints"},
+
+    -- Somehow all of these are in my muscle memory... will try to consolidate
+    c = { luacmd("require'dap'.continue()"), "Continue"},
     g = { luacmd("require'dap'.continue()"), "Start" },
     n = { luacmd("require'dap'.continue()"), "Continue to Next" },
 
-    s = { luacmd("require'dap'.step_over()"), "Step Over" },
     i = { luacmd("require'dap'.step_in()"), "Step Into" },
     o = { luacmd("require'dap'.step_out()"), "Step Out" },
+    u = { luacmd("require'dap'.step_over()"), "Step Over" },
 
     q = { luacmd("require'dap'.disconnect()"), "Disconnect" },
     Q = { luacmd("require'dap'.close()"), "Quit" },
     K = { luacmd("require'dap'.terminate()"), "Terminate" },
 
-    R = { luacmd("require'dap'.run_to_cursor()"), "Run to Cursor" },
-    E = { luacmd("require'dapui'.eval(vim.fn.input '[Expression] > ')"), "Evaluate Input" },
+    r = { luacmd("require'dap'.run_to_cursor()"), "Run to Cursor" },
+    e = { luacmd("require'dapui'.eval(vim.fn.input '[Expression] > ')"), "Evaluate Input" },
     U = { luacmd("require'dapui'.toggle()"), "Toggle UI" },
     h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
-    -- e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
-    -- g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-    -- S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
-    -- P = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
   },
 }, { prefix = "<leader>" })
 

@@ -54,10 +54,10 @@ return {
 
         vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-        vim.fn.sign_define('DapBreakpoint', {text='', texthl='DapBreakpoint', linehl='', numhl='DapBreakpoint'})
-        vim.fn.sign_define('DapBreakpointCondition', {text='', texthl='DapBreakpointConditional', linehl='', numhl='DapBreakpointConditional'})
-        vim.fn.sign_define('DapBreakpointRejected', {text='', texthl='DapBreakpointRejected', linehl='', numhl='DapBreakpointRejected'})
-        vim.fn.sign_define('DapStopped', {text='', texthl='DapStopped', linehl='DapStoppedLine', numhl='DapStopped'})
+        vim.fn.sign_define('DapBreakpoint',          {text='󰙦 ', texthl='DapBreakpoint',            linehl='',               numhl='DapBreakpoint'})
+        vim.fn.sign_define('DapBreakpointCondition', {text='󰙧 ', texthl='DapBreakpointConditional', linehl='',               numhl='DapBreakpointConditional'})
+        vim.fn.sign_define('DapBreakpointRejected',  {text=' ', texthl='DapBreakpointRejected',    linehl='',               numhl='DapBreakpointRejected'})
+        vim.fn.sign_define('DapStopped',             {text='',  texthl='DapStopped',               linehl='DapStoppedLine', numhl='DapStopped'})
       end,
     },
 
