@@ -46,7 +46,6 @@ local line_config = {
     },
     lualine_c = {
       { 'diagnostics', symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '}, update_in_insert = true },
-      { 'navic' },
     },
     lualine_x = {
       { 'diff', symbols = {added = ' ', modified = ' ', removed = ' '} },
@@ -78,7 +77,6 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      "nvim-navic",
     },
     opts = line_config,
   }

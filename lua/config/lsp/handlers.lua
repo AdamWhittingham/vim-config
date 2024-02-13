@@ -1,7 +1,5 @@
 local M = {}
 
-local navic = require("nvim-navic")
-
 local signs = {
   { name = "DiagnosticSignError", text = "" },
   { name = "DiagnosticSignWarn", text = "" },
@@ -64,10 +62,6 @@ M.on_attach = function(client, bufnr)
       callback = vim.lsp.buf.clear_references,
       desc = "Clear highlighted References",
     })
-  end
-
-  if cap.documentSymbolProvider then
-    navic.attach(client, bufnr)
   end
 end
 

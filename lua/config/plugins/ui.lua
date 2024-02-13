@@ -20,16 +20,6 @@ return {
     config = true,
   },
 
-  -- show code hierarchy of item under cursor
-  {
-    "SmiteshP/nvim-navic",
-    dependencies = "neovim/nvim-lspconfig",
-    event = "VeryLazy",
-    opts = {
-      separator = " » ",
-    }
-  },
-
    -- Show colour swatches in virtualtext
     {
     "NvChad/nvim-colorizer.lua",
