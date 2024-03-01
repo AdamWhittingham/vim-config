@@ -62,6 +62,10 @@ return {
     }
   },
 
+  {
+    'sindrets/diffview.nvim'
+  },
+
   -- Better Quickfix formatting
   {
     "kevinhwang91/nvim-bqf",
