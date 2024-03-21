@@ -31,6 +31,7 @@ return {
     {
       "rcarriga/nvim-dap-ui",
       opts = dapui_opts,
+      dependencies = {"nvim-neotest/nvim-nio"},
       config = function(_, opts)
         require("dap.ext.vscode").load_launchjs()
         require('telescope').load_extension('dap')
