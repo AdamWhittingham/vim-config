@@ -3,6 +3,7 @@ local colors = {
   fg_b  = '#ccccff',
   fg_c  = '#cccccc',
   bg_a  = '#002080',
+  bg_a_in  = '#200080',
   bg_b  = '#10408F',
   bg_c  = '#081028',
 }
@@ -14,10 +15,16 @@ local ad_code = {
     c = { fg = colors.fg_c, bg = colors.bg_c },
   },
 
+  visual = {
+    a = { fg = colors.fg_a, bg = colors.bg_a_in },
+    b = { fg = colors.fg_b, bg = colors.bg_b },
+    c = { fg = colors.fg_c, bg = colors.bg_c },
+  },
+
   inactive = {
     a = { fg = colors.fg_a, bg = colors.bg_a },
     b = { fg = colors.fg_b, bg = colors.bg_b },
-    c = { fg = colors.fg_c},
+    c = { fg = colors.fg_c, bg = colors.bg_c },
   },
 }
 
