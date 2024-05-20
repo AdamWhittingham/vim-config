@@ -32,7 +32,6 @@ local treesitter_opts = {
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { }, -- List of parsers to ignore installing
   autopairs = { enable = true },
-  autotag = { enable = true },
   highlight = {
     enable = true,
     disable = {}, -- list of languages that will be disabled
