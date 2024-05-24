@@ -37,14 +37,14 @@ vim.keymap.set("", "<space>", "<Nop>", default_opts)
 wk.register({
   w = {
     name = "Window/Writes",
-    w = { cmd [[:w]], "Write" },
-    e = { cmd [[:e]], "Reload" },
-    q = { cmd [[:x]], "Write & Quit" },
-    Q = { cmd [[:q!]], "Discard & Quit" },
-    b = { cmd [[:bd]], "Close buffer"},
-    t = { cmd [[:tabclose]], "Close tab"},
-    s = { cmd [[:vsplit]], "Split vertically"},
-    S = { cmd [[:split]], "Split horizontally"},
+    w = { cmd [[w]], "Write" },
+    e = { cmd [[e]], "Reload" },
+    q = { cmd [[x]], "Write & Quit" },
+    Q = { cmd [[q!]], "Discard & Quit" },
+    b = { cmd [[bd]], "Close buffer"},
+    t = { cmd [[tabclose]], "Close tab"},
+    s = { cmd [[vsplit]], "Split vertically"},
+    S = { cmd [[split]], "Split horizontally"},
   },
 }, { prefix = "<leader>" })
 
@@ -63,9 +63,9 @@ normal("<C-k>", cmd[[TmuxNavigateUp]], { desc = "Move to window above" })
 ---------------------------------
 
 wk.register({
-  j      = { cmd[[:Telescope jumplist]], "Show Jumplist" },
-  h      = { cmd[[:nohlsearch]], "Toggle search highlight" },
-  m      = { cmd[[:Telescope marks]], "Show marks" },
+  j      = { cmd[[Telescope jumplist]], "Show Jumplist" },
+  h      = { cmd[[nohlsearch]], "Toggle search highlight" },
+  m      = { cmd[[Telescope marks]], "Show marks" },
   ["sw"] = { luacmd[[MiniTrailspace.trim()]], "Strip trailing whitespace"},
   ["sG"] = { luacmd[[MiniTrailspace.trim_last_lines()]], "Strip trailing empty lines"},
 }, { prefix = "<leader>" })
@@ -114,7 +114,7 @@ wk.register({
   s = { luacmd[[require('treesj').split()]], "Split structure" },
   sk = { luacmd[[require('treesj').split({ split = { recursive = true } })]], "Split structure recursively"},
   sj = { luacmd[[require('treesj').join({ join = { recursive = true } })]], "Join structure recursively"},
-  sp = { cmd[[:Telescope spell_suggest]], "Suggest spelling fixes" },
+  sp = { cmd[[Telescope spell_suggest]], "Suggest spelling fixes" },
 }, { prefix = "<leader>" })
 
 wk.register({
@@ -173,7 +173,7 @@ wk.register({
     b = { cmd[[GitConflictChooseBoth]],                             "Conflict: Choose Both"},
     n = { cmd[[GitConflictChooseNone]],                             "Conflict: Choose None"},
   },
-  u = { cmd[[:UndotreeToggle]], "Show the undo tree" },
+  u = { cmd[[UndotreeToggle]], "Show the undo tree" },
 }, { prefix = "<leader>" })
 
 ---------------------------------
@@ -182,13 +182,13 @@ wk.register({
 
 wk.register({
   f = {cmd [[Telescope find_files]], "Find files" },
-  -- F = {cmd [[:Telescope live_grep]],  "Find in files" },
+  -- F = {cmd [[Telescope live_grep]],  "Find in files" },
   F = { luacmd [[require("telescope").extensions.live_grep_args.live_grep_args() ]], "Find in files" },
   G = {cmd [[Telescope resume]],  "Show previous search" },
   ["*"] = {cmd [[Telescope grep_string]], "Search for word" },
   ["."] = { luacmd [[require("telescope.builtin").buffers() ]], "Switch buffers" },
-  [","] = {cmd [[:Oil]], "Show directory" },
-  [" "] = { cmd [[:b#]], "Previous buffer" },
+  [","] = {cmd [[Oil]], "Show directory" },
+  [" "] = { cmd [[b#]], "Previous buffer" },
 }, { prefix = "<leader>" })
 
 
@@ -234,11 +234,11 @@ wk.register({
   p = {
     name = "Paths",
     g = { luacmd[[require"gitlinker".get_buf_range_url("n", {})]], "Copy the URL to github/gitlab"},
-    r = { cmd[[:CopyRelativePath]], "Copy relative path" },
-    a = { cmd[[:CopyAbsolutePath]], "Copy absolute path" },
-    f = { cmd[[:CopyFileName]], "Copy file name" },
-    d = { cmd[[:CopyDirectoryPath]], "Copy directory path" },
-    l = { cmd[[:CopyRelativePathAndLine]], "Copy Relative path and line number" },
+    r = { cmd[[CopyRelativePath]], "Copy relative path" },
+    a = { cmd[[CopyAbsolutePath]], "Copy absolute path" },
+    f = { cmd[[CopyFileName]], "Copy file name" },
+    d = { cmd[[CopyDirectoryPath]], "Copy directory path" },
+    l = { cmd[[CopyRelativePathAndLine]], "Copy Relative path and line number" },
   }
 }, { prefix = "<leader>" })
 
@@ -252,7 +252,7 @@ wk.register({
 
     d = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
     D = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
-    l = { cmd [[:Telescope dap list_breakpoints]], "List breakpoints"},
+    l = { cmd [[Telescope dap list_breakpoints]], "List breakpoints"},
 
     -- Somehow all of these are in my muscle memory... will try to consolidate
     c = { luacmd("require'dap'.continue()"), "Continue"},
