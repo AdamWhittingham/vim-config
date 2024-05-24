@@ -8,14 +8,12 @@ local bind_opts = function(opts)
   return out_opts
 end
 
-local keymap = vim.api.nvim_set_keymap
-
 local normal = function(keys, command, opts)
-  keymap("n", keys, command .. "<CR>", bind_opts(opts))
+  vim.keymap.set("n", keys, command, bind_opts(opts))
 end
 
 local visual = function(keys, command, opts)
-  keymap("v", keys, command, bind_opts(opts))
+  vim.keymap.set("v", keys, command, bind_opts(opts))
 end
 
 local cmd = function(command)
@@ -31,7 +29,7 @@ local wk = require("which-key")
 ---------------------------------
 -- Leader key = <space>
 ---------------------------------
-keymap("", "<space>", "<Nop>", default_opts)
+vim.keymap.set("", "<space>", "<Nop>", default_opts)
 
 ---------------------------------
 -- Window/Tab/Buffer commands
