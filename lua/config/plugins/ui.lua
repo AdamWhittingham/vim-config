@@ -22,13 +22,13 @@ return {
 
    -- Show colour swatches in virtualtext
     {
-    "NvChad/nvim-colorizer.lua",
+    "brenoprata10/nvim-highlight-colors",
     event = "VeryLazy",
     opts = {
-      user_default_options = {
-        names = false,
-        mode = "virtualtext",
-      }
+      render = "virtual",
+      virtual_symbol_position = "eol",
+      virtual_symbol_prefix = '',
+      virtual_symbol_suffix = '',
     }
   },
 
