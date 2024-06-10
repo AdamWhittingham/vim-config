@@ -10,7 +10,7 @@ return {
   -- Lovely colorscheme with a reasonable light mode option
   {
     'folke/tokyonight.nvim',
-    lazy = true,
+    lazy = false,
   },
 
   -- Help learn/relearn/remember key bindings with a handy pop up
