@@ -14,6 +14,16 @@ vim.api.nvim_create_autocmd({ "BufLeave" }, {
   desc = "Hide cursor in inactive pane",
 })
 
+-- Switch.vim customisation
+vim.cmd(
+  [[
+  let g:switch_custom_definitions = [
+  \  ['proposed', 'accepted', 'superceded', 'rejected']
+  \]
+  ]]
+)
+-----
+
 function _G.set_mark()
   print("Set mark: ")
   local mark = vim.fn.getcharstr()
