@@ -1,6 +1,3 @@
--- Transparent background
-vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
-
 -- Only show the cursor in the active buffer
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = "*",
