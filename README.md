@@ -24,7 +24,7 @@ There's a couple of tools that make this config really work well:
 
 1. [Ripgrep](https://github.com/BurntSushi/ripgrep) - search **text** faster
 2. [fd](https://github.com/sharkdp/fd) - search **files** faster
-4. Running in [WezTerm](https://wezfurlong.org/wezterm/index.html) with a [NerdFont](https://www.nerdfonts.com/) because we deserve pretty things in the terminal.
+3. Running in [WezTerm](https://wezfurlong.org/wezterm/index.html) with a [NerdFont](https://www.nerdfonts.com/) because we deserve pretty things in the terminal.
 
 ## Optional Language Server Setup
 Neovim is incredibly powerful but can do even more when it has some awareness of the languages you are editing.
@@ -41,6 +41,7 @@ The `<leader>` key is **Space**.
 This is referred to as `<leader>` so that it's easier to read, and will still make sense if you change to a different leader key.
 
 ## File & buffer navigation
+
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `<leader> .`               | Show the currently open buffers so you can switch between them                          |
@@ -51,6 +52,7 @@ This is referred to as `<leader>` so that it's easier to read, and will still ma
 
 
 ## Window navigation
+
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `<Control> h/j/k/l`        | Move cursor to the pane left/up/down/right                                              |
@@ -60,6 +62,7 @@ This is referred to as `<leader>` so that it's easier to read, and will still ma
 
 
 ## Changes - Version control
+
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `ca`                       | Add a change to the next commit                                                         |
@@ -70,6 +73,7 @@ This is referred to as `<leader>` so that it's easier to read, and will still ma
 
 
 ## Development
+
 | Key                        | Function                                                                                |
 | -------------------------- | --------------------------------------------------------------------------------------- |
 | `<leader>t`                | Run the current tests                                                                   |
