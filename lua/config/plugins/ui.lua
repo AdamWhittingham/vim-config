@@ -46,7 +46,11 @@ return {
     'stevearc/oil.nvim',
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = true
+    opts = {
+      view_options = {
+        show_hidden = true,
+      }
+    }
   },
 
   -- Visualise the undo tree and make it easy to navigate
