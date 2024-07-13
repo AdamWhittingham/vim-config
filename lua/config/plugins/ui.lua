@@ -1,25 +1,23 @@
 return {
   {
-    "f-person/auto-dark-mode.nvim",
+    "AdamWhittingham/vim-adcode-theme",
     lazy = false,
     priority = 1000,
-    opts = {
-      update_interval = 1000,
-      set_dark_mode = function()
-        vim.api.nvim_set_option_value("background", "dark", {})
-        vim.cmd("colorscheme adCode")
-        vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]]) -- transparent background
-      end,
-      set_light_mode = function()
-        vim.api.nvim_set_option_value("background", "light", {})
-        vim.cmd("colorscheme tokyonight-day")
-        vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]]) -- transparent background
-      end,
-    },
-    dependencies = {
-      "AdamWhittingham/vim-adcode-theme",
-      'folke/tokyonight.nvim',
-    }
+    config = function()
+      vim.cmd("colorscheme adCode")
+      vim.api.nvim_set_option_value("background", "dark", {})
+      vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]]) -- transparent background
+    end
+  },
+
+  -- Lovely colorschemes with reasonable light mode options
+  {
+    'folke/tokyonight.nvim',
+    event = "VeryLazy",
+  },
+  {
+    "NTBBloodbath/sweetie.nvim",
+    event = "VeryLazy",
   },
 
   -- Help learn/relearn/remember key bindings with a handy pop up
@@ -115,14 +113,5 @@ return {
         },
       },
     },
-  },
-
-  {
-    "OXY2DEV/markview.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons", -- Used by the code bloxks
-    },
-
-    opts = {}
   },
 }
