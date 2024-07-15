@@ -24,7 +24,9 @@ return {
   {
     "folke/which-key.nvim",
     lazy = false,
-    config = true,
+    opts = {
+      notify = false,
+    },
   },
 
   -- Show colour swatches in virtualtext

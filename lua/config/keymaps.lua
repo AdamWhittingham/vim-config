@@ -70,10 +70,6 @@ wk.register({
   ["sG"] = { luacmd[[MiniTrailspace.trim_last_lines()]], "Strip trailing empty lines"},
 }, { prefix = "<leader>" })
 
-wk.register({
-  m = { set_mark, "Set mark"}
-})
-
 ---------------------------------
 -- Text manipulation
 ---------------------------------
