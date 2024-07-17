@@ -1,10 +1,8 @@
 local options = function()
   local telescope = require('telescope')
-  telescope.load_extension('textcase')
   telescope.load_extension('fzf')
   telescope.load_extension("yank_history")
   telescope.load_extension("ui-select")
-  telescope.load_extension("textcase")
 
   local lga_actions = require("telescope-live-grep-args.actions")
 
@@ -80,7 +78,6 @@ return {
     "nvim-telescope/telescope-dap.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim" ,
     'nvim-telescope/telescope-ui-select.nvim',
-    "johmsalas/text-case.nvim",
   },
   opts = options,
 }

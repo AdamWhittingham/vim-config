@@ -118,7 +118,6 @@ wk.register({
     J = { "Join lines" },
     b = { "Block comment {motion}" },
     c = { "Linewise comment {motion}" },
-    C = { cmd [[TextCaseOpenTelescope]], "Case changes" },
     t = { luacmd[[_G.translate()]], "Translate and replace"},
   },
   q = { "Record macro" },
@@ -126,7 +125,6 @@ wk.register({
 
 wk.register({
   g = {
-    C = { cmd [[TextCaseOpenTelescope]], "Case changes" },
     t = { luacmd[[_G.translate()]], "Translate and replace"},
   },
 }, { mode = "v"})
