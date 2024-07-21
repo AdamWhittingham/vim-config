@@ -1,291 +1,192 @@
--- Helper functions
-local default_opts = { noremap = true, silent = true }
-
-local bind_opts = function(opts)
-  opts = opts or {}
-  local out_opts = default_opts
-  for k, v in pairs(opts) do out_opts[k] = v end
-  return out_opts
-end
-
-local normal = function(keys, command, opts)
-  vim.keymap.set("n", keys, command, bind_opts(opts))
-end
-
-local visual = function(keys, command, opts)
-  vim.keymap.set("v", keys, command, bind_opts(opts))
-end
+local wk = require("which-key")
 
 local cmd = function(command)
   return "<Esc><Cmd>"..command.."<CR>"
 end
 
-local luacmd = function(command)
-  return "<Esc><Cmd>lua " .. command .. "<CR>"
-end
-
-local wk = require("which-key")
-
 ---------------------------------
 -- Leader key = <space>
 ---------------------------------
-vim.keymap.set("", "<space>", "<Nop>", default_opts)
+vim.keymap.set("", "<space>", "<Nop>", { noremap = true, silent = true })
 
 ---------------------------------
 -- Window/Tab/Buffer commands
 ---------------------------------
-wk.register({
-  w = {
-    name = "Window/Writes",
-    w = { cmd [[w]], "Write" },
-    e = { cmd [[e]], "Reload" },
-    q = { cmd [[x]], "Write & Quit" },
-    Q = { cmd [[q!]], "Discard & Quit" },
-    b = { cmd [[bd]], "Close buffer"},
-    t = { cmd [[tabclose]], "Close tab"},
-    s = { cmd [[vsplit]], "Split vertically"},
-    S = { cmd [[split]], "Split horizontally"},
-  },
-}, { prefix = "<leader>" })
+wk.add({
+  { "<leader>w",  group = "Windows (panes/splits)" },
+  { "<leader>we",  cmd[[e]],                 desc = "Reload" },
+  { "<leader>ww",  cmd[[w]],                 desc = "Write" },
+  { "<leader>wq",  cmd[[x]],                 desc = "Write & Quit" },
+  { "<leader>wQ",  cmd[[wq!]],               desc = "Discard & Quit" },
 
----------------------------------
--- Window splitting & movement
----------------------------------
+  { "<leader>wt", group = "Tabs" },
+  { "<leader>wtq", cmd[[tabclose]],          desc = "Close tab" },
+  { "<leader>wtn", cmd[[tabNext]],           desc = "Next tab" },
+  { "<leader>wtp", cmd[[tabPrev]],           desc = "Previous tab" },
 
--- Move between panes
-normal("<C-h>", cmd[[TmuxNavigateLeft]], { desc = "Move to window left" })
-normal("<C-l>", cmd[[TmuxNavigateRight]], { desc = "Move to window right" })
-normal("<C-j>", cmd[[TmuxNavigateDown]], { desc = "Move to window below" })
-normal("<C-k>", cmd[[TmuxNavigateUp]], { desc = "Move to window above" })
+  { "<leader>ws",  cmd[[vsplit]],            desc = "Split vertically" },
+  { "<leader>wS",  cmd[[split]],             desc = "Split horizontally" },
+  { "<C-h>",       cmd[[TmuxNavigateLeft]],  desc = "Focus left" },
+  { "<C-l>",       cmd[[TmuxNavigateRight]], desc = "Focus right" },
+  { "<C-j>",       cmd[[TmuxNavigateDown]],  desc = "Focus down" },
+  { "<C-k>",       cmd[[TmuxNavigateUp]],    desc = "Focus up" },
+})
 
 ---------------------------------
 -- Navigation
 ---------------------------------
 
-wk.register({
-  j      = { cmd[[Telescope jumplist]], "Show Jumplist" },
-  h      = { cmd[[nohlsearch]], "Toggle search highlight" },
-  m      = { cmd[[Telescope marks]], "Show marks" },
-  ["sw"] = { luacmd[[MiniTrailspace.trim()]], "Strip trailing whitespace"},
-  ["sG"] = { luacmd[[MiniTrailspace.trim_last_lines()]], "Strip trailing empty lines"},
-}, { prefix = "<leader>" })
+wk.add({
+  { "<leader><leader>", cmd[[b#]],                                                                  desc = "Previous buffer" },
+  { "<leader>*",        cmd[[Telescope grep_string]],                                               desc = "Search for word" },
+  { "<leader>,",        cmd[[Oil]],                                                                 desc = "Show directory" },
+  { "<leader>.",        cmd[[Telescope buffers]],                                                   desc = "Switch buffers" },
+  { "<leader>?",        cmd[[Telescope keymaps]],                                                   desc = "Search vim keymaps" },
+  { "<leader>f",        cmd[[Telescope find_files]],                                                desc = "Find files" },
+  { "<leader>F",        cmd[[lua require("telescope").extensions.live_grep_args.live_grep_args()]], desc = "Find in files" },
+  { "<leader>G",        cmd[[Telescope resume]],                                                    desc = "Show previous search" },
+  { "<leader>h",        cmd[[nohlsearch]],                                                          desc = "Toggle search highlight" },
+  { "<leader>j",        cmd[[Telescope jumplist]],                                                  desc = "Show Jumplist" },
+  { "<leader>m",        cmd[[Telescope marks]],                                                     desc = "Show marks" },
+  { "<leader>P",        cmd[[Telescope yank_history theme=dropdown]],                               desc = "Show yank ring" },
+  { "<leader>u",        cmd[[UndotreeToggle]],                                                      desc = "Show the undo tree" },
+
+  { "<leader>p", group = "Paths" },
+  { "<leader>pa", "<Esc><Cmd>CopyAbsolutePath<CR>", desc = "Copy absolute path" },
+  { "<leader>pd", "<Esc><Cmd>CopyDirectoryPath<CR>", desc = "Copy directory path" },
+  { "<leader>pf", "<Esc><Cmd>CopyFileName<CR>", desc = "Copy file name" },
+  { "<leader>pg", '<Esc><Cmd>lua require"gitlinker".get_buf_range_url("n", {})<CR>', desc = "Copy the URL to github/gitlab" },
+  { "<leader>pl", "<Esc><Cmd>CopyRelativePathAndLine<CR>", desc = "Copy Relative path and line number" },
+  { "<leader>pr", "<Esc><Cmd>CopyRelativePath<CR>", desc = "Copy relative path" },
+})
 
 ---------------------------------
 -- Text manipulation
 ---------------------------------
-wk.register({
-  ['['] = {
-    name = "Prev",
-    ["<space>"] = { "O<Esc>j", "Add line above"},
-    e = { ":m -2<cr>", "Move line up" },
-    g = { "g;", "Edit" },
-    p = { "<Plug>(YankyCycleForward)", "Swap to next paste" },
-  },
-  [']'] = {
-    name = "Next",
-    ["<space>"] = { "o<Esc>k", "Add line below" },
-    e = { ":m +1<cr>", "Move line down" },
-    g = { "g,", "Edit" },
-    p = { "<Plug>(YankyCycleBackward)", "Swap to prev paste" },
-  },
-  p = {"<Plug>(YankyPutAfter)", "Paste" },
-  P = {"<Plug>(YankyPutBefore)", "Paste before" },
-  sa = "Add<motion><character>",
-  sc = "Change<current><replacement>",
-  sd = "Delete<current>",
+wk.add({
+  { "[",        group = "Prev" },
+  { "[<space>", "O<Esc>j",                    desc = "Add line above" },
+  { "[e",       cmd[[m -2]],                  desc = "Move line up" },
+  { "[c",       cmd[[Gitsigns prev_hunk]],    desc = "Prev change" },
+
+  { "[g",       "g;",                         desc = "Edit" },
+  { "[p",       "<Plug>(YankyCycleForward)",  desc = "Swap to next paste" },
+
+  { "]",        group = "Next" },
+  { "]<space>", "o<Esc>k",                    desc = "Add line below" },
+  { "]c",       cmd[[Gitsigns next_hunk]],    desc = "Next change" },
+  { "]e",       cmd[[m +1]],                  desc = "Move line down" },
+  { "]g",       "g,",                         desc = "Edit" },
+  { "]p",       "<Plug>(YankyCycleBackward)", desc = "Swap to prev paste" },
+
+  { "p",        "<Plug>(YankyPutAfter)",      desc = "Paste" },
+  { "P",        "<Plug>(YankyPutBefore)",     desc = "Paste before" },
+
+  { "ys",       desc = "Add{motion}{char}" },
+  { "cs",       desc = "Change surrounding {char} <replacement>" },
+  { "ds",       desc = "Delete surrounding {char}" },
+  { "S",        cmd[[lua MiniSurround.add('visual')]], desc = "Add surrounding visual", mode = "x"},
+
+  { "<leader>S",  cmd[[lua require('treesj').join()]],                                  desc = "Join structure" },
+  { "<leader>s",  cmd[[lua require('treesj').split()]],                                 desc = "Split structure" },
+  { "<leader>sj", cmd[[lua require('treesj').join({ join = { recursive = true } })]],   desc = "Join structure recursively" },
+  { "<leader>sk", cmd[[lua require('treesj').split({ split = { recursive = true } })]], desc = "Split structure recursively" },
+
+  { "<leader>sG", cmd[[lua MiniTrailspace.trim_last_lines()]], desc = "Strip trailing empty lines" },
+  { "<leader>sw", cmd[[lua MiniTrailspace.trim()]],            desc = "Strip trailing whitespace" },
+
+  { "gJ",         desc = "Join lines" },
+  { "gb",         desc = "Block comment {motion}" },
+  { "gc",         desc = "Linewise comment {motion}" },
+
+  { "gt",         cmd[[lua _G.translate()]],                   desc = "Translate and replace", mode = "v" },
+  { "q",          desc = "Record macro" },
+  { "<leader>i",  "m`gg=G``",                                  desc = "Reindent file" },
+  { "<leader>sp", cmd[[Telescope spell_suggest]],              desc = "Suggest spelling fixes" },
+
+  { "<",          "<gv",                                       desc = "Dedent (reselect)",     mode = "v"},
+  { ">",          ">gv",                                       desc = "Indent (reselect)",     mode = "v"},
+
+  {"<leader>y",   [["+y]],                                     desc = "Yank to OS clipboard",  mode = "nv"},
 })
 
--- Stay in indent mode
-visual("<", "<gv", { desc = "Dedent selection" })
-visual(">", ">gv", { desc = "Indent selection" })
-
--- OS Clipboard yank
-normal("<leader>y", "\"+y", { desc = "Yank to clipboard" })
-visual("<leader>y", "\"+y", { desc = "Yank to clipboard" })
-
-wk.register({
-  i = { "m`gg=G``", "Reindent file" },
-  P = { cmd [[Telescope yank_history theme=dropdown]], "Show yank ring" },
-  S = { luacmd[[require('treesj').join()]], "Join structure" },
-  s = { luacmd[[require('treesj').split()]], "Split structure" },
-  sk = { luacmd[[require('treesj').split({ split = { recursive = true } })]], "Split structure recursively"},
-  sj = { luacmd[[require('treesj').join({ join = { recursive = true } })]], "Join structure recursively"},
-  sp = { cmd[[Telescope spell_suggest]], "Suggest spelling fixes" },
-}, { prefix = "<leader>" })
-
-wk.register({
-  g = {
-    J = { "Join lines" },
-    b = { "Block comment {motion}" },
-    c = { "Linewise comment {motion}" },
-    t = { luacmd[[_G.translate()]], "Translate and replace"},
-  },
-  q = { "Record macro" },
-})
-
-wk.register({
-  g = {
-    t = { luacmd[[_G.translate()]], "Translate and replace"},
-  },
-}, { mode = "v"})
 
 ---------------------------------
 -- Diffs & Versioning
 ---------------------------------
-wk.register({
-  ['['] = {
-    name = "Prev",
-    c = { cmd[[Gitsigns prev_hunk]], "Change"},
-    -- x = { cmd[[GitConflictPrevConflict]], "Conflict" }
-  },
-  [']'] = {
-    name = "Next",
-    c = { cmd[[Gitsigns next_hunk]], "Change"},
-    -- x = { cmd[[GitConflictNextConflict]], "Conflict" }
-  }
+wk.add({
+  { "<leader>c",  group = "Changes" },
+  { "<leader>cA", cmd[[Gitsigns stage_buffer]],                                      desc = "Add all changes in file" },
+  { "<leader>cB", cmd[[Telescope git_bcommits]],                                     desc = "Show commit history for current file" },
+  { "<leader>cR", cmd[[Gitsigns reset_buffer]],                                      desc = "Reset file" },
+  { "<leader>cU", cmd[[Gitsigns reset_buffer_index]],                                desc = "Undo all changes in file" },
+  { "<leader>ca", cmd[[Gitsigns stage_hunk]],                                        desc = "Add change to stage" },
+  { "<leader>cb", cmd[[lua require"gitsigns".toggle_current_line_blame()]], desc = "Toggle blame" },
+  { "<leader>cd", cmd[[Gitsigns preview_hunk]],                                      desc = "Diff change" },
+  { "<leader>cu", cmd[[Gitsigns reset_hunk]],                                        desc = "Undo change" },
+
+  { "<leader>C",  group = "Changes (branch-level)" },
+  { "<leader>CC", cmd[[Telescope git_branches]],                                     desc = "Show branch switcher" },
+  { "<leader>CD", cmd[[Telescope git_status]],                                       desc = "Current git status" },
+  { "<leader>Cc", cmd[[Telescope git_commits]],                                      desc = "Show commit history" },
+  { "<leader>Cb", cmd[[GitConflictChooseBoth]],                                      desc = "Conflict: Choose Both" },
+  { "<leader>Cn", cmd[[GitConflictChooseNone]],                                      desc = "Conflict: Choose None" },
+  { "<leader>Co", cmd[[GitConflictChooseOurs]],                                      desc = "Conflict: Choose Ours" },
+  { "<leader>Ct", cmd[[GitConflictChooseTheirs]],                                    desc = "Conflict: Choose Theirs" },
 })
-
-wk.register({
-  c = {
-    name = "Changes",
-    a = { cmd[[Gitsigns stage_hunk]],                               "Add change to stage" },
-    A = { cmd[[Gitsigns stage_buffer]],                             "Add all changes in file" },
-    b = { cmd[[lua require"gitsigns".toggle_current_line_blame()]], "Toggle blame" },
-    B = { cmd[[Telescope git_bcommits]],                            "Show commit history for current file"},
-    u = { cmd[[Gitsigns reset_hunk]],                               "Undo change" },
-    U = { cmd[[Gitsigns reset_buffer_index]],                       "Undo all changes in file" },
-    d = { cmd[[Gitsigns preview_hunk]],                             "Diff change" },
-    R = { cmd[[Gitsigns reset_buffer]],                             "Reset file" },
-  },
-  C = {
-    name = "Changes (branch-level)",
-    C = { cmd[[Telescope git_branches]],                            "Show branch switcher"},
-    c = { cmd[[Telescope git_commits]],                             "Show commit history"},
-    D = { cmd[[Telescope git_status]],                              "Current git status"},
-    o = { cmd[[GitConflictChooseOurs]],                             "Conflict: Choose Ours"},
-    t = { cmd[[GitConflictChooseTheirs]],                           "Conflict: Choose Theirs"},
-    b = { cmd[[GitConflictChooseBoth]],                             "Conflict: Choose Both"},
-    n = { cmd[[GitConflictChooseNone]],                             "Conflict: Choose None"},
-  },
-  u = { cmd[[UndotreeToggle]], "Show the undo tree" },
-}, { prefix = "<leader>" })
-
----------------------------------
--- File navigation
----------------------------------
-
-wk.register({
-  f = {cmd [[Telescope find_files]], "Find files" },
-  -- F = {cmd [[Telescope live_grep]],  "Find in files" },
-  F = { luacmd [[require("telescope").extensions.live_grep_args.live_grep_args() ]], "Find in files" },
-  G = {cmd [[Telescope resume]],  "Show previous search" },
-  ["*"] = {cmd [[Telescope grep_string]], "Search for word" },
-  ["."] = { luacmd [[require("telescope.builtin").buffers() ]], "Switch buffers" },
-  [","] = {cmd [[Oil]], "Show directory" },
-  [" "] = { cmd [[b#]], "Previous buffer" },
-}, { prefix = "<leader>" })
-
 
 ---------------------------------
 -- Language aware navigation
 ---------------------------------
+wk.add({
+  {"<C-]>",       cmd[[lua vim.lsp.buf.definition()]],    desc = "Jump to definition" },
+  {"gd",          cmd[[lua vim.lsp.buf.definition()]],    desc = "Jump to definition" },
+  { "K",          cmd[[Lspsaga hover_doc]],               desc = "Symbol doc" },
+  { "<leader>{",  cmd[[Lspsaga peek_definition]],         desc = "Peek definition" },
+  { "<leader>]",  cmd[[Lspsaga finder]],                  desc = "Find references and definitions" },
 
--- LSP Tools
-wk.register({
-  l = {
-    name = "Language tools",
-    d = { luacmd [[_G.toggle_diagnostics()]],            "Toggle disagnostics" },
-    l = { cmd [[Lspsaga outline]],                       "Show LSP outline for file" },
-    p = { cmd [[Lspsaga peek_definition]],               "Peek definition" },
-    o = { cmd [[Lspsaga show_line_diagnostics]],         "Show line disagnostics" },
-    r = { cmd [[Lspsaga rename]],                        "LSP Rename" },
-    a = { luacmd [[vim.lsp.buf.code_action()]],          "Show code actions" },
-    k = { luacmd [[vim.lsp.buf.hover()]],                "Show hover" },
-    K = { cmd [[Lspsaga hover_doc]],                     "Show lspsaga hover" },
-    f = { cmd [[lua vim.lsp.buf.format()]],              "Format" },
-    D = { cmd [[Telescope diagnostics]],                 "List diagnostics"},
-    s = { cmd [[Telescope lsp_document_symbols]],        "Doc symbols"},
-    q = { luacmd [[vim.diagnostic.setloclist()]],        "Quickfix diagnostics" },
-  },
-  ["]"] = { cmd[[Lspsaga finder]],                       "Find references and definitions" },
-  ["{"] = { cmd[[Lspsaga peek_definition]],              "Peek definition" },
-}, { prefix = "<leader>" })
-
-vim.keymap.set("n", "K", cmd[[Lspsaga hover_doc]], {desc = "Hover doc"})
-
-wk.register({
-  ["<C-]>"] = { luacmd [[vim.lsp.buf.definition()]], "Jump to definition" }
+  { "<leader>l",  group = "Language tools" },
+  { "<leader>lD", cmd[[Telescope diagnostics]],           desc = "List diagnostics" },
+  { "<leader>lK", cmd[[Lspsaga hover_doc]],               desc = "Show lspsaga hover" },
+  { "<leader>la", cmd[[lua vim.lsp.buf.code_action()]],   desc = "Show code actions" },
+  { "<leader>ld", cmd[[lua _G.toggle_diagnostics()]],     desc = "Toggle disagnostics" },
+  { "<leader>lf", cmd[[lua vim.lsp.buf.format()]],        desc = "Format" },
+  { "<leader>lk", cmd[[lua vim.lsp.buf.hover()]],         desc = "Show hover" },
+  { "<leader>ll", cmd[[Lspsaga outline]],                 desc = "Show LSP outline for file" },
+  { "<leader>lo", cmd[[Lspsaga show_line_diagnostics]],   desc = "Show line disagnostics" },
+  { "<leader>lp", cmd[[Lspsaga peek_definition]],         desc = "Peek definition" },
+  { "<leader>lq", cmd[[lua vim.diagnostic.setloclist()]], desc = "Quickfix diagnostics" },
+  { "<leader>lr", cmd[[Lspsaga rename]],                  desc = "LSP Rename" },
+  { "<leader>ls", cmd[[Telescope lsp_document_symbols]],  desc = "Doc symbols" },
 })
-
----------------------------------
--- Test helpers
----------------------------------
-
--- Leader t/T to send the current file/line to rspec via tmux windows
--- Mapped per language in language_options
-
-wk.register({
-  p = {
-    name = "Paths",
-    g = { luacmd[[require"gitlinker".get_buf_range_url("n", {})]], "Copy the URL to github/gitlab"},
-    r = { cmd[[CopyRelativePath]], "Copy relative path" },
-    a = { cmd[[CopyAbsolutePath]], "Copy absolute path" },
-    f = { cmd[[CopyFileName]], "Copy file name" },
-    d = { cmd[[CopyDirectoryPath]], "Copy directory path" },
-    l = { cmd[[CopyRelativePathAndLine]], "Copy Relative path and line number" },
-  }
-}, { prefix = "<leader>" })
 
 ---------------------------------
 -- Debugging
 ---------------------------------
+wk.add({
+  { "<leader>d",  group = "Debug" },
+  { "<leader>dD", cmd[[lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')]], desc = "Conditional Breakpoint" },
+  { "<leader>dK", cmd[[lua require'dap'.terminate()]],                                   desc = "Terminate" },
+  { "<leader>dQ", cmd[[lua require'dap'.close()]],                                       desc = "Quit" },
+  { "<leader>dU", cmd[[lua require'dapui'.toggle()]],                                    desc = "Toggle UI" },
+  { "<leader>dc", cmd[[lua require'dap'.continue()]],                                    desc = "Continue" },
+  { "<leader>dd", cmd[[lua require'dap'.toggle_breakpoint()]],                           desc = "Toggle Breakpoint" },
+  { "<leader>de", cmd[[lua require'dapui'.eval(vim.fn.input '[Expression] > ')]],        desc = "Evaluate Input" },
+  { "<leader>dg", cmd[[lua require'dap'.continue()]],                                    desc = "Start" },
+  { "<leader>dh", cmd[[lua require'dap.ui.widgets'.hover()]],                            desc = "Hover Variables" },
+  { "<leader>di", cmd[[lua require'dap'.step_in()]],                                     desc = "Step Into" },
+  { "<leader>dl", cmd[[Telescope dap list_breakpoints]],                                 desc = "List breakpoints" },
+  { "<leader>dn", cmd[[lua require'dap'.continue()]],                                    desc = "Continue to Next" },
+  { "<leader>do", cmd[[lua require'dap'.step_out()]],                                    desc = "Step Out" },
+  { "<leader>dq", cmd[[lua require'dap'.disconnect()]],                                  desc = "Disconnect" },
+  { "<leader>dr", cmd[[lua require'dap'.run_to_cursor()]],                               desc = "Run to Cursor" },
+  { "<leader>du", cmd[[lua require'dap'.step_over()]],                                   desc = "Step Over" },
 
-wk.register({
-  d = {
-    name = "Debug",
+  { "<F10>",   cmd[[lua require'dap'.step_over()]],     desc = "Step Over" },
+  { "<F11>",   cmd[[lua require'dap'.step_into()]],     desc = "Step Into" },
+  { "<F5>",    cmd[[lua require'dap'.continue()]],      desc = "Start" },
+  { "<F6>",    cmd[[lua require'dap'.run_to_cursor()]], desc = "Run to cursor" },
+  { "<S-F11>", cmd[[lua require'dap'.step_out()]],      desc = "Step Out" },
 
-    d = { luacmd "require'dap'.toggle_breakpoint()", "Toggle Breakpoint" },
-    D = { luacmd("require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')"), "Conditional Breakpoint" },
-    l = { cmd [[Telescope dap list_breakpoints]], "List breakpoints"},
-
-    -- Somehow all of these are in my muscle memory... will try to consolidate
-    c = { luacmd("require'dap'.continue()"), "Continue"},
-    g = { luacmd("require'dap'.continue()"), "Start" },
-    n = { luacmd("require'dap'.continue()"), "Continue to Next" },
-
-    i = { luacmd("require'dap'.step_in()"), "Step Into" },
-    o = { luacmd("require'dap'.step_out()"), "Step Out" },
-    u = { luacmd("require'dap'.step_over()"), "Step Over" },
-
-    q = { luacmd("require'dap'.disconnect()"), "Disconnect" },
-    Q = { luacmd("require'dap'.close()"), "Quit" },
-    K = { luacmd("require'dap'.terminate()"), "Terminate" },
-
-    r = { luacmd("require'dap'.run_to_cursor()"), "Run to Cursor" },
-    e = { luacmd("require'dapui'.eval(vim.fn.input '[Expression] > ')"), "Evaluate Input" },
-    U = { luacmd("require'dapui'.toggle()"), "Toggle UI" },
-    h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
-  },
-}, { prefix = "<leader>" })
-
-wk.register({
-  ["<F5>"] = { luacmd("require'dap'.continue()"), "Start" },
-  ["<F6>"] = { luacmd("require'dap'.run_to_cursor()"), "Run to cursor" },
-  ["<F10>"] = { luacmd("require'dap'.step_over()"), "Step Over" },
-  ["<F11>"] = { luacmd("require'dap'.step_into()"), "Step Into" },
-  ["<S-F11>"] = { luacmd("require'dap'.step_out()"), "Step Out" },
+  { "<F2>", cmd[[Inspect]], desc = "Highlight under cursor" },
 })
-
----------------------------------
--- Misc bindings
----------------------------------
-
-wk.register({
-  ["<F2>"] = { cmd[[Inspect]], "Highlight under cursor" },
-})
-
--- Remap adding surrounding to Visual mode selection
-vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
-
--- Make special mapping for "add surrounding for line"
-vim.keymap.set('n', 'yss', 'ys_', { remap = true })
