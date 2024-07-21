@@ -4,6 +4,7 @@ return {
     "AndrewRadev/switch.vim",
   },
 
+  -- Expand/Contract logical structures to/from multiple lines
   {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -15,14 +16,13 @@ return {
   {
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
+    event = "VeryLazy",
     config = function()
-      require("textcase").setup({})
+      require("textcase").setup({
+        default_keymappings_enabled = false,
+      })
       require("telescope").load_extension("textcase")
     end,
-    keys = {
-      "ga", -- Default invocation prefix
-      { "<leader>ga", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
-    },
     cmd = {
       "Subs",
       "TextCaseOpenTelescope",
@@ -31,6 +31,4 @@ return {
       "TextCaseStartReplacingCommand",
     },
   },
-
-
 }

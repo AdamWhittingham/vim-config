@@ -99,6 +99,13 @@ wk.add({
   { "gb",         desc = "Block comment {motion}" },
   { "gc",         desc = "Linewise comment {motion}" },
 
+  { "<leader>ga", cmd[[TextCaseOpenTelescope]],                                    desc = "Change case", mode = { "n", "x" } },
+  { "gap",        cmd[[lua require('textcase').current_word('to_pascal_case')]],   desc = "Change word to Pascal case" },
+  { "gas",        cmd[[lua require('textcase').current_word('to_snake_case')]],    desc = "Change word to snake case" },
+  { "gac",        cmd[[lua require('textcase').current_word('to_constant_case')]], desc = "Change word to constant case" },
+  { "ga.",        cmd[[lua require('textcase').current_word('to_dot_case')]],      desc = "Change word to dot case" },
+  { "ga/",        cmd[[lua require('textcase').current_word('to_path_case')]],      desc = "Change word to path case" },
+
   { "gt",         cmd[[lua _G.translate()]],                   desc = "Translate and replace", mode = "v" },
   { "q",          desc = "Record macro" },
   { "<leader>i",  "m`gg=G``",                                  desc = "Reindent file" },
