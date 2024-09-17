@@ -18,7 +18,7 @@ if vim.fn.executable('ruby') == 1 then
 end
 
 if vim.fn.executable('node') == 1 then
-  table.insert(servers, "tsserver")
+  table.insert(servers, "ts_ls")
 end
 
 if vim.fn.executable('python3') == 1 then
