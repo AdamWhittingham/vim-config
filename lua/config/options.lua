@@ -42,6 +42,7 @@ opt.mouse = ''
 opt.breakindent = true
 opt.updatetime = 250
 opt.completeopt = 'menuone,noselect'
+opt.spelloptions = "camel"
 
 local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
 vim.api.nvim_create_autocmd(
