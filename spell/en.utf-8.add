@@ -28,3 +28,4 @@ ADRs
 upsert
 LLM
 LLMs
+deserialize
