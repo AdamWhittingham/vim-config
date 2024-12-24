@@ -15,19 +15,14 @@ return {
   -- Nice case switching
   {
     "johmsalas/text-case.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
     event = "VeryLazy",
     config = function()
       require("textcase").setup({
         default_keymappings_enabled = false,
       })
-      require("telescope").load_extension("textcase")
     end,
     cmd = {
       "Subs",
-      "TextCaseOpenTelescope",
-      "TextCaseOpenTelescopeQuickChange",
-      "TextCaseOpenTelescopeLSPChange",
       "TextCaseStartReplacingCommand",
     },
   },
