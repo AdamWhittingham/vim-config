@@ -37,19 +37,19 @@ wk.add({
 ---------------------------------
 
 wk.add({
-  { "<leader><leader>", cmd[[b#]],                                                                  desc = "Previous buffer" },
-  { "<leader>*",        cmd[[Telescope grep_string]],                                               desc = "Search for word" },
-  { "<leader>,",        cmd[[Oil]],                                                                 desc = "Show directory", icon = "" },
-  { "<leader>.",        cmd[[Telescope buffers]],                                                   desc = "Switch buffers" },
-  { "<leader>?",        cmd[[Telescope keymaps]],                                                   desc = "Search vim keymaps", icon = "" },
-  { "<leader>f",        cmd[[Telescope find_files]],                                                desc = "Find file" },
-  { "<leader>F",        cmd[[lua require("telescope").extensions.live_grep_args.live_grep_args()]], desc = "Find text" },
-  { "<leader>G",        cmd[[Telescope resume]],                                                    desc = "Resume telescope" },
-  { "<leader>h",        cmd[[nohlsearch]],                                                          desc = "Toggle search highlight" },
-  { "<leader>j",        cmd[[Telescope jumplist]],                                                  desc = "Show Jumplist" },
-  { "<leader>m",        cmd[[Telescope marks]],                                                     desc = "Show marks" },
-  { "<leader>P",        cmd[[Telescope yank_history theme=dropdown]],                               desc = "Show yank ring" },
-  { "<leader>u",        cmd[[UndotreeToggle]],                                                      desc = "Show the undo tree" },
+  { "<leader><leader>", cmd[[b#]],                                    desc = "Previous buffer" },
+  { "<leader>*",        cmd[[FzfLua grep_cword]],                     desc = "Search for word" },
+  { "<leader>,",        cmd[[Oil]],                                   desc = "Show directory", icon = "" },
+  { "<leader>.",        cmd[[FzfLua buffers]],                        desc = "Switch buffers" },
+  { "<leader>?",        cmd[[FzfLua keymaps]],                        desc = "Search vim keymaps", icon = "" },
+  { "<leader>f",        cmd[[FzfLua files]],                          desc = "Find file" },
+  { "<leader>F",        cmd[[FzfLua live_grep_glob]],                 desc = "Find text" },
+  { "<leader>G",        cmd[[FzfLua resume]],                         desc = "Resume search" },
+  { "<leader>h",        cmd[[nohlsearch]],                            desc = "Toggle search highlight" },
+  { "<leader>j",        cmd[[FzfLua jumps]],                          desc = "Show Jumplist" },
+  { "<leader>m",        cmd[[FzfLua marks]],                          desc = "Show marks" },
+  -- { "<leader>P",     cmd[[Telescope yank_history theme=dropdown]], desc = "Show yank ring" },
+  { "<leader>u",        cmd[[UndotreeToggle]],                        desc = "Show the undo tree" },
 
   { "<leader>p", group = "Paths" },
   { "<leader>pa", "<Esc><Cmd>CopyAbsolutePath<CR>", desc = "Copy absolute path" },
@@ -58,6 +58,8 @@ wk.add({
   { "<leader>pg", '<Esc><Cmd>lua require"gitlinker".get_buf_range_url("n", {})<CR>', desc = "Copy the URL to github/gitlab" },
   { "<leader>pl", "<Esc><Cmd>CopyRelativePathAndLine<CR>", desc = "Copy Relative path and line number" },
   { "<leader>pr", "<Esc><Cmd>CopyRelativePath<CR>", desc = "Copy relative path" },
+
+  { "<leader>2", cmd[[lua require('smear_cursor').enabled = not require('smear_cursor').enabled]] }
 })
 
 ---------------------------------
@@ -99,7 +101,7 @@ wk.add({
   { "gb",         desc = "Block comment {motion}" },
   { "gc",         desc = "Linewise comment {motion}" },
 
-  { "<leader>ga", cmd[[TextCaseOpenTelescope]],                                    desc = "Change case", mode = { "n", "x" } },
+  -- { "<leader>ga", cmd[[TextCaseOpenTelescope]],                                    desc = "Change case", mode = { "n", "x" } },
   { "gap",        cmd[[lua require('textcase').current_word('to_pascal_case')]],   desc = "Change word to Pascal case" },
   { "gas",        cmd[[lua require('textcase').current_word('to_snake_case')]],    desc = "Change word to snake case" },
   { "gac",        cmd[[lua require('textcase').current_word('to_constant_case')]], desc = "Change word to constant case" },
@@ -109,7 +111,7 @@ wk.add({
   { "gt",         cmd[[lua _G.translate()]],                   desc = "Translate and replace", mode = "v" },
   { "q",          desc = "Record macro" },
   { "<leader>i",  "m`gg=G``",                                  desc = "Reindent file" },
-  { "<leader>sp", cmd[[Telescope spell_suggest]],              desc = "Suggest spelling fixes" },
+  { "<leader>sp", cmd[[FzfLua spell_suggest]],              desc = "Suggest spelling fixes" },
 
   { "<",          "<gv",                                       desc = "Dedent (reselect)",     mode = "v"},
   { ">",          ">gv",                                       desc = "Indent (reselect)",     mode = "v"},
@@ -123,23 +125,23 @@ wk.add({
 ---------------------------------
 wk.add({
   { "<leader>c",  group = "Changes" },
-  { "<leader>cA", cmd[[Gitsigns stage_buffer]],                                      desc = "Add all changes in file" },
-  { "<leader>cB", cmd[[Telescope git_bcommits]],                                     desc = "Show commit history for current file" },
-  { "<leader>cR", cmd[[Gitsigns reset_buffer]],                                      desc = "Reset file" },
-  { "<leader>cU", cmd[[Gitsigns reset_buffer_index]],                                desc = "Undo all changes in file" },
-  { "<leader>ca", cmd[[Gitsigns stage_hunk]],                                        desc = "Add change to stage" },
+  { "<leader>cA", cmd[[Gitsigns stage_buffer]],                             desc = "Add all changes in file" },
+  { "<leader>cB", cmd[[FzfLua git_bcommits]],                               desc = "Show commit history for current file" },
+  { "<leader>cR", cmd[[Gitsigns reset_buffer]],                             desc = "Reset file" },
+  { "<leader>cU", cmd[[Gitsigns reset_buffer_index]],                       desc = "Undo all changes in file" },
+  { "<leader>ca", cmd[[Gitsigns stage_hunk]],                               desc = "Add change to stage" },
   { "<leader>cb", cmd[[lua require"gitsigns".toggle_current_line_blame()]], desc = "Toggle blame" },
-  { "<leader>cd", cmd[[Gitsigns preview_hunk]],                                      desc = "Diff change" },
-  { "<leader>cu", cmd[[Gitsigns reset_hunk]],                                        desc = "Undo change" },
+  { "<leader>cd", cmd[[Gitsigns preview_hunk]],                             desc = "Diff change" },
+  { "<leader>cu", cmd[[Gitsigns reset_hunk]],                               desc = "Undo change" },
 
   { "<leader>C",  group = "Changes (branch-level)" },
-  { "<leader>CC", cmd[[Telescope git_branches]],                                     desc = "Show branch switcher" },
-  { "<leader>CD", cmd[[Telescope git_status]],                                       desc = "Current git status" },
-  { "<leader>Cc", cmd[[Telescope git_commits]],                                      desc = "Show commit history" },
-  { "<leader>Cb", cmd[[GitConflictChooseBoth]],                                      desc = "Conflict: Choose Both" },
-  { "<leader>Cn", cmd[[GitConflictChooseNone]],                                      desc = "Conflict: Choose None" },
-  { "<leader>Co", cmd[[GitConflictChooseOurs]],                                      desc = "Conflict: Choose Ours" },
-  { "<leader>Ct", cmd[[GitConflictChooseTheirs]],                                    desc = "Conflict: Choose Theirs" },
+  { "<leader>CC", cmd[[FzfLua git_branches]],                               desc = "Show branch switcher" },
+  { "<leader>CD", cmd[[FzfLua git_status]],                                 desc = "Current git status" },
+  { "<leader>Cc", cmd[[FzfLua git_commits]],                                desc = "Show commit history" },
+  { "<leader>Cb", cmd[[GitConflictChooseBoth]],                             desc = "Conflict: Choose Both" },
+  { "<leader>Cn", cmd[[GitConflictChooseNone]],                             desc = "Conflict: Choose None" },
+  { "<leader>Co", cmd[[GitConflictChooseOurs]],                             desc = "Conflict: Choose Ours" },
+  { "<leader>Ct", cmd[[GitConflictChooseTheirs]],                           desc = "Conflict: Choose Theirs" },
 })
 
 ---------------------------------
@@ -153,7 +155,7 @@ wk.add({
   { "<leader>]",  cmd[[Lspsaga finder]],                  desc = "Find references and definitions" },
 
   { "<leader>l",  group = "Language tools" },
-  { "<leader>lD", cmd[[Telescope diagnostics]],           desc = "List diagnostics" },
+  { "<leader>lD", cmd[[FzfLua diagnostics_document]],     desc = "List diagnostics" },
   { "<leader>lK", cmd[[Lspsaga hover_doc]],               desc = "Show lspsaga hover" },
   { "<leader>la", cmd[[lua vim.lsp.buf.code_action()]],   desc = "Show code actions" },
   { "<leader>ld", cmd[[lua _G.toggle_diagnostics()]],     desc = "Toggle disagnostics" },
@@ -164,7 +166,7 @@ wk.add({
   { "<leader>lp", cmd[[Lspsaga peek_definition]],         desc = "Peek definition" },
   { "<leader>lq", cmd[[lua vim.diagnostic.setloclist()]], desc = "Quickfix diagnostics" },
   { "<leader>lr", cmd[[Lspsaga rename]],                  desc = "LSP Rename" },
-  { "<leader>ls", cmd[[Telescope lsp_document_symbols]],  desc = "Doc symbols" },
+  { "<leader>ls", cmd[[FzfLua lsp_document_symbols]],     desc = "Doc symbols" },
 })
 
 ---------------------------------
@@ -182,7 +184,7 @@ wk.add({
   { "<leader>dg", cmd[[lua require'dap'.continue()]],                                    desc = "Start" },
   { "<leader>dh", cmd[[lua require'dap.ui.widgets'.hover()]],                            desc = "Hover Variables" },
   { "<leader>di", cmd[[lua require'dap'.step_in()]],                                     desc = "Step Into" },
-  { "<leader>dl", cmd[[Telescope dap list_breakpoints]],                                 desc = "List breakpoints" },
+  { "<leader>dl", cmd[[FzfLua dap_breakpoints]],                                 desc = "List breakpoints" },
   { "<leader>dn", cmd[[lua require'dap'.continue()]],                                    desc = "Continue to Next" },
   { "<leader>do", cmd[[lua require'dap'.step_out()]],                                    desc = "Step Out" },
   { "<leader>dq", cmd[[lua require'dap'.disconnect()]],                                  desc = "Disconnect" },
@@ -196,4 +198,5 @@ wk.add({
   { "<S-F11>", cmd[[lua require'dap'.step_out()]],      desc = "Step Out" },
 
   { "<F2>", cmd[[Inspect]], desc = "Highlight under cursor" },
+  { "<S-F2>", cmd[[FzfLua highlights]], desc = "Highlight under cursor" },
 })
