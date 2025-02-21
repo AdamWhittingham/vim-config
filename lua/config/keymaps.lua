@@ -58,6 +58,8 @@ wk.add({
   { "<leader>pg", '<Esc><Cmd>lua require"gitlinker".get_buf_range_url("n", {})<CR>', desc = "Copy the URL to github/gitlab" },
   { "<leader>pl", "<Esc><Cmd>CopyRelativePathAndLine<CR>", desc = "Copy Relative path and line number" },
   { "<leader>pr", "<Esc><Cmd>CopyRelativePath<CR>", desc = "Copy relative path" },
+
+  { "<leader>2", cmd[[lua require('smear_cursor').enabled = not require('smear_cursor').enabled]] }
 })
 
 ---------------------------------
