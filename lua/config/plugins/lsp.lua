@@ -1,18 +1,13 @@
 return {
   {
-    "williamboman/mason.nvim", -- Install Language servers
-    event = "VeryLazy",
-    build = ":MasonUpdate", -- :MasonUpdate updates registry contents
-    config = true,
-  },
-
-  {
-    "williamboman/mason-lspconfig.nvim", -- Configure language servers
-    event = "VeryLazy",
-    opts = function()
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
       ensure_installed = require('config.lsp').servers
-      automatic_installation = true
-    end
+    },
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+    },
   },
 
   {

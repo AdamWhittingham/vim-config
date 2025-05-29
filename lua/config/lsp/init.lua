@@ -21,7 +21,7 @@ if vim.fn.executable('node') == 1 then
   table.insert(servers, "ts_ls")
 end
 
-if vim.fn.executable('python3') == 1 then
+if vim.fn.executable('python') == 1 then
   table.insert(servers, "pylsp")
 end
 
