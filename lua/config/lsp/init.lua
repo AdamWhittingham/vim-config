@@ -33,6 +33,44 @@ end
 M.servers = servers
 M.handlers = require("config.lsp.handlers")
 
+-- Setup Server customisations
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
+        },
+      },
+    },
+  },
+})
+
+vim.lsp.config('jsonls', {
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
+  },
+})
+
+vim.lsp.config('yamlls', {
+  settings = {
+    yaml = {
+      schemaStore = {
+        enable = true,
+        url = "", -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+      },
+      schemas = require('schemastore').yaml.schemas(),
+    },
+  },
+})
+
 M.setup = function()
   M.handlers.setup(servers)
 end
