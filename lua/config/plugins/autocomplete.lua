@@ -123,5 +123,8 @@ return {
         sorting = defaults.sorting,
       })
     end,
+  },
+  {
+    "b0o/schemastore.nvim",
   }
 }

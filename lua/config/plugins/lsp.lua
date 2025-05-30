@@ -10,19 +10,6 @@ return {
     },
   },
 
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'cmp-nvim-lsp',
-      "b0o/schemastore.nvim",
-    },
-    config = function()
-      require("config.lsp").setup()
-    end
-  },
-
   -- Pop up function definitions when typing a function call
   {
     "ray-x/lsp_signature.nvim",
@@ -51,8 +38,11 @@ return {
         },
       },
     }
-
   },
 
-  { 'j-hui/fidget.nvim', config = true,  tag = 'legacy' },        -- Show LSP progress feedback
+  {
+    'j-hui/fidget.nvim',
+    config = true,
+    tag = 'legacy',
+  },        -- Show LSP progress feedback
 }
