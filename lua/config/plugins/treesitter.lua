@@ -91,8 +91,8 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    branch = "main",
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = false,
+    branch = "master",
     opts = treesitter_opts,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
