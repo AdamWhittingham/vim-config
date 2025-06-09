@@ -32,6 +32,9 @@ local options = {
       },
     },
   },
+  rocks = {
+    enabled = false,
+  }
 }
 
 require("lazy").setup("config.plugins", options)
