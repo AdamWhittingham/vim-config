@@ -1,10 +1,16 @@
 local colors = {
-  fg_a  = '#ffffff',
-  fg_b  = '#ccccff',
-  fg_c  = '#cccccc',
-  bg_a  = '#002080',
-  bg_a_in  = '#200080',
+  fg_a  = '#8888FF',
+  bg_a  = '#001060',
+
+  fg_a_i  = '#AAAAFF',
+  bg_a_i  = '#2000A0',
+  fg_a_v  = '#AAAAFF',
+  bg_a_v  = '#5000A0',
+
+  fg_b  = '#ffffff',
   bg_b  = '#10408F',
+
+  fg_c  = '#cccccc',
   bg_c  = '#081028',
 }
 
@@ -16,10 +22,17 @@ local ad_code = {
   },
 
   visual = {
-    a = { fg = colors.fg_a, bg = colors.bg_a_in },
+    a = { fg = colors.fg_a_v, bg = colors.bg_a_v },
     b = { fg = colors.fg_b, bg = colors.bg_b },
     c = { fg = colors.fg_c, bg = colors.bg_c },
   },
+
+  insert = {
+    a = { fg = colors.fg_a_i, bg = colors.bg_a_i },
+    b = { fg = colors.fg_b, bg = colors.bg_b },
+    c = { fg = colors.fg_c, bg = colors.bg_c },
+  },
+
 
   inactive = {
     a = { fg = colors.fg_a, bg = colors.bg_a },
@@ -36,6 +49,9 @@ local line_config = {
   },
   sections = {
     lualine_a = {
+      'branch',
+    },
+    lualine_b = {
       {
         'filename',
         separator = { right = '', left = '' },
@@ -47,9 +63,6 @@ local line_config = {
           newfile = '',     -- Text to show for newly created file before first write
         },
       },
-    },
-    lualine_b = {
-      'branch',
     },
     lualine_c = {
       { 'diagnostics', symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '}, update_in_insert = true },
@@ -67,8 +80,8 @@ local line_config = {
   },
 
   inactive_sections = {
-    lualine_a = { 'filename' },
-    lualine_b = {},
+    lualine_a = {},
+    lualine_b = { 'filename' },
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
