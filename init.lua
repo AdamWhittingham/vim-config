@@ -1,6 +1,7 @@
 -- Core Config
 require "config.options"
 require "config.plugin-init"
+require "config.lsp"
 require "config.keymaps"
 require "config.utils"
 require "config.language_options"
