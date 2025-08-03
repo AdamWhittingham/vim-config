@@ -26,13 +26,6 @@ There's a couple of tools that make this config really work well:
 2. [fd](https://github.com/sharkdp/fd) - search **files** faster
 3. Running in [WezTerm](https://wezfurlong.org/wezterm/index.html) with a [NerdFont](https://www.nerdfonts.com/) because we deserve pretty things in the terminal.
 
-## Optional Language Server Setup
-Neovim is incredibly powerful but can do even more when it has some awareness of the languages you are editing.
-To provide Neovim with this context, we need to install some Language Servers. Thankfully this can all be done for us:
-
-- Start nvim and run `:Mason`
-- Search for language servers you want and press `i` to install them
-
 # Key Mappings
 For the canonical list, see [keymaps.lua](./lua/config/keymaps.lua)
 You can also type `:WhichKey` for a helpful list, or pausing in the middle of a sequence will show you the options to complete it.
