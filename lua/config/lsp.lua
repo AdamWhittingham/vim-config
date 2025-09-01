@@ -4,6 +4,7 @@ vim.lsp.config('*', {
 })
 
 vim.lsp.enable('bashls')
+vim.lsp.enable('gopls')
 vim.lsp.enable('jsonls')
 vim.lsp.enable('lua')
 vim.lsp.enable('solargraph')
