@@ -43,7 +43,7 @@ wk.add({
   { "<leader>.",        cmd[[FzfLua buffers]],                        desc = "Switch buffers" },
   { "<leader>?",        cmd[[FzfLua keymaps]],                        desc = "Search vim keymaps", icon = "" },
   { "<leader>f",        cmd[[FzfLua files]],                          desc = "Find file" },
-  { "<leader>F",        cmd[[FzfLua live_grep_glob]],                 desc = "Find text" },
+  { "<leader>F",        cmd[[lua FzfLua.live_grep()]],                desc = "Find text" },
   { "<leader>G",        cmd[[FzfLua resume]],                         desc = "Resume search" },
   { "<leader>h",        cmd[[nohlsearch]],                            desc = "Toggle search highlight" },
   { "<leader>j",        cmd[[FzfLua jumps]],                          desc = "Show Jumplist" },
