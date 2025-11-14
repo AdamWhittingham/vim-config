@@ -108,7 +108,7 @@ wk.add({
   { "ga.",        cmd[[lua require('textcase').current_word('to_dot_case')]],      desc = "Change word to dot case" },
   { "ga/",        cmd[[lua require('textcase').current_word('to_path_case')]],      desc = "Change word to path case" },
 
-  { "gt",         cmd[[lua _G.translate()]],                   desc = "Translate and replace", mode = "v" },
+  { "gT",         cmd[[lua _G.translate()]],                   desc = "Translate and replace", mode = "v" },
   { "q",          desc = "Record macro" },
   { "<leader>i",  "m`gg=G``",                                  desc = "Reindent file" },
   { "<leader>sp", cmd[[FzfLua spell_suggest]],              desc = "Suggest spelling fixes" },
