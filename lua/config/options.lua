@@ -60,3 +60,5 @@ opt.smartcase = true
 
 -- Diff
 opt.diffopt = opt.diffopt + "linematch:60"
+-- opt.diffopt = opt.diffopt + "iwhite"
+-- opt.diffopt = opt.diffopt + "inline:word"
