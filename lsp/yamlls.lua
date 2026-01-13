@@ -1,6 +1,7 @@
 return {
   settings = {
-    yaml = {
+    yamlls = {
+      cmd = { 'yaml-language-server', '--stdio' },
       schemaStore = {
         enable = true,
         url = "", -- Avoid TypeError: Cannot read properties of undefined (reading 'length')

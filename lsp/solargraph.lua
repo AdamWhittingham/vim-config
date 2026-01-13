@@ -1,5 +1,5 @@
 return {
-  cmd = { 'solargraph', 'stdio' },
+  cmd = { 'asdf', 'exec', 'solargraph', 'stdio' },
   settings = {
     solargraph = {
       diagnostics = true,
