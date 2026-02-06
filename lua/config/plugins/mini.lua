@@ -33,6 +33,7 @@ end
 
 return {
   'echasnovski/mini.nvim',
+  event = "VeryLazy",
   config = function()
     require('mini.ai').setup({opts = ai_opts})
     require('mini.align').setup()
@@ -45,6 +46,8 @@ return {
     require('mini.cursorword').setup()
     require('mini.jump').setup()
     require('mini.surround').setup(surround_config)
+
+    vim.g.minitrailspace_disable = true
     require('mini.trailspace').setup()
   end
 }

@@ -2,6 +2,7 @@ return {
   -- Quickly toggle between common alternative layouts for strings, arrays, etc.
   {
     "AndrewRadev/switch.vim",
+    event = "VeryLazy"
   },
 
   -- Expand/Contract logical structures to/from multiple lines
