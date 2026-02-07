@@ -81,6 +81,17 @@ local processLines = {
   [[                     This is Amazing!                    ]],
 }
 
+local gooddesignLines = {
+[[▄▖     ▌   ▌    ▘         ▌ ▌        ▜           ]],
+[[▌ ▛▌▛▌▛▌  ▛▌█▌▛▘▌▛▌▛▌  ▀▌▛▌▛▌▛▘  ▌▌▀▌▐ ▌▌█▌      ]],
+[[▙▌▙▌▙▌▙▌  ▙▌▙▖▄▌▌▙▌▌▌  █▌▙▌▙▌▄▌  ▚▘█▌▐▖▙▌▙▖      ]],
+[[                 ▄▌                              ]],
+[[▐▘    ▗       ▗ ▌       ▘▗      ▌ ▌          ▗   ]],
+[[▜▘▀▌▛▘▜▘█▌▛▘  ▜▘▛▌▀▌▛▌  ▌▜▘  ▀▌▛▌▛▌▛▘  ▛▘▛▌▛▘▜▘  ]],
+[[▐ █▌▄▌▐▖▙▖▌   ▐▖▌▌█▌▌▌  ▌▐▖  █▌▙▌▙▌▄▌  ▙▖▙▌▄▌▐▖▗ ]],
+[[                                - Thomas C. Gale ]]
+}
+
 local function lineColor(lines, popStart, popEnd)
   local out = {}
   for i, line in ipairs(lines) do
@@ -104,6 +115,7 @@ local headers = {
   lineColor(bugLines, 5, 10),
   lineColor(processLines, 0, 3),
   lineColor(fixLines, 0, 0),
+  lineColor(gooddesignLines, 4, 7),
 }
 
 
