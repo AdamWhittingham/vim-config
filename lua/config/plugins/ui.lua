@@ -54,12 +54,6 @@ return {
     }
   },
 
-  -- Visualise the undo tree and make it easy to navigate
-  {
-    'mbbill/undotree',
-    event = "VeryLazy",
-  },
-
   -- Bindings to speed up choosing ours/theres when resolving diffs
   {
     "akinsho/git-conflict.nvim",
