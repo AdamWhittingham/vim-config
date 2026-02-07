@@ -151,7 +151,13 @@ return {
       notifier = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
-      scroll = { enabled = true },
+      scroll = {
+        enabled = true,
+        animate = {
+          duration = { step = 10, total = 150 },
+          easing = "outQuad",
+        },
+      },
       statuscolumn = { enabled = true },
       words = { enabled = true },
     },
