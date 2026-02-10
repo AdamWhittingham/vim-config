@@ -47,7 +47,22 @@ return {
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy = { implementation = "prefer_rust_with_warning" },
+
+    keymap = {
+      preset = 'default',
+
+      ['<CR>'] = { 'accept', 'fallback' },
+      ['<Tab>'] = {
+        function(cmp)
+          if cmp.snippet_active() then return cmp.accept()
+          else return cmp.select_and_accept() end
+        end,
+        'snippet_forward',
+        'fallback'
+      },
+    }
   },
+
   opts_extend = { "sources.default" }
 }
