@@ -1,73 +1,13 @@
-local dapui_opts = {
-  layouts = {
-    {
-      elements = {
-        'repl',
-        'scopes',
-      },
-      size = 10,
-      position = 'bottom',
-    },
-    {
-      elements = {
-        'stacks',
-        'breakpoints',
-        'watches',
-      },
-      size = 40,
-      position = 'left',
-    },
-  },
-  controls = {
-    element = "scopes"
-  }
-}
-
 return {
-  "mfussenegger/nvim-dap",
-  event = "VeryLazy",
-  dependencies = {
-    -- fancy UI for the debugger
-    {
-      "rcarriga/nvim-dap-ui",
-      opts = dapui_opts,
-      dependencies = {"nvim-neotest/nvim-nio"},
-      config = function(_, opts)
-        require("dap.ext.vscode").load_launchjs()
-
-        local dap = require("dap")
-        local dapui = require("dapui")
-
-        dapui.setup(opts)
-
-        dap.listeners.after.event_initialized["dapui_config"] = function()
-          dapui.open({})
-        end
-
-        dap.listeners.before.event_terminated["dapui_config"] = function()
-          dapui.close({})
-        end
-
-        dap.listeners.before.event_exited["dapui_config"] = function()
-          dapui.close({})
-        end
-
-        vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-
-        vim.fn.sign_define('DapBreakpoint',          {text='󰙦 ', texthl='DapBreakpoint',            linehl='',               numhl='DapBreakpoint'})
-        vim.fn.sign_define('DapBreakpointCondition', {text='󰙧 ', texthl='DapBreakpointConditional', linehl='',               numhl='DapBreakpointConditional'})
-        vim.fn.sign_define('DapBreakpointRejected',  {text=' ', texthl='DapBreakpointRejected',    linehl='',               numhl='DapBreakpointRejected'})
-        vim.fn.sign_define('DapStopped',             {text='',  texthl='DapStopped',               linehl='DapStoppedLine', numhl='DapStopped'})
-      end,
-    },
-
-    -- virtual text for the debugger
-    {
-      "theHamsta/nvim-dap-virtual-text",
-      opts = {},
-    },
-
-    {"leoluz/nvim-dap-go", config = true },
-    {"suketa/nvim-dap-ruby", config = true},
+  {
+    "mfussenegger/nvim-dap",
+    event = "VeryLazy",
   },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+  },
+
+  {"leoluz/nvim-dap-go", config = true },
+  {"suketa/nvim-dap-ruby", config = true},
 }
