@@ -67,18 +67,6 @@ return {
       opts = {},
     },
 
-    -- mason.nvim integration
-    {
-      "jay-babu/mason-nvim-dap.nvim",
-      dependencies = "mason.nvim",
-      cmd = { "DapInstall", "DapUninstall" },
-      opts = {
-        automatic_installation = true,
-        handlers = {},
-        ensure_installed = {},
-      },
-    },
-
     {"leoluz/nvim-dap-go", config = true },
     {"suketa/nvim-dap-ruby", config = true},
   },
