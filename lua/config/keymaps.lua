@@ -120,6 +120,10 @@ wk.add({
   { ">",          ">gv",                                       desc = "Indent (reselect)",     mode = "v"},
 
   {"<leader>y",   [["+y]],                                     desc = "Yank to OS clipboard",  mode = "nv"},
+
+  { "<c-a>", "<Plug>(dial-increment)", desc="Increment or alter value"},
+  { "<c-x>", "<Plug>(dial-decrement)", desc="Decrement or alter value"},
+
 })
 
 
