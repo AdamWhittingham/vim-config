@@ -3,7 +3,18 @@ vim.lsp.config('*', {
   root_markers = { '.git' },
 })
 
-vim.lsp.config('solargraph', {
+local lsp_setup = function (name, lsp_config)
+  vim.lsp.config(name, lsp_config)
+  vim.lsp.enable(name)
+end
+
+lsp_setup('tsserver', {
+  cmd = {'typescript-language-server', '--stdio'},
+  filetypes = { 'typescript' },
+  root_dir = vim.fs.root(0, {'package.json', '.git'}),
+})
+
+lsp_setup('solargraph', {
   cmd = { 'asdf', 'exec', 'solargraph', 'stdio' },
   settings = {
     solargraph = {
@@ -15,7 +26,7 @@ vim.lsp.config('solargraph', {
   root_markers = { '.git' },
 })
 
-vim.lsp.config('jsonls', {
+lsp_setup('jsonls', {
   settings = {
     json = {
       schemas = require('schemastore').json.schemas(),
@@ -24,7 +35,7 @@ vim.lsp.config('jsonls', {
   },
 })
 
-vim.lsp.config('lua_ls', {
+lsp_setup('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
@@ -40,7 +51,7 @@ vim.lsp.config('lua_ls', {
   },
 })
 
-vim.lsp.config('yamlls', {
+lsp_setup('yamlls', {
   settings = {
     yamlls = {
       cmd = { 'yaml-language-server', '--stdio' },
@@ -53,8 +64,3 @@ vim.lsp.config('yamlls', {
   },
 })
 
-vim.lsp.enable('gopls')
-vim.lsp.enable('jsonls')
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('solargraph')
-vim.lsp.enable('yamlls')
