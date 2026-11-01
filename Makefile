@@ -8,3 +8,7 @@ git-update:
 
 .PHONY: update
 update: git-update install
+
+.PHONY: deps
+deps:
+	brew bundle install --file=Brewfile

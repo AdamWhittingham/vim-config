@@ -19,12 +19,14 @@ cd ~/.config/nvim; ./install
 > If you haven't moved to Neovim, I've left the `master` branch on the now unmaintained Vim-centric config to avoid breaking anything.
 > I'd urge you to switch to Neovim and try the new stuff out, it's fantastic!
 
-## Optional external dependencies for faster
-There's a couple of tools that make this config really work well:
+## External dependencies
+The `install` script uses Homebrew to install everything in the [Brewfile](./Brewfile) (search tools, language servers and linters).
+Run `make deps` to install them on their own. The git post-merge hook also installs anything new after a pull.
 
-1. [Ripgrep](https://github.com/BurntSushi/ripgrep) - search **text** faster
-2. [fd](https://github.com/sharkdp/fd) - search **files** faster
-3. Running in [WezTerm](https://wezfurlong.org/wezterm/index.html) with a [NerdFont](https://www.nerdfonts.com/) because we deserve pretty things in the terminal.
+Language servers are installed via Homebrew rather than asdf so they keep working whatever Node or Go version a project pins.
+The exception is Ruby: `ruby-lsp` must be installed into each asdf Ruby version (add it to `~/.default-gems`).
+
+This config works best when running in [WezTerm](https://wezfurlong.org/wezterm/index.html) with a [NerdFont](https://www.nerdfonts.com/) because we deserve pretty things in the terminal.
 
 # Key Mappings
 For the canonical list, see [keymaps.lua](./lua/config/keymaps.lua)

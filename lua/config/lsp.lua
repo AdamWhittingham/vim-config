@@ -53,6 +53,7 @@ vim.lsp.config('yamlls', {
   },
 })
 
+vim.lsp.enable('gopls')
 vim.lsp.enable('jsonls')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('solargraph')
