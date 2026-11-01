@@ -3,6 +3,9 @@ vim.lsp.config('*', {
   root_markers = { '.git' },
 })
 
+-- ruby_lsp is the default (see `vim.lsp.enable` below) and runs via the asdf
+-- shim from the project root, so it picks up the project's Ruby & bundle.
+-- Solargraph is kept for projects on Ruby < 3, use `:lsp enable solargraph`
 vim.lsp.config('solargraph', {
   cmd = { 'asdf', 'exec', 'solargraph', 'stdio' },
   settings = {
@@ -56,5 +59,5 @@ vim.lsp.config('yamlls', {
 vim.lsp.enable('gopls')
 vim.lsp.enable('jsonls')
 vim.lsp.enable('lua_ls')
-vim.lsp.enable('solargraph')
+vim.lsp.enable('ruby_lsp')
 vim.lsp.enable('yamlls')
