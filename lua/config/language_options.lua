@@ -10,6 +10,27 @@ vim.api.nvim_create_autocmd(
   }
 )
 
+-- Detect filetypes Neovim doesn't, so the right language servers attach
+vim.filetype.add({
+  extension = {
+    bash = 'bash',
+    j2 = 'jinja',
+  },
+  pattern = {
+    -- Ansible (attaches ansiblels as well as yamlls)
+    ['.*/playbooks/.*%.ya?ml'] = 'yaml.ansible',
+    ['.*/playbook[^/]*%.ya?ml'] = 'yaml.ansible',
+    ['.*/site%.ya?ml'] = 'yaml.ansible',
+    ['.*/roles/[^/]+/[^/]+/.*%.ya?ml'] = 'yaml.ansible',
+    ['.*/group_vars/.*%.ya?ml'] = 'yaml.ansible',
+    ['.*/host_vars/.*%.ya?ml'] = 'yaml.ansible',
+
+    -- Docker Compose
+    ['.*/compose[^/]*%.ya?ml'] = 'yaml.docker-compose',
+    ['.*/docker%-compose[^/]*%.ya?ml'] = 'yaml.docker-compose',
+  },
+})
+
 -- Set custom syntax for .env files to conceal values
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   pattern = {".env", ".powenv"},
