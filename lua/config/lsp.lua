@@ -56,8 +56,46 @@ vim.lsp.config('yamlls', {
   },
 })
 
-vim.lsp.enable('gopls')
-vim.lsp.enable('jsonls')
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('ruby_lsp')
-vim.lsp.enable('yamlls')
+-- docker_language_server's Dockerfile linting needs Docker installed, so
+-- only use it for Compose files and use dockerls for Dockerfiles
+vim.lsp.config('docker_language_server', {
+  filetypes = { 'yaml.docker-compose' },
+})
+
+vim.lsp.log.set_level(vim.log.levels.WARN)
+
+-- Server name => executable it needs. Most come from the Brewfile.
+-- vim.lsp.enable fails silently when the executable is missing, so check
+-- first and warn about anything that needs installing.
+local servers = {
+  ansiblels              = 'ansible-language-server',
+  bashls                 = 'bash-language-server',
+  docker_language_server = 'docker-language-server',
+  dockerls               = 'docker-langserver',
+  eslint                 = 'vscode-eslint-language-server',
+  gopls                  = 'gopls',
+  jsonls                 = 'vscode-json-language-server',
+  lua_ls                 = 'lua-language-server',
+  ruby_lsp               = 'ruby-lsp',
+  vtsls                  = 'vtsls',
+  yamlls                 = 'yaml-language-server',
+}
+
+local missing = {}
+for server, executable in pairs(servers) do
+  if vim.fn.executable(executable) == 1 then
+    vim.lsp.enable(server)
+  else
+    table.insert(missing, executable)
+  end
+end
+
+if #missing > 0 then
+  table.sort(missing)
+  vim.schedule(function()
+    vim.notify(
+      'Language servers not installed: ' .. table.concat(missing, ', ') .. '\nRun `make deps` in ' .. vim.fn.stdpath('config'),
+      vim.log.levels.WARN
+    )
+  end)
+end

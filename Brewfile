@@ -11,10 +11,11 @@ brew "tree-sitter-cli"
 # Node/Go version a project pins
 brew "ansible-language-server"
 brew "bash-language-server"
-brew "docker-language-server"
+brew "docker-language-server" # Compose files
+brew "dockerfile-language-server" # Dockerfiles (works without Docker installed)
 brew "gopls"
 brew "lua-language-server"
-brew "typescript-language-server"
+brew "vtsls" # TypeScript & JavaScript
 brew "vscode-langservers-extracted" # jsonls & eslint
 brew "yaml-language-server"
 
