@@ -68,6 +68,7 @@ local line_config = {
       { 'diagnostics', symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '}, update_in_insert = true },
     },
     lualine_x = {
+      'lsp_status',
       { 'diff', symbols = {added = ' ', modified = ' ', removed = ' '} },
     },
     lualine_y = {
