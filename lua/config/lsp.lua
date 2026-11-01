@@ -11,8 +11,8 @@ vim.lsp.config('solargraph', {
     },
   },
   init_options = { formatting = true },
-  filetypes = { 'ruby', 'erb' },
-  root_markers = { '.git' },
+  filetypes = { 'ruby', 'eruby' },
+  root_markers = { 'Gemfile', '.git' },
 })
 
 vim.lsp.config('jsonls', {
@@ -41,9 +41,9 @@ vim.lsp.config('lua_ls', {
 })
 
 vim.lsp.config('yamlls', {
+  filetypes = { 'yaml', 'yaml.ansible', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.helm-values' },
   settings = {
-    yamlls = {
-      cmd = { 'yaml-language-server', '--stdio' },
+    yaml = {
       schemaStore = {
         enable = true,
         url = "", -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
@@ -53,7 +53,6 @@ vim.lsp.config('yamlls', {
   },
 })
 
-vim.lsp.enable('gopls')
 vim.lsp.enable('jsonls')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('solargraph')

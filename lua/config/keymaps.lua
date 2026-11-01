@@ -170,7 +170,7 @@ wk.add({
   { "<leader>lp", cmd[[Lspsaga peek_definition]],         desc = "Peek definition" },
   { "<leader>lq", cmd[[lua vim.diagnostic.setloclist()]], desc = "Quickfix diagnostics" },
   { "<leader>lr", cmd[[Lspsaga rename]],                  desc = "LSP Rename" },
-  { "<leader>ls", snack[[lsp_definitions()]],             desc = "Doc symbols" },
+  { "<leader>ls", snack[[lsp_symbols()]],                 desc = "Doc symbols" },
 })
 
 ---------------------------------
